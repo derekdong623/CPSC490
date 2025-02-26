@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+.clang-format
+.vscode/
+*/build/
