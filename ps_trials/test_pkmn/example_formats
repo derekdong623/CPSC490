@@ -1,0 +1,43 @@
+Pelipper (F) @ Assault Vest  
+Ability: Keen Eye  
+Level: 69  
+Shiny: Yes  
+Dynamax Level: 2  
+EVs: 1 HP / 2 Atk / 3 Def / 4 SpA / 5 SpD / 6 Spe  
+Sassy Nature  
+IVs: 7 HP / 8 Atk / 9 Def / 10 SpA / 11 SpD / 12 Spe  
+- Agility
+
+Pelipper||AssaultVest|KeenEye|Agility|Sassy|1,2,3,4,5,6|F|7,8,9,10,11,12|S|69|
+
+[
+  {
+    "name": "",
+    "species": "Pelipper",
+    "item": "Assault Vest",
+    "ability": "Keen Eye",
+    "gender": "F",
+    "nature": "Sassy",
+    "evs": {
+      "hp": 1,
+      "atk": 2,
+      "def": 3,
+      "spa": 4,
+      "spd": 5,
+      "spe": 6
+    },
+    "ivs": {
+      "hp": 7,
+      "atk": 8,
+      "def": 9,
+      "spa": 10,
+      "spd": 11,
+      "spe": 12
+    },
+    "level": 69,
+    "moves": [
+      "Agility"
+    ],
+    "shiny": true
+  }
+]

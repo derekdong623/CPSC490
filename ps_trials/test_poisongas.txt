@@ -1,0 +1,7 @@
+>start {"formatid":"gen8anythinggoes"}
+>player p1 {"name":"Alice","team":"Koffing|||Levitate|PoisonGas,PoisonPowder,Tackle|Serious|||0,0,0,0,0,0||50|"}
+>player p2 {"name":"Bob","team":"Weezing|||Levitate|PoisonGas,PoisonPowder,Growl,Reflect|Serious|0,0,0,0,0,0|||||"}
+>p1 team 1
+>p2 team 1
+>p1 move tackle
+>p2 move reflect
