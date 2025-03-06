@@ -1,6 +1,19 @@
 #include "pokemon.hpp"
 #include "pokemon_enums.hpp"
+
+#include <optional>
 namespace pkmn {
+Pokemon::Pokemon(Species name_, int lvl_, const Nature nature, const Stats &IVs, const Stats &EVs)
+    : name(name_), lvl(lvl_) {
+  init_stats =
+      get_stats(species_dict.base_stat_dict[name_], get_nature_contrib(nature), IVs, EVs, lvl_,
+                name_ == Species::SHEDINJA); // COMPUTING STATS
+  stats = init_stats;                        // Copy initial stats to current
+  current_hp = init_stats.hp;
+  auto tp = species_dict.type_dict[name_]; // shorthand
+  types[0] = tp.first, types[1] = tp.second;
+}
+// COMPUTING STATS
 int get_stat(int base, int iv, int ev, int lvl, int nature_change) {
   // Helper function getting non-HP stats
   double nature_factor = (10. + nature_change) / 10.;
@@ -78,5 +91,19 @@ Stats get_nature_contrib(const Nature nature) {
     ret.spd = -1;
   }
   return ret;
+}
+
+// MOVE SET HELPER
+void Pokemon::set_move_set(std::optional<MoveId> ids[4]) {
+  int ind, i;
+  for (ind = i = 0; i < 4; i++) {
+    if (ids[i] != std::nullopt) {
+      moves[ind++] = move_dict.dict[*(ids[i])];
+    }
+  }
+}
+
+bool Pokemon::has_type(Type t) const {
+  return types[0] == t || types[1] == t;
 }
 } // namespace pkmn

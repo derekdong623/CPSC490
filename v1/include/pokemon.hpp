@@ -7,15 +7,19 @@
 namespace pkmn {
 Stats get_nature_contrib(const Nature nature);
 struct Pokemon {
-  const Species name;
-  const int lvl;
-  Stats init_stats{};
+  Species name;
+  int lvl;
+  Stats init_stats, stats; // Some moves e.g. might swap attack/spatt or smth
+  int current_hp;
+  Type types[2];
+  // Boosts, statuses, move-changes/transform data
+  std::optional<Move> moves[4];
+  // COMPUTING STATS
   Stats get_stats(const Stats &base, const Stats &nature, const Stats &IVs, const Stats &EVs,
                   const int lvl, const bool is_shedinja);
-  Pokemon(Species name_, int lvl_, const Nature nature, const Stats &IVs, const Stats &EVs)
-      : name(name_), lvl(lvl_) {
-    init_stats = get_stats(base_stat_dict.dict[name_], get_nature_contrib(nature), IVs, EVs, lvl_,
-                           name_ == Species::SHEDINJA);
-  }
+  Pokemon() : name(Species::NONE), lvl(0), init_stats{}, moves{} {}
+  Pokemon(Species name_, int lvl_, const Nature nature, const Stats &IVs, const Stats &EVs);
+  void set_move_set(std::optional<MoveId> ids[4]); // MOVE SET HELPER
+  bool has_type(Type t) const;
 };
 } // namespace pkmn

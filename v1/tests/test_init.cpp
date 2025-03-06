@@ -3,33 +3,44 @@
 #include <iostream>
 namespace pkmn {
 bool test_init_type_chart() {
-  if (get_type_effectiveness(Type::BUG, Type::WATER) != 2)
+  if (get_type_effectiveness(Type::BUG, Type::WATER) != 0)
     return false; // Normal effectiveness
-  if (get_type_effectiveness(Type::BUG, Type::FIRE) != 1)
+  if (get_type_effectiveness(Type::BUG, Type::FIRE) != -1)
     return false; // Not very effective
-  if (get_type_effectiveness(Type::BUG, Type::PSYCHIC) != 4)
+  if (get_type_effectiveness(Type::BUG, Type::PSYCHIC) != 1)
     return false; // Super effective
-  if (get_type_effectiveness(Type::DRAGON, Type::FAIRY) != 0)
+  if (get_type_effectiveness(Type::DRAGON, Type::FAIRY) != -2)
     return false; // Immunity
   return true;
 }
 bool test_read_base_stats() {
-  if (base_stat_dict.dict[Species::BULBASAUR].hp != 45)
+  // Bulbasaur has no changes in Run and Bun
+  int bulb_hp = species_dict.base_stat_dict[Species::BULBASAUR].hp;
+  if (bulb_hp != 45) {
+    std::cout << bulb_hp << std::endl;
     return false;
+  }
   return true;
 }
-bool test_init_piplup() {
-  // TODO
-  Pokemon piplup = Pokemon(Species::PIPLUP, // Species
-                           100,             // Level
-                           Nature::HARDY,   // Nature
-                           Stats{},         // IVs
-                           Stats{}          // EVs
-  );
+bool test_init_lillipup() {
+  // Lillipup has no changes in Run and Bun
+  Pokemon lillipup = Pokemon(Species::LILLIPUP, 10, Nature::HARDY, Stats{}, Stats{});
+  if (lillipup.init_stats.hp != 29)
+    return false;
+  if (lillipup.init_stats.att != 17)
+    return false;
+  if (lillipup.init_stats.def != 14)
+    return false;
+  if (lillipup.init_stats.spatt != 10)
+    return false;
+  if (lillipup.init_stats.spdef != 14)
+    return false;
+  if (lillipup.init_stats.spd != 16)
+    return false;
   return true;
 }
 } // namespace pkmn
 std::vector<testing::TestCase> init_tests = {
     {"Initialize type chart", pkmn::test_init_type_chart},
     {"Initialize base stats dict", pkmn::test_read_base_stats},
-    {"Initialize example Pokemon, Piplup", pkmn::test_init_piplup}};
+    {"Initialize example Pokemon, Lillipup", pkmn::test_init_lillipup}};
