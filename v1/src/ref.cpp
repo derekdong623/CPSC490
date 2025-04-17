@@ -1,11 +1,16 @@
 #include "ref.hpp"
 
+#include <algorithm>
 #include <format>
 #include <optional>
+#include <unordered_set>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 namespace pkmn {
 // GLOBAL VARIABLE
-std::string DATA_FOLDER = "base_gen_8";
-// std::string DATA_FOLDER = "run_and_bun";
+std::string DATA_FOLDER = "/Users/dd2/Documents/classes/4th_year/CPSC490/data/base_gen_8";
+// std::string DATA_FOLDER = "/Users/dd2/Documents/classes/4th_year/CPSC490/data/run_and_bun";
 
 // TYPE CHART
 TypeChart type_chart;
@@ -73,9 +78,9 @@ TypeChart::TypeChart() {
       {Type::NORMAL, Type::GHOST}, {Type::ELECTRIC, Type::GROUND}, {Type::FIGHTING, Type::GHOST},
       {Type::POISON, Type::STEEL}, {Type::GROUND, Type::FLYING},   {Type::PSYCHIC, Type::DARK},
       {Type::GHOST, Type::NORMAL}, {Type::DRAGON, Type::FAIRY}};
-  for (int i = 1; i < (int)Type::END; i++) { // We know that there are 18 types; 0 is NONE
+  for (int i = 1; i < (int)Type::NO_TYPE; i++) { // We know that there are 18 types; 0 is NONE
     Type attacker = (Type)i;
-    for (int j = 1; j < (int)Type::END; j++) {
+    for (int j = 1; j < (int)Type::NO_TYPE; j++) {
       Type defender = (Type)j;
       std::pair<Type, Type> type_pair = {attacker, defender};
       if (super_eff.find(type_pair) != super_eff.end()) {
@@ -90,70 +95,91 @@ TypeChart::TypeChart() {
     }
   }
 }
-int get_type_effectiveness(Type attacker, Type defender) {
+int getTypeEffectiveness(Type attacker, Type defender) {
   return type_chart.chart[attacker][defender];
 }
 
 // BASE STATS and TYPES
-SpeciesDict species_dict;
-SpeciesDict::SpeciesDict() {
-  std::ifstream file(std::format("../data/{}/species_data_normal.txt", DATA_FOLDER));
+PokeDexDict pokedex;
+PokeDexDict::PokeDexDict() {
+  std::ifstream file(std::format("{}/species_data.txt", DATA_FOLDER));
   if (!file) {
-    std::cerr << "Error opening datafile of normal species!" << std::endl;
+    std::cerr << "Error opening Pokedex datafile!" << std::endl;
   }
   int i = 0;
   std::string line;
   while (std::getline(file, line)) {
-    if (++i >= (int)Species::END) {
+    if (++i >= (int)PokeName::END) {
       std::cerr << "Extra line while reading stats' datafile:" << std::endl;
       std::cerr << line << std::endl;
       break;
     }
     std::istringstream iss(line);
+    int species;
     Stats stats{};
     int a, b;
-    iss >> stats.hp >> stats.att >> stats.def >> stats.spatt >> stats.spdef >> stats.spd >> a >> b;
-    Species species = (Species)i;
-    base_stat_dict[species] = stats;
-    type_dict[species] = std::pair<Type, Type>{static_cast<Type>(a), static_cast<Type>(b)};
+    iss >> species >> stats.hp >> stats.att >> stats.def >> stats.spatt >> stats.spdef >>
+        stats.spd >> a >> b;
+    PokeName name = (PokeName)i;
+    base_stat_dict[name] = stats;
+    type_dict[name] = std::pair<Type, Type>{static_cast<Type>(a), static_cast<Type>(b)};
+    species_dict[name] = (Species)species;
   }
   file.close();
 }
 
 // MOVES
-MoveDict move_dict;
+MoveDict moveDict;
 std::optional<int> get_opt_nonneg_int(int val) {
   return val >= 0 ? val : std::optional<int>(std::nullopt);
 }
 MoveDict::MoveDict() {
+  int NUM_FIELDS = 11;
   // Read from file
-  std::ifstream file(std::format("../data/{}/moves/move_data.txt", DATA_FOLDER));
+  std::ifstream file(std::format("{}/move_data/basic_move_data.txt", DATA_FOLDER));
   if (!file) {
     std::cerr << "Error opening moves' datafile!" << std::endl;
   }
   std::string line;
-  for (int j = 1; j < (int)MoveId::END; j++) {
+  int tmp[NUM_FIELDS];
+  std::unordered_set<MoveId> soundMoves = {
+      MoveId::ALLURINGVOICE,  MoveId::BOOMBURST,      MoveId::BUGBUZZ,      MoveId::CHATTER,
+      MoveId::CLANGINGSCALES, MoveId::CLANGOROUSSOUL, MoveId::CONFIDE,      MoveId::DISARMINGVOICE,
+      MoveId::ECHOEDVOICE,    MoveId::EERIESPELL,     MoveId::GRASSWHISTLE, MoveId::GROWL,
+      MoveId::HEALBELL,       MoveId::HOWL,           MoveId::HYPERVOICE,   MoveId::METALSOUND,
+      MoveId::NOBLEROAR,      MoveId::OVERDRIVE,      MoveId::PARTINGSHOT,  MoveId::PERISHSONG,
+      MoveId::PSYCHICNOISE,   MoveId::RELICSONG,      MoveId::ROAR,         MoveId::ROUND,
+      MoveId::SCREECH,        MoveId::SING_,          MoveId::SNARL,        MoveId::SNORE,
+      MoveId::SPARKLINGARIA,  MoveId::SUPERSONIC,     MoveId::TORCHSONG,    MoveId::UPROAR};
+  for (int j = 0; j <= (int)MoveId::END; j++) {
     MoveId id = (MoveId)j;
-    int tmp[6];
-    if(!std::getline(file, line)) {
+    if (!std::getline(file, line)) {
       std::cerr << "Not enough lines while reading moves' datafile:" << std::endl;
       break;
     }
     std::istringstream iss(line);
     Move ret{};
-    for(int k=0; k<6; k++) {
+    for (int k = 0; k < NUM_FIELDS; k++) {
       iss >> tmp[k];
     }
-    ret.type = static_cast<Type>(tmp[0]);
-    ret.kind = static_cast<MoveKind>(tmp[1]);
-    ret.power = get_opt_nonneg_int(tmp[2]);
-    ret.accuracy = get_opt_nonneg_int(tmp[3]);
-    ret.pp = get_opt_nonneg_int(tmp[4]);
-    ret.prob = get_opt_nonneg_int(tmp[5]);
-    ret.init_pp = ret.pp;
+    int ind = 0;
+    ret.type = static_cast<Type>(tmp[ind++]);             // 0
+    ret.basePower = tmp[ind++];                           // 1
+    ret.accuracy = get_opt_nonneg_int(tmp[ind++]);        // 2
+    ret.pp = tmp[ind++];                                  // 3
+    ret.critRatio = tmp[ind++];                           // 4
+    ret.priority = tmp[ind++];                            // 5
+    ret.category = static_cast<MoveCategory>(tmp[ind++]); // 6
+    ret.status = static_cast<Status>(tmp[ind++]);         // 7
+    ret.weather = static_cast<Weather>(tmp[ind++]);       // 8
+    ret.terrain = static_cast<Terrain>(tmp[ind++]);       // 9
+    ret.target = static_cast<Target>(tmp[ind++]);         // 10
+    if(std::find(soundMoves.begin(), soundMoves.end(), id) != soundMoves.end()) {
+      ret.sound = true;
+    }
     dict[id] = ret;
   }
-  if(std::getline(file, line)) {
+  if (std::getline(file, line)) {
     std::cerr << "Extra line(s) while reading moves' datafile:" << std::endl;
     std::cerr << line << std::endl;
   }

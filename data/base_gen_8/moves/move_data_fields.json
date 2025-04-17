@@ -1,0 +1,434 @@
+{
+  "name": "Many",
+  "id": "Many",
+  "fullname": "Many",
+  "effectType": [
+    "Move"
+  ],
+  "exists": [
+    true
+  ],
+  "num": "Many",
+  "gen": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "shortDesc": "Many",
+  "desc": "Many",
+  "isNonstandard": [
+    null,
+    "LGPE",
+    "Unobtainable",
+    "CAP",
+    "Gigantamax",
+    "Past"
+  ],
+  "duration": [
+    null
+  ],
+  "noCopy": [
+    false
+  ],
+  "affectsFainted": [
+    false
+  ],
+  "status": [
+    null,
+    "par",
+    "tox",
+    "psn",
+    "brn",
+    "slp"
+  ],
+  "weather": [
+    null,
+    "snowscape",
+    "RainDance",
+    "Sandstorm",
+    "sunnyday",
+    "hail"
+  ],
+  "sourceEffect": [
+    ""
+  ],
+  "type": "Many",
+  "target": [
+    "allySide",
+    "randomNormal",
+    "self",
+    "adjacentAllyOrSelf",
+    "any",
+    "normal",
+    "adjacentAlly",
+    "all",
+    "adjacentFoe",
+    "allAdjacentFoes",
+    "scripted",
+    "foeSide",
+    "allyTeam",
+    "allAdjacent",
+    "allies"
+  ],
+  "basePower": "Many",
+  "accuracy": [
+    true,
+    100,
+    70,
+    75,
+    80,
+    50,
+    85,
+    55,
+    90,
+    60,
+    30,
+    95
+  ],
+  "critRatio": [
+    1,
+    2,
+    3
+  ],
+  "baseMoveType": "Many",
+  "secondary": [
+    null,
+    "Dict"
+  ],
+  "secondaries": [
+    null,
+    "List"
+  ],
+  "hasSheerForce": [
+    false,
+    true
+  ],
+  "priority": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    -7,
+    -6,
+    -5,
+    -4,
+    -3,
+    -1
+  ],
+  "category": [
+    "Status",
+    "Physical",
+    "Special"
+  ],
+  "overrideOffensiveStat": [
+    null,
+    "def"
+  ],
+  "overrideOffensivePokemon": [
+    null,
+    "target"
+  ],
+  "overrideDefensiveStat": [
+    null,
+    "def"
+  ],
+  "overrideDefensivePokemon": [
+    null
+  ],
+  "ignoreNegativeOffensive": [
+    false
+  ],
+  "ignorePositiveDefensive": [
+    false
+  ],
+  "ignoreOffensive": [
+    false
+  ],
+  "ignoreDefensive": [
+    false,
+    true
+  ],
+  "ignoreImmunity": [
+    false,
+    true,
+    "Dict"
+  ],
+  "pp": [
+    1,
+    35,
+    5,
+    40,
+    10,
+    15,
+    20,
+    25,
+    30
+  ],
+  "noPPBoosts": [
+    false,
+    true
+  ],
+  "isZ": "Many",
+  "isMax": "Many",
+  "flags": [
+    "Dict"
+  ],
+  "selfSwitch": [
+    null,
+    true,
+    "copyvolatile",
+    "shedtail"
+  ],
+  "pressureTarget": [
+    ""
+  ],
+  "nonGhostTarget": [
+    "",
+    "self"
+  ],
+  "ignoreAbility": [
+    false,
+    true
+  ],
+  "damage": [
+    null,
+    40,
+    20,
+    "level"
+  ],
+  "spreadHit": [
+    false
+  ],
+  "forceSTAB": [
+    false
+  ],
+  "volatileStatus": "Many",
+  "maxMove": [
+    "Dict"
+  ],
+  "contestType": [
+    "Beautiful",
+    "Cool",
+    "Tough",
+    "Clever",
+    "Cute"
+  ],
+  "zMove": [
+    "Dict"
+  ],
+  "drain": [
+    "List"
+  ],
+  "boosts": [
+    "Dict"
+  ],
+  "basePowerCallback": [
+    "basePowerCallback"
+  ],
+  "onHit": [
+    "onHit"
+  ],
+  "onPrepareHit": [
+    "onPrepareHit"
+  ],
+  "condition": [
+    "Dict"
+  ],
+  "self": [
+    "Dict"
+  ],
+  "multihit": [
+    3,
+    2,
+    10,
+    "List"
+  ],
+  "callsMove": [
+    true
+  ],
+  "onTryImmunity": [
+    "onTryImmunity"
+  ],
+  "onTry": [
+    "onTry"
+  ],
+  "onModifyType": [
+    "onModifyType"
+  ],
+  "sideCondition": [
+    "reflect",
+    "stickyweb",
+    "safeguard",
+    "spikes",
+    "auroraveil",
+    "tailwind",
+    "mist",
+    "toxicspikes",
+    "lightscreen",
+    "luckychant",
+    "quickguard",
+    "wideguard",
+    "matblock",
+    "craftyshield",
+    "stealthrock"
+  ],
+  "onTryHit": [
+    "onTryHit"
+  ],
+  "hasCrashDamage": [
+    true
+  ],
+  "onMoveFail": [
+    "onMoveFail"
+  ],
+  "stallingMove": [
+    true
+  ],
+  "onBasePower": [
+    "onBasePower"
+  ],
+  "priorityChargeCallback": [
+    "priorityChargeCallback"
+  ],
+  "onAfterMove": [
+    "onAfterMove"
+  ],
+  "onModifyMove": [
+    "onModifyMove"
+  ],
+  "onDisableMove": [
+    "onDisableMove"
+  ],
+  "beforeMoveCallback": [
+    "beforeMoveCallback"
+  ],
+  "onTryMove": [
+    "onTryMove"
+  ],
+  "recoil": [
+    "List"
+  ],
+  "onAfterHit": [
+    "onAfterHit"
+  ],
+  "onAfterSubDamage": [
+    "onAfterSubDamage"
+  ],
+  "ignoreEvasion": [
+    true
+  ],
+  "forceSwitch": [
+    true
+  ],
+  "selfBoost": [
+    "Dict"
+  ],
+  "damageCallback": [
+    "damageCallback"
+  ],
+  "onModifyTarget": [
+    "onModifyTarget"
+  ],
+  "beforeTurnCallback": [
+    "beforeTurnCallback"
+  ],
+  "onHitField": [
+    "onHitField"
+  ],
+  "smartTarget": [
+    true
+  ],
+  "terrain": [
+    "grassyterrain",
+    "electricterrain",
+    "mistyterrain",
+    "psychicterrain"
+  ],
+  "selfdestruct": [
+    "always",
+    "ifHit"
+  ],
+  "pseudoWeather": [
+    "iondeluge",
+    "magicroom",
+    "gravity",
+    "watersport",
+    "trickroom",
+    "mudsport",
+    "fairylock",
+    "wonderroom"
+  ],
+  "onDamagePriority": [
+    -20
+  ],
+  "onDamage": [
+    "onDamage"
+  ],
+  "breaksProtect": [
+    true
+  ],
+  "onAfterMoveSecondarySelf": [
+    "onAfterMoveSecondarySelf"
+  ],
+  "ohko": [
+    true,
+    "Ice"
+  ],
+  "willCrit": [
+    true
+  ],
+  "onEffectiveness": [
+    "onEffectiveness"
+  ],
+  "onHitSide": [
+    "onHitSide"
+  ],
+  "onModifyPriority": [
+    "onModifyPriority"
+  ],
+  "slotCondition": [
+    "lunardance",
+    "revivalblessing",
+    "Wish",
+    "healingwish"
+  ],
+  "heal": [
+    "List"
+  ],
+  "realMove": [
+    "Hidden Power"
+  ],
+  "thawsTarget": [
+    true
+  ],
+  "onUseMoveMessage": [
+    "onUseMoveMessage"
+  ],
+  "mindBlownRecoil": [
+    true
+  ],
+  "multiaccuracy": [
+    true
+  ],
+  "sleepUsable": [
+    true
+  ],
+  "tracksTarget": [
+    true
+  ],
+  "stealsBoosts": [
+    true
+  ],
+  "struggleRecoil": [
+    true
+  ]
+}

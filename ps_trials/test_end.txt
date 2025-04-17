@@ -1,0 +1,10 @@
+>start {"formatid":"gen8anythinggoes"}
+>player p1 {"name":"Alice","team":"Ninetales-Alola||LightClay|SnowWarning|AuroraVeil,Moonblast,FreezeDry,Hypnosis|Timid||F|31,31,31,31,31,31||100|]Gyarados||Leftovers|Intimidate|DragonDance,Waterfall,Earthquake,IceFang|Jolly||M|31,31,31,31,31,31||100|"}
+>player p2 {"name":"Bob","team":"Charizard||CharizarditeY|Blaze|BellyDrum,Acrobatics,Earthquake,WildCharge|Jolly||M|31,31,31,31,31,31||100|]Whimsicott||HeavyDutyBoots|Prankster|Moonblast,GigaDrain,UTurn,Encore|Timid||M|31,31,31,31,31,31||100|"}
+
+>p1 team 1
+>p2 team 1
+>p1 move AuroraVeil
+>p2 move BellyDrum mega
+>p1 switch Gyarados
+>p2 move Acrobatics
