@@ -29,8 +29,8 @@ enum class TriState {
 // roll_val: [0,16) or -1 for randomize
 // crit: critIndex
 struct DMGCalcOptions {
-  int roll_val;
-  int crit;
+  int roll_val = -1;
+  int crit = -1;
   void fill_crit(const Pokemon &target, const Pokemon &attacker);
   void fill_roll();
 };

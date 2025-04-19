@@ -64,16 +64,13 @@ DamageResultState BattleState::getDamage(Pokemon const &source, Pokemon const &t
   // Dragon Rage, Sonic Boom.
 
   int basePower = move.basePower;
-  // TODO: basePowerCallback
   basePower = applyBasePowerCallback(basePower, source, target, moveInst);
   basePower = std::max(1, basePower);
   // Crit RNG
   bool moveCrit = getCrit(target, source, moveInst.id, options);
   if (moveCrit) {
-    // onCriticalHit()
     moveCrit = applyOnCriticalHit(moveCrit, target, source, moveInst);
   }
-  // onBasePower():
   basePower = applyOnBasePower(basePower, source, target, move);
   int level = source.lvl;
   // overridePokemon -- just Offensive, from Foul Play
@@ -625,7 +622,8 @@ bool BattleState::runSpecialImmunity(Pokemon &target, EffectKind effectKind, boo
     }
     break;
   }
-  default: break;
+  default:
+    break;
   }
   return true;
 }
@@ -748,25 +746,26 @@ bool BattleState::setStatus(Status newStatus, Pokemon &target, Pokemon &source,
 }
 bool BattleState::addVolatile(VolatileId vol, Pokemon &target, Pokemon &source, MoveId move) {
   // e.g. Gem can boost Explosion damage
-  if(!target.current_hp && vol != VolatileId::GEM) return false;
+  if (!target.current_hp && vol != VolatileId::GEM)
+    return false;
   // Do later: AnchorShot and Block only trap as long as user stays in
   // if (linkedStatus && source && !source.hp) return false;
-  if(target.has_volatile(vol)) {
+  if (target.has_volatile(vol)) {
     return applyOnRestart(vol, target, source);
   }
   // Attract
-  if(vol == VolatileId::ATTRACT) {
-    if(!runSpecialImmunity(target, EffectKind::ATTRACT, false)) {
+  if (vol == VolatileId::ATTRACT) {
+    if (!runSpecialImmunity(target, EffectKind::ATTRACT, false)) {
       return false;
     }
   }
-  if(!applyOnTryAddVolatile(vol, target, source)) {
+  if (!applyOnTryAddVolatile(vol, target, source)) {
     return false;
   }
 
   // Q: Why initialize volatile *before* calling onStart if you might cancel anyways?
   // For now, just check onStart first
-  if(applyOnStartVolatile(vol, target, source, move)) {
+  if (applyOnStartVolatile(vol, target, source, move)) {
     // TODO: initialize corresponding volatile, possibly with duration
     // Do later: effectOrder is to run volatile effects in the order in which they were applied
     return true;
@@ -998,12 +997,12 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
       hit = false;
     } else if (!target.applyOnTryImmunity(user, move.id)) {
       hit = false;
-    } 
+    }
     // TODO
     // else if (move.pranksterBoosted && user.has_ability(Ability::PRANKSTER) &&
     //            target.side != user.side && target.has_type(Type::DARK)) {
     //   hit = false;
-    // } 
+    // }
     else {
       hit = true;
     }
@@ -1132,7 +1131,8 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
 // source used for e.g. assigning duration of effect
 // sourceEffect used for e.g. Yawn-
 // TODO: Give SparklingAria dustproof, getting it through ShieldDust
-bool BattleState::applySecondaryEffect(Pokemon &target, Pokemon &source, SecondaryEffect effect, MoveInstance &moveInst) {
+bool BattleState::applySecondaryEffect(Pokemon &target, Pokemon &source, SecondaryEffect effect,
+                                       MoveInstance &moveInst) {
   DamageResultState didSomething;
   switch (effect.kind) {
   case Secondary::STATUS: {
@@ -1217,7 +1217,7 @@ DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInsta
   if (!subDamage && targeting) {
     // battle.activeTarget = target;
     // Q: Can getDamage() return undefined or null? For now, assume no.
-    dmgResult = getDamage(user, target, moveInst, {});
+    dmgResult = getDamage(user, target, moveInst, defaultDmgOptions);
     if (dmgResult.initialized && dmgResult.fail) {
       targeting = false;
     }

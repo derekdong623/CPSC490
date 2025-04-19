@@ -87,6 +87,10 @@ public:
   // "Environmental"
   bool queueWillAct = false; // During move: whether more moves (switches N/A) remaining in queue
   int echoedVoiceMultiplier = 1; // Max of 5, only one increment per turn
+  // DEBUG: SET MANUALLY
+  DMGCalcOptions defaultDmgOptions = {};
+  BattleState() {}
+  BattleState(DMGCalcOptions ddo): defaultDmgOptions(ddo) {}
   bool set_team(int side, Team &team);
   void set_switch_options();
   void set_move_options();
@@ -97,6 +101,7 @@ public:
   int checkWin(int lastFaintSide = -1);
   DamageResultState getDamage(Pokemon const &source, Pokemon const &target, MoveInstance &moveInst,
                               DMGCalcOptions options); // Exported for test_init
+  Pokemon &getActivePokemon(int side) {return teams[side].pkmn[teams[side].activeInd];}
 private:
   // bool use_verbose_output = false;
   // std::vector<MoveInstance> verbose_outputs;
