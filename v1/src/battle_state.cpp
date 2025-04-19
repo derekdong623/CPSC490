@@ -52,8 +52,9 @@ void BattleState::set_choices() {
 }
 // Assumes move.power != std::nullopt
 // Called by getSpreadDamage() and Substitute::onTryPrimaryHit() logic
-int BattleState::getDamage(Pokemon const &source, Pokemon const &target, MoveInstance &moveInst,
-                           DMGCalcOptions options) {
+DamageResultState BattleState::getDamage(Pokemon const &source, Pokemon const &target,
+                                         MoveInstance &moveInst, DMGCalcOptions options) {
+  DamageResultState ret;
   const Move &move = moveInst.moveData;
   // TODO: SPECIAL CASES
   // Some immunity check? (runImmunity)
@@ -101,7 +102,7 @@ int BattleState::getDamage(Pokemon const &source, Pokemon const &target, MoveIns
   // From here: modifyDamage
   baseDamage += 2; // Intriguing
   // Spread. For single battles: Parental Bond
-  if (moveInst.parentalBond && moveInst.numHits > 1) {
+  if (moveInst.parentalBond && moveInst.currentHitNum > 1) {
     baseDamage /= 4;
   }
   // TODO: Weather
@@ -114,18 +115,21 @@ int BattleState::getDamage(Pokemon const &source, Pokemon const &target, MoveIns
   // STAB (TODO: check database for ??? type)
   baseDamage = checkAndApplySTAB(baseDamage, attacker, move);
   // Type effectiveness
-  std::optional<int> typeMod = getTypeMod(defender, move);
+  std::optional<int> typeMod = getTypeMod(defender, move.type);
   if (typeMod == std::nullopt) {
-    return 0;
+    ret.set_numeric(0);
+    return ret;
   } else {
     baseDamage = applyTypeEffectiveness(baseDamage, *typeMod);
   }
   // TODO: Guts modifier
   // TODO: onModifyDamage() -- items, Flash Fire. Ignore phases (old gen)
   if (baseDamage == 0) { // Min damage check
-    return 1;
+    ret.set_numeric(1);
+  } else {
+    ret.set_numeric(baseDamage % (1 << 16));
   }
-  return baseDamage % (1 << 16); // 16-bit truncation?
+  return ret;
 }
 // SwitchResult enum for directness
 SwitchResult BattleState::switchIn(int side, int switchToInd, bool isDrag) {
@@ -153,7 +157,7 @@ SwitchResult BattleState::switchIn(int side, int switchToInd, bool isDrag) {
       // oldActive.illusion = false;
       applyOnEnd(oldActive);
       // Do later: Baton Pass copyVolatile
-      // oldActive.clearVolatile();
+      oldActive.clearVolatile(true);
     }
     oldActive.isActive = false;
     oldActive.isStarted = false;
@@ -332,10 +336,10 @@ BattleState BattleState::runTurnPy() {
 // Update speed of each active Pokemon.
 // Does shenanigans for trick room.
 void BattleState::updateSpeed() {
-  for(int side=0; side<2; side++) {
+  for (int side = 0; side < 2; side++) {
     Pokemon &activePkmn = teams[side].pkmn[teams[side].activeInd];
     int spd = activePkmn.getStat(ModifierId::SPEED, true, true);
-    activePkmn.effectiveSpeed = trickRoom ? 10000-spd : spd;
+    activePkmn.effectiveSpeed = trickRoom ? 10000 - spd : spd;
   }
 }
 void BattleState::endTurn() {
@@ -405,7 +409,6 @@ std::optional<bool> BattleState::applyAtEndOfAction(ActionKind action) {
   //   applyOnEmergencyExit(originalHP, pokemon);
   // }
 
-  bool anyReqSwitch = false;
   for (int side = 0; side < 2; side++) {
     Pokemon &activePkmn = teams[side].pkmn[teams[side].activeInd];
     bool toSwitch = activePkmn.switchFlag;
@@ -427,7 +430,6 @@ std::optional<bool> BattleState::applyAtEndOfAction(ActionKind action) {
         toSwitch = false;
       }
     }
-    anyReqSwitch |= toSwitch;
   }
   // Post-faint switches: request simultaneously
   set_switch_options();
@@ -438,7 +440,7 @@ bool BattleState::runTurn() {
   if (!battle_started || battle_ended)
     return false;
   midTurn = true;
-  if(currentAction == ActionKind::NONE) {
+  if (currentAction == ActionKind::NONE) {
     updateSpeed();
   }
   // Do later: megaEvos
@@ -585,17 +587,203 @@ void BattleState::runMove(MoveSlot &moveSlot, Pokemon &user, Pokemon &target) {
   faintMessages();
   checkWin();
 }
+// false for immune, true for not-immune
+// Checks Attract, Powder, weather (Sandstorm/Hail), prankster-boosted
+bool BattleState::runSpecialImmunity(Pokemon &target, EffectKind effectKind, bool isPrankster) {
+  if (isPrankster && target.has_type(Type::DARK)) {
+    return false;
+  }
+  switch (effectKind) {
+  case EffectKind::ATTRACT: {
+    if (target.has_ability(Ability::OBLIVIOUS)) {
+      return false;
+    }
+    break;
+  }
+  case EffectKind::POWDER: {
+    if (target.has_type(Type::GRASS) || target.has_ability(Ability::OVERCOAT) ||
+        target.has_item(Item::SAFETY_GOGGLES)) {
+      return false;
+    }
+    break;
+  }
+  case EffectKind::SANDSTORM: {
+    if (target.has_type(Type::GROUND) || target.has_type(Type::STEEL) ||
+        target.has_type(Type::ROCK) || target.has_ability(Ability::OVERCOAT) ||
+        target.has_ability(Ability::SAND_FORCE) || target.has_ability(Ability::SAND_RUSH) ||
+        target.has_ability(Ability::SAND_VEIL) || target.has_item(Item::SAFETY_GOGGLES) ||
+        target.underground || target.underwater) {
+      return false;
+    }
+    break;
+  }
+  case EffectKind::HAIL: {
+    if (target.has_type(Type::ICE) || target.has_ability(Ability::ICE_BODY) ||
+        target.has_ability(Ability::OVERCOAT) || target.has_ability(Ability::SNOW_CLOAK) ||
+        target.has_item(Item::SAFETY_GOGGLES) || target.underground || target.underwater) {
+      return false;
+    }
+    break;
+  }
+  default: break;
+  }
+  return true;
+}
+// false for immune, true for not-immune
+bool BattleState::runTypeImmunity(Pokemon &target, Type typ) {
+  if (typ == Type::NO_TYPE)
+    return true;
+  if (target.fainted)
+    return false;
+  // applyOnNegateImmunity(target, typ)
+  bool negateImmunity = false;
+  if (target.has_item(Item::RING_TARGET))
+    negateImmunity = true;
+  if (target.foresight && target.has_type(Type::GHOST)) {
+    if (typ == Type::NORMAL || typ == Type::FIGHTING) {
+      negateImmunity = true;
+    }
+  }
+  if (target.miracleeye && target.has_type(Type::DARK) && typ == Type::PSYCHIC) {
+    negateImmunity = true;
+  }
+  // Final return
+  if (typ == Type::GROUND) {
+    return isGrounded(target, negateImmunity);
+  }
+  return getTypeMod(target, typ) >= 0;
+}
+// false for immune, true for not-immune
+bool BattleState::runStatusImmunity(Pokemon &target, Status status) {
+  if (target.fainted)
+    return false;
+  if (status == Status::NO_STATUS)
+    return true;
+
+  // Natural type immunities
+  if (target.has_type(Type::ELECTRIC) && status == Status::PARALYSIS) {
+    return false;
+  } else if (target.has_type(Type::FIRE) && status == Status::BURN) {
+    return false;
+  } else if (target.has_type(Type::ICE) && status == Status::FREEZE) {
+    return false;
+  } else if ((target.has_type(Type::POISON) || target.has_type(Type::STEEL)) &&
+             (status == Status::PARALYSIS || status == Status::TOXIC)) {
+    return false;
+  }
+
+  // "Artificial" immunities
+  if (status == Status::FREEZE) {
+    if (target.has_ability(Ability::MAGMA_ARMOR)) {
+      return false;
+    } else if (weather == Weather::DESOLATE_LAND || weather == Weather::SUNNY_DAY) {
+      if (!target.has_item(Item::UTILITY_UMBRELLA)) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+// Under consideration, in order:
+// Gravity, Ingrain, Smackdown, IronBall, Flying-type, Levitate, MagnetRise,
+// Telekinesis, AirBalloon.
+bool BattleState::isGrounded(Pokemon &pokemon, bool negateImmunity) {
+  if (gravity)
+    return true;
+  if (pokemon.ingrained)
+    return true;
+  if (pokemon.smackeddown)
+    return true;
+  //  TODO: ignoringItem
+  if (pokemon.has_item(Item::IRON_BALL))
+    return true;
+  // Do later: BurnUp+Roost special case
+  if (!negateImmunity && pokemon.has_type(Type::FLYING) && !pokemon.roosted)
+    return false;
+  // Do later: ability suppressed
+  if (pokemon.has_ability(Ability::LEVITATE)) {
+    return false;
+  }
+  if (pokemon.magnetrise)
+    return false;
+  if (pokemon.telekinesised)
+    return false;
+  if (pokemon.has_item(Item::AIR_BALLOON))
+    return false;
+  return true;
+}
+bool BattleState::setStatus(Status newStatus, Pokemon &target, Pokemon &source,
+                            EffectKind effectKind, MoveInstance &moveInst) {
+  if (!target.current_hp)
+    return false;
+  if (newStatus == target.status)
+    return false;
+  // Only check immunity if not pierced by corrosion
+  if (!(source.has_ability(Ability::CORROSION) &&
+        (newStatus == Status::TOXIC || newStatus == Status::POISON)) &&
+      !runStatusImmunity(target, newStatus)) {
+    return false;
+  }
+  if (!applyOnSetStatus(newStatus, target, source, effectKind, moveInst))
+    return false;
+  target.status = newStatus;
+  // applyOnStart() -- Status version
+  if (target.status == Status::SLEEP) {
+    // Do later: cure nightmare
+  } else if (target.status == Status::FREEZE) {
+    // formeChange Shaymin-Sky back to Shaymin
+  } else if (target.status == Status::TOXIC) {
+    target.toxicStage = 0;
+  }
+  // applyOnAfterSetStatus()
+  // TODO:
+  if (target.has_ability(Ability::SYNCHRONIZE)) {
+    // If source != target & effectKind != ToxicSpike && !slp && !frz:
+    // source.setStatus(status, source, *this, EffectKind::SYNCHRONIZE);
+  }
+  if (target.has_item(Item::LUM_BERRY)) {
+    target.useItem(true, false);
+  }
+  return true;
+}
+bool BattleState::addVolatile(VolatileId vol, Pokemon &target, Pokemon &source, MoveId move) {
+  // e.g. Gem can boost Explosion damage
+  if(!target.current_hp && vol != VolatileId::GEM) return false;
+  // Do later: AnchorShot and Block only trap as long as user stays in
+  // if (linkedStatus && source && !source.hp) return false;
+  if(target.has_volatile(vol)) {
+    return applyOnRestart(vol, target, source);
+  }
+  // Attract
+  if(vol == VolatileId::ATTRACT) {
+    if(!runSpecialImmunity(target, EffectKind::ATTRACT, false)) {
+      return false;
+    }
+  }
+  if(!applyOnTryAddVolatile(vol, target, source)) {
+    return false;
+  }
+
+  // Q: Why initialize volatile *before* calling onStart if you might cancel anyways?
+  // For now, just check onStart first
+  if(applyOnStartVolatile(vol, target, source, move)) {
+    // TODO: initialize corresponding volatile, possibly with duration
+    // Do later: effectOrder is to run volatile effects in the order in which they were applied
+    return true;
+  } else {
+    return false;
+  }
+}
 // Actually apply the damage (capped by current HP)
 // Called by spreadDamage() and directDamage()
-int BattleState::applyDamage(int damage, Pokemon &target, Pokemon &source, EffectKind effectKind,
-                             MoveId effectMove) {
+int BattleState::applyDamage(int damage, Pokemon &target) {
   if (target.current_hp <= 0 || damage <= 0)
     return 0;
   target.current_hp -= damage;
   if (target.current_hp < 0) {
     damage += target.current_hp;
     target.current_hp = 0;
-    faint(target, source);
+    faint(target);
   }
   return damage;
 }
@@ -633,17 +821,20 @@ int BattleState::heal(int damage, Pokemon &target, EffectKind effectKind) {
 }
 // Handles the larger-scale idea of damage being dealt to a Pokemon: called often
 // Returns actual damage dealt
-int BattleState::spreadDamage(int damage, Pokemon &target, Pokemon &source, EffectKind effectKind,
-                              MoveId effectMove) {
-  if (target.current_hp <= 0)
-    return 0;
+DamageResultState BattleState::spreadDamage(DamageResultState damage, Pokemon &target,
+                                            Pokemon &source, EffectKind effectKind,
+                                            MoveId effectMove) {
+  if (!target.current_hp) {
+    damage.set_numeric(0);
+    return damage;
+  }
   // Struggle recoil is not affected by effects...
   // Start effects--
   // Possible Weather + immunity
   // What does fastExit=true do?
-  damage = applyOnDamage(damage, target, source, effectKind, effectMove);
+  damage.set_numeric(applyOnDamage(damage.damageDealt, target, source, effectKind, effectMove));
   // --End effects
-  int damageDealt = applyDamage(damage, target, source, effectKind, effectMove);
+  int damageDealt = applyDamage(damage.damageDealt, target);
   if (damageDealt) {
     target.wasHurtThisTurn = true;
     // target.hurtThisTurn = target.current_hp; // WTF?
@@ -655,8 +846,9 @@ int BattleState::spreadDamage(int damage, Pokemon &target, Pokemon &source, Effe
       heal(drainAmt, source, EffectKind::MOVE); // 'drain' effect
     }
   }
-  return damageDealt;
-  // What's instafaint?
+  damage.set_numeric(damageDealt);
+  return damage;
+  // Q: What's instafaint? A: MindBlown
 }
 bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveInst) {
   Move &move = moveInst.moveData;
@@ -688,7 +880,7 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
   // TODO: Something about ignoreImmunity
   // Always-self-destructing moves faint
   if (moveInst.alwaysSelfDestruct()) {
-    faint(user, user);
+    faint(user);
   }
   bool moveResult;
   switch (move.target) {
@@ -724,7 +916,7 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
   // TODO: potential moveHit() described above.
   // Faint-self if applicable
   if (!user.current_hp) {
-    faint(user, user);
+    faint(user);
   }
   // Check move failure
   if (!moveResult) {
@@ -765,6 +957,7 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
   // onTry() and onPrepareHit()
   if (!applyOnTry(user, target, moveInst) || !applyOnPrepareHit(user, target, moveInst)) {
     // Q: What is NOT_FAIL? When moves return it, it actually seems to be a failure signal?
+    // NOT_FAIL=="" has truthiness *false*
     // But by returning hitResult === NOT_FAIL; it implies it shouldn't be considered a failed
     // moveResult?
     return false;
@@ -785,28 +978,75 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
   }
   // hitStepTypeImmunity():
   if (hit) {
-    // TODO: hit = move.ignoreImmunity || move.ignoreImmunity[move.type];
-    hit |= target.runImmunity(move.type);
+    hit = false;
+    // ignoreImmunity cases
+    if (move.id == MoveId::BIDE || move.id == MoveId::FUTURESIGHT) {
+      hit = true;
+    } else if (move.id == MoveId::THOUSANDARROWS && move.type == Type::GROUND) {
+      hit = true;
+    } else if (move.category == MoveCategory::STATUS && move.id != MoveId::THUNDERWAVE) {
+      // TODO: weird FutureSight hit case
+      hit = true;
+    } else {
+      hit = runTypeImmunity(target, move.type);
+    }
   }
   // hitStepTryImmunity():
   if (hit) {
-    // TODO: Powder immunity
-    // TODO: onTryImmunity
-    // TODO: Dark immune to Prankster
+    // The only natural Powder immunity is Grass-type
+    if (moveInst.isPowder() && target.has_type(Type::GRASS) && target != user) {
+      hit = false;
+    } else if (!target.applyOnTryImmunity(user, move.id)) {
+      hit = false;
+    } 
+    // TODO
+    // else if (move.pranksterBoosted && user.has_ability(Ability::PRANKSTER) &&
+    //            target.side != user.side && target.has_type(Type::DARK)) {
+    //   hit = false;
+    // } 
+    else {
+      hit = true;
+    }
   }
   // hitStepAccuracy():
   if (hit) {
-    // TODO: ohko case
-    // TODO: onModifyAccuracy
-    // TODO: onModifyBoost and accuracy/evasion
-    // if (boost > 0) {
-    //   accuracy = this.battle.trunc(accuracy * (3 + boost) / 3);
-    // } else if (boost < 0) {
-    //   accuracy = this.battle.trunc(accuracy * 3 / (3 - boost));
-    // }
-    // move.alwaysHit or Toxic used by Poison-type or self-status move and not semiInvuln: hit
-    // TODO: else onAccuracy():
-    // Check RNG, possible BlunderPolicy activation
+    auto accuracy = move.accuracy;
+    bool is_ohko = moveInst.isOHKO();
+    bool skip = false;
+    if (is_ohko) {
+      if (!target.isSemiInvulnerable()) {
+        accuracy = {30};
+        if (move.id == MoveId::SHEERCOLD && !user.has_type(Type::ICE)) {
+          accuracy = {20};
+        }
+        if (user.lvl < target.lvl) {
+          hit = false, skip = true;
+        } else if (move.id == MoveId::SHEERCOLD && target.has_type(Type::ICE)) {
+          hit = false, skip = true;
+        } else {
+          accuracy = {*accuracy + (user.lvl - target.lvl)};
+        }
+      }
+    } else {
+      if (accuracy != std::nullopt) {
+        accuracy = {applyOnModifyAccuracy(target, user, moveInst, *accuracy)};
+        accuracy = {moveInst.getBasicAcc(*accuracy, false, target, user)};
+      }
+    }
+    if (!skip) {
+      // Note: no move has flag alwaysHit
+      if ((move.id == MoveId::TOXIC && user.has_type(Type::POISON)) ||
+          (move.target == Target::SELF && move.category == MoveCategory::STATUS &&
+           !target.isSemiInvulnerable()) ||
+          applyOnAccuracy(target, user, moveInst)) {
+        accuracy = std::nullopt;
+      }
+      hit = (accuracy == std::nullopt) || math::randomChance(*accuracy, 100);
+      if (!hit && !is_ohko && user.has_item(Item::BLUNDER_POLICY) && user.useItem(false, false)) {
+        // TODO: Check that this is the correct effect kind
+        user.boost({{ModifierId::SPEED, 2}}, EffectKind::NO_EFFECT);
+      }
+    }
   }
   // hitStepBreakProtect():
   if (hit) {
@@ -824,35 +1064,36 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
   int damageDealt = 0;
   if (hit) {
     int numHits = moveInst.getNumHits(user);
+    moveInst.numHits = numHits;
     for (int hitNum = 1; hitNum <= numHits; hitNum++) {
       if (user.current_hp == 0)
         break;
       // why would damage.include(False)?
       // Make sure if fallen asleep (why check hit > 1?), does not keep hitting
-      if (hit > 1 && user.status == Status::SLEEP && !moveInst.isSleepUsable())
+      if (hitNum > 1 && user.status == Status::SLEEP && !moveInst.isSleepUsable())
         break;
       // Fail if all targets fainted
       if (target.current_hp == 0)
         break;
-      moveInst.numHits = hitNum; // update move.hit
+      moveInst.currentHitNum = hitNum; // update move.hit
       // more smartTarget logic
       // accuracy check (take evasion/modifyboosts into account)
-      if (hitNum > 1 && moveInst.multiaccCheck(target, user)) {
-        int acc = moveInst.getBasicAcc(target, user, true);
+      if (hitNum > 1 && moveInst.multiaccCheck(user)) {
+        int acc = moveInst.getBasicAcc(*move.accuracy, true, target, user);
         acc = applyOnModifyAccuracy(target, user, moveInst, acc);
         // Not sure what alwaysHit is: it's never set to true
         if (!applyOnAccuracy(target, user, moveInst) && !math::randomChance(acc, 100)) {
           break;
         }
       }
-      int moveDamageThisHit = spreadMoveHit(target, user, moveInst);
+      // Is -1 if not numeric
+      int moveDamageThisHit = moveHit(target, user, moveInst).damageDealt;
       damageDealt = moveDamageThisHit < 0 ? 0 : moveDamageThisHit;
       moveInst.totalDamage += damageDealt;
       // mindBlownRecoil
-      // run onUpdate() for each active pokemon in speed order
       applyOnEach(EachEventKind::UPDATE);
     }
-    if (moveInst.numHits == 0) {
+    if (moveInst.currentHitNum == 0) {
       hit = false;
     } else { // nullDamage is always false: ignore
       // Recoil damage
@@ -861,8 +1102,7 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
            moveInst.id == MoveId::STRUGGLE) &&
           moveInst.totalDamage) {
         int hpBeforeRecoil = user.current_hp;
-        applyDamage(calcRecoilDamage(moveInst.totalDamage, moveInst, user.stats.hp), user, user,
-                    EffectKind::RECOIL, moveInst.id);
+        applyDamage(calcRecoilDamage(moveInst.totalDamage, moveInst, user.stats.hp), user);
         applyOnEmergencyExit(hpBeforeRecoil, user);
       }
       // some smartTarget logic?
@@ -889,11 +1129,213 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
     user.moveThisTurnFailed = false;
   return hit;
 }
-int BattleState::spreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
-  return 0;
+// source used for e.g. assigning duration of effect
+// sourceEffect used for e.g. Yawn-
+// TODO: Give SparklingAria dustproof, getting it through ShieldDust
+bool BattleState::applySecondaryEffect(Pokemon &target, Pokemon &source, SecondaryEffect effect, MoveInstance &moveInst) {
+  DamageResultState didSomething;
+  switch (effect.kind) {
+  case Secondary::STATUS: {
+    // TODO: Check this is the right sourceEffect flag
+    if (setStatus(effect.status, target, source, EffectKind::MOVE, moveInst)) {
+      didSomething.set_succ();
+    } else {
+      didSomething.set_fail();
+    }
+    break;
+  }
+  case Secondary::BOOST: {
+    if (!target.fainted) {
+      // TODO: Check this is the right sourceEffect flag
+      if (target.boost(effect.boosts, EffectKind::MOVE)) {
+        didSomething.set_succ();
+      } else {
+        didSomething.set_fail();
+      }
+    }
+    break;
+  }
+  case Secondary::SELFBOOST: {
+    if (!target.fainted) {
+      // TODO: Check this is the right sourceEffect flag
+      if (target.boost(effect.selfBoosts, EffectKind::MOVE)) {
+        didSomething.set_succ();
+      } else {
+        didSomething.set_fail();
+      }
+    }
+    break;
+  }
+  case Secondary::VOLATILE: {
+    if (addVolatile(effect.vol, target, source, moveInst.id)) {
+      didSomething.set_succ();
+    } else {
+      didSomething.set_fail();
+    }
+    break;
+  }
+  case Secondary::CALLBACK: {
+    // TODO: onHit()
+    break;
+  }
+  default:
+    break; // case NONE or SHEERFORCEBOOST
+  }
+  // Success so long as it didn't fail:
+  // Either it actually succeeded or it didn't try anything.
+  return !(didSomething.initialized && didSomething.fail);
+}
+// Applies the effects of a move actually hitting, including damage
+// Expanded PokemonShowdown's spreadMoveHit, and removed pseudo-recursion
+DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
+  Move &move = moveInst.moveData;
+  // PokemonShowdown's damage:
+  DamageResultState dmgResult; // Returned value (updated as we go)
+  // PokemonShowdown's target:
+  bool subDamage = false; // If the move hit the substitute
+  bool targeting = true;
+  // Combines HitField, HitSide, and Hit
+  // Q: Why isn't this a MoveHitStep?
+  if (!applyOnTryHit(target, user, moveInst)) {
+    dmgResult.set_fail();
+    return dmgResult;
+  }
+
+  // // Do later: Step 0 - Substitute check
+  // if (move.target != Target::ALL && move.target != Target::ALLY_TEAM &&
+  //       move.target != Target::ALLY_SIDE && move.target != Target::FOE_SIDE) {
+  //     // only checks substitute condition
+  //     damageDealt = applyOnTryPrimaryHit(target, user, moveInst);
+  // }
+  // if (damageDealt == HIT_SUBSTITUTE) {
+  //   keepTargeting = true;
+  //   // remove target: substitute blocked hit, no more effects applied to target
+  // }
+  // Do later: does no damage or dealt no Sub damage: keepTargeting = false;
+
+  // Step 1 - getSpreadDamage(). Calls getDamage().
+  if (!subDamage && targeting) {
+    // battle.activeTarget = target;
+    // Q: Can getDamage() return undefined or null? For now, assume no.
+    dmgResult = getDamage(user, target, moveInst, {});
+    if (dmgResult.initialized && dmgResult.fail) {
+      targeting = false;
+    }
+  }
+
+  // Step 2 - spreadDamage()
+  if (dmgResult.initialized && !dmgResult.fail) {
+    if (subDamage || !targeting) {
+      dmgResult.set_numeric(0);
+    } else {
+      dmgResult = spreadDamage(dmgResult, target, user, EffectKind::MOVE, move.id);
+    }
+    if (dmgResult.initialized && dmgResult.fail) {
+      targeting = false;
+    }
+  }
+
+  // Step 3 - Run the move's effects
+  if (targeting) { // Includes subHit for self-destruct and self-switch
+    DamageResultState didSomething;
+    if (!subDamage) { // if(target)
+      // TODO
+    }
+    if (moveInst.isIffHitSelfDestruct() && dmgResult.initialized && !dmgResult.fail) {
+      faint(user);
+    }
+    if (moveInst.isSelfSwitch()) {
+      if (teams[user.side].pokemonLeft > 1) {
+        didSomething.set_succ();
+      } else {
+        didSomething.set_fail();
+      }
+      if (!didSomething.fail) {
+        // user.switchFlag = Move.id;
+        user.switchFlag = true;
+      }
+    }
+    // Fold didSomething into dmgResult
+    if (!didSomething.initialized) {
+      didSomething.set_succ();
+    }
+    if (didSomething.fail) {
+      dmgResult.set_fail();
+    } else if (didSomething.succ) {
+      dmgResult.set_succ();
+    } else {
+      dmgResult.set_numeric(didSomething.damageDealt);
+    }
+    // Guaranteed to be initialized here
+    if (dmgResult.fail) {
+      targeting = false;
+    }
+  }
+
+  // activeTarget preserving for Dancer
+  // Step 4 - self drops
+  if (targeting) {
+    SecondaryEffect selfEffect = moveInst.getSelfEffect();
+    if (selfEffect.kind != Secondary::NONE && !moveInst.selfDropped) {
+      SecondaryEffect selfEffect = moveInst.getSelfEffect();
+      // The self.boosts check is just 'cause the only random self-effect is stat boosting.
+      int roll = math::random(100);
+      if (selfEffect.chance == std::nullopt || roll < *selfEffect.chance) {
+        applySecondaryEffect(user, user, selfEffect, moveInst);
+      }
+      if (moveInst.numHits) {
+        moveInst.selfDropped = true;
+      }
+    }
+  }
+  // Step 5 - secondaries
+  if (targeting) {
+    auto secondaries = moveInst.getSecondaries();
+    for (SecondaryEffect secondary : secondaries) {
+      if (applyOnModifySecondaries(target, moveInst, secondary.kind)) {
+        int roll = math::random(100);
+        int chance = secondary.chance == std::nullopt ? -1 : *secondary.chance;
+        if (secondary.kind == Secondary::BOOST || secondary.kind == Secondary::SELFBOOST) {
+          chance %= 256;
+        }
+        if (chance < 0 || roll < chance) {
+          if (secondary.kind == Secondary::SELFBOOST && !moveInst.selfDropped) {
+            applySecondaryEffect(user, user, secondary, moveInst);
+          } else {
+            applySecondaryEffect(target, user, secondary, moveInst);
+          }
+        }
+      }
+    }
+  }
+  // End activeTarget preserving for Dancer
+
+  // Step 6 - Force switch
+  if (targeting) {
+    if (moveInst.forcesSwitch()) {
+      // Call forceSwitch()
+      if (target.current_hp > 0 && user.current_hp > 0 && teams[target.side].pokemonLeft) {
+        if (applyOnDragOut(target)) {
+          target.forceSwitchFlag = true;
+        }
+      }
+    }
+    if (dmgResult.fail) {
+      targeting = false; // Unused from here?
+    }
+  }
+
+  // Step 7 - onDamagingHit(), onAfterHit(), and EmergencyExit check
+  if (dmgResult.damageDealt > 0) { // By priority, implies is positive damage
+    int originalHP = user.current_hp;
+    applyOnDamagingHit(dmgResult.damageDealt, target, user, moveInst);
+    applyOnAfterHit(target, user, moveInst);
+    applyOnEmergencyExit(originalHP, user);
+  }
+  return dmgResult;
 }
 // Add to faintQueue
-void BattleState::faint(Pokemon &pkmn, Pokemon &cause) {
+void BattleState::faint(Pokemon &pkmn) {
   if (pkmn.fainted || pkmn.faintQueued)
     return;
   pkmn.current_hp = 0;
@@ -902,13 +1344,13 @@ void BattleState::faint(Pokemon &pkmn, Pokemon &cause) {
 }
 // Process faintQueue
 void BattleState::faintMessages() {
-  int length = faintQueue.size();
   for (; !faintQueue.empty(); faintQueue.pop()) {
     Pokemon &pokemon = *faintQueue.front();
     if (!pokemon.fainted) {
       teams[pokemon.side].pokemonLeft--;
       // applyOnFaint(pokemon); // DestinyBond, Grudge, Sky Drop
       applyOnEnd(pokemon); // logging, PowerShift,
+      pokemon.clearVolatile(false);
       pokemon.fainted = true;
       pokemon.isActive = false;
       pokemon.isStarted = false;

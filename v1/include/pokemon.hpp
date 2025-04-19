@@ -2,9 +2,9 @@
 
 #include "ref.hpp"
 #include <algorithm>
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 namespace pkmn {
 struct MoveSlot {
   MoveId id = MoveId::NONE;
@@ -14,7 +14,7 @@ struct MoveSlot {
 };
 // For comparisons, ACCURACY acts as None
 struct NatureVal {
-  ModifierId plus = ModifierId::ACCURACY; 
+  ModifierId plus = ModifierId::ACCURACY;
   ModifierId minus = ModifierId::ACCURACY;
 };
 /*
@@ -33,6 +33,7 @@ struct Pokemon {
   Species species = Species::NONE; // ~Pokedex number
   Nature nature = Nature::NONE;
   int lvl = 0;
+  Gender gender = Gender::NONE;  // Should be set to one valid for species
   std::array<MoveSlot, 4> moves; // Won't do move-changing/Transform
   Item item = Item::NO_ITEM;
   // Filled in from choices like above.
@@ -45,7 +46,7 @@ struct Pokemon {
   bool fainted = false;
   bool faintQueued = false;
   int side = -1;             // For BattleState
-  int position;              // For dragging in
+  int position = -1;         // For dragging in
   int activeMoveActions = 0; // For FakeOut etc.
   bool isActive = false;     // For BattleState
   int activeTurns = 0;       // For Slow Start, Speed Boost, etc.
@@ -57,17 +58,19 @@ struct Pokemon {
   bool trapped = false;
   /* Volatiles */
   // Very volatile (one turn only)
-  bool switchFlag = false; // TODO: Go through all involved logic
+  bool switchFlag = false;      // TODO: Go through all involved logic
+  bool forceSwitchFlag = false; // For dragging out
+  bool newlySwitched = false;   // For e.g. FakeOut
+  bool beingCalledBack = false; // For Pursuit
   bool flinch = false;
   bool endure = false;
-  bool newlySwitched = false;                // For e.g. FakeOut
-  bool beingCalledBack = false;              // For Pursuit
   bool skipBeforeSwitchOutEventFlag = false; // For BatonPass/ShedTail
-  bool weatherSuppressEnding = false;        // For AirLock/CloudNine
-  bool abilitySuppressEnding = false;        // For NeutralizingGas
-  bool beakBlasting = false;                 // For BeakBlast midturn charge
-  bool sparklingAria = false;                // For SparklingAria
-  bool wasHurtThisTurn = false;              // For Assurance
+  bool roosted = false;
+  bool weatherSuppressEnding = false; // For AirLock/CloudNine
+  bool abilitySuppressEnding = false; // For NeutralizingGas
+  bool beakBlasting = false;          // For BeakBlast midturn charge
+  bool sparklingAria = false;         // For SparklingAria
+  bool wasHurtThisTurn = false;       // For Assurance
   // Item volatiles
   Item lastItem = Item::NO_ITEM;
   bool itemKnockedOff = false;
@@ -91,6 +94,7 @@ struct Pokemon {
   int telekinesised = 0;
   bool smackeddown = false;
   bool ingrained = false;
+  int magnetrise = 0; // MagnetRise
   bool noretreat = false;
   bool berryWeakened = false; // For Ripen extra weakening
   bool charging = false;      // For the move "Charge"
@@ -113,7 +117,10 @@ struct Pokemon {
   Stats get_stats(const Stats &base, const Stats &nature, const Stats &IVs, const Stats &EVs,
                   const int lvl, const bool is_shedinja);
   Pokemon() {}
-  Pokemon(PokeName name_, int lvl_, const Nature nature, const Stats &IVs, const Stats &EVs);
+  Pokemon(PokeName, int lvl_, Gender, const Nature, const Stats &IVs, const Stats &EVs);
+  bool operator==(const Pokemon &other) const {
+    return position >= 0 && other.position >= 0 && side == other.side && position == other.position;
+  }
   // Returns whether or not a non-trivial move was overwritten
   bool add_move(MoveId id, int slot);
   void set_ability(Ability ability_);
@@ -124,6 +131,8 @@ struct Pokemon {
   inline bool has_type(Type t) const { return types[0] == t || types[1] == t; }
   inline bool isOnlyType(Type t) const { return types[0] == t && types[1] == Type::NO_TYPE; }
   void set_type(std::vector<Type> toTypes);
+  bool has_volatile(VolatileId);
+  void clearVolatile(bool clearSwitchFlags);
   // Apply a change of boostVal to a boostable stat.
   int boostStat(ModifierId, int boostVal); // Remember to reset on switches!
   // Get raw "base" stat.
@@ -135,9 +144,9 @@ struct Pokemon {
   // statName should only be in ATTACK, SPATT, DEFENSE, SPDEF, or SPD.
   int getStat(ModifierId statName, bool boosted, bool modified) const;
   NatureVal getNature();
-  bool runImmunity(Type moveType);
+  bool isSemiInvulnerable();
   void capBoost(std::map<ModifierId, int> &boostTable);
-  void boost(std::map<ModifierId, int> boostTable, EffectKind);
+  bool boost(std::map<ModifierId, int> boostTable, EffectKind);
   bool useItem(bool eat, bool forceEat);
   int applyHeal(int damage);
   void addConfusion(bool axeKick);
@@ -146,6 +155,7 @@ struct Pokemon {
 
   /* CALLBACKS */
 
+  bool applyOnTryImmunity(Pokemon &user, MoveId);
   void applyOnChangeBoost(std::map<ModifierId, int> &boostTable, EffectKind);
   void applyOnTryBoost(std::map<ModifierId, int> &boostTable, EffectKind);
   void applyOnAfterEachBoost(int numBoost, EffectKind effectKind);

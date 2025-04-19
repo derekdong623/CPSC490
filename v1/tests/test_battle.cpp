@@ -3,8 +3,10 @@
 #include <iostream>
 namespace pkmn {
 bool test_initialize_battle() {
-  Pokemon charmander = Pokemon(PokeName::CHARMANDER, 5, Nature::HARDY, Stats{}, Stats{});
-  Pokemon bulbasaur = Pokemon(PokeName::BULBASAUR, 5, Nature::HARDY, Stats{}, Stats{});
+  Pokemon charmander =
+      Pokemon(PokeName::CHARMANDER, 5, Gender::MALE, Nature::HARDY, Stats{}, Stats{});
+  Pokemon bulbasaur =
+      Pokemon(PokeName::BULBASAUR, 5, Gender::MALE, Nature::HARDY, Stats{}, Stats{});
   charmander.set_ability(Ability::BLAZE);
   bulbasaur.set_ability(Ability::OVERGROW);
   // There shouldn't be any overwriting from this setup
@@ -68,8 +70,8 @@ bool test_initialize_battle() {
 }
 bool test_basic_damage() {
   // Neither Lillipup nor Tackle are changed in Run and Bun
-  Pokemon attacker = Pokemon(PokeName::LILLIPUP, 10, Nature::HARDY, Stats{}, Stats{});
-  Pokemon defender = Pokemon(PokeName::LILLIPUP, 5, Nature::HARDY, Stats{}, Stats{});
+  Pokemon attacker = Pokemon(PokeName::LILLIPUP, 10, Gender::MALE, Nature::HARDY, Stats{}, Stats{});
+  Pokemon defender = Pokemon(PokeName::LILLIPUP, 5, Gender::MALE, Nature::HARDY, Stats{}, Stats{});
   attacker.set_ability(Ability::VITAL_SPIRIT);
   defender.set_ability(Ability::VITAL_SPIRIT);
   attacker.add_move(MoveId::TACKLE, 0);
@@ -83,16 +85,20 @@ bool test_basic_damage() {
   state.startBattle();
   // Check the max rolled damage
   MoveInstance tackleInstance = MoveInstance{moveDict.dict[MoveId::TACKLE]};
-  auto dmg = state.getDamage(attacker, defender, tackleInstance,
-                             DMGCalcOptions{.roll_val = 15, .crit = false});
+  auto dmg = state
+                 .getDamage(attacker, defender, tackleInstance,
+                            DMGCalcOptions{.roll_val = 15, .crit = false})
+                 .damageDealt;
   if (dmg != 16) {
     std::cout << "Max roll, no crit dmg: " << dmg << std::endl;
     return false; // From Showdown calculator
   }
   // Check min rolled damage with crit
   tackleInstance = MoveInstance{moveDict.dict[MoveId::TACKLE]};
-  dmg = state.getDamage(attacker, defender, tackleInstance,
-                        DMGCalcOptions{.roll_val = 0, .crit = true});
+  dmg = state
+            .getDamage(attacker, defender, tackleInstance,
+                       DMGCalcOptions{.roll_val = 0, .crit = true})
+            .damageDealt;
   if (dmg != 19) {
     std::cout << "Min roll with crit dmg: " << dmg << std::endl;
     return false;
@@ -100,8 +106,10 @@ bool test_basic_damage() {
   return true;
 }
 BattleState get_basic_battle() {
-  Pokemon charmander = Pokemon(PokeName::CHARMANDER, 5, Nature::HARDY, Stats{}, Stats{});
-  Pokemon bulbasaur = Pokemon(PokeName::BULBASAUR, 5, Nature::HARDY, Stats{}, Stats{});
+  Pokemon charmander =
+      Pokemon(PokeName::CHARMANDER, 5, Gender::MALE, Nature::HARDY, Stats{}, Stats{});
+  Pokemon bulbasaur =
+      Pokemon(PokeName::BULBASAUR, 5, Gender::MALE, Nature::HARDY, Stats{}, Stats{});
   charmander.set_ability(Ability::BLAZE);
   bulbasaur.set_ability(Ability::OVERGROW);
   charmander.add_move(MoveId::SCRATCH, 0);

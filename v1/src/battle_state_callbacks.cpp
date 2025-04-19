@@ -53,6 +53,8 @@ void BattleState::applyOnSwitchOut(Pokemon &pokemon) {
     pokemon.applyHeal(pokemon.stats.hp / 3);
     break;
   }
+  default:
+    break;
   }
 }
 // Just Illusion
@@ -65,6 +67,8 @@ void BattleState::applyOnWeatherChange(Pokemon &pokemon) {
     // case Ability::FLOWER_GIFT:
     // case Ability::FORECAST:
     // case Ability::ICE_FACE:
+  default:
+    break;
   }
 }
 // TODO: figure out what exactly e.g. onSwitchInPriority does
@@ -75,6 +79,8 @@ void BattleState::applyOnSwitchIn(Pokemon &pokemon) {
     // Do later
     break;
   }
+  default:
+    break;
   }
   // PRIORITY 0
   switch (pokemon.ability) {
@@ -89,6 +95,8 @@ void BattleState::applyOnSwitchIn(Pokemon &pokemon) {
     // Do later
     break;
   }
+  default:
+    break;
   }
   if (pokemon.status == Status::TOXIC) {
     pokemon.toxicStage = 0;
@@ -110,6 +118,8 @@ void BattleState::applyOnSwitchIn(Pokemon &pokemon) {
     // }
     // break;
   }
+  default:
+    break;
   }
   // Do later: move conditions
   // HealingWish, LunarDance, Spikes, StealthRock, StickyWeb, ToxicSpikes
@@ -258,7 +268,7 @@ int BattleState::applyBasePowerCallback(int basePower, Pokemon const &attacker,
   }
   case MoveId::TRIPLEAXEL:
   case MoveId::TRIPLEKICK: {
-    return basePower * moveInst.numHits;
+    return basePower * moveInst.currentHitNum;
   }
   case MoveId::TRUMPCARD: {
     int pp = moveInst.moveData.pp;
@@ -272,11 +282,12 @@ int BattleState::applyBasePowerCallback(int basePower, Pokemon const &attacker,
   // case MoveId::ROLLOUT:
 
   // MISC
-  // case MoveId::PURSUIT:{
-  //   if(defender.beingCalledBack || defender.switchFlag) {
-  //     return basePower * 2;
-  //   }
-  //   break;}
+  case MoveId::PURSUIT: {
+    if (defender.beingCalledBack || defender.switchFlag) {
+      return basePower * 2;
+    }
+    break;
+  }
   case MoveId::BOLTBEAK:
   case MoveId::FISHIOUSREND: {
     // if(target.newlySwitched || target.willMove) {
@@ -305,9 +316,8 @@ int BattleState::applyBasePowerCallback(int basePower, Pokemon const &attacker,
     // Complicated stuff
     break;
   }
-  default: {
+  default:
     break;
-  }
   }
   return basePower;
 }
@@ -329,6 +339,7 @@ bool BattleState::applyOnCriticalHit(bool crit, Pokemon const &target, Pokemon c
   if (teams[target.side].luckyChant) {
     return false;
   }
+  return crit;
 }
 // NB: all but Hustle use chainModify...what's the difference?
 int BattleState::applyOnModifyAtk(int attack, Pokemon const &attacker, Pokemon const &defender,
@@ -358,18 +369,18 @@ int BattleState::applyOnModifyAtk(int attack, Pokemon const &attacker, Pokemon c
   }
   // Blaze, Overgrow, Torrent, Swarm
   if (attacker.current_hp * 3 <= attacker.stats.hp) {
-    if (attacker.has_ability(Ability::BLAZE) && move.type == Type::FIRE ||
-        attacker.has_ability(Ability::OVERGROW) && move.type == Type::GRASS ||
-        attacker.has_ability(Ability::TORRENT) && move.type == Type::WATER ||
-        attacker.has_ability(Ability::SWARM) && move.type == Type::BUG) {
+    if ((attacker.has_ability(Ability::BLAZE) && move.type == Type::FIRE) ||
+        (attacker.has_ability(Ability::OVERGROW) && move.type == Type::GRASS) ||
+        (attacker.has_ability(Ability::TORRENT) && move.type == Type::WATER) ||
+        (attacker.has_ability(Ability::SWARM) && move.type == Type::BUG)) {
       attack = applyModifier(attack, 3, 2);
     }
   }
   // DragonsMaw, Steelworker, Transistor
   // Transistor was still 1.5 boost in Gen8
-  if (attacker.has_ability(Ability::DRAGONS_MAW) && move.type == Type::DRAGON ||
-      attacker.has_ability(Ability::STEELWORKER) && move.type == Type::STEEL ||
-      attacker.has_ability(Ability::TRANSISTOR) && move.type == Type::ELECTRIC) {
+  if ((attacker.has_ability(Ability::DRAGONS_MAW) && move.type == Type::DRAGON) ||
+      (attacker.has_ability(Ability::STEELWORKER) && move.type == Type::STEEL) ||
+      (attacker.has_ability(Ability::TRANSISTOR) && move.type == Type::ELECTRIC)) {
     attack = applyModifier(attack, 3, 2);
   }
   // // FlashFire
@@ -447,18 +458,18 @@ int BattleState::applyOnModifySpA(int attack, Pokemon const &attacker, Pokemon c
   }
   // Blaze, Overgrow, Torrent, Swarm
   if (attacker.current_hp * 3 <= attacker.stats.hp) {
-    if (attacker.has_ability(Ability::BLAZE) && move.type == Type::FIRE ||
-        attacker.has_ability(Ability::OVERGROW) && move.type == Type::GRASS ||
-        attacker.has_ability(Ability::TORRENT) && move.type == Type::WATER ||
-        attacker.has_ability(Ability::SWARM) && move.type == Type::BUG) {
+    if ((attacker.has_ability(Ability::BLAZE) && move.type == Type::FIRE) ||
+        (attacker.has_ability(Ability::OVERGROW) && move.type == Type::GRASS) ||
+        (attacker.has_ability(Ability::TORRENT) && move.type == Type::WATER) ||
+        (attacker.has_ability(Ability::SWARM) && move.type == Type::BUG)) {
       attack = applyModifier(attack, 3, 2);
     }
   }
   // DragonsMaw, Steelworker, Transistor
   // Transistor was still 1.5 boost in Gen8
-  if (attacker.has_ability(Ability::DRAGONS_MAW) && move.type == Type::DRAGON ||
-      attacker.has_ability(Ability::STEELWORKER) && move.type == Type::STEEL ||
-      attacker.has_ability(Ability::TRANSISTOR) && move.type == Type::ELECTRIC) {
+  if ((attacker.has_ability(Ability::DRAGONS_MAW) && move.type == Type::DRAGON) ||
+      (attacker.has_ability(Ability::STEELWORKER) && move.type == Type::STEEL) ||
+      (attacker.has_ability(Ability::TRANSISTOR) && move.type == Type::ELECTRIC)) {
     attack = applyModifier(attack, 3, 2);
   }
   // // FlashFire
@@ -507,6 +518,7 @@ int BattleState::applyOnModifySpD(int defense, Pokemon const &defender) {
   if (defender.has_item(Item::ASSAULT_VEST)) {
     defense = applyModifier(defense, 3, 2);
   }
+  return defense;
 }
 // TODO: onStart callback
 void BattleState::applyOnStart(Pokemon &pokemon) {}
@@ -539,8 +551,10 @@ bool BattleState::applyOnBeforeMove(Pokemon &pokemon) {
   return true;
 }
 bool BattleState::applyOnLockMove(Pokemon &user) {
-  if(user.lockedMove) return true;
-  if(user.twoTurnMove) return true;
+  if (user.lockedMove)
+    return true;
+  if (user.twoTurnMove)
+    return true;
   // if(user.mustRecharge) return true;
   // if(user.biding) return true;
   // if(user.iceball) return true;
@@ -581,6 +595,8 @@ void BattleState::applyOnAfterMove(Pokemon &target, Pokemon &user, MoveInstance 
     // case MoveId::ROLLOUT:
     // case MoveId::MINDBLOWN:
     // case MoveId::STEELBEAM;
+  default:
+    break;
   }
   if (user.charging && moveInst.id != MoveId::CHARGE) {
     user.charging = false;
@@ -658,8 +674,8 @@ int BattleState::applyOnDamage(int damage, Pokemon &target, Pokemon &source, Eff
   // Disguise
   // IceFace
   // PoisonHeal
-  if (target.has_ability(Ability::POISON_HEAL) && effectKind == EffectKind::POISON ||
-      effectKind == EffectKind::TOXIC) {
+  if (target.has_ability(Ability::POISON_HEAL) &&
+      (effectKind == EffectKind::POISON || effectKind == EffectKind::TOXIC)) {
     heal(target.stats.hp / 8, target, EffectKind::NO_EFFECT);
     return 0;
   }
@@ -712,6 +728,7 @@ int BattleState::applyOnDamage(int damage, Pokemon &target, Pokemon &source, Eff
   }
   // PRIORITY -101
   // Bide: very complicated
+  return damage;
 }
 // Crash damage and SkyDrop failure
 // TODO: failure from no target shouldn't deal crash damage
@@ -720,7 +737,8 @@ void BattleState::applyOnMoveFail(Pokemon &target, Pokemon &pokemon, MoveInstanc
                                                MoveId::JUMPKICK, MoveId::SUPERCELLSLAM};
   if (std::find(crashDmg.begin(), crashDmg.end(), moveInst.id) != crashDmg.end()) {
     // Directly deal damage to itself
-    spreadDamage(pokemon.stats.hp / 2, pokemon, pokemon, EffectKind::CRASH_DAMAGE, MoveId::NONE);
+    spreadDamage({.damageDealt = pokemon.stats.hp / 2}, pokemon, pokemon, EffectKind::CRASH_DAMAGE,
+                 MoveId::NONE);
   }
   // TODO: SkyDrop
 }
@@ -822,6 +840,8 @@ bool BattleState::applyOnTry(Pokemon &user, Pokemon &target, MoveInstance &moveI
   case MoveId::FOLLOWME: {
     return false;
   }
+  default:
+    break;
   }
   return true;
 }
@@ -858,6 +878,8 @@ bool BattleState::applyOnPrepareHit(Pokemon &user, Pokemon &target, MoveInstance
     }
     break;
   }
+  default:
+    break;
   }
   switch (moveInst.id) {
   // case MoveId::ALLYSWITCH:
@@ -871,17 +893,20 @@ bool BattleState::applyOnPrepareHit(Pokemon &user, Pokemon &target, MoveInstance
   case MoveId::SPIKYSHIELD: {
     return queueWillAct && applyOnStallMove(user);
   }
-    // case MoveId::DESTINYBOND: { // TODO
-    //   return !user.removeVolatile(destinybond);
-    // }
-    // case MoveId::SHELLSIDEARM: // Just adds logging, so skip
-    // case MoveId::FLING:
-    // case MoveId::NATURALGIFT:
-    // Skip Pledges
-    // case MoveId::FIREPLEDGE:
-    // case MoveId::GRASSPLEDGE:
-    // case MoveId::WATERPLEDGE:
+  // case MoveId::DESTINYBOND: { // TODO
+  //   return !user.removeVolatile(destinybond);
+  // }
+  // case MoveId::SHELLSIDEARM: // Just adds logging, so skip
+  // case MoveId::FLING:
+  // case MoveId::NATURALGIFT:
+  // Skip Pledges
+  // case MoveId::FIREPLEDGE:
+  // case MoveId::GRASSPLEDGE:
+  // case MoveId::WATERPLEDGE:
+  default:
+    break;
   }
+  return true;
 }
 // Numerical accuracy adjustments
 int BattleState::applyOnModifyAccuracy(Pokemon const &target, Pokemon const &pokemon,
@@ -984,13 +1009,12 @@ void BattleState::applyOnAfterMoveSecondary(Pokemon &target, Pokemon &user,
 void BattleState::applyOnEmergencyExit(int prevHP, Pokemon &pokemon) {
   if (pokemon.current_hp <= pokemon.stats.hp / 2 && prevHP > pokemon.stats.hp / 2) {
     if (pokemon.has_ability(Ability::EMERGENCY_EXIT) || pokemon.has_ability(Ability::WIMP_OUT)) {
-      // TODO: figure out what the switch flags are
-      // if (canSwitch(pokemon.side) && !pokemon.forceSwitchFlag && !pokemon.switchFlag) {
-      //   for (int side = 0; side < 2; side++) {
-      //     teams[side].pkmn[teams[side].activeInd].switchFlag = false;
-      //   }
-      //   pokemon.switchFlag = true;
-      // }
+      if (teams[pokemon.side].pokemonLeft && !pokemon.forceSwitchFlag && !pokemon.switchFlag) {
+        for (int side = 0; side < 2; side++) {
+          teams[side].pkmn[teams[side].activeInd].switchFlag = false;
+        }
+        pokemon.switchFlag = true;
+      }
     }
   }
 }
@@ -1024,6 +1048,134 @@ void BattleState::applyOnAfterUseItem(Pokemon &target) {
   if (target.has_ability(Ability::UNBURDEN)) {
     // Why check target == effectState.target?
     target.unburden = true;
+  }
+}
+// TODO: finish implementing
+bool BattleState::applyOnTryHit(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
+  return true;
+}
+// Returns false if the secondary effect is blocked (by ShieldDust/CovertCloak)
+bool BattleState::applyOnModifySecondaries(Pokemon &target, MoveInstance &moveInst,
+                                           Secondary secondaryKind) {
+  if (target.has_ability(Ability::SHIELD_DUST) || target.has_item(Item::COVERT_CLOAK)) {
+    return moveInst.id == MoveId::SPARKLINGARIA || secondaryKind == Secondary::SELFBOOST;
+  }
+  return true;
+}
+// Returns whether the target can be dragged out
+bool BattleState::applyOnDragOut(Pokemon &target) {
+  if (target.has_ability(Ability::SUCTION_CUPS))
+    return false;
+  if (target.ingrained)
+    return false;
+  return true;
+}
+//
+void BattleState::applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user,
+                                     MoveInstance &moveInst) {
+  Move const &move = moveInst.moveData;
+  // Thawing
+  if (target.status == Status::FREEZE && move.type == Type::FIRE &&
+      move.category != MoveCategory::STATUS) {
+    target.status = Status::NO_STATUS;
+  }
+  // TODO: Counter
+  // TODO: MirrorCoat
+  // ------ ITEMS ------
+  switch (target.item) {
+  case Item::ABSORB_BULB:
+  case Item::LUMINOUS_MOSS: {
+    if (move.type == Type::WATER) {
+      target.useItem(false, false);
+    }
+    break;
+  }
+  case Item::CELL_BATTERY: {
+    if (move.type == Type::ELECTRIC) {
+      target.useItem(false, false);
+    }
+    break;
+  }
+  case Item::SNOWBALL: {
+    if (move.type == Type::ICE) {
+      target.useItem(false, false);
+    }
+    break;
+  }
+  case Item::ROCKY_HELMET: {
+    if (moveInst.makesContact(user)) {
+      applyDamage(user.stats.hp / 6, user);
+    }
+    break;
+  }
+  // TODO
+  case Item::WEAKNESS_POLICY: {
+    // Conditions:
+    // - Move damage calculation isn't e.g. level/fixed (so can be super-eff)
+    // - Move typing is super effective
+    // then useItem()
+    break;
+  }
+  case Item::JABOCA_BERRY: {
+    if (move.category == MoveCategory::PHYSICAL && user.current_hp && user.isActive &&
+        !user.has_ability(Ability::MAGIC_GUARD)) {
+      if (target.useItem(true, false)) {
+        applyDamage(user.stats.hp / (target.has_ability(Ability::RIPEN) ? 4 : 8), user);
+      }
+    }
+    break;
+  }
+  case Item::ROWAP_BERRY: {
+    if (move.category == MoveCategory::SPECIAL && user.current_hp && user.isActive &&
+        !user.has_ability(Ability::MAGIC_GUARD)) {
+      if (target.useItem(true, false)) {
+        applyDamage(user.stats.hp / (target.has_ability(Ability::RIPEN) ? 4 : 8), user);
+      }
+    }
+    break;
+  }
+    // case Item::AIR_BALLOON:
+  default:
+    break;
+  }
+  // ------ ABILITIES ------
+  // TODO
+  switch (target.ability) {
+  default:
+    break;
+  }
+}
+// TODO: A few miscellaneous effects that are applied after a move hits.
+void BattleState::applyOnAfterHit(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
+  switch (moveInst.id) {
+  case MoveId::ICESPINNER: {
+    // Clear terrain
+    break;
+  }
+  case MoveId::RAPIDSPIN: {
+    // Clears lots of stuff
+    break;
+  }
+  case MoveId::CEASELESSEDGE: {
+    // Leaves spikes
+    break;
+  }
+  case MoveId::STONEAXE: {
+    // Leaves stealth rock
+    break;
+  }
+  case MoveId::KNOCKOFF: {
+    // Knocks off item
+    break;
+  }
+  case MoveId::THIEF:
+  case MoveId::COVET: {
+    // Steals item
+    break;
+  }
+    // case MoveId::MORTALSPIN: // Gen9
+  default:
+    break;
   }
 }
 // Run onUpdate() on a single Pokemon.
@@ -1088,6 +1240,8 @@ void BattleState::applyOnUpdate(Pokemon &target) {
   }
     // case Ability::DISGUISE:
     // case Ability::ICEFACE:
+  default:
+    break;
   }
   switch (target.item) {
   case Item::AGUAV_BERRY:
@@ -1168,6 +1322,8 @@ void BattleState::applyOnUpdate(Pokemon &target) {
     // case Item::MENTAL_HERB:
     // case Item::WHITE_HERB:
     // case Item::UTILITY_UMBRELLA:
+  default:
+    break;
   }
   // If an effect source is no longer on the field, remove the effect
   // case attract:
@@ -1219,5 +1375,215 @@ void BattleState::applyOnEach(EachEventKind event) {
     }
     }
   }
+}
+// TODO: finish implementing
+bool BattleState::applyOnRestart(VolatileId vol, Pokemon &target, Pokemon &source) {
+  switch (vol) {
+  case VolatileId::STALL: {
+    if (source.stallCounter < 729) {
+      source.stallCounter *= 3;
+    }
+    source.stallTurns = 2;
+  }
+  // case VolatileId::SMACKDOWN: {
+  //   if(target.removeVolatile(VolatileId::FLY) || target.removeVolatile(VolatileId::BOUNCE)) {
+  //     queue.cancelMove(target);
+  //     target.removeVolatile(VolatileId::TWOTURN_MOVE);
+  //   }
+  // }
+  // Purely a cosmetic change
+  case VolatileId::LOCKED_MOVE: {
+    return true;
+  }
+  // Does nothing
+  // case VolatileId::CHARGE:
+  // TODO
+  // case VolatileId::POWER_SHIFT:
+  // case VolatileId::POWER_TRICK:
+  // case VolatileId::LASER_FOCUS:
+  // case VolatileId::FURY_CUTTER:
+  // case VolatileId::STOCKPILE:
+  // case VolatileId::HEAL_BLOCK:
+  // Skip
+  // case VolatileId::ALLY_SWITCH:
+  // case VolatileId::HELPING_HAND:
+  default:
+    break;
+  }
+  return true;
+}
+// TODO: finish implementing
+bool BattleState::applyOnTryAddVolatile(VolatileId vol, Pokemon &target, Pokemon &source) {
+  // Terrain
+  if (isGrounded(target, false) && !target.isSemiInvulnerable()) {
+    if (terrain == Terrain::ELECTRIC && vol == VolatileId::YAWN) {
+      return false;
+    } else if (terrain == Terrain::MISTY && vol == VolatileId::CONFUSION) {
+      return false;
+    }
+  }
+  // TODO: Safeguard
+  // TODO: FocusPunch
+  // if(target.focusPunch && vol == VolatileId::FLINCH) {
+  //   return false;
+  // }
+  switch (target.ability) {
+  case Ability::INNER_FOCUS: {
+    if (vol == VolatileId::FLINCH) {
+      return false;
+    }
+    break;
+  }
+  case Ability::INSOMNIA:
+  case Ability::PURIFYING_SALT:
+  case Ability::VITAL_SPIRIT: {
+    if (vol == VolatileId::YAWN) {
+      return false;
+    }
+    break;
+  }
+  case Ability::LEAF_GUARD: {
+    if (weather == Weather::DESOLATE_LAND || weather == Weather::SUNNY_DAY) {
+      if (vol == VolatileId::YAWN) {
+        return false;
+      }
+    }
+    break;
+  }
+  case Ability::OWN_TEMPO: {
+    if (vol == VolatileId::CONFUSION) {
+      return false;
+    }
+    break;
+  }
+  case Ability::SHIELDS_DOWN: {
+    if (target.name == PokeName::MINIOR_METEOR_FORM) {
+      if (vol == VolatileId::YAWN) {
+        return false;
+      }
+    }
+    break;
+  }
+  default:
+    break;
+  }
+  return true;
+}
+// TODO: finish implementing
+bool BattleState::applyOnStartVolatile(VolatileId vol, Pokemon &target, Pokemon &source,
+                                       MoveId move) {
+  switch (vol) {
+  case VolatileId::CONFUSION: {
+    target.addConfusion(move == MoveId::AXEKICK);
+    break;
+  }
+  // Does nothing:
+  // - FlashFire, SlowStart
+  // - Burn, Paralysis, Trapped, MustRecharge
+  // - Stall moves, including special versions
+  // - AquaRing, Charge, Curse, DefenseCurl, DestinyBond, Imprison, Ingrain, KingsShield,
+  // - LaserFocus, LeechSeed, MagnetRise, Minimize, MiracleEye, NoRetreat
+  // etc.
+  //
+  // Do later:
+  // - PartiallyTrapped
+  // - LockedMove
+  // - TwoTurnMove
+  // - ChoiceLock
+  // - FutureMove
+  // - HealReplacement
+  // - Attract (onAttract?)
+  // - Counter
+  // - Bide
+  // - Disable
+  // - DragonCheer
+  // - Electrify
+  // - Embargo
+  // - Encore
+  // - Endure
+  // - Fling
+  // - FocusEnergy
+  // - Foresight
+  // - GastroAcid
+  // - Grudge
+  // - HealBlock
+  // - MagicCoat
+  // - Nightmare
+  // etc.
+  // Skip:
+  // - AllySwitch, FollowMe, HelpingHand
+  default:
+    break;
+  }
+  return true;
+}
+bool BattleState::applyOnSetStatus(Status status, Pokemon &target, Pokemon &source,
+                                   EffectKind effectKind, MoveInstance &moveInst) {
+  if (terrain == Terrain::ELECTRIC) {
+    if (status == Status::SLEEP && isGrounded(target, false) && !target.isSemiInvulnerable()) {
+      return false;
+    }
+  } else if (terrain == Terrain::MISTY) {
+    if (isGrounded(target, false) && !target.isSemiInvulnerable()) {
+      return false;
+    }
+  }
+  if (teams[target.side].safeguard) {
+    if (effectKind != EffectKind::NO_EFFECT && effectKind != EffectKind::YAWN) {
+      // Infiltrator goes through Safeguard
+      if (effectKind == EffectKind::MOVE && moveInst.infiltrates && target.side != source.side) {
+      } else {
+        if (target != source) {
+          return false;
+        }
+      }
+    }
+  }
+  switch (target.ability) {
+  case Ability::COMATOSE:
+  case Ability::INSOMNIA:
+  case Ability::VITAL_SPIRIT: {
+    if (status == Status::SLEEP) {
+      return false;
+    }
+    break;
+  }
+  case Ability::IMMUNITY:
+  case Ability::PASTEL_VEIL: {
+    if (status == Status::POISON || status == Status::TOXIC) {
+      return false;
+    }
+    break;
+  }
+  case Ability::LIMBER: {
+    if (status == Status::PARALYSIS) {
+      return false;
+    }
+    break;
+  }
+  case Ability::THERMAL_EXCHANGE:
+  case Ability::WATER_BUBBLE:
+  case Ability::WATER_VEIL: {
+    if (status == Status::BURN) {
+      return false;
+    }
+    break;
+  }
+  case Ability::LEAF_GUARD: {
+    if (weather == Weather::SUNNY_DAY || weather == Weather::DESOLATE_LAND) {
+      return false;
+    }
+    break;
+  }
+  case Ability::SHIELDS_DOWN: {
+    if (target.name == PokeName::MINIOR_METEOR_FORM) {
+      return false;
+    }
+    break;
+  }
+  default:
+    break;
+  }
+  return true;
 }
 } // namespace pkmn

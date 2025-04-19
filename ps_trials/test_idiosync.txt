@@ -1,7 +1,7 @@
 >start {"formatid":"gen8anythinggoes"}
->player p1 {"name":"Alice","team":"Kommo-O|||Bulletproof|ClangingScales|Serious|||0,0,0,0,0,0||50|"}
->player p2 {"name":"Bob","team":"Weezing|||Levitate|PoisonGas,PoisonPowder,Growl,Reflect|Serious|0,0,0,0,0,0|||||"}
+>player p1 {"name":"Alice","team":"Hitmonlee|||Limber|LowSweep|Serious|||0,0,0,0,0,0||50|"}
+>player p2 {"name":"Bob","team":"Eldegoss|||CottonDown|Leafage|Serious|0,0,0,0,0,0||||50|]Koffing|||Levitate|PoisonGas,PoisonPowder,Growl,Reflect|Serious|0,0,0,0,0,0|||||"}
 >p1 team 1
 >p2 team 1
->p1 move ClangingScales
->p2 move reflect
+>p1 move 1
+>p2 move 1

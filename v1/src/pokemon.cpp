@@ -3,14 +3,17 @@
 
 #include <optional>
 namespace pkmn {
-Pokemon::Pokemon(PokeName name_, int lvl_, const Nature nature_, const Stats &IVs, const Stats &EVs)
-    : name(name_), species(pokedex.species_dict[name_]), nature(nature_), lvl(lvl_) {
+Pokemon::Pokemon(PokeName name_, int lvl_, Gender gender_, const Nature nature_, const Stats &IVs,
+                 const Stats &EVs)
+    : name(name_), species(pokedex.species_dict[name_]), nature(nature_), lvl(lvl_),
+      gender(gender_) {
   init_stats = get_stats(pokedex.base_stat_dict[name_], get_nature_contrib(nature), IVs, EVs, lvl_,
                          name_ == PokeName::SHEDINJA); // COMPUTING STATS
   stats = init_stats;                                  // Copy initial stats to current
   current_hp = init_stats.hp;
   auto tp = pokedex.type_dict[name_]; // shorthand
   types[0] = tp.first, types[1] = tp.second;
+  clearVolatile(true);
 }
 
 // COMPUTING STATS
@@ -71,7 +74,101 @@ void Pokemon::set_type(std::vector<Type> toTypes) {
   types[0] = toTypes[0];
   types[1] = toTypes.size() > 1 ? toTypes[1] : Type::NO_TYPE;
 }
+// TODO: finish, or at least track progress
+bool Pokemon::has_volatile(VolatileId vol) {
+  switch (vol) {
+  case VolatileId::FLINCH: {
+    return flinch;
+  }
+  case VolatileId::CONFUSION: {
+    return confusion;
+  }
+  case VolatileId::TWOTURN_MOVE: {
+    return twoTurnMove;
+  }
+  case VolatileId::ATTRACT: {
+    return attracted;
+  }
+  case VolatileId::ROOST: {
+    return roosted;
+  }
+  case VolatileId::UNBURDEN: {
+    return unburden;
+  }
+  case VolatileId::SPARKLING_ARIA: {
+    return sparklingAria;
+  }
+  default:
+    return false;
+  }
+}
+void Pokemon::clearVolatile(bool clearSwitchFlags) {
+  boosts = {};
+  // Copy moveSlots?
 
+  // transformed = false;
+  ability = baseAbility;
+  // hpType = baseHpType;
+  // hpPower = baseHpPower;
+  // Remove linked volatiles and volatiles
+  if (clearSwitchFlags) {
+    switchFlag = false;
+    forceSwitchFlag = false;
+  }
+
+  lastMove = MoveId::NONE;
+  // lastMoveUsed = null;
+  // moveThisTurn = '';
+  moveThisTurnFailed = false;
+  moveLastTurnFailed = false;
+
+  // lastDamage = 0;
+  // attackedBy = [];
+  wasHurtThisTurn = false;
+  newlySwitched = true;
+  beingCalledBack = false;
+
+  // volatileStaleness = undefined;
+
+  // Clear condition volatiles
+  confusion = 0;
+  toxicStage = 0;
+  lockedMove = 0;
+  stallTurns = 0;
+  stallCounter = 1;
+  stockpileTurns = 0;
+  attracted = false;
+  taunted = 0;
+  foresight = false;
+  miracleeye = false;
+  telekinesised = 0;
+  smackeddown = false;
+  ingrained = false;
+  magnetrise = 0;
+  // noretreat = false;
+  berryWeakened = false;
+  charging = false;
+  // Clear item volatiles
+  flungThisTurn = false;
+  unburden = false;
+  // Clear ability volatiles
+  // Clear move volatiles
+  roosted = false;
+  beakBlasting = false;
+  sparklingAria = false;
+  twoTurnMove = false;
+  inAir = 0;
+  underground = 0;
+  underwater = 0;
+  inShadow = 0;
+  // Clear other volatiles
+  trapped = false;
+  trappedCondition = false;
+  flinch = false;
+  endure = false;
+
+  // species = baseSpecies // Do later
+}
 // Raw form of boosting stats
 int Pokemon::boostStat(ModifierId stat, int boostVal) {
   int *statVal;
@@ -140,64 +237,76 @@ int Pokemon::getStat(ModifierId statName, bool boosted, bool modified) const {
 NatureVal Pokemon::getNature() {
   Stats vals = get_nature_contrib(nature);
   NatureVal ret;
-  if(vals.att > 0) ret.plus = ModifierId::ATTACK;
-  else if(vals.att < 0) ret.minus = ModifierId::ATTACK;
-  if(vals.def > 0) ret.plus = ModifierId::DEFENSE;
-  else if(vals.def < 0) ret.minus = ModifierId::DEFENSE;
-  if(vals.spatt > 0) ret.plus = ModifierId::SPATT;
-  else if(vals.spatt < 0) ret.minus = ModifierId::SPATT;
-  if(vals.spdef > 0) ret.plus = ModifierId::SPDEF;
-  else if(vals.spdef < 0) ret.minus = ModifierId::SPDEF;
-  if(vals.spd > 0) ret.plus = ModifierId::SPEED;
-  else if(vals.spd < 0) ret.minus = ModifierId::SPEED;
+  if (vals.att > 0)
+    ret.plus = ModifierId::ATTACK;
+  else if (vals.att < 0)
+    ret.minus = ModifierId::ATTACK;
+  if (vals.def > 0)
+    ret.plus = ModifierId::DEFENSE;
+  else if (vals.def < 0)
+    ret.minus = ModifierId::DEFENSE;
+  if (vals.spatt > 0)
+    ret.plus = ModifierId::SPATT;
+  else if (vals.spatt < 0)
+    ret.minus = ModifierId::SPATT;
+  if (vals.spdef > 0)
+    ret.plus = ModifierId::SPDEF;
+  else if (vals.spdef < 0)
+    ret.minus = ModifierId::SPDEF;
+  if (vals.spd > 0)
+    ret.plus = ModifierId::SPEED;
+  else if (vals.spd < 0)
+    ret.minus = ModifierId::SPEED;
   return ret;
 }
-// TODO
-bool Pokemon::runImmunity(Type moveType) {
-
+bool Pokemon::isSemiInvulnerable() {
+  // Do later:
+  // if(isSkyDropped()) return true;
+  return inAir || underground || underwater || inShadow;
 }
 void Pokemon::capBoost(std::map<ModifierId, int> &boostTable) {
   for (auto &[mod, b] : boostTable) {
-    switch(mod) {
-      case ModifierId::ACCURACY: {
-        b = std::max(-6, std::min(6, boosts.acc+b)) - boosts.acc;
-        break;
-      }
-      case ModifierId::EVASION: {
-        b = std::max(-6, std::min(6, boosts.eva+b)) - boosts.eva;
-        break;
-      }
-      case ModifierId::ATTACK: {
-        b = std::max(-6, std::min(6, boosts.att+b)) - boosts.att;
-        break;
-      }
-      case ModifierId::DEFENSE: {
-        b = std::max(-6, std::min(6, boosts.def+b)) - boosts.def;
-        break;
-      }
-      case ModifierId::SPATT: {
-        b = std::max(-6, std::min(6, boosts.spatt+b)) - boosts.spatt;
-        break;
-      }
-      case ModifierId::SPDEF: {
-        b = std::max(-6, std::min(6, boosts.spdef+b)) - boosts.spdef;
-        break;
-      }
-      case ModifierId::SPEED: {
-        b = std::max(-6, std::min(6, boosts.spd+b)) - boosts.spd;
-        break;
-      }
+    switch (mod) {
+    case ModifierId::ACCURACY: {
+      b = std::max(-6, std::min(6, boosts.acc + b)) - boosts.acc;
+      break;
+    }
+    case ModifierId::EVASION: {
+      b = std::max(-6, std::min(6, boosts.eva + b)) - boosts.eva;
+      break;
+    }
+    case ModifierId::ATTACK: {
+      b = std::max(-6, std::min(6, boosts.att + b)) - boosts.att;
+      break;
+    }
+    case ModifierId::DEFENSE: {
+      b = std::max(-6, std::min(6, boosts.def + b)) - boosts.def;
+      break;
+    }
+    case ModifierId::SPATT: {
+      b = std::max(-6, std::min(6, boosts.spatt + b)) - boosts.spatt;
+      break;
+    }
+    case ModifierId::SPDEF: {
+      b = std::max(-6, std::min(6, boosts.spdef + b)) - boosts.spdef;
+      break;
+    }
+    case ModifierId::SPEED: {
+      b = std::max(-6, std::min(6, boosts.spd + b)) - boosts.spd;
+      break;
+    }
     }
   }
 }
 // Apply (un)boost(s) to a target.
+// Returns false with failure; if no issue but no boosting, still returns true.
 // NB: With callbacks onChangeBoost(), onTryBoost(), onAfterEachBoost(), onAfterBoost(),
 // and of course bound to [-6, 6].
-void Pokemon::boost(std::map<ModifierId, int> boostTable, EffectKind effectKind) {
+bool Pokemon::boost(std::map<ModifierId, int> boostTable, EffectKind effectKind) {
   if (!current_hp)
-    return;
+    return false;
   if (!isActive)
-    return;
+    return false;
   // // Q: I don't think it's strictly necessary? Doesn't seem to change outcome.
   // if(!teams[1-side].pokemonLeft) return;
   applyOnChangeBoost(boostTable, effectKind);
@@ -216,35 +325,38 @@ void Pokemon::boost(std::map<ModifierId, int> boostTable, EffectKind effectKind)
       statsLoweredThisTurn = true;
     }
   }
+  return true;
 }
 std::map<ModifierId, int> getItemBoosts(Item item) {
-  switch(item) {
-    case Item::CELL_BATTERY: 
-    case Item::SNOWBALL: {
-      return {{ModifierId::ATTACK, 1}};
-    }
-    case Item::ELECTRIC_SEED: 
-    case Item::GRASSY_SEED: {
-      return {{ModifierId::DEFENSE, 1}};
-    }
-    case Item::ABSORB_BULB: 
-    case Item::THROAT_SPRAY: {
-      return {{ModifierId::SPATT, 1}};
-    }
-    case Item::LUMINOUS_MOSS: 
-    case Item::MISTY_SEED: 
-    case Item::PSYCHIC_SEED: {
-      return {{ModifierId::SPDEF, 1}};
-    }
-    case Item::ADRENALINE_ORB: {
-      return {{ModifierId::SPEED, 1}};
-    }
-    case Item::ROOM_SERVICE: {
-      return {{ModifierId::SPEED, -1}};
-    }
-    case Item::WEAKNESS_POLICY: {
-      return {{ModifierId::ATTACK, 2}, {ModifierId::SPATT, 2}};
-    }
+  switch (item) {
+  case Item::CELL_BATTERY:
+  case Item::SNOWBALL: {
+    return {{ModifierId::ATTACK, 1}};
+  }
+  case Item::ELECTRIC_SEED:
+  case Item::GRASSY_SEED: {
+    return {{ModifierId::DEFENSE, 1}};
+  }
+  case Item::ABSORB_BULB:
+  case Item::THROAT_SPRAY: {
+    return {{ModifierId::SPATT, 1}};
+  }
+  case Item::LUMINOUS_MOSS:
+  case Item::MISTY_SEED:
+  case Item::PSYCHIC_SEED: {
+    return {{ModifierId::SPDEF, 1}};
+  }
+  case Item::ADRENALINE_ORB: {
+    return {{ModifierId::SPEED, 1}};
+  }
+  case Item::ROOM_SERVICE: {
+    return {{ModifierId::SPEED, -1}};
+  }
+  case Item::WEAKNESS_POLICY: {
+    return {{ModifierId::ATTACK, 2}, {ModifierId::SPATT, 2}};
+  }
+  default:
+    break;
   }
   return {};
 }
@@ -302,21 +414,23 @@ int Pokemon::applyHeal(int damage) {
 }
 void Pokemon::addConfusion(bool axeKick) {
   // Confusion has no restart
-  if(!confusion) {
+  if (!confusion) {
     int minTurns = axeKick ? 3 : 2;
     confusion = math::random(minTurns, 6);
   }
 }
 void Pokemon::tryTrap() {
   // Remark: runStatusImmunity just checks typing and onImmunity
-  if(!has_type(Type::GHOST)) { // Only type that's immune
+  if (!has_type(Type::GHOST)) { // Only type that's immune
     trapped = true;
   }
 }
 // Deduct a single PP from the move slot
 int Pokemon::deductPP(MoveSlot &moveSlot) {
-  if(!moveSlot.pp) return 0;
-  moveSlot.pp --;
+  if (!moveSlot.pp)
+    return 0;
+  moveSlot.pp--;
   return 1;
 }
+
 } // namespace pkmn

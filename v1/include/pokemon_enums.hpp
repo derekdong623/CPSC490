@@ -1,7 +1,7 @@
 #pragma once
 
-#include <utility>
 #include <iostream>
+#include <utility>
 
 namespace pkmn {
 // Names of Pokemon (including form)
@@ -3685,15 +3685,22 @@ enum class Target {
   ALL,           // NOT IMPLEMENTED
   SCRIPTED,      // NOT IMPLEMENTED
 };
+enum class Gender {
+  NONE,
+  MALE,
+  FEMALE,
+};
 enum class Status { NO_STATUS, BURN, FREEZE, PARALYSIS, POISON, SLEEP, TOXIC };
 enum class VolatileId {
+  NONE,
   FLINCH,
   CONFUSION,
   TWOTURN_MOVE,
   CHOICE_LOCK,
   // CHARGING,
-  // LOCKED_MOVE,
-  // MUST_RECHARGE,
+  LOCKED_MOVE,
+  MUST_RECHARGE,
+  STALL,
   // PROTECT,
   // ENDURE,
   // BANEFUL_BUNKER,
@@ -3706,12 +3713,12 @@ enum class VolatileId {
   // PARTIALLY_TRAPPED,
   // SHELL_TRAP,
   // NO_RETREAT,
-  // ATTRACT, // CuteCharm
-  // YAWN,
+  ATTRACT, // CuteCharm
+  YAWN,
   // MAGNET_RISE,
   // TELEKINESIS,
   // SMACKDOWN,
-  // ROOST,
+  ROOST,
   // LEECH_SEED,
   // INGRAIN,
   // NIGHTMARE,
@@ -3721,10 +3728,11 @@ enum class VolatileId {
   // THROAT_CHOP,
   // TORMENT,
   // CURSE,
-  // UPROAR,
+  UPROAR,
   // GASTRO_ACID,
   // EMBARGO,
-  // HEAL_BLOCK,
+  HEAL_BLOCK,
+  SALT_CURE,
   // OCTOLOCK,
   // LOCK_ON,
   // FORESIGHT,
@@ -3736,21 +3744,20 @@ enum class VolatileId {
   // GRUDGE,
   UNBURDEN,
   // ZEN_MODE,
-  // GEM,
-  // SPARKLING_ARIA,
+  GEM,
+  SPARKLING_ARIA,
   // LASER_FOCUS,
   FOCUS_ENERGY,
   // FOCUS_PUNCH,
   // SLOW_START,
   // TRUANT,
-  // RAGE,
+  RAGE,
   // FURY_CUTTER,
   // STOCKPILE,
   // DEFENSE_CURL,
   // ROLLOUT_STORAGE,
   // ROLLOUT,
   // ICE_BALL,
-  // STALL,
   // MAGIC_COAT,
   // FORESIGHT,
   // MIRACLE_EYE,
@@ -3786,6 +3793,12 @@ enum class EffectKind {
   INTIMIDATE,
   STEALTH_ROCK,
   STICKY_WEB,
+  YAWN,
+  // For runSpecialImmunity():
+  ATTRACT,
+  POWDER,
+  SANDSTORM,
+  HAIL,
 };
 enum class ActionKind {
   NONE,
@@ -3794,9 +3807,30 @@ enum class ActionKind {
   MOVE,
   RESIDUAL,
 };
+// number: damage dealt (0 damage still counts for the purposes of e.g. Static)
+// false: gives error message "But it failed!" and move ends
+// null: no message and move ends (usually, a custom fail message was already output by an event
+// handler) undefined: no damage is dealt and the move continues
+enum class DamageKind {
+  UNDEFINED, // undefined
+  NOT_FAIL,  // not_failure: string
+  NUL,       // null: object
+  BOOL,      // true/false
+  NUMBER,    // int
+};
+// which callback to apply to each active Pokemon
 enum class EachEventKind {
   UPDATE,
   RESIDUAL,
+};
+enum class Secondary {
+  NONE,
+  STATUS,
+  BOOST,           // or unboost; on target
+  SELFBOOST,       // The only self-secondary is a boost
+  VOLATILE,        // flinch, confusion, none
+  CALLBACK,        // onHit()...maybe do immediately?
+  SHEERFORCEBOOST, // purely there for SheerForce boost
 };
 } // namespace pkmn
 

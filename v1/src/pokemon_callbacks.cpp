@@ -3,6 +3,51 @@
 
 #include <optional>
 namespace pkmn {
+// false for immune, true for not-immune
+bool Pokemon::applyOnTryImmunity(Pokemon &user, MoveId move) {
+  switch (move) {
+  case MoveId::ATTRACT:
+  case MoveId::CAPTIVATE: {
+    // Specifically opposite-gender
+    return (gender == Gender::FEMALE && user.gender == Gender::MALE) ||
+           (gender == Gender::MALE && user.gender == Gender::FEMALE);
+  }
+  case MoveId::DREAMEATER: {
+    return status == Status::SLEEP || ability == Ability::COMATOSE;
+  }
+  case MoveId::ENDEAVOR: {
+    return user.current_hp < current_hp;
+  }
+  case MoveId::LEECHSEED: {
+    return !has_type(Type::GRASS);
+  }
+  case MoveId::OCTOLOCK: {
+    // The only natural immunity to trapped is Ghost-type
+    return !has_type(Type::GHOST);
+  }
+  case MoveId::SWITCHEROO:
+  case MoveId::TRICK: {
+    return ability != Ability::STICKY_HOLD;
+  }
+  case MoveId::WORRYSEED: {
+    // From PokemonShowdown:
+    // Truant and Insomnia have special treatment; they fail before
+    // checking accuracy and will double Stomping Tantrum's BP
+    return ability != Ability::TRUANT && ability != Ability::INSOMNIA;
+  }
+  case MoveId::SYNCHRONOISE: {
+    for (auto typ : user.types) {
+      if (typ != Type::NO_TYPE && has_type(typ)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  default:
+    break;
+  }
+  return true;
+}
 // Just Contrary, Ripen, Simple.
 void Pokemon::applyOnChangeBoost(std::map<ModifierId, int> &boostTable, EffectKind effectKind) {
   switch (ability) {
@@ -253,6 +298,8 @@ void Pokemon::applyOnEat() {
     break;
   }
     // TODO: MicleBerry
+  default:
+    break;
   }
 }
 // Just CheekPouch and Ripen; CudChew is Gen9
@@ -274,6 +321,8 @@ void Pokemon::applyOnEatItem() {
         std::find(weakenBerries.begin(), weakenBerries.end(), item) != weakenBerries.end();
     break;
   }
+  default:
+    break;
   }
 }
 // Just Unburden
@@ -308,6 +357,8 @@ bool Pokemon::applyOnTryEatItem() {
       return false;
     break;
   }
+  default:
+    break;
   }
   return true;
 }

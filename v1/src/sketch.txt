@@ -1,0 +1,122 @@
+/* NB: REMEMBER TO RENAME TO TXT! */
+// getDamage()
+// - Returns false if target is immune
+// - Returns undefined if zero base power after callback (i.e. Status move?)
+// - Returns amount of damage dealt (possibly 0)
+// Usage:
+// - Substitute uses numerical damage (possibly 0)
+//   - If immune/Status, fails on Substitute (onTryPrimary() -> null)
+// - Directly used in spreadMoveHit()...getSpreadDamage()
+
+// spreadDamage()
+// - At a high level, handles the actual application of damage to a target
+//    - Also handles drain healing
+// - If target is 0-hp, returns 0. If target isn't active, returns fail.
+// - Weather immunity is modified to 0...I think can be moved to getDamage()?
+// - onDamage() modifier, e.g. survive on 1 HP, stop recoil, ability modifications to residual damage
+// Usage:
+// - damage() uses it to directly apply damage
+//   - LeechSeed uses returned *positive* numeric amount for heal amount
+// - Directly used in spreadMoveHit()
+// - Skipped in isSelf and isSecondary (damage stays undefined)
+
+// runMoveEffects()
+// - At a high level, handles the aftereffects of applying a move (or secondary/self-effect)
+// - If there's a target:
+//   - If there's boosts and unfainted, apply the boosts (didSomething if worked)
+//   - If there's healing:
+//     - If full-hp, fail (didSomething=false) and stop
+//     - Heal with *rounding*.
+//       - If non-numeric, fail (didSomething=false) and stop
+//       - Else didSomething=true
+//   - If there's status, didSomething=(bool)trySetStatus() and stop if false
+//   - addVolatile()
+//   - addSideCondition()
+//   - setWeather()
+//   - setTerrain()
+//   - setPseudoWeather()
+//   - If forceSwitch, check target canSwitch(). 
+//     - Roar/Whirlwind success/failure
+//   - I think for these, can only be self-effect if it's got z-move?
+//   - If targets all and isn't self-effect, applyOnHitField()
+//   - Else if targets side and isn't self-effect, applyOnHitSide()
+//   - Else applyOnHitSecondary() or applyOnHitSelf() or applyOnHit()
+//     - AnchorShot/SpiritShackle, ThroatChop, DireClaw/TriAttack, EerieSpell
+//     - BatonPass/ShedTail, BurnUp/DoubleShock
+// Usage:
+// - Only directly used in spreadMoveHit() (with secondary/self variations)
+// - In isSelf and isSecondary, only do boost, heal?, status, volatile, applyOnHit()
+
+// - Special notes:
+//   - ifHit self-destructing causes fainting with no target, but not after move failure
+//   - Self-switching:
+//     - Does something if there's an ally to switch to
+//     - Fails otherwise unless it did damage
+//     - Sets switchFlag if it hasn't failed
+//   - If after all this the move is uninitialized, we consider the move to have done something (it didn't fail, at least)
+//     - Combine this info into damage
+
+// I can store current state of damage result in a struct with:
+// int damageDealt = 0;
+// bool failed = false;
+// bool initialized = false;
+// We'll stack substitute/secondary-no-self into !initialized
+// To see state, check in the order of initialized -> failed -> damageDealt
+// numeric:
+// - Set to: damageDealt=num, failed=false, initialized=true;
+// - Update from: damageDealt=0; (should also end with failed=true or initialized=false)
+// fail:
+// - Set to: failed=true, initialized=true;
+// - Update from: failed=false; (either will have numeric set-to or initialized=false)
+// undefined:
+// - Set to: initialized=false;
+// - Update from: should have a different set-to.
+
+void x() {
+  // Note: what's the difference between getDamage() and how much spreadDamage() deals?
+  // - getDamage() used for substitute damage calc
+  // - spreadDamage() runs onDamage() callback
+  // - spreadDamage() is called by damage() directly, e.g. Weather
+  // Step 1 - Call getDamage()
+  if(targetRes == TriState::TRUE) {
+    // damage = undefined;
+    // if getDamage failed (false or null): damage = false, target = false;
+    // else: damage = getDamage()
+  }
+  // Step 2 - Call spreadDamage()
+  if(damage is number) {
+    initialDamage = damage;
+    if(target.hp) {
+      if(target.isActive) {
+        if(!struggle recoil) {
+          if(effect is weather and target is immune) damage = 0, proceed;
+          damage = onDamage()
+          if(damage is not number) {
+            // getDamage() never returns true, so it implies...
+            // 1) hit substitute or 2) isSecondary with no self-boost
+            damage = (initialDamage == true) ? undefined : damage;
+            if(damage == false) target = false;
+            proceed;
+          }
+        }
+        damage = target.damage();
+        if(damage) {
+          target.wasHurtThisTurn = true;
+          heal(drain);
+        }
+      } else {
+        damage = false, target = false;
+        proceed;
+      }
+    } else {
+      damage = 0;
+      proceed;
+    }
+  }
+  // instafaint: MindBlown
+
+  // Step 3 - Run the move's effects
+
+  if(!damage.numeric() && !damage.isTrue()) target = false;
+
+}

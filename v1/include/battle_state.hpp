@@ -2,8 +2,8 @@
 
 #include "move_instance.hpp"
 #include "utils.hpp"
-#include <iostream>
 #include <array>
+#include <iostream>
 #include <map>
 #include <optional>
 #include <queue>
@@ -95,8 +95,8 @@ public:
   BattleState runTurnPy();
   void runMove(MoveSlot &moveSlot, Pokemon &user, Pokemon &target);
   int checkWin(int lastFaintSide = -1);
-  int getDamage(Pokemon const &source, Pokemon const &target, MoveInstance &moveInst,
-                DMGCalcOptions options); // Exported for test_init
+  DamageResultState getDamage(Pokemon const &source, Pokemon const &target, MoveInstance &moveInst,
+                              DMGCalcOptions options); // Exported for test_init
 private:
   // bool use_verbose_output = false;
   // std::vector<MoveInstance> verbose_outputs;
@@ -148,27 +148,44 @@ private:
   void applyOnAfterMoveSecondary(Pokemon &target, Pokemon &user, MoveInstance &);
   void applyOnEmergencyExit(int prevHP, Pokemon &pokemon);
   void applyOnAfterUseItem(Pokemon &target);
+  bool applyOnTryHit(Pokemon &target, Pokemon &user, MoveInstance &);
+  bool applyOnModifySecondaries(Pokemon &target, MoveInstance &, Secondary);
+  bool applyOnDragOut(Pokemon &target);
+  void applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user, MoveInstance &);
+  void applyOnAfterHit(Pokemon &target, Pokemon &user, MoveInstance &);
   void applyOnUpdate(Pokemon &target);
   void applyOnResidual(Pokemon &target);
   void applyOnEach(EachEventKind);
   void applyOnEnd(Pokemon &);
+  bool applyOnRestart(VolatileId, Pokemon &target, Pokemon &source);
+  bool applyOnTryAddVolatile(VolatileId, Pokemon &target, Pokemon &source);
+  bool applyOnStartVolatile(VolatileId, Pokemon &target, Pokemon &source, MoveId);
+  bool applyOnSetStatus(Status, Pokemon &target, Pokemon &source, EffectKind, MoveInstance &);
 
   /* END Event Callbacks */
 
   void updateSpeed();
   void endTurn();
   std::optional<bool> applyAtEndOfAction(ActionKind);
-  void boost(std::map<ModifierId, int> boostTable, Pokemon &target);
   int calcRecoilDamage(int moveDmg, MoveInstance &moveInst, int userMaxHP);
-  int applyDamage(int damage, Pokemon &target, Pokemon &source, EffectKind, MoveId effectMove);
+  bool runSpecialImmunity(Pokemon &, EffectKind, bool isPrankster);
+  bool runTypeImmunity(Pokemon &, Type);
+  bool runStatusImmunity(Pokemon &, Status);
+  bool isGrounded(Pokemon &, bool negateImmunity);
+  bool setStatus(Status, Pokemon &target, Pokemon &source, EffectKind, MoveInstance &);
+  bool addVolatile(VolatileId, Pokemon &target, Pokemon &source, MoveId);
+  int applyDamage(int damage, Pokemon &target);
   int directDamage(int damage, Pokemon &target, Pokemon &source, EffectKind);
   int heal(int damage, Pokemon &target, EffectKind);
-  int spreadDamage(int damage, Pokemon &target, Pokemon &source, EffectKind, MoveId effectMove);
+  DamageResultState spreadDamage(DamageResultState, Pokemon &target, Pokemon &source, EffectKind,
+                                 MoveId effectMove);
+  void runMoveEffects(bool keepTargeting, Pokemon &target, Pokemon &source, MoveInstance &);
   bool useMoveInner(Pokemon &opp, Pokemon &pokemon, MoveInstance &);
   bool useMove(Pokemon &opp, Pokemon &pokemon, MoveInstance &);
   bool trySpreadMoveHit(Pokemon &target, Pokemon &pokemon, MoveInstance &);
-  int spreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance &);
-  void faint(Pokemon &pkmn, Pokemon &cause);
+  bool applySecondaryEffect(Pokemon &target, Pokemon &source, SecondaryEffect, MoveInstance &);
+  DamageResultState moveHit(Pokemon &target, Pokemon &user, MoveInstance &);
+  void faint(Pokemon &pkmn);
   void faintMessages();
 };
 

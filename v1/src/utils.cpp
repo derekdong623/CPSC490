@@ -103,12 +103,12 @@ int checkAndApplySTAB(int baseDamage, const Pokemon &attacker, const Move &move)
   return applyModifier(baseDamage, stab_numer, stab_denom);
 }
 // If move is used to attack the Pokemon defender, is it 0.5x? 2x? 1x? 4x? immune?
-std::optional<int> getTypeMod(const Pokemon &defender, const Move &move) {
+std::optional<int> getTypeMod(const Pokemon &defender, const Type &typ) {
   // Note: runEffectiveness is b/c Arceus/Silvally and Tera
   std::optional<int> typeMod{0};
   for (Type t : defender.types) {
     if (t != Type::NO_TYPE) {
-      const int newTypeMod = getTypeEffectiveness(move.type, t);
+      const int newTypeMod = getTypeEffectiveness(typ, t);
       if (newTypeMod < -1) { // Immune
         typeMod = std::nullopt;
       } else if (typeMod != std::nullopt) {

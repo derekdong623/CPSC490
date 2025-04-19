@@ -19,6 +19,12 @@ inline bool randomChance(int numerator, int denominator) {
 } // namespace pkmn::math
 
 namespace pkmn {
+// NONE, FALSE, or TRUE
+enum class TriState {
+  NONE,
+  FALSE,
+  TRUE,
+};
 // -1 disables an option (i.e. randomize or otherwise follow rules)
 // roll_val: [0,16) or -1 for randomize
 // crit: critIndex
@@ -32,7 +38,7 @@ bool getCrit(const Pokemon &target, const Pokemon &attacker, MoveId, DMGCalcOpti
 int generateAndApplyDmgRoll(int baseDamage, DMGCalcOptions &);
 
 int checkAndApplySTAB(int baseDamage, const Pokemon &attacker, const Move &);
-std::optional<int> getTypeMod(const Pokemon &defender, const Move &);
+std::optional<int> getTypeMod(const Pokemon &defender, const Type &);
 int applyTypeEffectiveness(int baseDamage, int typeMod);
 
 struct EffectiveStatVals {
@@ -40,6 +46,37 @@ struct EffectiveStatVals {
   int attBoost, defBoost;
 };
 EffectiveStatVals getEffectiveStats(const Pokemon &attacker, const Pokemon &defender, const Move &);
+
+// To check numeric: first check (initialized && !fail && !succ)
+// - numeric must be non-negative
+// To check success: first check (initialized && !fail)
+// To check fail: first check (initialized)
+// To check undefined (i.e. uninitialized): directly check
+struct DamageResultState {
+  int damageDealt = -1;     // PokemonShowdown numeric
+  bool fail = false;        // PokemonShowdown false/null
+  bool succ = false;        // PokemonShowdown true
+  bool initialized = false; // PokemonShowdown undefined
+
+  void set_numeric(int x) { initialized = true, fail = false, succ = false, damageDealt = x; }
+  void set_succ() {
+    if (damageDealt < 0)
+      initialized = true, fail = false, succ = true;
+  }
+  void set_fail() {
+    if (damageDealt < 0 && !succ)
+      initialized = true, fail = true;
+  }
+};
+
+struct SecondaryEffect {
+  Secondary kind = Secondary::NONE;
+  std::optional<int> chance = std::nullopt; // nullopt == N/A chance, i.e. always applies
+  std::map<ModifierId, int> boosts;
+  std::map<ModifierId, int> selfBoosts;
+  Status status = Status::NO_STATUS;
+  VolatileId vol = VolatileId::NONE;
+};
 
 Stats get_nature_contrib(const Nature nature);
 // stat: raw "base" stat value

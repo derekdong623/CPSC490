@@ -24,7 +24,7 @@ bool test_read_base_stats() {
 }
 bool test_init_lillipup() {
   // Lillipup has no changes in Run and Bun
-  Pokemon lillipup = Pokemon(PokeName::LILLIPUP, 10, Nature::HARDY, Stats{}, Stats{});
+  Pokemon lillipup = Pokemon(PokeName::LILLIPUP, 10, Gender::MALE, Nature::HARDY, Stats{}, Stats{});
   if (lillipup.init_stats.hp != 29)
     return false;
   if (lillipup.init_stats.att != 17)
