@@ -6,7 +6,7 @@ namespace pkmn {
 // Stores data on the running of a move
 struct MoveInstance {
   Move moveData;
-  MoveId id;
+  MoveId id=MoveId::NONE;
   int priority = 0;
   int totalDamage = 0;
   int selfHealed = 0;
@@ -20,9 +20,14 @@ struct MoveInstance {
   bool hasSheerForce = false; // Flag set in onModifyMove
   bool infiltrates = false;   // Flag set in onModifyMove
   MoveInstance(Move &move) : id(move.id) { moveData = move; }
+  // This constructor should ONLY be used for testing!
+  MoveInstance(MoveId &moveId) : id(moveId) { moveData = moveDict.dict[moveId]; }
   bool breaksProtect();
   bool isMultiHit();
   bool isNoParentalBond();
+  std::map<ModifierId, int> getBoosts();
+  std::pair<int, int> getHeal();
+  Status getStatus();
   std::pair<int, int> getRecoil();
   bool isRecoil() { return getRecoil().first != 0; }
   std::vector<SecondaryEffect> getSecondaries();

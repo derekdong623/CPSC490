@@ -141,9 +141,129 @@ bool MoveInstance::isCharge() {
   };
   return std::find(chargeMoves.begin(), chargeMoves.end(), id) != chargeMoves.end();
 }
+std::map<ModifierId, int> MoveInstance::getBoosts() {
+  static const std::unordered_map<MoveId, std::map<ModifierId, int>> boostingMoves = {
+      {MoveId::ACIDARMOR, {{ModifierId::DEFENSE, 2}}},
+      {MoveId::AGILITY, {{ModifierId::SPEED, 2}}},
+      {MoveId::AMNESIA, {{ModifierId::SPDEF, 2}}},
+      {MoveId::AROMATICMIST, {{ModifierId::SPDEF, 1}}},
+      {MoveId::AUTOTOMIZE, {{ModifierId::SPEED, 2}}},
+      {MoveId::BABYDOLLEYES, {{ModifierId::ATTACK, -1}}},
+      {MoveId::BARRIER, {{ModifierId::DEFENSE, 2}}},
+      {MoveId::BULKUP, {{ModifierId::ATTACK, 1}, {ModifierId::DEFENSE, 1}}},
+      {MoveId::CALMMIND, {{ModifierId::SPATT, 1}, {ModifierId::SPDEF, 1}}},
+      {MoveId::CAPTIVATE, {{ModifierId::SPATT, -2}}},
+      {MoveId::CHARGE, {{ModifierId::SPDEF, 1}}},
+      {MoveId::CHARM, {{ModifierId::ATTACK, -2}}},
+      {MoveId::CLANGOROUSSOUL,
+       {{ModifierId::ATTACK, 1},
+        {ModifierId::DEFENSE, 1},
+        {ModifierId::SPATT, 1},
+        {ModifierId::SPDEF, 1},
+        {ModifierId::SPEED, 1}}},
+      {MoveId::COACHING, {{ModifierId::ATTACK, 1}, {ModifierId::DEFENSE, 1}}},
+      {MoveId::COIL,
+       {{ModifierId::ATTACK, 1}, {ModifierId::DEFENSE, 1}, {ModifierId::ACCURACY, 1}}},
+      {MoveId::CONFIDE, {{ModifierId::SPATT, -1}}},
+      {MoveId::COSMICPOWER, {{ModifierId::DEFENSE, 1}, {ModifierId::SPDEF, 1}}},
+      {MoveId::COTTONGUARD, {{ModifierId::DEFENSE, 3}}},
+      {MoveId::COTTONSPORE, {{ModifierId::SPEED, -2}}},
+      {MoveId::DECORATE, {{ModifierId::ATTACK, 2}, {ModifierId::SPATT, 2}}},
+      {MoveId::DEFENDORDER, {{ModifierId::DEFENSE, 1}, {ModifierId::SPDEF, 1}}},
+      {MoveId::DEFENSECURL, {{ModifierId::DEFENSE, 1}}},
+      {MoveId::DOUBLETEAM, {{ModifierId::EVASION, 1}}},
+      {MoveId::DRAGONDANCE, {{ModifierId::ATTACK, 1}, {ModifierId::SPEED, 1}}},
+      {MoveId::EERIEIMPULSE, {{ModifierId::SPATT, -2}}},
+      {MoveId::FAKETEARS, {{ModifierId::SPDEF, -2}}},
+      {MoveId::FEATHERDANCE, {{ModifierId::ATTACK, -2}}},
+      {MoveId::FILLETAWAY,
+       {{ModifierId::ATTACK, 2}, {ModifierId::SPATT, 2}, {ModifierId::SPEED, 2}}},
+      {MoveId::FLASH, {{ModifierId::ACCURACY, -1}}},
+      {MoveId::FLATTER, {{ModifierId::SPATT, 1}}},
+      {MoveId::GEOMANCY, {{ModifierId::SPATT, 2}, {ModifierId::SPDEF, 2}, {ModifierId::SPEED, 2}}},
+      {MoveId::GROWL, {{ModifierId::ATTACK, -1}}},
+      {MoveId::GROWTH, {{ModifierId::ATTACK, 1}, {ModifierId::SPATT, 1}}},
+      {MoveId::HARDEN, {{ModifierId::DEFENSE, 1}}},
+      {MoveId::HONECLAWS, {{ModifierId::ATTACK, 1}, {ModifierId::ACCURACY, 1}}},
+      {MoveId::HOWL, {{ModifierId::ATTACK, 1}}},
+      {MoveId::IRONDEFENSE, {{ModifierId::DEFENSE, 2}}},
+      {MoveId::KINESIS, {{ModifierId::ACCURACY, -1}}},
+      {MoveId::LEER, {{ModifierId::DEFENSE, -1}}},
+      {MoveId::MEDITATE, {{ModifierId::ATTACK, 1}}},
+      {MoveId::MEMENTO, {{ModifierId::ATTACK, -2}, {ModifierId::SPATT, -2}}},
+      {MoveId::METALSOUND, {{ModifierId::SPDEF, -2}}},
+      {MoveId::MINIMIZE, {{ModifierId::EVASION, 2}}},
+      {MoveId::NASTYPLOT, {{ModifierId::SPATT, 2}}},
+      {MoveId::NOBLEROAR, {{ModifierId::ATTACK, -1}, {ModifierId::SPATT, -1}}},
+      {MoveId::NORETREAT,
+       {{ModifierId::ATTACK, 1},
+        {ModifierId::DEFENSE, 1},
+        {ModifierId::SPATT, 1},
+        {ModifierId::SPDEF, 1},
+        {ModifierId::SPEED, 1}}},
+      {MoveId::PLAYNICE, {{ModifierId::ATTACK, -1}}},
+      {MoveId::QUIVERDANCE,
+       {{ModifierId::SPATT, 1}, {ModifierId::SPDEF, 1}, {ModifierId::SPEED, 1}}},
+      {MoveId::ROCKPOLISH, {{ModifierId::SPEED, 2}}},
+      {MoveId::SANDATTACK, {{ModifierId::ACCURACY, -1}}},
+      {MoveId::SCARYFACE, {{ModifierId::SPEED, -2}}},
+      {MoveId::SCREECH, {{ModifierId::DEFENSE, -2}}},
+      {MoveId::SHARPEN, {{ModifierId::ATTACK, 1}}},
+      {MoveId::SHELLSMASH,
+       {{ModifierId::DEFENSE, -1},
+        {ModifierId::SPDEF, -1},
+        {ModifierId::ATTACK, 2},
+        {ModifierId::SPATT, 2},
+        {ModifierId::SPEED, 2}}},
+      {MoveId::SHELTER, {{ModifierId::DEFENSE, 2}}},
+      {MoveId::SHIFTGEAR, {{ModifierId::SPEED, 2}, {ModifierId::ATTACK, 1}}},
+      {MoveId::SMOKESCREEN, {{ModifierId::ACCURACY, -1}}},
+      {MoveId::SPICYEXTRACT, {{ModifierId::ATTACK, 2}, {ModifierId::DEFENSE, -2}}},
+      {MoveId::STRINGSHOT, {{ModifierId::SPEED, -2}}},
+      {MoveId::SWAGGER, {{ModifierId::ATTACK, 2}}},
+      {MoveId::SWEETSCENT, {{ModifierId::EVASION, -2}}},
+      {MoveId::SWORDSDANCE, {{ModifierId::ATTACK, 2}}},
+      {MoveId::TAILGLOW, {{ModifierId::SPATT, 3}}},
+      {MoveId::TAILWHIP, {{ModifierId::DEFENSE, -1}}},
+      {MoveId::TARSHOT, {{ModifierId::SPEED, -1}}},
+      {MoveId::TEARFULLOOK, {{ModifierId::ATTACK, -1}, {ModifierId::SPATT, -1}}},
+      {MoveId::TICKLE, {{ModifierId::ATTACK, -1}, {ModifierId::DEFENSE, -1}}},
+      {MoveId::TOXICTHREAD, {{ModifierId::SPEED, -1}}},
+      {MoveId::VICTORYDANCE,
+       {{ModifierId::ATTACK, 1}, {ModifierId::DEFENSE, 1}, {ModifierId::SPEED, 1}}},
+      {MoveId::WITHDRAW, {{ModifierId::DEFENSE, 1}}},
+      {MoveId::WORKUP, {{ModifierId::ATTACK, 1}, {ModifierId::SPATT, 1}}},
+  };
+  std::map<ModifierId, int> ret;
+  auto it = boostingMoves.find(id);
+  return it != boostingMoves.end() ? it->second : ret;
+}
+std::pair<int, int> MoveInstance::getHeal() {
+  static std::map<MoveId, std::pair<int, int>> healMoves = {
+      {MoveId::HEALORDER, {1, 2}},  {MoveId::LIFEDEW, {1, 4}}, {MoveId::MILKDRINK, {1, 2}},
+      {MoveId::RECOVER, {1, 2}},    {MoveId::ROOST, {1, 2}},   {MoveId::SLACKOFF, {1, 2}},
+      {MoveId::SOFTBOILED, {1, 2}},
+  };
+  auto it = healMoves.find(id);
+  return it != healMoves.end() ? it->second : std::make_pair(0, 0);
+}
+Status MoveInstance::getStatus() {
+  static const std::map<MoveId, Status> statusApplyingMoves = {
+      {MoveId::DARKVOID, Status::SLEEP},      {MoveId::GLARE, Status::PARALYSIS},
+      {MoveId::GRASSWHISTLE, Status::SLEEP},  {MoveId::HYPNOSIS, Status::SLEEP},
+      {MoveId::LOVELYKISS, Status::SLEEP},    {MoveId::POISONGAS, Status::POISON},
+      {MoveId::POISONPOWDER, Status::POISON}, {MoveId::SING_, Status::SLEEP},
+      {MoveId::SLEEPPOWDER, Status::SLEEP},   {MoveId::SPORE, Status::SLEEP},
+      {MoveId::STUNSPORE, Status::PARALYSIS}, {MoveId::THUNDERWAVE, Status::PARALYSIS},
+      {MoveId::TOXIC, Status::TOXIC},         {MoveId::TOXICTHREAD, Status::POISON},
+      {MoveId::WILLOWISP, Status::BURN},
+  };
+  auto it = statusApplyingMoves.find(id);
+  return it != statusApplyingMoves.end() ? it->second : Status::NO_STATUS;
+}
 // Regular recoil moves
 std::pair<int, int> MoveInstance::getRecoil() {
-  static std::unordered_map<MoveId, std::pair<int, int>> recoilMoves = {
+  static const std::unordered_map<MoveId, std::pair<int, int>> recoilMoves = {
       {MoveId::BRAVEBIRD, {33, 100}},  {MoveId::DOUBLEEDGE, {33, 100}},
       {MoveId::FLAREBLITZ, {33, 100}}, {MoveId::VOLTTACKLE, {33, 100}},
       {MoveId::WAVECRASH, {33, 100}},  {MoveId::WOODHAMMER, {33, 100}},
@@ -624,7 +744,8 @@ SecondaryEffect MoveInstance::getSelfEffect() {
   case MoveId::UPROAR: {
     return {.kind = Secondary::VOLATILE, .vol = VolatileId::UPROAR};
   }
-  default: break;
+  default:
+    break;
   }
   return {};
 }

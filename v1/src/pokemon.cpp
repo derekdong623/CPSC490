@@ -398,13 +398,15 @@ bool Pokemon::useItem(bool eat, bool forceEat) {
   return false;
 }
 // Actually apply the healing (capped by max HP)
+// Returns -1 for fail
 int Pokemon::applyHeal(int damage) {
-  if (current_hp <= 0)
-    return 0;
   if (damage <= 0)
     return 0;
+  if (current_hp <= 0)
+    return -1;
+  if(!isActive) return -1;
   if (current_hp >= stats.hp)
-    return 0;
+    return -1;
   current_hp += damage;
   if (current_hp > stats.hp) {
     damage -= current_hp - stats.hp;

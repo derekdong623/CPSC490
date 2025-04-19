@@ -807,7 +807,7 @@ std::pair<int, int> getDrain(MoveId move) {
   return {0, 0};
 }
 // Handles the larger-scale idea of healing a Pokemon: called often
-// Returns actual damage healed
+// Returns actual damage healed, or -1 for failure
 int BattleState::heal(int damage, Pokemon &target, EffectKind effectKind) {
   damage = target.applyOnTryHeal(damage, effectKind);
   if (!damage)
@@ -854,7 +854,7 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
   // user.lastMoveUsed = move -- ignore, only for Pokemon Stadium's Porygon
   // if(activeMove) priority tracking
 
-  // TODO: Target selection
+  // Target selection
   Pokemon &target = opp;
   if (moveInst.moveData.target == Target::SELF) {
     target = user;
@@ -870,7 +870,7 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
     return false;
   }
   // TODO: Check no-target failure
-  // TODO: Pressure extra PP deduction calc (for single battles, maybe do in runMove?)
+  // Do later: Pressure extra PP deduction calc (for single battles, maybe do in runMove?)
   // onTryMove():
   if (!applyOnTryMove(target, user, moveInst)) {
     // move.mindBlownRecoil = false;
@@ -898,11 +898,7 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
   case Target::NORMAL:
   case Target::SELF:
   case Target::SCRIPTED: {
-    // trySpreadMoveHit()
-    // The call handles all but "selfBoosts". I think these specifically don't get
-    // considered/removed by SheerForce. So if the move hit but hasn't had the boosts applied (since
-    // they're not secondary: they're separate), we separately apply only the selfBoosts by
-    // moveHit(isSelf=true).
+    // TODO: have selfBoosts in trySpreadMoveHit() implementation for extra moveHit()
     moveResult = trySpreadMoveHit(target, user, moveInst);
     break;
   }
@@ -1085,7 +1081,7 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
           break;
         }
       }
-      // Is -1 if not numeric
+      // is -1 if not numeric
       int moveDamageThisHit = moveHit(target, user, moveInst).damageDealt;
       damageDealt = moveDamageThisHit < 0 ? 0 : moveDamageThisHit;
       moveInst.totalDamage += damageDealt;
@@ -1214,7 +1210,7 @@ DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInsta
   // Do later: does no damage or dealt no Sub damage: keepTargeting = false;
 
   // Step 1 - getSpreadDamage(). Calls getDamage().
-  if (!subDamage && targeting) {
+  if (!subDamage && targeting && move.category != MoveCategory::STATUS) {
     // battle.activeTarget = target;
     // Q: Can getDamage() return undefined or null? For now, assume no.
     dmgResult = getDamage(user, target, moveInst, defaultDmgOptions);
@@ -1240,6 +1236,56 @@ DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInsta
     DamageResultState didSomething;
     if (!subDamage) { // if(target)
       // TODO
+      bool skip = false;
+      bool hit = false;
+      // boosts
+      if(!target.fainted){
+        auto boosts = moveInst.getBoosts();
+        if(!boosts.empty()) {
+          hit = target.boost(boosts, EffectKind::NO_EFFECT);
+        }
+      }
+      // heal
+      if(!target.fainted) {
+        auto healProp = moveInst.getHeal();
+        if(healProp.first) {
+          if(target.current_hp >= target.stats.hp) {
+            // Fail if target at max HP
+            dmgResult.set_fail();
+            didSomething.set_fail();
+            skip = true;
+          }
+          // Rounding
+          int amtHealed = heal((target.stats.hp * healProp.first + healProp.second / 2) / healProp.second, target, EffectKind::NO_EFFECT);
+          if(amtHealed < 0) {
+            // Healing failed
+            dmgResult.set_fail();
+            didSomething.set_fail();
+            skip = true;
+          }
+          didSomething.set_succ();
+        }
+      }
+      // status
+      if(!skip) {
+        Status status = moveInst.getStatus();
+        if(status != Status::NO_STATUS) {
+          hit = setStatus(status, target, user, EffectKind::NO_EFFECT, moveInst);
+          if(!hit) {
+            dmgResult.set_fail();
+            didSomething.set_fail();
+            skip=true;
+          }
+          didSomething.set_succ();
+        }
+      }
+      // volatile
+      // sidecondition
+      // weather
+      // terrain
+      // pseudoweather
+      // forceswitch
+      // onHit
     }
     if (moveInst.isIffHitSelfDestruct() && dmgResult.initialized && !dmgResult.fail) {
       faint(user);

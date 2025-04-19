@@ -132,6 +132,7 @@ BattleState get_basic_battle(DMGCalcOptions ddo) {
   bulbasaur.set_ability(Ability::OVERGROW);
   charmander.add_move(MoveId::SCRATCH, 0);
   charmander.add_move(MoveId::EMBER, 1);
+  charmander.add_move(MoveId::WILLOWISP, 2);
   bulbasaur.add_move(MoveId::TACKLE, 0);
   Team team0, team1;
   team0.add_pokemon(0, charmander);
@@ -171,6 +172,16 @@ bool test_basic_moves() {
   TIME_EXPR("Bulbasaur attack", state.runMove(attacker.moves[0], attacker, defender););
   if(defender.current_hp != 13) return false;
   // TEST STATUS MOVE
+  state = get_basic_battle({0, 0});
+  attacker = state.getActivePokemon(0);
+  defender = state.getActivePokemon(1);
+  // std::cout << "Initial status: " << (int)defender.status << std::endl;
+  if(defender.status != Status::NO_STATUS) return false;
+  MoveInstance moveInst(attacker.moves[2].id);
+  // std::cout << (int)moveInst.moveData.id << std::endl; // 836 Will-O-Wisp
+  TIME_EXPR("moveHit Will-O-Wisp", state.moveHit(defender, attacker, moveInst););
+  // std::cout << "Final status: " << (int)defender.status << std::endl;
+  if(defender.status != Status::BURN) return false;
   return true;
 }
 } // namespace pkmn

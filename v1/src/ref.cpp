@@ -163,6 +163,7 @@ MoveDict::MoveDict() {
       iss >> tmp[k];
     }
     int ind = 0;
+    ret.id = id;
     ret.type = static_cast<Type>(tmp[ind++]);             // 0
     ret.basePower = tmp[ind++];                           // 1
     ret.accuracy = get_opt_nonneg_int(tmp[ind++]);        // 2

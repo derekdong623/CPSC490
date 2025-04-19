@@ -98,6 +98,7 @@ public:
   bool startBattle();
   BattleState runTurnPy();
   void runMove(MoveSlot &moveSlot, Pokemon &user, Pokemon &target);
+  DamageResultState moveHit(Pokemon &target, Pokemon &user, MoveInstance &);
   int checkWin(int lastFaintSide = -1);
   DamageResultState getDamage(Pokemon const &source, Pokemon const &target, MoveInstance &moveInst,
                               DMGCalcOptions options); // Exported for test_init
@@ -189,7 +190,6 @@ private:
   bool useMove(Pokemon &opp, Pokemon &pokemon, MoveInstance &);
   bool trySpreadMoveHit(Pokemon &target, Pokemon &pokemon, MoveInstance &);
   bool applySecondaryEffect(Pokemon &target, Pokemon &source, SecondaryEffect, MoveInstance &);
-  DamageResultState moveHit(Pokemon &target, Pokemon &user, MoveInstance &);
   void faint(Pokemon &pkmn);
   void faintMessages();
 };
