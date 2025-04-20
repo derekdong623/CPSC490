@@ -737,8 +737,8 @@ void BattleState::applyOnMoveFail(Pokemon &target, Pokemon &pokemon, MoveInstanc
                                                MoveId::JUMPKICK, MoveId::SUPERCELLSLAM};
   if (std::find(crashDmg.begin(), crashDmg.end(), moveInst.id) != crashDmg.end()) {
     // Directly deal damage to itself
-    spreadDamage({.damageDealt = pokemon.stats.hp / 2}, pokemon, pokemon, EffectKind::CRASH_DAMAGE,
-                 MoveId::NONE);
+    spreadDamage(DamageResultState(pokemon.stats.hp / 2), pokemon, pokemon,
+                 EffectKind::CRASH_DAMAGE, MoveId::NONE);
   }
   // TODO: SkyDrop
 }

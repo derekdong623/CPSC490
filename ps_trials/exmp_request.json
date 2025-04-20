@@ -1,0 +1,163 @@
+[
+  {
+    "active": [
+      {
+        "moves": [
+          {
+            "move": "Poison Gas",
+            "id": "poisongas",
+            "pp": 64,
+            "maxpp": 64,
+            "target": "allAdjacentFoes",
+            "disabled": false
+          },
+          {
+            "move": "Poison Powder",
+            "id": "poisonpowder",
+            "pp": 56,
+            "maxpp": 56,
+            "target": "normal",
+            "disabled": false
+          },
+          {
+            "move": "Growl",
+            "id": "growl",
+            "pp": 64,
+            "maxpp": 64,
+            "target": "allAdjacentFoes",
+            "disabled": false
+          },
+          {
+            "move": "Reflect",
+            "id": "reflect",
+            "pp": 32,
+            "maxpp": 32,
+            "target": "allySide",
+            "disabled": false
+          }
+        ],
+        "canDynamax": true,
+        "maxMoves": {
+          "maxMoves": [
+            {
+              "move": "maxguard",
+              "target": "self"
+            },
+            {
+              "move": "maxguard",
+              "target": "self"
+            },
+            {
+              "move": "maxguard",
+              "target": "self"
+            },
+            {
+              "move": "maxguard",
+              "target": "self"
+            }
+          ]
+        }
+      }
+    ],
+    "side": {
+      "name": "Alice",
+      "id": "p1",
+      "pokemon": [
+        {
+          "ident": "p1: Koffing",
+          "details": "Koffing, F",
+          "condition": "221/221",
+          "active": true,
+          "stats": {
+            "atk": 166,
+            "def": 226,
+            "spa": 156,
+            "spd": 126,
+            "spe": 106
+          },
+          "moves": [
+            "poisongas",
+            "poisonpowder",
+            "growl",
+            "reflect"
+          ],
+          "baseAbility": "levitate",
+          "item": "",
+          "pokeball": "pokeball",
+          "ability": "levitate"
+        },
+        {
+          "ident": "p1: Golem",
+          "details": "Golem, L10, M",
+          "condition": "0 fnt",
+          "active": false,
+          "stats": {
+            "atk": 29,
+            "def": 31,
+            "spa": 16,
+            "spd": 18,
+            "spe": 14
+          },
+          "moves": [
+            "explosion"
+          ],
+          "baseAbility": "sturdy",
+          "item": "",
+          "pokeball": "pokeball",
+          "ability": "sturdy"
+        }
+      ]
+    }
+  },
+  {
+    "active": [
+      {
+        "moves": [
+          {
+            "move": "Splash",
+            "id": "splash",
+            "pp": 63,
+            "maxpp": 64,
+            "target": "self",
+            "disabled": false
+          }
+        ],
+        "canDynamax": true,
+        "maxMoves": {
+          "maxMoves": [
+            {
+              "move": "maxguard",
+              "target": "self"
+            }
+          ]
+        }
+      }
+    ],
+    "side": {
+      "name": "Bob",
+      "id": "p2",
+      "pokemon": [
+        {
+          "ident": "p2: Magikarp",
+          "details": "Magikarp, F",
+          "condition": "175/181",
+          "active": true,
+          "stats": {
+            "atk": 56,
+            "def": 146,
+            "spa": 66,
+            "spd": 76,
+            "spe": 196
+          },
+          "moves": [
+            "splash"
+          ],
+          "baseAbility": "torrent",
+          "item": "",
+          "pokeball": "pokeball",
+          "ability": "torrent"
+        }
+      ]
+    }
+  }
+]

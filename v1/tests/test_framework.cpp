@@ -11,6 +11,7 @@ namespace testing {
         for (const auto& test : tests) {
             bool success = test.func();
             std::cout << (success ? "[PASS] " : "[FAIL] ") << test.name << std::endl;
+            std::cout << std::endl;
             passed += success;
         }
         std::cout << "Summary: " << passed << "/" << tests.size() << " tests passed." << std::endl;

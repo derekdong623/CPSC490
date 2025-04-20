@@ -49,6 +49,7 @@ struct Team {
   int activeInd = -1;
   int pokemonLeft = 0;
   // Choices allowed
+  bool instaSwitch = false;
   // Non-trivial mid-turn denotes actions left (e.g. fainted or U-Turn)
   Choice choicesAvailable;
   // Volatiles
@@ -62,7 +63,7 @@ struct Team {
   bool faintedLastTurn = false; // For Retaliate
   bool faintedThisTurn = false; // For faintedLastTurn -> Retaliate
 
-  bool add_pokemon(int slot, Pokemon &pokemon);
+  bool add_pokemon(int slot, Pokemon pokemon, int lvl=0);
   void lockTeam();
 };
 /*
@@ -92,15 +93,15 @@ public:
   BattleState() {}
   BattleState(DMGCalcOptions ddo): defaultDmgOptions(ddo) {}
   bool set_team(int side, Team &team);
-  void set_switch_options();
-  void set_move_options();
+  void set_switch_options(int side);
+  void set_move_options(int side);
   void set_choices();
   bool startBattle();
   BattleState runTurnPy();
   void runMove(MoveSlot &moveSlot, Pokemon &user, Pokemon &target);
   DamageResultState moveHit(Pokemon &target, Pokemon &user, MoveInstance &);
   int checkWin(int lastFaintSide = -1);
-  DamageResultState getDamage(Pokemon const &source, Pokemon const &target, MoveInstance &moveInst,
+  DamageResultState getDamage(Pokemon &source, Pokemon &target, MoveInstance &moveInst,
                               DMGCalcOptions options); // Exported for test_init
   Pokemon &getActivePokemon(int side) {return teams[side].pkmn[teams[side].activeInd];}
 private:
@@ -117,6 +118,7 @@ private:
   SwitchAction getSwitchActionFromChoice(int side);
   void applyAtEndOfTurn();
   bool runTurn();
+  bool isInstaSwitch() {return teams[0].instaSwitch || teams[1].instaSwitch;}
 
   /* START Event callbacks */
 
@@ -170,6 +172,8 @@ private:
 
   /* END Event Callbacks */
 
+  bool canSwitch(int side);
+  int damageCallback(Pokemon &source, Pokemon &target, MoveInstance &);
   void updateSpeed();
   void endTurn();
   std::optional<bool> applyAtEndOfAction(ActionKind);
@@ -180,6 +184,7 @@ private:
   bool isGrounded(Pokemon &, bool negateImmunity);
   bool setStatus(Status, Pokemon &target, Pokemon &source, EffectKind, MoveInstance &);
   bool addVolatile(VolatileId, Pokemon &target, Pokemon &source, MoveId);
+  std::pair<int, int> getDrain(MoveId);
   int applyDamage(int damage, Pokemon &target);
   int directDamage(int damage, Pokemon &target, Pokemon &source, EffectKind);
   int heal(int damage, Pokemon &target, EffectKind);

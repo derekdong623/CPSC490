@@ -58,6 +58,8 @@ struct DamageResultState {
   bool succ = false;        // PokemonShowdown true
   bool initialized = false; // PokemonShowdown undefined
 
+  DamageResultState() {}
+  DamageResultState(int x) { initialized = true, fail = false, succ = false, damageDealt = x; }
   void set_numeric(int x) { initialized = true, fail = false, succ = false, damageDealt = x; }
   void set_succ() {
     if (damageDealt < 0)
