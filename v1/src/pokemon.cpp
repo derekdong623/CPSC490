@@ -171,33 +171,9 @@ void Pokemon::clearVolatile(bool clearSwitchFlags) {
 }
 // Raw form of boosting stats
 int Pokemon::boostStat(ModifierId stat, int boostVal) {
-  int *statVal;
-  switch (stat) {
-  case ModifierId::ATTACK:
-    statVal = &(boosts.att);
-    break;
-  case ModifierId::DEFENSE:
-    statVal = &(boosts.def);
-    break;
-  case ModifierId::SPATT:
-    statVal = &(boosts.spatt);
-    break;
-  case ModifierId::SPDEF:
-    statVal = &(boosts.spdef);
-    break;
-  case ModifierId::SPEED:
-    statVal = &(boosts.spd);
-    break;
-  case ModifierId::ACCURACY:
-    statVal = &(boosts.acc);
-    break;
-  default: // Evasion
-    statVal = &(boosts.eva);
-    break;
-  }
-  int oldStatVal = *statVal;
-  *statVal = std::min(6, std::max(-6, *statVal + boostVal));
-  return *statVal - oldStatVal;
+  int oldStatVal = boosts[stat];
+  int statVal = std::min(6, std::max(-6, boosts[stat] + boostVal));
+  return statVal - oldStatVal;
 }
 
 int Pokemon::getStatVal(ModifierId statName) const {
@@ -266,36 +242,7 @@ bool Pokemon::isSemiInvulnerable() {
 }
 void Pokemon::capBoost(std::map<ModifierId, int> &boostTable) {
   for (auto &[mod, b] : boostTable) {
-    switch (mod) {
-    case ModifierId::ACCURACY: {
-      b = std::max(-6, std::min(6, boosts.acc + b)) - boosts.acc;
-      break;
-    }
-    case ModifierId::EVASION: {
-      b = std::max(-6, std::min(6, boosts.eva + b)) - boosts.eva;
-      break;
-    }
-    case ModifierId::ATTACK: {
-      b = std::max(-6, std::min(6, boosts.att + b)) - boosts.att;
-      break;
-    }
-    case ModifierId::DEFENSE: {
-      b = std::max(-6, std::min(6, boosts.def + b)) - boosts.def;
-      break;
-    }
-    case ModifierId::SPATT: {
-      b = std::max(-6, std::min(6, boosts.spatt + b)) - boosts.spatt;
-      break;
-    }
-    case ModifierId::SPDEF: {
-      b = std::max(-6, std::min(6, boosts.spdef + b)) - boosts.spdef;
-      break;
-    }
-    case ModifierId::SPEED: {
-      b = std::max(-6, std::min(6, boosts.spd + b)) - boosts.spd;
-      break;
-    }
-    }
+    b = std::max(-6, std::min(6, boosts[mod] + b)) - boosts[mod];
   }
 }
 // Apply (un)boost(s) to a target.

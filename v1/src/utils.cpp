@@ -71,16 +71,16 @@ bool getCrit(const Pokemon &target, const Pokemon &attacker, MoveId move, DMGCal
                                                MoveId::WICKEDBLOW}; // Others always crit.
   std::optional<bool> moveWillCrit = std::nullopt;
   if (std::find(noCrit.begin(), noCrit.end(), move) != noCrit.end()) {
-    moveWillCrit = std::optional<bool>{false};
+    moveWillCrit = {false};
   }
   if (std::find(willCrit.begin(), willCrit.end(), move) != willCrit.end()) {
-    moveWillCrit = std::optional<bool>{true};
+    moveWillCrit = {true};
   }
   if (moveWillCrit == std::nullopt) {
-    if (options.crit) { // True unless manually set to no-crit
+    if (options.crit > 0) { // True unless manually set to no-crit
       return math::randomChance(1, critMult[options.crit]);
     } else {
-      std::cerr << "[getCrit] options.crit manually set to zero." << std::endl;
+      // std::cerr << "[getCrit] options.crit manually set to zero." << std::endl;
       return false;
     }
   }
@@ -134,20 +134,20 @@ int applyTypeEffectiveness(int baseDamage, int typeMod) {
   return baseDamage;
 }
 // Return the categories to use for attack/defense in damage calculation.
-EffectiveStatVals getEffectiveStats(const Pokemon &attacker, const Pokemon &defender,
+EffectiveStatVals getEffectiveStats(Pokemon &attacker, Pokemon &defender,
                                     const Move &move) {
   EffectiveStatVals ret;
   // Physical/Special moves should all have Power! (I checked this)
   if (move.category == MoveCategory::PHYSICAL) {
     ret.attStatName = ModifierId::ATTACK;
     ret.defStatName = ModifierId::DEFENSE;
-    ret.attBoost = attacker.boosts.att;
-    ret.defBoost = defender.boosts.def;
+    ret.attBoost = attacker.boosts[ModifierId::ATTACK];
+    ret.defBoost = defender.boosts[ModifierId::DEFENSE];
   } else if (move.category == MoveCategory::SPECIAL) {
     ret.attStatName = ModifierId::SPATT;
     ret.defStatName = ModifierId::SPDEF;
-    ret.attBoost = attacker.boosts.spatt;
-    ret.defBoost = defender.boosts.spdef;
+    ret.attBoost = attacker.boosts[ModifierId::SPATT];
+    ret.defBoost = defender.boosts[ModifierId::SPDEF];
   } else {
     // ERROR
     std::cerr << "[getEffectiveStats] Trying to call getEffectiveStats with invalid category."
@@ -157,14 +157,14 @@ EffectiveStatVals getEffectiveStats(const Pokemon &attacker, const Pokemon &defe
   switch (move.id) {
   case MoveId::BODYPRESS: {
     ret.attStatName = ModifierId::DEFENSE;
-    ret.attBoost = attacker.boosts.def;
+    ret.attBoost = attacker.boosts[ModifierId::DEFENSE];
     break;
   }
   case MoveId::PSYSHOCK:
   case MoveId::PSYSTRIKE:
   case MoveId::SECRETSWORD: {
     ret.defStatName = ModifierId::DEFENSE;
-    ret.defBoost = attacker.boosts.def;
+    ret.defBoost = attacker.boosts[ModifierId::DEFENSE];
     break;
   default: {
     break;

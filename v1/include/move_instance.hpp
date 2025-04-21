@@ -25,7 +25,7 @@ struct MoveInstance {
   bool breaksProtect();
   bool isMultiHit();
   bool isNoParentalBond();
-  std::map<ModifierId, int> getBoosts();
+  ModifierTable getBoosts();
   std::pair<int, int> getHeal();
   Status getStatus();
   std::pair<int, int> getRecoil();
@@ -46,7 +46,7 @@ struct MoveInstance {
   bool onModifyMove(Pokemon const &pokemon);
   int getNumHits(Pokemon const &pokemon);
   bool multiaccCheck(Pokemon const &user);
-  int getBasicAcc(int acc, bool multiacc, Pokemon const &target, Pokemon const &pokemon);
+  int getBasicAcc(int acc, bool multiacc, Pokemon &target, Pokemon &pokemon);
   bool alwaysSelfDestruct() {
     return id == MoveId::EXPLOSION || id == MoveId::SELFDESTRUCT || id == MoveId::MISTYEXPLOSION;
   }

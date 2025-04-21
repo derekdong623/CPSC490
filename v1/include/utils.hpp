@@ -45,7 +45,7 @@ struct EffectiveStatVals {
   ModifierId attStatName, defStatName;
   int attBoost, defBoost;
 };
-EffectiveStatVals getEffectiveStats(const Pokemon &attacker, const Pokemon &defender, const Move &);
+EffectiveStatVals getEffectiveStats(Pokemon &attacker, Pokemon &defender, const Move &);
 
 // To check numeric: first check (initialized && !fail && !succ)
 // - numeric must be non-negative
@@ -74,8 +74,8 @@ struct DamageResultState {
 struct SecondaryEffect {
   Secondary kind = Secondary::NONE;
   std::optional<int> chance = std::nullopt; // nullopt == N/A chance, i.e. always applies
-  std::map<ModifierId, int> boosts;
-  std::map<ModifierId, int> selfBoosts;
+  ModifierTable boosts;
+  ModifierTable selfBoosts;
   Status status = Status::NO_STATUS;
   VolatileId vol = VolatileId::NONE;
 };

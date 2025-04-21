@@ -140,8 +140,8 @@ DamageResultState BattleState::getDamage(Pokemon &source, Pokemon &target, MoveI
   basePower = applyOnBasePower(basePower, source, target, move);
   int level = source.lvl;
   // Do later: overridePokemon -- just Offensive, from Foul Play
-  Pokemon const &attacker = move.id == MoveId::FOULPLAY ? target : source;
-  Pokemon const &defender = target;
+  Pokemon &attacker = move.id == MoveId::FOULPLAY ? target : source;
+  Pokemon &defender = target;
   EffectiveStatVals stats = getEffectiveStats(attacker, defender, move);
   if (moveCrit) { // Boosts ignore negative attacking and positive defending stats
     stats.attBoost = std::max(0, stats.attBoost);
@@ -170,7 +170,7 @@ DamageResultState BattleState::getDamage(Pokemon &source, Pokemon &target, MoveI
   }
   // TODO: Weather
   // Crit multiplier (multiplier: 1.5)
-  if (options.crit) {
+  if (moveCrit) {
     baseDamage = applyModifier(baseDamage, 3, 2);
   }
   // Randomization (16 rolls)
@@ -563,6 +563,7 @@ bool BattleState::runTurn() {
       int side = switchActions[i].side;
       // Reset choice
       teams[side].choicesAvailable = Choice{};
+      teams[side].instaSwitch = false;
       switchIn(side, switchActions[i].newPokeInd, false);
       auto res = applyAtEndOfAction(ActionKind::SWITCH);
       if (res != std::nullopt) {

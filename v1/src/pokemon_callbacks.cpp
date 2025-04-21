@@ -164,7 +164,7 @@ void Pokemon::applyOnAfterBoost(std::map<ModifierId, int> &boostTable, EffectKin
     // Adrenaline Orb activates if Intimidate is blocked by an ability like Hyper Cutter,
     // which deletes boost.atk, but not if the holder's attack is already at -6 (or +6 if
     // it has Contrary), which sets boost.atk to 0.
-    if (boosts.spd < 6 &&
+    if (boosts[ModifierId::SPEED] < 6 &&
         (!boostTable.contains(ModifierId::ATTACK) || boostTable[ModifierId::ATTACK] != 0) &&
         effectKind == EffectKind::INTIMIDATE) {
       useItem(false, false);
@@ -234,15 +234,15 @@ void Pokemon::applyOnEat() {
   // Boost a random non-maxed regular stat by 2
   case Item::STARF_BERRY: {
     std::vector<ModifierId> boostable;
-    if (boosts.att < 6)
+    if (boosts[ModifierId::ATTACK] < 6)
       boostable.push_back(ModifierId::ATTACK);
-    if (boosts.def < 6)
+    if (boosts[ModifierId::DEFENSE] < 6)
       boostable.push_back(ModifierId::DEFENSE);
-    if (boosts.spatt < 6)
+    if (boosts[ModifierId::SPATT] < 6)
       boostable.push_back(ModifierId::SPATT);
-    if (boosts.spdef < 6)
+    if (boosts[ModifierId::SPDEF] < 6)
       boostable.push_back(ModifierId::SPDEF);
-    if (boosts.spd < 6)
+    if (boosts[ModifierId::SPEED] < 6)
       boostable.push_back(ModifierId::SPEED);
     if (!boostable.empty()) {
       boostStat(boostable[math::random(static_cast<int>(boostable.size()))], 2);

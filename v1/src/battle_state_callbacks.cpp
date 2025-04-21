@@ -336,7 +336,8 @@ bool BattleState::applyOnCriticalHit(bool crit, Pokemon const &target, Pokemon c
     // return false;
   }
   // LuckyChant
-  if (teams[target.side].luckyChant) {
+  if (teams[target.side].luckyChant >= 0) {
+    // std::cerr << "lucky chant " << teams[target.side].luckyChant << " blocked crit.\n";
     return false;
   }
   return crit;

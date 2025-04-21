@@ -2,6 +2,7 @@
 
 #include "pokemon_enums.hpp"
 #include <unordered_map>
+#include <map>
 namespace pkmn {
 // TYPE CHART
 struct TypeChart {
@@ -21,15 +22,7 @@ struct Stats {
   int spdef = 0;
   int spd = 0;
 };
-struct ModifierTable {
-  int att = 0;
-  int def = 0;
-  int spatt = 0;
-  int spdef = 0;
-  int spd = 0;
-  int acc = 0;
-  int eva = 0;
-};
+using ModifierTable = std::map<ModifierId, int>;
 struct PokeDexDict {
   std::unordered_map<PokeName, Stats> base_stat_dict;
   std::unordered_map<PokeName, std::pair<Type, Type>> type_dict;

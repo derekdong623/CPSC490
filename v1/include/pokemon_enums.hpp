@@ -2045,7 +2045,7 @@ enum class Nature {
   NAIVE,
   SERIOUS
 };
-enum ModifierId { ATTACK, DEFENSE, SPATT, SPDEF, SPEED, ACCURACY, EVASION };
+enum class ModifierId { ATTACK, DEFENSE, SPATT, SPDEF, SPEED, ACCURACY, EVASION };
 // Size 818
 enum class MoveId {
   NONE,

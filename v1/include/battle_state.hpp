@@ -32,6 +32,14 @@ struct Choice {
   bool mega = false;
   std::array<bool, 4> move = {};
   std::array<bool, 6> swap = {};
+  Choice() {}
+  // Mega, move, swap
+  Choice(bool meg, int mo, int sw) : mega(meg) {
+    if(mo >= 0)
+    move[mo] = true;
+    if(sw >= 0)
+    swap[sw] = true;
+  }
 };
 enum class SwitchResult {
   FALSE,
@@ -104,6 +112,7 @@ public:
   DamageResultState getDamage(Pokemon &source, Pokemon &target, MoveInstance &moveInst,
                               DMGCalcOptions options); // Exported for test_init
   Pokemon &getActivePokemon(int side) {return teams[side].pkmn[teams[side].activeInd];}
+  bool isInstaSwitch() {return teams[0].instaSwitch || teams[1].instaSwitch;}
 private:
   // bool use_verbose_output = false;
   // std::vector<MoveInstance> verbose_outputs;
@@ -118,7 +127,6 @@ private:
   SwitchAction getSwitchActionFromChoice(int side);
   void applyAtEndOfTurn();
   bool runTurn();
-  bool isInstaSwitch() {return teams[0].instaSwitch || teams[1].instaSwitch;}
 
   /* START Event callbacks */
 

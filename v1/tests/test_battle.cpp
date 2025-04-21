@@ -81,7 +81,6 @@ bool test_initialize_battle() {
     return false;
   if (newTeam0.activeInd != 0)
     return false;
-  state.set_choices();
   for (int moveInd = 0; moveInd < 4; moveInd++) {
     // We've given Charmander exactly two moves
     if (moveInd < 2 && !newTeam0.choicesAvailable.move[moveInd])
@@ -106,8 +105,8 @@ bool test_initialize_battle() {
 // Test very simple getDamage() calls
 bool test_basic_damage() {
   // Neither Lillipup nor Tackle are changed in Run and Bun
-  Pokemon attacker = Pokemon(PokeName::LILLIPUP, 10, Gender::MALE, Nature::HARDY, Stats{}, Stats{});
-  Pokemon defender = Pokemon(PokeName::LILLIPUP, 5, Gender::MALE, Nature::HARDY, Stats{}, Stats{});
+  Pokemon attacker = Pokemon(PokeName::LILLIPUP, 10, Gender::MALE, Nature::HARDY, Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  Pokemon defender = Pokemon(PokeName::LILLIPUP, 5, Gender::MALE, Nature::HARDY, Stats{31, 31, 31, 31, 31, 31}, Stats{});
   attacker.set_ability(Ability::VITAL_SPIRIT);
   defender.set_ability(Ability::VITAL_SPIRIT);
   attacker.add_move(MoveId::TACKLE, 0);
@@ -122,26 +121,26 @@ bool test_basic_damage() {
   // Check the max rolled damage
   MoveInstance tackleInstance = MoveInstance{moveDict.dict[MoveId::TACKLE]};
   auto dmg = state
-                 .getDamage(attacker, defender, tackleInstance,
+                 .getDamage(state.getActivePokemon(0), state.getActivePokemon(1), tackleInstance,
                             DMGCalcOptions{.roll_val = 15, .crit = false})
                  .damageDealt;
-  if (dmg != 16) {
+  if (dmg != 15) {
     std::cout << "Max roll, no crit dmg: " << dmg << std::endl;
     return false; // From Showdown calculator
   }
   // Check min rolled damage with crit
   tackleInstance = MoveInstance{moveDict.dict[MoveId::TACKLE]};
   dmg = state
-            .getDamage(attacker, defender, tackleInstance,
-                       DMGCalcOptions{.roll_val = 0, .crit = true})
+            .getDamage(state.getActivePokemon(0), state.getActivePokemon(1), tackleInstance,
+                       DMGCalcOptions{.roll_val = 0, .crit = 4})
             .damageDealt;
-  if (dmg != 19) {
+  if (dmg != 18) {
     std::cout << "Min roll with crit dmg: " << dmg << std::endl;
     return false;
   }
   return true;
 }
-// Test Tackle for damage and moveHit(Will-O-Wisp) for status
+// Test Tackle and Ember for damage and moveHit(Will-O-Wisp) for status
 bool test_basic_moves() {
   BattleState state;
   Team team0, team1;
@@ -150,17 +149,28 @@ bool test_basic_moves() {
   team1.add_pokemon(0, getBulbasaur(5));
   Pokemon attacker, defender;
   // TEST RAW DAMAGE
-  // Min roll Scratch does 4 dmg
+  // Min rolls 
   {
+    // Scratch does 4 dmg
     state = {{0, 0}};
     state.set_team(0, team0), state.set_team(1, team1);
     state.startBattle();
+    BattleState startState = state;
     attacker = state.getActivePokemon(0);
     defender = state.getActivePokemon(1);
     if (defender.current_hp != 21)
       return false;
-    state.runMove(attacker.moves[0], attacker, defender);
+    TIME_EXPR("Min-roll no-crit Scratch", state.runMove(attacker.moves[0], attacker, defender););
     if (defender.current_hp != 17)
+      return false;
+    // Ember does 8 dmg
+    state = startState;
+    attacker = state.getActivePokemon(0);
+    defender = state.getActivePokemon(1);
+    if (defender.current_hp != 21)
+      return false;
+    TIME_EXPR("Min-roll no-crit Ember", state.runMove(attacker.moves[1], attacker, defender););
+    if (defender.current_hp != 13)
       return false;
   }
   // Max roll Scratch does 5 dmg
@@ -172,7 +182,7 @@ bool test_basic_moves() {
     defender = state.getActivePokemon(1);
     if (defender.current_hp != 21)
       return false;
-    state.runMove(attacker.moves[0], attacker, defender);
+    TIME_EXPR("Max-roll no-crit Scratch", state.runMove(attacker.moves[0], attacker, defender););
     if (defender.current_hp != 16)
       return false;
   }
@@ -185,13 +195,13 @@ bool test_basic_moves() {
     defender = state.getActivePokemon(1);
     if (defender.current_hp != 21)
       return false;
-    TIME_EXPR("Charmander attack", state.runMove(attacker.moves[0], attacker, defender););
+    TIME_EXPR("Max-roll crit Scratch", state.runMove(attacker.moves[0], attacker, defender););
     if (defender.current_hp != 14)
       return false;
     std::swap(attacker, defender);
     if (defender.current_hp != 20)
       return false;
-    TIME_EXPR("Bulbasaur attack", state.runMove(attacker.moves[0], attacker, defender););
+    TIME_EXPR("Max-roll crit Tackle", state.runMove(attacker.moves[0], attacker, defender););
     if (defender.current_hp != 13)
       return false;
   }
@@ -236,10 +246,10 @@ bool test_options() {
     }
     // Has three moves to select from
     for (int i = 0; i < 4; i++) {
-      if (i < 3 ^ choice0.move[i])
+      if ((i < 3) ^ choice0.move[i])
         return false;
     }
-    choice0 = {.move = {true}}; // Select moveslot 0
+    choice0 = Choice(false, 0, -1);
     Choice &choice1 = state.teams[0].choicesAvailable;
     // No ally to swap to
     for (int i = 0; i < 6; i++) {
@@ -248,10 +258,10 @@ bool test_options() {
     }
     // Can only select moveslot 0
     for (int i = 0; i < 4; i++) {
-      if (i == 0 ^ choice1.move[i])
+      if ((i == 0) ^ choice1.move[i])
         return false;
     }
-    choice1 = {.move = {true}}; // Select moveslot 0
+    choice1 = Choice(false, 0, -1); // Select moveslot 0
   }
   state = TIME_EXPR_RET("Run turn loop", state.runTurnPy());
   // Test instaswitch flag(s) and switch options
@@ -291,6 +301,41 @@ bool test_options() {
   // New turn should have started
   if (state.turnNum != 2)
     return false;
+  // Team 1 should have swapped in Bulbasaur
+  if (state.getActivePokemon(0).species != Species::BULBASAUR)
+    return false;
+  return true;
+}
+bool test_turn() {
+  BattleState state;
+  Team team0, team1;
+  // Ember vs. Tackle
+  {
+    team0.add_pokemon(0, getCharmander(5));
+    team1.add_pokemon(0, getBulbasaur(5));
+    state = {{0, 0}};
+    state.set_team(0, team0), state.set_team(1, team1);
+    state.startBattle();
+    if(state.getActivePokemon(0).current_hp != 20) return false;
+    if(state.getActivePokemon(1).current_hp != 21) return false;
+    state.teams[0].choicesAvailable = Choice(false, 1, -1);
+    state.teams[1].choicesAvailable = Choice(false, 0, -1);
+    state = TIME_EXPR_RET("Run turn loop", state.runTurnPy());
+    if(state.getActivePokemon(0).current_hp != 16) return false;
+    if(state.getActivePokemon(1).current_hp != 13) return false;
+  }
+  return true;
+}
+bool test_random() {
+  int cnt = 0;
+  int NUM_TRIALS = 1000;
+  int numer = 1;
+  int denom = 4;
+  for(int i=0; i<NUM_TRIALS; i++) {
+    if(math::randomChance(numer, denom)) cnt++;
+  }
+  std::cout << "Intended: " << numer << "/" << denom << std::endl;
+  std::cout << "Actual: " << cnt << "/" << NUM_TRIALS << std::endl;
   return true;
 }
 } // namespace pkmn
@@ -299,4 +344,6 @@ std::vector<testing::TestCase> battle_tests = {
     {"Very simple getDamage() calls", pkmn::test_basic_damage},
     {"Tackle for damage and moveHit(Will-O-Wisp) for status", pkmn::test_basic_moves},
     {"Setting/reading move/swap choices", pkmn::test_options},
+    {"A couple example turns", pkmn::test_turn},
+    {"Randomness util", pkmn::test_random},
 };

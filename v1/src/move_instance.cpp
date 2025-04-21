@@ -141,7 +141,7 @@ bool MoveInstance::isCharge() {
   };
   return std::find(chargeMoves.begin(), chargeMoves.end(), id) != chargeMoves.end();
 }
-std::map<ModifierId, int> MoveInstance::getBoosts() {
+ModifierTable MoveInstance::getBoosts() {
   static const std::unordered_map<MoveId, std::map<ModifierId, int>> boostingMoves = {
       {MoveId::ACIDARMOR, {{ModifierId::DEFENSE, 2}}},
       {MoveId::AGILITY, {{ModifierId::SPEED, 2}}},
@@ -1126,13 +1126,13 @@ bool MoveInstance::multiaccCheck(Pokemon const &user) {
 // Checks relevant Accuracy and Evasion boosts and onAccuracy (e.g.
 // conditions like Sandstorm+SandVeil or Gravity).
 // **Assumes the move has numerical accuracy -- do acc check bypasses first!
-int MoveInstance::getBasicAcc(int acc, bool multiacc, Pokemon const &target,
-                              Pokemon const &pokemon) {
+int MoveInstance::getBasicAcc(int acc, bool multiacc, Pokemon &target,
+                              Pokemon &pokemon) {
   // Accuracy boosts
-  int accBoost = std::min(6, std::max(-6, pokemon.boosts.acc));
+  int accBoost = std::min(6, std::max(-6, pokemon.boosts[ModifierId::ACCURACY]));
   int evaBoost = 0;
-  if (!(target.foresight || target.miracleeye) || target.boosts.eva <= 0) {
-    evaBoost = std::min(6, std::max(-6, target.boosts.eva));
+  if (!(target.foresight || target.miracleeye) || target.boosts[ModifierId::EVASION] <= 0) {
+    evaBoost = std::min(6, std::max(-6, target.boosts[ModifierId::EVASION]));
   }
   if (multiacc) {
     if (accBoost > 0) {
