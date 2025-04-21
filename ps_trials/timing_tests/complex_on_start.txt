@@ -1,0 +1,5 @@
+>start {"formatid":"gen8anythinggoes"}
+>player p1 {"name":"Alice","team":"Charmander||PsychicSeed|Intimidate|Scratch|Hardy|||0,0,0,0,0,0||100|"}
+>player p2 {"name":"Bob","team":"Bulbasaur||AirBalloon|PsychicSurge|Tackle|Hardy|0,0,0,0,0,0||||100|"}
+>p1 team 1
+>p2 team 1

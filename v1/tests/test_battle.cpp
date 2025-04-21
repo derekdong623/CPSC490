@@ -1,6 +1,7 @@
 #include "battle_state.hpp"
 #include "test_framework.hpp"
 #include <chrono>
+#include <cmath>
 #include <iostream>
 
 #define TIME_EXPR(label, code)                                                                     \
@@ -19,6 +20,13 @@
     std::cout << label << ": " << elapsed.count() << " ms\n";                                      \
     return result;                                                                                 \
   }()
+#define TIME_EXPR_TIMING(code)                                                                     \
+  [&]() {                                                                                          \
+    auto start = std::chrono::high_resolution_clock::now();                                        \
+    code auto end = std::chrono::high_resolution_clock::now();                                     \
+    std::chrono::duration<double, std::milli> elapsed = end - start;                               \
+    return elapsed.count();                                                                        \
+  }()
 namespace pkmn {
 Pokemon getCharmander(int lvl) {
   Pokemon charmander = Pokemon(PokeName::CHARMANDER, lvl, Gender::MALE, Nature::HARDY,
@@ -35,6 +43,13 @@ Pokemon getBulbasaur(int lvl) {
   bulbasaur.set_ability(Ability::OVERGROW);
   bulbasaur.add_move(MoveId::TACKLE, 0);
   return bulbasaur;
+}
+Pokemon getGolem(int lvl) {
+  Pokemon golem = Pokemon(PokeName::GOLEM, lvl, Gender::MALE, Nature::HARDY,
+                          Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  golem.set_ability(Ability::STURDY);
+  golem.add_move(MoveId::EXPLOSION, 0);
+  return golem;
 }
 // Test starting a battle
 bool test_initialize_battle() {
@@ -105,8 +120,10 @@ bool test_initialize_battle() {
 // Test very simple getDamage() calls
 bool test_basic_damage() {
   // Neither Lillipup nor Tackle are changed in Run and Bun
-  Pokemon attacker = Pokemon(PokeName::LILLIPUP, 10, Gender::MALE, Nature::HARDY, Stats{31, 31, 31, 31, 31, 31}, Stats{});
-  Pokemon defender = Pokemon(PokeName::LILLIPUP, 5, Gender::MALE, Nature::HARDY, Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  Pokemon attacker = Pokemon(PokeName::LILLIPUP, 10, Gender::MALE, Nature::HARDY,
+                             Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  Pokemon defender = Pokemon(PokeName::LILLIPUP, 5, Gender::MALE, Nature::HARDY,
+                             Stats{31, 31, 31, 31, 31, 31}, Stats{});
   attacker.set_ability(Ability::VITAL_SPIRIT);
   defender.set_ability(Ability::VITAL_SPIRIT);
   attacker.add_move(MoveId::TACKLE, 0);
@@ -149,7 +166,7 @@ bool test_basic_moves() {
   team1.add_pokemon(0, getBulbasaur(5));
   Pokemon attacker, defender;
   // TEST RAW DAMAGE
-  // Min rolls 
+  // Min rolls
   {
     // Scratch does 4 dmg
     state = {{0, 0}};
@@ -316,13 +333,17 @@ bool test_turn() {
     state = {{0, 0}};
     state.set_team(0, team0), state.set_team(1, team1);
     state.startBattle();
-    if(state.getActivePokemon(0).current_hp != 20) return false;
-    if(state.getActivePokemon(1).current_hp != 21) return false;
+    if (state.getActivePokemon(0).current_hp != 20)
+      return false;
+    if (state.getActivePokemon(1).current_hp != 21)
+      return false;
     state.teams[0].choicesAvailable = Choice(false, 1, -1);
     state.teams[1].choicesAvailable = Choice(false, 0, -1);
     state = TIME_EXPR_RET("Run turn loop", state.runTurnPy());
-    if(state.getActivePokemon(0).current_hp != 16) return false;
-    if(state.getActivePokemon(1).current_hp != 13) return false;
+    if (state.getActivePokemon(0).current_hp != 16)
+      return false;
+    if (state.getActivePokemon(1).current_hp != 13)
+      return false;
   }
   return true;
 }
@@ -331,11 +352,94 @@ bool test_random() {
   int NUM_TRIALS = 1000;
   int numer = 1;
   int denom = 4;
-  for(int i=0; i<NUM_TRIALS; i++) {
-    if(math::randomChance(numer, denom)) cnt++;
+  for (int i = 0; i < NUM_TRIALS; i++) {
+    if (math::randomChance(numer, denom))
+      cnt++;
   }
   std::cout << "Intended: " << numer << "/" << denom << std::endl;
   std::cout << "Actual: " << cnt << "/" << NUM_TRIALS << std::endl;
+  return true;
+}
+void process_timings(std::string label, std::vector<double> times, int num_trials) {
+  double meanTime, varTime;
+  meanTime = 0.;
+  for (int i = 0; i < num_trials; i++) {
+    meanTime += times[i];
+  }
+  meanTime /= num_trials;
+  varTime = 0.;
+  for (int i = 0; i < num_trials; i++) {
+    varTime += (times[i] - meanTime) * (times[i] - meanTime);
+  }
+  varTime /= num_trials;
+  std::cout << label << meanTime << " +/- " << 2 * std::sqrt(varTime) << std::endl;
+}
+bool test_timing() {
+  BattleState state;
+  Team team0, team1;
+  int NUM_TRIALS = 1000;
+  { // damage
+    team0.add_pokemon(0, getCharmander(5));
+    team1.add_pokemon(0, getBulbasaur(5));
+    state = {{0, 0}};
+    state.set_team(0, team0), state.set_team(1, team1);
+    BattleState startState = state; // Should copy
+    std::vector<double> startTime, turnTime;
+    for (int i = 0; i < NUM_TRIALS; i++) {
+      double timeTaken = 0;
+      timeTaken = TIME_EXPR_TIMING(state.startBattle(););
+      startTime.push_back(timeTaken);
+      state.teams[0].choicesAvailable = Choice(false, 1, -1);
+      state.teams[1].choicesAvailable = Choice(false, 0, -1);
+      timeTaken = TIME_EXPR_TIMING(state = state.runTurnPy(););
+      turnTime.push_back(timeTaken);
+      state = startState;
+    }
+    process_timings("start action time: ", startTime, NUM_TRIALS);
+    process_timings("turn time: ", turnTime, NUM_TRIALS);
+  }
+  { // switch
+    team0.add_pokemon(0, getCharmander(5));
+    team0.add_pokemon(1, getCharmander(5));
+    team1.add_pokemon(0, getBulbasaur(100));
+    state = {{0, 0}};
+    state.set_team(0, team0), state.set_team(1, team1);
+    state.teams[0].choicesAvailable = Choice(false, 1, -1);
+    state.teams[1].choicesAvailable = Choice(false, 0, -1);
+    state = state.runTurnPy();
+    state.teams[0].choicesAvailable = Choice(false, -1, 1);
+    BattleState startState = state; // Should copy
+    std::vector<double> switchTime;
+    for (int i = 0; i < NUM_TRIALS; i++) {
+      double timeTaken = 0;
+      timeTaken = TIME_EXPR_TIMING(state = state.runTurnPy(););
+      switchTime.push_back(timeTaken);
+      state = startState;
+    }
+    process_timings("switch time: ", switchTime, NUM_TRIALS);
+  }
+  { // switch
+    team0.add_pokemon(0, getCharmander(5));
+    team0.add_pokemon(1, getCharmander(5));
+    team1.add_pokemon(0, getGolem(100));
+    team1.add_pokemon(1, getCharmander(5));
+    state = {{0, 0}};
+    state.set_team(0, team0), state.set_team(1, team1);
+    state.teams[0].choicesAvailable = Choice(false, 1, -1);
+    state.teams[1].choicesAvailable = Choice(false, 0, -1);
+    state = state.runTurnPy();
+    state.teams[0].choicesAvailable = Choice(false, -1, 1);
+    state.teams[1].choicesAvailable = Choice(false, -1, 1);
+    BattleState startState = state; // Should copy
+    std::vector<double> switchTime;
+    for (int i = 0; i < NUM_TRIALS; i++) {
+      double timeTaken = 0;
+      timeTaken = TIME_EXPR_TIMING(state = state.runTurnPy(););
+      switchTime.push_back(timeTaken);
+      state = startState;
+    }
+    process_timings("double switch time: ", switchTime, NUM_TRIALS);
+  }
   return true;
 }
 } // namespace pkmn
@@ -346,4 +450,5 @@ std::vector<testing::TestCase> battle_tests = {
     {"Setting/reading move/swap choices", pkmn::test_options},
     {"A couple example turns", pkmn::test_turn},
     {"Randomness util", pkmn::test_random},
+    {"Timing", pkmn::test_timing},
 };

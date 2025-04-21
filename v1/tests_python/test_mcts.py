@@ -169,8 +169,7 @@ if __name__ == "__main__":
     print(f"Start time: {datetime.datetime.now()}")
     agent_team = Team()
     # Maybe implement Pluck?
-    agent_team.add_pokemon(0, get_piplup(6, Item.ORAN_BERRY))
-    agent_team.add_pokemon(1, get_poochyena(6, Item.ORAN_BERRY))
+    agent_team.add_pokemon(0, get_piplup(12))
     opp_team = Team()
     # Bite: flinch, QuickAttack: priority, SandAttack: accuracy drop
     opp_team.add_pokemon(0, get_poochyena(5))
@@ -182,7 +181,7 @@ if __name__ == "__main__":
         game,
         NUM_GAMES,
         TIME_LIMIT,
-        report_every=10
+        report_every=1
     )
     print(
         f"NET: {margin:.2f} +/- {2 * math.sqrt(margin_var / NUM_GAMES):.2f}; WINS: {wins:.2f} +/- {2 * math.sqrt(win_var / NUM_GAMES):.2f}"

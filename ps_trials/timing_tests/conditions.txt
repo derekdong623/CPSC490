@@ -1,0 +1,11 @@
+>start {"formatid":"gen8anythinggoes"}
+>player p1 {"name":"Alice","team":"Charmander||FlameOrb|Blaze|Swagger,Tackle|Hardy|||0,0,0,0,0,0||100|"}
+>player p2 {"name":"Bob","team":"Tyranitar||ToxicOrb|SandStream|LeechSeed,Tackle|Hardy|0,0,0,0,0,0||||59|"}
+>p1 team 1
+>p2 team 1
+
+>p1 move 1
+>p2 move 1
+
+>p1 move 2
+>p2 move 2

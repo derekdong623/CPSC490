@@ -1,0 +1,14 @@
+>start {"formatid":"gen8anythinggoes"}
+>player p1 {"name":"Alice","team":"Charmander||UtilityUmbrella|NeutralizingGas|FutureSight,LeechSeed,Counter,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|"}
+>player p2 {"name":"Bob","team":"Krookodile||AirBalloon|PsychicSurge|Absorb,Transform|Hardy|0,0,0,0,0,0||||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|]Charmeleon||UtilityUmbrella|Protosynthesis|Encore,LeechSeed,FirePledge,ElectricTerrain|Hardy|||0,0,0,0,0,0||100|"}
+>p1 team 1
+>p2 team 1
+
+>p1 move 1
+>p2 move 1
+
+>p1 move 2
+>p2 move 1
+
+>p1 move 2
+>p2 move 1
