@@ -41,3 +41,4 @@ package.json
 .DS_STORE
 
 __pycache__/
+v1/tests_python/__pycache__/mcts.cpython-312.pyc
