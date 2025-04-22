@@ -467,6 +467,7 @@ void BattleState::endTurn() {
     teams[side].faintedLastTurn = teams[side].faintedThisTurn;
     teams[side].faintedThisTurn = false;
     pkmn.activeTurns++;
+    pkmn.decrVolDurations();
   }
 }
 // Applies phaze, faintMessage, and instaSwitch flag setup.
@@ -485,7 +486,8 @@ std::optional<bool> BattleState::applyAtEndOfAction(ActionKind action) {
     for (int side = 0; side < 2; side++) {
       Pokemon &activePkmn = teams[side].pkmn[teams[side].activeInd];
       if (activePkmn.fainted) {
-        // std::cout << "[BattleState::applyAtEndOfAction] Set faint switch flag for side " << side << std::endl;
+        // std::cout << "[BattleState::applyAtEndOfAction] Set faint switch flag for side " << side
+        // << std::endl;
         activePkmn.switchFlag = true;
         teams[side].instaSwitch = true;
       }
@@ -500,9 +502,9 @@ std::optional<bool> BattleState::applyAtEndOfAction(ActionKind action) {
   std::array<bool, 2> switches{};
   for (int side = 0; side < 2; side++) {
     Pokemon &activePkmn = getActivePokemon(side);
-    if(activePkmn.switchFlag) {
+    if (activePkmn.switchFlag) {
       switches[side] = true;
-      if(canSwitch(side)) {
+      if (canSwitch(side)) {
         if (activePkmn.current_hp && !activePkmn.skipBeforeSwitchOutEventFlag) {
           applyOnBeforeSwitchOut(activePkmn);
           activePkmn.skipBeforeSwitchOutEventFlag = true;
@@ -517,7 +519,7 @@ std::optional<bool> BattleState::applyAtEndOfAction(ActionKind action) {
         activePkmn.switchFlag = false;
       }
     }
-    if(switches[side]) {
+    if (switches[side]) {
       set_switch_options(side);
     }
   }
@@ -591,6 +593,8 @@ bool BattleState::runTurn() {
       Team &otherTeam = teams[1 - moveAction.side];
       Pokemon &pokemon = team.pkmn[team.activeInd];
       MoveSlot &moveSlot = pokemon.moves[moveAction.moveInd];
+      // std::cout << "Current mover is from side: " << moveAction.side << std::endl;
+      // std::cout << "Priority: " << moveAction.priority << std::endl;
       // Reset choice
       team.choicesAvailable = Choice{};
       // Cannot use move if switched out e.g. by Whirlwind or EjectButton
@@ -653,7 +657,7 @@ int BattleState::checkWin(int lastFaintSide) {
 void BattleState::runMove(MoveSlot &moveSlot, Pokemon &user, Pokemon &target) {
   user.activeMoveActions++;
   // instantiate the moveInst from the moveSlot
-  MoveInstance moveInst = MoveInstance(moveDict.dict[moveSlot.id]);
+  MoveInstance moveInst = MoveInstance(moveSlot.id);
   // Do later: potential Encore move replacement/retargeting (onOverrideAction) with Prankster boost
   // onBeforeMove():
   bool stompingTantrumFail = applyOnBeforeMoveST(user);
@@ -761,7 +765,8 @@ bool BattleState::runTypeImmunity(Pokemon &target, Type typ) {
   if (typ == Type::GROUND) {
     return isGrounded(target, negateImmunity);
   }
-  return getTypeMod(target, typ) >= 0;
+  auto typeMod = getTypeMod(target, typ);
+  return typeMod != std::nullopt;
 }
 // false for immune, true for not-immune
 bool BattleState::runStatusImmunity(Pokemon &target, Status status) {
@@ -889,6 +894,13 @@ bool BattleState::addVolatile(VolatileId vol, Pokemon &target, Pokemon &source, 
   if (applyOnStartVolatile(vol, target, source, move)) {
     // TODO: initialize corresponding volatile, possibly with duration
     // Do later: effectOrder is to run volatile effects in the order in which they were applied
+    switch (vol) {
+    case VolatileId::FLINCH: {
+      target.flinch = true;
+    }
+    default:
+      break;
+    }
     return true;
   } else {
     return false;
@@ -896,11 +908,13 @@ bool BattleState::addVolatile(VolatileId vol, Pokemon &target, Pokemon &source, 
 }
 // Actually apply the damage (capped by current HP)
 // Called by spreadDamage() and directDamage()
+// PokemonShowdown Pokemon.damage()
 // Returns the amount HP actually decreased by.
 int BattleState::applyDamage(int damage, Pokemon &target) {
   if (target.current_hp <= 0 || damage <= 0)
     return 0;
-  // std::cout << "[BattleState::applyDamage] " << damage << " dmg applied to side " << target.side << std::endl;
+  // std::cout << "[BattleState::applyDamage] " << damage << " dmg applied to side " << target.side
+  // << std::endl;
   target.current_hp -= damage;
   if (target.current_hp <= 0) {
     damage += target.current_hp;
@@ -930,19 +944,8 @@ std::pair<int, int> BattleState::getDrain(MoveId move) {
   }
   return {0, 0};
 }
-// Handles the larger-scale idea of healing a Pokemon: called often
-// Returns actual damage healed, or -1 for failure
-int BattleState::heal(int damage, Pokemon &target, EffectKind effectKind) {
-  damage = target.applyOnTryHeal(damage, effectKind);
-  if (!damage)
-    return damage;
-  if (!target.current_hp || !target.isActive)
-    return 0;
-  int healAmt = target.applyHeal(damage);
-  // applyOnHeal(healAmt, target, source, effect); // Does nothing it seems
-  return healAmt;
-}
 // Handles the larger-scale idea of damage being dealt to a Pokemon: called often
+// PokemonShowdown spreadDamage() or Battle.damage()
 // Returns actual damage dealt.
 // TODO: possible Weather+Immunity
 // Do later: figure out what fastExit=true does and why target.hurtThisTurn = target.current_hp,
@@ -969,7 +972,7 @@ DamageResultState BattleState::spreadDamage(DamageResultState damage, Pokemon &t
     auto drain = getDrain(effectMove);
     if (damageDealt && drain.first > 0) {
       int drainAmt = damageDealt * drain.first / drain.second;
-      heal(drainAmt, source, EffectKind::MOVE); // 'drain' effect
+      source.heal(drainAmt, EffectKind::MOVE); // 'drain' effect
     }
   }
   damage.set_numeric(damageDealt);
@@ -1034,6 +1037,7 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
   case Target::SELF:
   case Target::SCRIPTED: {
     // TODO: have selfBoosts in trySpreadMoveHit() implementation for extra moveHit()
+    // std::cout << "side " << user.side << " using move " << (int)moveInst.id << std::endl;
     moveResult = trySpreadMoveHit(target, user, moveInst);
     break;
   }
@@ -1186,10 +1190,11 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
           applyOnAccuracy(target, user, moveInst)) {
         accuracy = std::nullopt;
       }
-      hit = (accuracy == std::nullopt) || math::randomChance(*accuracy, 100);
+      hit = guaranteeHit ? true : (accuracy == std::nullopt) || math::randomChance(*accuracy, 100);
       if (!hit && !is_ohko && user.has_item(Item::BLUNDER_POLICY) && user.useItem(false, false)) {
         // TODO: Check that this is the correct effect kind
-        user.boost({{ModifierId::SPEED, 2}}, EffectKind::NO_EFFECT);
+        ModifierTable boostTable = {{ModifierId::SPEED, 2}};
+        user.boost(boostTable, EffectKind::NO_EFFECT);
       }
     }
   }
@@ -1234,6 +1239,7 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
       // is -1 if not numeric
       int moveDamageThisHit = moveHit(target, user, moveInst).damageDealt;
       damageDealt = moveDamageThisHit < 0 ? 0 : moveDamageThisHit;
+      // std::cout << "move " << (int)move.id << " did " << damageDealt << " damage\n";
       moveInst.totalDamage += damageDealt;
       // Do later: mindBlownRecoil
       applyOnEach(EachEventKind::UPDATE);
@@ -1247,7 +1253,8 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
            moveInst.id == MoveId::STRUGGLE) &&
           moveInst.totalDamage) {
         int hpBeforeRecoil = user.current_hp;
-        applyDamage(calcRecoilDamage(moveInst.totalDamage, moveInst, user.stats.hp), user);
+        int recoilDmg = calcRecoilDamage(moveInst.totalDamage, moveInst, user.stats.hp);
+        spreadDamage(recoilDmg, user, user, EffectKind::RECOIL, MoveId::NONE);
         applyOnEmergencyExit(hpBeforeRecoil, user);
       }
       // some smartTarget logic?
@@ -1409,16 +1416,17 @@ DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInsta
             skip = true;
           }
           // Rounding
-          int amtHealed =
-              heal((target.stats.hp * healProp.first + healProp.second / 2) / healProp.second,
-                   target, EffectKind::NO_EFFECT);
+          int amtHealed = target.heal((target.stats.hp * healProp.first + healProp.second / 2) /
+                                          healProp.second,
+                                      EffectKind::NO_EFFECT);
           if (amtHealed < 0) {
             // Healing failed
             dmgResult.set_fail();
             didSomething.set_fail();
             skip = true;
+          } else {
+            didSomething.set_succ();
           }
-          didSomething.set_succ();
         }
       }
       // status
@@ -1430,19 +1438,39 @@ DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInsta
             dmgResult.set_fail();
             didSomething.set_fail();
             skip = true;
+          } else {
+            didSomething.set_succ();
           }
-          didSomething.set_succ();
         }
       }
       // volatile
+      if (!skip) {
+        VolatileId vol = moveInst.getVolatile();
+        if (vol != VolatileId::NONE) {
+          hit = addVolatile(vol, target, user, moveInst.id);
+          if (!hit) {
+            didSomething.set_fail();
+          } else {
+            didSomething.set_succ();
+          }
+        }
+      }
       // TODO: sidecondition
       // TODO: weather
       // TODO: terrain
       // TODO: pseudoweather
       // TODO: forceswitch
-      // TODO: onHit (with onHitSide and onHitField)
+      // onHit() (with onHitSide() and onHitField())
+      if (!skip) {
+        hit = applyOnHitMain(target, user, moveInst);
+        if (!hit) {
+          didSomething.set_fail();
+        } else {
+          didSomething.set_succ();
+        }
+      }
     }
-    if (moveInst.isIffHitSelfDestruct() && dmgResult.initialized && !dmgResult.fail) {
+    if (moveInst.isIfHitSelfDestruct() && dmgResult.initialized && !dmgResult.fail) {
       faint(user);
     }
     if (moveInst.isSelfSwitch()) {
@@ -1493,7 +1521,7 @@ DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInsta
     auto secondaries = moveInst.getSecondaries();
     for (SecondaryEffect secondary : secondaries) {
       if (applyOnModifySecondaries(target, moveInst, secondary.kind)) {
-        int roll = math::random(100);
+        int roll = math::random(secondaryDenom);
         int chance = secondary.chance == std::nullopt ? -1 : *secondary.chance;
         if (secondary.kind == Secondary::BOOST || secondary.kind == Secondary::SELFBOOST) {
           chance %= 256;
@@ -1553,7 +1581,8 @@ void BattleState::faintMessages() {
     if (!pokemon.fainted) {
       teams[pokemon.side].pokemonLeft--;
       // std::cout << "[BattleState::faintMessages] side " << pokemon.side << " dropped to " << teams[pokemon.side].pokemonLeft << " Pokemon left." << std::endl;
-      // applyOnFaint(pokemon); // DestinyBond, Grudge, Sky Drop
+      // applyOnFaint(pokemon);
+      // DestinyBond, Grudge, Sky Drop
       applyOnEnd(pokemon); // logging, PowerShift
       pokemon.clearVolatile(false);
       pokemon.fainted = true;

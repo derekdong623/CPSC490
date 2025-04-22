@@ -44,12 +44,60 @@ Pokemon getBulbasaur(int lvl) {
   bulbasaur.add_move(MoveId::TACKLE, 0);
   return bulbasaur;
 }
+Pokemon getSquirtle(int lvl) {
+  Pokemon squirtle = Pokemon(PokeName::SQUIRTLE, lvl, Gender::MALE, Nature::HARDY,
+                             Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  squirtle.set_ability(Ability::RAIN_DISH);
+  squirtle.add_move(MoveId::AQUATAIL, 0);
+  return squirtle;
+}
 Pokemon getGolem(int lvl) {
   Pokemon golem = Pokemon(PokeName::GOLEM, lvl, Gender::MALE, Nature::HARDY,
                           Stats{31, 31, 31, 31, 31, 31}, Stats{});
   golem.set_ability(Ability::STURDY);
   golem.add_move(MoveId::EXPLOSION, 0);
   return golem;
+}
+Pokemon getPiplup(int lvl, Item item) {
+  Pokemon piplup = Pokemon(PokeName::PIPLUP, lvl, Gender::MALE, Nature::HARDY,
+                           Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  piplup.set_ability(Ability::DEFIANT);
+  piplup.set_item(item);
+  piplup.add_move(MoveId::POUND, 0);
+  piplup.add_move(MoveId::GROWL, 1);
+  piplup.add_move(MoveId::BUBBLE, 2);
+  piplup.add_move(MoveId::PLUCK, 3);
+  return piplup;
+}
+Pokemon getPoochyena(int lvl, Item item) {
+  Pokemon poochyena = Pokemon(PokeName::POOCHYENA, lvl, Gender::MALE, Nature::HARDY,
+                              Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  poochyena.set_ability(Ability::RATTLED);
+  poochyena.set_item(item);
+  poochyena.add_move(MoveId::BITE, 0);
+  poochyena.add_move(MoveId::QUICKATTACK, 1);
+  poochyena.add_move(MoveId::SANDATTACK, 2);
+  return poochyena;
+}
+Pokemon getLillipup(int lvl, Item item) {
+  Pokemon lillipup = Pokemon(PokeName::LILLIPUP, lvl, Gender::MALE, Nature::HARDY,
+                             Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  lillipup.set_ability(Ability::VITAL_SPIRIT);
+  lillipup.set_item(item);
+  lillipup.add_move(MoveId::TACKLE, 0);
+  lillipup.add_move(MoveId::BITE, 1);
+  lillipup.add_move(MoveId::SANDATTACK, 2);
+  return lillipup;
+}
+Pokemon getRookidee(int lvl, Item item) {
+  Pokemon rookidee = Pokemon(PokeName::ROOKIDEE, lvl, Gender::MALE, Nature::HARDY,
+                             Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  rookidee.set_ability(Ability::KEEN_EYE);
+  rookidee.set_item(item);
+  rookidee.add_move(MoveId::WINGATTACK, 0);
+  rookidee.add_move(MoveId::SANDATTACK, 1);
+  rookidee.add_move(MoveId::SWAGGER, 2);
+  return rookidee;
 }
 // Test starting a battle
 bool test_initialize_battle() {
@@ -442,6 +490,194 @@ bool test_timing() {
   }
   return true;
 }
+bool test_priority() {
+  BattleState state;
+  Team team0, team1;
+  team0.add_pokemon(0, getPiplup(10, Item::NO_ITEM));
+  team1.add_pokemon(0, getPoochyena(5, Item::NO_ITEM));
+  state.set_team(0, team0);
+  state.set_team(1, team1);
+  state.startBattle();
+  state.teams[0].choicesAvailable = Choice(false, 1, -1); // Growl
+  state.teams[1].choicesAvailable = Choice(false, 1, -1); // Quick Attack
+  state = state.runTurnPy();
+  return true;
+}
+bool test_flinch() {
+  BattleState state;
+  Team team0, team1;
+  team0.add_pokemon(0, getPiplup(9, Item::NO_ITEM));
+  team1.add_pokemon(0, getPoochyena(10, Item::NO_ITEM)); // Pooch is faster
+  state.set_team(0, team0);
+  state.set_team(1, team1);
+  state.secondaryDenom = 1; // Guarantee secondary
+  state.startBattle();
+  state.teams[0].choicesAvailable = Choice(false, 0, -1); // Pound
+  state.teams[1].choicesAvailable = Choice(false, 0, -1); // Bite
+  state = state.runTurnPy();
+  // Piplup shouldn't get to do damage
+  if (state.getActivePokemon(1).current_hp != state.getActivePokemon(1).stats.hp) {
+    return false;
+  }
+  // But the volatile shouldn't last
+  if (state.getActivePokemon(0).flinch) {
+    return false;
+  }
+  return true;
+}
+bool test_accuracy() {
+  BattleState state, startState;
+  Team team0, team1;
+  int NUM_TRIALS = 100;
+  int num_hit = 0;
+  { // Move-inherent inaccuracy
+    team0.add_pokemon(0, getPiplup(50, Item::NO_ITEM));
+    team1.add_pokemon(0, getSquirtle(50));
+    state.set_team(0, team0);
+    state.set_team(1, team1);
+    state.startBattle();
+    startState = state;
+    for (int i = 0; i < NUM_TRIALS; i++) {
+      state.teams[0].choicesAvailable = Choice(false, 1, -1); // Growl
+      state.teams[1].choicesAvailable = Choice(false, 0, -1); // Aqua Tail
+      state = state.runTurnPy();
+      if (state.getActivePokemon(0).current_hp < state.getActivePokemon(0).stats.hp) {
+        num_hit++;
+      }
+      state = startState;
+    }
+    std::cout << "Accuracy is 90. Num hit: " << num_hit << " of " << NUM_TRIALS << std::endl;
+  }
+  { // Accuracy drop
+    num_hit = 0;
+    state = {};
+    team0 = {}, team1 = {};
+    team0.add_pokemon(0, getPiplup(50, Item::NO_ITEM));
+    team1.add_pokemon(0, getPoochyena(50, Item::NO_ITEM));
+    state.set_team(0, team0);
+    state.set_team(1, team1);
+    state.startBattle();
+    state.startBattle();
+    startState = state;
+    for (int i = 0; i < NUM_TRIALS; i++) {
+      state.teams[0].choicesAvailable = Choice(false, 1, -1); // Growl
+      state.teams[1].choicesAvailable = Choice(false, 2, -1); // Sand Attack
+      state = state.runTurnPy();
+      if (state.getActivePokemon(0).boosts[ModifierId::ACCURACY] != -1)
+        return false;
+      state.teams[0].choicesAvailable = Choice(false, 0, -1); // Pound
+      state.teams[1].choicesAvailable = Choice(false, 1, -1); // Quick Attack
+      state = state.runTurnPy();
+      if (state.getActivePokemon(1).current_hp < state.getActivePokemon(1).stats.hp) {
+        num_hit++;
+      }
+      state = startState;
+    }
+    std::cout << "One accuracy drop, should be 75%. Num hit: " << num_hit << " of " << NUM_TRIALS
+              << std::endl;
+  }
+  return true;
+}
+bool test_stat_boost() {
+  BattleState state;
+  Team team0, team1;
+  team0.add_pokemon(0, getPiplup(10, Item::NO_ITEM));
+  team1.add_pokemon(0, getPoochyena(10, Item::NO_ITEM));
+  state = {{0, 0}}; // Min-roll, no-crit
+  state.set_team(0, team0);
+  state.set_team(1, team1);
+  state.startBattle();
+  BattleState startState = state;
+  { // Check damage given boost
+    // Test stat boosted damage
+    if (state.getActivePokemon(1).current_hp != 30)
+      return false;
+    state.getActivePokemon(0).boosts[ModifierId::ATTACK] = 1;
+    state.teams[0].choicesAvailable = Choice(false, 0, -1); // Pound
+    state.teams[1].choicesAvailable = Choice(false, 0, -1); // Bite
+    state = state.runTurnPy();
+    if (state.getActivePokemon(1).current_hp != 22)
+      return false;
+    // Test stat unboosted damage
+    if (state.getActivePokemon(1).current_hp != 22)
+      return false;
+    state.getActivePokemon(0).boosts[ModifierId::ATTACK] = -1;
+    state.teams[0].choicesAvailable = Choice(false, 0, -1); // Pound
+    state.teams[1].choicesAvailable = Choice(false, 0, -1); // Bite
+    state = state.runTurnPy();
+    if (state.getActivePokemon(1).current_hp != 18)
+      return false;
+  }
+  { // Check boost applied
+    state = startState;
+    state.teams[0].choicesAvailable = Choice(false, 1, -1); // Growl
+    state.teams[1].choicesAvailable = Choice(false, 0, -1); // Bite
+    state = state.runTurnPy();
+    if (state.getActivePokemon(1).boosts[ModifierId::ATTACK] != -1)
+      return false;
+  }
+  return true;
+}
+bool test_confusion() {
+  BattleState state;
+  Team team0, team1;
+  team0.add_pokemon(0, getPiplup(10, Item::NO_ITEM));
+  team1.add_pokemon(0, getRookidee(10, Item::NO_ITEM)); // Rook is faster
+  team1.add_pokemon(1, getRookidee(10, Item::NO_ITEM));
+  state.set_team(0, team0);
+  state.set_team(1, team1);
+  state.guaranteeHit = true;
+  state.startBattle();
+  {
+    state.teams[0].choicesAvailable = Choice(false, 0, -1); // Pound
+    state.teams[1].choicesAvailable = Choice(false, 2, -1); // Swagger
+    state = state.runTurnPy();
+    if (state.getActivePokemon(0).boosts[ModifierId::ATTACK] != 2)
+      return false;
+    int confusionTurnsLeft = state.getActivePokemon(0).confusion;
+    if (!confusionTurnsLeft)
+      return false;
+    state.teams[0].choicesAvailable = Choice(false, 0, -1); // Pound
+    state.teams[1].choicesAvailable = Choice(false, -1, 1); // switch
+    state = state.runTurnPy();
+    if (state.getActivePokemon(0).confusion != confusionTurnsLeft - 1)
+      return false;
+    // Manually checked that the confusion damage is correct
+  }
+  return true;
+}
+bool test_berry() {
+  BattleState state;
+  Team team0, team1;
+  team0.add_pokemon(0, getPiplup(10, Item::ORAN_BERRY));
+  team1.add_pokemon(0, getRookidee(10, Item::ORAN_BERRY)); // Rook is faster
+  state = {{0,0}};
+  state.set_team(0, team0);
+  state.set_team(1, team1);
+  state.startBattle();
+  BattleState startState = state;
+  { // Oran Berry
+    Pokemon &piplup =  state.getActivePokemon(0); // MAX HP: 33
+    piplup.current_hp = 20;
+    state.teams[0].choicesAvailable = Choice(false, 1, -1); // Growl
+    state.teams[1].choicesAvailable = Choice(false, 0, -1); // WingAttack
+    state = state.runTurnPy();
+    // WingAttack does 9, OranBerry heals 10
+    if(state.getActivePokemon(0).current_hp != 21) return false;
+  }
+  { // Pluck
+    state = startState;
+    Pokemon &piplup =  state.getActivePokemon(0); // MAX HP: 33
+    piplup.current_hp = 20;
+    state.teams[0].choicesAvailable = Choice(false, 3, -1); // Pluck
+    state.teams[1].choicesAvailable = Choice(false, 0, -1); // WingAttack
+    state = state.runTurnPy();
+    // Rookidee WingAttack does 9, OranBerry heals 10
+    // Piplup Pluck does dmg and heals it with OranBerry for 10
+    if(state.getActivePokemon(0).current_hp != 31) return false;
+  }
+  return true;
+}
 } // namespace pkmn
 std::vector<testing::TestCase> battle_tests = {
     {"Starting a battle", pkmn::test_initialize_battle},
@@ -450,5 +686,12 @@ std::vector<testing::TestCase> battle_tests = {
     {"Setting/reading move/swap choices", pkmn::test_options},
     {"A couple example turns", pkmn::test_turn},
     {"Randomness util", pkmn::test_random},
-    {"Timing", pkmn::test_timing},
+
+    // {"Timing", pkmn::test_timing},
+    // {"Priority moves", pkmn::test_priority}, // Comment other tests if included
+    {"Flinch", pkmn::test_flinch},
+    {"Accuracy", pkmn::test_accuracy},
+    {"Stat changes", pkmn::test_stat_boost},
+    {"Confusion", pkmn::test_confusion},
+    {"Berry mechanics", pkmn::test_berry},
 };

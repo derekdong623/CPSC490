@@ -529,13 +529,13 @@ void BattleState::applyOnFlinch(Pokemon &pokemon) {
     pokemon.boostStat(ModifierId::SPEED, 1);
   }
 }
-// Callback potentially causing StompingTantrum-activating move failure.
 // In PS terms: For checking onBeforeMove returning false.
-// In decreasing onBeforeMovePriority order I think.
+// Returns if the move fails for a StompingTantrum-activating reason.
 bool BattleState::applyOnBeforeMoveST(Pokemon &pokemon) {
   // PRIORITY 8
   if (pokemon.flinch) {
     applyOnFlinch(pokemon);
+    pokemon.flinch = false;
     return true;
   }
   // TODO: remaining conditions and stuff
@@ -543,12 +543,32 @@ bool BattleState::applyOnBeforeMoveST(Pokemon &pokemon) {
 }
 // Callback potentially causing non-StompingTantrum move failures.
 // In PS terms: For checking onBeforeMove returning null.
-// In decreasing onBeforeMovePriority order I think.
 bool BattleState::applyOnBeforeMove(Pokemon &pokemon) {
   // TODO: remaining conditions and stuff
   // (pre-move stops like par, slp, choice locks, etc.)
   // Bide and Focus Punch special case stops PP deduction
-  // Clear pokemon.moveThisTurnResult
+  // PRIORITY 3
+  if (pokemon.confusion) {
+    pokemon.confusion--;
+    if (pokemon.confusion && math::randomChance(33, 100)) {
+      // dmg = getConfusionDamage(pokemon, 40):
+      const int bp = 40; // basePower
+      int attack =
+          pokemon.calculateStat(ModifierId::ATTACK, pokemon.boosts[ModifierId::ATTACK], pokemon);
+      int defense =
+          pokemon.calculateStat(ModifierId::DEFENSE, pokemon.boosts[ModifierId::DEFENSE], pokemon);
+      int dmg = (((2 * pokemon.lvl / 5 + 2) * bp * attack) / defense) / 50 + 2;
+      // Damage is 16-bit context in self-hit confusion damage
+      dmg %= 1 << 16;
+      DMGCalcOptions opt = {};
+      dmg = generateAndApplyDmgRoll(dmg, opt);
+      dmg = std::max(1, dmg);
+      // std::cout << "confusion damage: " << dmg << std::endl;
+      spreadDamage({dmg}, pokemon, pokemon, EffectKind::CONFUSION, MoveId::NONE);
+      return false;
+    }
+  }
+  pokemon.moveThisTurnFailed = false;
   return true;
 }
 bool BattleState::applyOnLockMove(Pokemon &user) {
@@ -677,7 +697,7 @@ int BattleState::applyOnDamage(int damage, Pokemon &target, Pokemon &source, Eff
   // PoisonHeal
   if (target.has_ability(Ability::POISON_HEAL) &&
       (effectKind == EffectKind::POISON || effectKind == EffectKind::TOXIC)) {
-    heal(target.stats.hp / 8, target, EffectKind::NO_EFFECT);
+    target.heal(target.stats.hp / 8, EffectKind::NO_EFFECT);
     return 0;
   }
   // PRIORITY 0
@@ -1053,6 +1073,7 @@ void BattleState::applyOnAfterUseItem(Pokemon &target) {
 }
 // TODO: finish implementing
 bool BattleState::applyOnTryHit(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
+  // std::cout << "side " << user.side << " using move " << (int)moveInst.id << std::endl;
   return true;
 }
 // Returns false if the secondary effect is blocked (by ShieldDust/CovertCloak)
@@ -1105,7 +1126,7 @@ void BattleState::applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user,
   }
   case Item::ROCKY_HELMET: {
     if (moveInst.makesContact(user)) {
-      applyDamage(user.stats.hp / 6, user);
+      spreadDamage({user.stats.hp / 6}, user, target, EffectKind::ROCKY_HELMET, move.id);
     }
     break;
   }
@@ -1121,7 +1142,8 @@ void BattleState::applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user,
     if (move.category == MoveCategory::PHYSICAL && user.current_hp && user.isActive &&
         !user.has_ability(Ability::MAGIC_GUARD)) {
       if (target.useItem(true, false)) {
-        applyDamage(user.stats.hp / (target.has_ability(Ability::RIPEN) ? 4 : 8), user);
+        int dmg = user.stats.hp / (target.has_ability(Ability::RIPEN) ? 4 : 8);
+        spreadDamage({dmg}, user, target, EffectKind::BERRY, MoveId::NONE);
       }
     }
     break;
@@ -1130,7 +1152,8 @@ void BattleState::applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user,
     if (move.category == MoveCategory::SPECIAL && user.current_hp && user.isActive &&
         !user.has_ability(Ability::MAGIC_GUARD)) {
       if (target.useItem(true, false)) {
-        applyDamage(user.stats.hp / (target.has_ability(Ability::RIPEN) ? 4 : 8), user);
+        int dmg = user.stats.hp / (target.has_ability(Ability::RIPEN) ? 4 : 8);
+        spreadDamage({dmg}, user, target, EffectKind::BERRY, MoveId::NONE);
       }
     }
     break;
@@ -1145,6 +1168,24 @@ void BattleState::applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user,
   default:
     break;
   }
+}
+// TODO: Most of the callbacks!
+bool BattleState::applyOnHitMain(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
+  switch (moveInst.id) {
+  case MoveId::PLUCK: {
+    Item item = target.item;
+    if (user.current_hp && isBerry(item) && target.takeItem(user) != std::nullopt) {
+      user.applyOnEat(item);
+      user.applyOnEatItem(item);
+      // LeppaBerry staleness?
+      // Set ateBerry?
+    }
+    break;
+  }
+  default:
+    break;
+  }
+  return true;
 }
 // TODO: A few miscellaneous effects that are applied after a move hits.
 void BattleState::applyOnAfterHit(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
@@ -1310,8 +1351,11 @@ void BattleState::applyOnUpdate(Pokemon &target) {
   }
   case Item::ORAN_BERRY:
   case Item::SITRUS_BERRY: {
-    if (target.current_hp <= target.stats.hp / 2)
+    if (target.current_hp <= target.stats.hp / 2) {
+      // std::cout << "hp before: " << target.current_hp << std::endl;
       target.useItem(true, false);
+      // std::cout << "hp after: " << target.current_hp << std::endl;
+    }
     break;
   }
   case Item::BERRY_JUICE: {
@@ -1470,6 +1514,7 @@ bool BattleState::applyOnTryAddVolatile(VolatileId vol, Pokemon &target, Pokemon
   }
   return true;
 }
+// - Set confusion duration
 // TODO: finish implementing
 bool BattleState::applyOnStartVolatile(VolatileId vol, Pokemon &target, Pokemon &source,
                                        MoveId move) {

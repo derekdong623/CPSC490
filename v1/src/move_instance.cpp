@@ -261,6 +261,84 @@ Status MoveInstance::getStatus() {
   auto it = statusApplyingMoves.find(id);
   return it != statusApplyingMoves.end() ? it->second : Status::NO_STATUS;
 }
+VolatileId MoveInstance::getVolatile() {
+  static const std::map<MoveId, VolatileId> volApplyingMoves = {
+      {MoveId::AQUARING, VolatileId::AQUARING},
+      {MoveId::ATTRACT, VolatileId::ATTRACT},
+      {MoveId::BANEFULBUNKER, VolatileId::BANEFULBUNKER},
+      {MoveId::BIDE, VolatileId::BIDE},
+      {MoveId::BIND, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::BURNINGBULWARK, VolatileId::BURNINGBULWARK},
+      {MoveId::CHARGE, VolatileId::CHARGE},
+      {MoveId::CLAMP, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::CONFUSERAY, VolatileId::CONFUSION},
+      {MoveId::CURSE, VolatileId::CURSE},
+      {MoveId::DEFENSECURL, VolatileId::DEFENSECURL},
+      {MoveId::DESTINYBOND, VolatileId::DESTINYBOND},
+      {MoveId::DETECT, VolatileId::PROTECT},
+      {MoveId::DISABLE, VolatileId::DISABLE},
+      {MoveId::DRAGONCHEER, VolatileId::DRAGONCHEER},
+      {MoveId::ELECTRIFY, VolatileId::ELECTRIFY},
+      {MoveId::EMBARGO, VolatileId::EMBARGO},
+      {MoveId::ENCORE, VolatileId::ENCORE},
+      {MoveId::ENDURE, VolatileId::ENDURE},
+      {MoveId::FIRESPIN, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::FLATTER, VolatileId::CONFUSION},
+      {MoveId::FOCUSENERGY, VolatileId::FOCUSENERGY},
+      {MoveId::FOLLOWME, VolatileId::FOLLOWME},
+      {MoveId::FORESIGHT, VolatileId::FORESIGHT},
+      {MoveId::GASTROACID, VolatileId::GASTROACID},
+      {MoveId::GRUDGE, VolatileId::GRUDGE},
+      {MoveId::HEALBLOCK, VolatileId::HEALBLOCK},
+      {MoveId::HELPINGHAND, VolatileId::HELPINGHAND},
+      {MoveId::IMPRISON, VolatileId::IMPRISON},
+      {MoveId::INFESTATION, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::INGRAIN, VolatileId::INGRAIN},
+      {MoveId::KINGSSHIELD, VolatileId::KINGSSHIELD},
+      {MoveId::LASERFOCUS, VolatileId::LASERFOCUS},
+      {MoveId::LEECHSEED, VolatileId::LEECHSEED},
+      {MoveId::MAGICCOAT, VolatileId::MAGICCOAT},
+      {MoveId::MAGMASTORM, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::MAGNETRISE, VolatileId::MAGNETRISE},
+      {MoveId::MINIMIZE, VolatileId::MINIMIZE},
+      {MoveId::MIRACLEEYE, VolatileId::MIRACLEEYE},
+      {MoveId::NIGHTMARE, VolatileId::NIGHTMARE},
+      {MoveId::NORETREAT, VolatileId::NORETREAT},
+      {MoveId::OBSTRUCT, VolatileId::OBSTRUCT},
+      {MoveId::OCTOLOCK, VolatileId::OCTOLOCK},
+      {MoveId::ODORSLEUTH, VolatileId::FORESIGHT},
+      {MoveId::POWDER, VolatileId::POWDER},
+      {MoveId::POWERSHIFT, VolatileId::POWERSHIFT},
+      {MoveId::POWERTRICK, VolatileId::POWERTRICK},
+      {MoveId::PROTECT, VolatileId::PROTECT},
+      {MoveId::RAGEPOWDER, VolatileId::RAGEPOWDER},
+      {MoveId::SANDTOMB, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::SHEDTAIL, VolatileId::SUBSTITUTE},
+      {MoveId::SILKTRAP, VolatileId::SILKTRAP},
+      {MoveId::SMACKDOWN, VolatileId::SMACKDOWN},
+      {MoveId::SNAPTRAP, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::SNATCH, VolatileId::SNATCH},
+      {MoveId::SPIKYSHIELD, VolatileId::SPIKYSHIELD},
+      {MoveId::SPOTLIGHT, VolatileId::SPOTLIGHT},
+      {MoveId::STOCKPILE, VolatileId::STOCKPILE},
+      {MoveId::SUBSTITUTE, VolatileId::SUBSTITUTE},
+      {MoveId::SUPERSONIC, VolatileId::CONFUSION},
+      {MoveId::SWAGGER, VolatileId::CONFUSION},
+      {MoveId::SWEETKISS, VolatileId::CONFUSION},
+      {MoveId::TARSHOT, VolatileId::TARSHOT},
+      {MoveId::TAUNT, VolatileId::TAUNT},
+      {MoveId::TEETERDANCE, VolatileId::CONFUSION},
+      {MoveId::TELEKINESIS, VolatileId::TELEKINESIS},
+      {MoveId::THOUSANDARROWS, VolatileId::SMACKDOWN},
+      {MoveId::THUNDERCAGE, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::TORMENT, VolatileId::TORMENT},
+      {MoveId::WHIRLPOOL, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::WRAP, VolatileId::PARTIALLYTRAPPED},
+      {MoveId::YAWN, VolatileId::YAWN},
+  };
+  auto it = volApplyingMoves.find(id);
+  return it != volApplyingMoves.end() ? it->second : VolatileId::NONE;
+}
 // Regular recoil moves
 std::pair<int, int> MoveInstance::getRecoil() {
   static const std::unordered_map<MoveId, std::pair<int, int>> recoilMoves = {
@@ -288,13 +366,13 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::FLAREBLITZ:
   case MoveId::HEATWAVE:
   case MoveId::PYROBALL: {
-    ret.push_back({.chance = 10, .status = Status::BURN});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 10, .status = Status::BURN});
     break;
   }
   case MoveId::BLUEFLARE:
   case MoveId::MATCHAGOTCHA:
   case MoveId::SANDSEARSTORM: {
-    ret.push_back({.chance = 20, .status = Status::BURN});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 20, .status = Status::BURN});
     break;
   }
   case MoveId::BLAZINGTORQUE:
@@ -305,15 +383,15 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::SCORCHINGSANDS:
   case MoveId::SEARINGSHOT:
   case MoveId::STEAMERUPTION: {
-    ret.push_back({.chance = 30, .status = Status::BURN});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 30, .status = Status::BURN});
     break;
   }
   case MoveId::SACREDFIRE: {
-    ret.push_back({.chance = 50, .status = Status::BURN});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 50, .status = Status::BURN});
     break;
   }
   case MoveId::INFERNO: {
-    ret.push_back({.chance = 100, .status = Status::BURN});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 100, .status = Status::BURN});
     break;
   }
   // Freeze
@@ -323,7 +401,7 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::ICEBEAM:
   case MoveId::ICEPUNCH:
   case MoveId::POWDERSNOW: {
-    ret.push_back({.chance = 10, .status = Status::FREEZE});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 10, .status = Status::FREEZE});
     break;
   }
   // Paralysis
@@ -331,12 +409,12 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::THUNDERPUNCH:
   case MoveId::THUNDERSHOCK:
   case MoveId::VOLTTACKLE: {
-    ret.push_back({.chance = 10, .status = Status::PARALYSIS});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 10, .status = Status::PARALYSIS});
     break;
   }
   case MoveId::BOLTSTRIKE:
   case MoveId::WILDBOLTSTORM: {
-    ret.push_back({.chance = 20, .status = Status::PARALYSIS});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 20, .status = Status::PARALYSIS});
     break;
   }
   case MoveId::BODYSLAM:
@@ -350,24 +428,24 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::SECRETPOWER:
   case MoveId::SPARK:
   case MoveId::THUNDER: {
-    ret.push_back({.chance = 30, .status = Status::PARALYSIS});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 30, .status = Status::PARALYSIS});
     break;
   }
   case MoveId::NUZZLE:
   case MoveId::ZAPCANNON: {
-    ret.push_back({.chance = 100, .status = Status::PARALYSIS});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 100, .status = Status::PARALYSIS});
     break;
   }
   // Poison
   case MoveId::CROSSPOISON:
   case MoveId::POISONTAIL:
   case MoveId::SLUDGEWAVE: {
-    ret.push_back({.chance = 10, .status = Status::POISON});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 10, .status = Status::POISON});
     break;
   }
   case MoveId::SHELLSIDEARM:
   case MoveId::TWINEEDLE: {
-    ret.push_back({.chance = 20, .status = Status::POISON});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 20, .status = Status::POISON});
     break;
   }
   case MoveId::GUNKSHOT:
@@ -376,31 +454,31 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::POISONSTING:
   case MoveId::SLUDGE:
   case MoveId::SLUDGEBOMB: {
-    ret.push_back({.chance = 30, .status = Status::POISON});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 30, .status = Status::POISON});
     break;
   }
   case MoveId::SMOG: {
-    ret.push_back({.chance = 40, .status = Status::POISON});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 40, .status = Status::POISON});
     break;
   }
   case MoveId::BARBBARRAGE: {
-    ret.push_back({.chance = 50, .status = Status::POISON});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 50, .status = Status::POISON});
     break;
   }
   case MoveId::MORTALSPIN: {
-    ret.push_back({.chance = 100, .status = Status::POISON});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 100, .status = Status::POISON});
     break;
   }
   // Sleep
   case MoveId::RELICSONG:
   case MoveId::WICKEDTORQUE: {
-    ret.push_back({.chance = 10, .status = Status::SLEEP});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 10, .status = Status::SLEEP});
     break;
   }
   // Toxic
   case MoveId::MALIGNANTCHAIN:
   case MoveId::POISONFANG: {
-    ret.push_back({.chance = 50, .status = Status::TOXIC});
+    ret.push_back({.kind = Secondary::STATUS, .chance = 50, .status = Status::TOXIC});
     break;
   }
   default:
@@ -605,32 +683,32 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::CONFUSION:
   case MoveId::PSYBEAM:
   case MoveId::SIGNALBEAM: {
-    ret.push_back({.chance = 10, .vol = VolatileId::CONFUSION});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 10, .vol = VolatileId::CONFUSION});
     break;
   }
   case MoveId::DIZZYPUNCH:
   case MoveId::ROCKCLIMB:
   case MoveId::STRANGESTEAM:
   case MoveId::WATERPULSE: {
-    ret.push_back({.chance = 20, .vol = VolatileId::CONFUSION});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 20, .vol = VolatileId::CONFUSION});
     break;
   }
   case MoveId::AXEKICK:
   case MoveId::HURRICANE:
   case MoveId::MAGICALTORQUE: {
-    ret.push_back({.chance = 30, .vol = VolatileId::CONFUSION});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 30, .vol = VolatileId::CONFUSION});
     break;
   }
   case MoveId::CHATTER:
   case MoveId::DYNAMICPUNCH: {
-    ret.push_back({.chance = 100, .vol = VolatileId::CONFUSION});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 100, .vol = VolatileId::CONFUSION});
     break;
   }
   // Flinch
   case MoveId::BONECLUB:
   case MoveId::EXTRASENSORY:
   case MoveId::HYPERFANG: {
-    ret.push_back({.chance = 10, .vol = VolatileId::FLINCH});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 10, .vol = VolatileId::FLINCH});
     break;
   }
   case MoveId::DARKPULSE:
@@ -639,7 +717,7 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::TWISTER:
   case MoveId::WATERFALL:
   case MoveId::ZENHEADBUTT: {
-    ret.push_back({.chance = 20, .vol = VolatileId::FLINCH});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 20, .vol = VolatileId::FLINCH});
     break;
   }
   case MoveId::AIRSLASH:
@@ -659,25 +737,25 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::STEAMROLLER:
   case MoveId::STOMP:
   case MoveId::ZINGZAP: {
-    ret.push_back({.chance = 30, .vol = VolatileId::FLINCH});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 30, .vol = VolatileId::FLINCH});
     break;
   }
   case MoveId::FAKEOUT:
   case MoveId::UPPERHAND: {
-    ret.push_back({.chance = 100, .vol = VolatileId::FLINCH});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 100, .vol = VolatileId::FLINCH});
     break;
   }
   // Move-specific
   case MoveId::PSYCHICNOISE: {
-    ret.push_back({.chance = 100, .vol = VolatileId::HEAL_BLOCK});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 100, .vol = VolatileId::HEALBLOCK});
     break;
   }
   case MoveId::SALTCURE: {
-    ret.push_back({.chance = 100, .vol = VolatileId::SALT_CURE});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 100, .vol = VolatileId::SALTCURE});
     break;
   }
   case MoveId::SPARKLINGARIA: {
-    ret.push_back({.chance = 100, .vol = VolatileId::SPARKLING_ARIA});
+    ret.push_back({.kind = Secondary::VOLATILE, .chance = 100, .vol = VolatileId::SPARKLINGARIA});
     break;
   }
   default:
@@ -769,7 +847,7 @@ bool MoveInstance::isOHKO() {
 // Self-explanatory
 bool MoveInstance::isSleepUsable() { return id == MoveId::SLEEPTALK || id == MoveId::SNORE; }
 // Only self-destructs if the move "hits"
-bool MoveInstance::isIffHitSelfDestruct() {
+bool MoveInstance::isIfHitSelfDestruct() {
   static const std::vector<MoveId> ifHitSelfDestructing = {MoveId::FINALGAMBIT, MoveId::HEALINGWISH,
                                                            MoveId::LUNARDANCE, MoveId::MEMENTO};
   return std::find(ifHitSelfDestructing.begin(), ifHitSelfDestructing.end(), id) !=
@@ -1126,8 +1204,7 @@ bool MoveInstance::multiaccCheck(Pokemon const &user) {
 // Checks relevant Accuracy and Evasion boosts and onAccuracy (e.g.
 // conditions like Sandstorm+SandVeil or Gravity).
 // **Assumes the move has numerical accuracy -- do acc check bypasses first!
-int MoveInstance::getBasicAcc(int acc, bool multiacc, Pokemon &target,
-                              Pokemon &pokemon) {
+int MoveInstance::getBasicAcc(int acc, bool multiacc, Pokemon &target, Pokemon &pokemon) {
   // Accuracy boosts
   int accBoost = std::min(6, std::max(-6, pokemon.boosts[ModifierId::ACCURACY]));
   int evaBoost = 0;

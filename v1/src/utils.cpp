@@ -191,7 +191,7 @@ int boostStatVal(int statVal, int boostIndex) {
   if (boostIndex >= 0) {
     statVal = statVal * (boostIndex + 2) / 2;
   } else {
-    statVal = statVal * 2 / (boostIndex + 2);
+    statVal = statVal * 2 / (2 - boostIndex);
   }
   return statVal;
 }

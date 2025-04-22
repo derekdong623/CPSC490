@@ -1,10 +1,8 @@
 >start {"formatid":"gen8anythinggoes"}
->player p1 {"name":"Alice","team":"Charmander|||Blaze|Scratch|Hardy|||0,0,0,0,0,0||5|]Koffing|||Levitate|PoisonGas,PoisonPowder,Growl,Reflect|Serious|0,0,0,0,0,0|||||"}
->player p2 {"name":"Bob","team":"Bulbasaur|||Overgrow|Tackle|Hardy|0,0,0,0,0,0||||100|"}
+>player p1 {"name":"Alice","team":"Piplup|||Defiant|Pound|Hardy|||0,0,0,0,0,0||10|"}
+>player p2 {"name":"Bob","team":"Rookidee|||KeenEye|Swagger|Hardy|0,0,0,0,0,0||||10|]Rookidee|||KeenEye|Swagger|Hardy|0,0,0,0,0,0||||10|"}
 >p1 team 1
 >p2 team 1
 
 >p1 move 1
 >p2 move 1
-
->p1 switch 2

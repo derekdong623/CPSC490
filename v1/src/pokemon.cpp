@@ -95,7 +95,7 @@ bool Pokemon::has_volatile(VolatileId vol) {
   case VolatileId::UNBURDEN: {
     return unburden;
   }
-  case VolatileId::SPARKLING_ARIA: {
+  case VolatileId::SPARKLINGARIA: {
     return sparklingAria;
   }
   default:
@@ -170,10 +170,11 @@ void Pokemon::clearVolatile(bool clearSwitchFlags) {
   // species = baseSpecies // Do later
 }
 // Raw form of boosting stats
+// Returns delta in stat applied
 int Pokemon::boostStat(ModifierId stat, int boostVal) {
   int oldStatVal = boosts[stat];
-  int statVal = std::min(6, std::max(-6, boosts[stat] + boostVal));
-  return statVal - oldStatVal;
+  boosts[stat] = std::min(6, std::max(-6, boosts[stat] + boostVal));
+  return boosts[stat] - oldStatVal;
 }
 
 int Pokemon::getStatVal(ModifierId statName) const {
@@ -240,16 +241,11 @@ bool Pokemon::isSemiInvulnerable() {
   // if(isSkyDropped()) return true;
   return inAir || underground || underwater || inShadow;
 }
-void Pokemon::capBoost(std::map<ModifierId, int> &boostTable) {
-  for (auto &[mod, b] : boostTable) {
-    b = std::max(-6, std::min(6, boosts[mod] + b)) - boosts[mod];
-  }
-}
 // Apply (un)boost(s) to a target.
 // Returns false with failure; if no issue but no boosting, still returns true.
 // NB: With callbacks onChangeBoost(), onTryBoost(), onAfterEachBoost(), onAfterBoost(),
 // and of course bound to [-6, 6].
-bool Pokemon::boost(std::map<ModifierId, int> boostTable, EffectKind effectKind) {
+bool Pokemon::boost(ModifierTable &boostTable, EffectKind effectKind) {
   if (!current_hp)
     return false;
   if (!isActive)
@@ -257,7 +253,6 @@ bool Pokemon::boost(std::map<ModifierId, int> boostTable, EffectKind effectKind)
   // // Q: I don't think it's strictly necessary? Doesn't seem to change outcome.
   // if(!teams[1-side].pokemonLeft) return;
   applyOnChangeBoost(boostTable, effectKind);
-  capBoost(boostTable);
   applyOnTryBoost(boostTable, effectKind);
   for (auto &[mod, b] : boostTable) {
     int boostBy = boostStat(mod, b);
@@ -274,7 +269,7 @@ bool Pokemon::boost(std::map<ModifierId, int> boostTable, EffectKind effectKind)
   }
   return true;
 }
-std::map<ModifierId, int> getItemBoosts(Item item) {
+ModifierTable getItemBoosts(Item item) {
   switch (item) {
   case Item::CELL_BATTERY:
   case Item::SNOWBALL: {
@@ -322,11 +317,12 @@ bool Pokemon::useItem(bool eat, bool forceEat) {
   // are holding"
   // onUseItem seems to do nothing
   // item boosts
-  boost(getItemBoosts(item), EffectKind::NO_EFFECT);
+  ModifierTable boostTable = getItemBoosts(item);
+  boost(boostTable, EffectKind::NO_EFFECT);
   bool succEat = eat && (forceEat || applyOnTryEatItem());
   if (succEat) {
-    applyOnEat();
-    applyOnEatItem();
+    applyOnEat(item);
+    applyOnEatItem(item);
     ateBerry = true;
   }
   // MirrorHerb only: Gen9
@@ -344,7 +340,26 @@ bool Pokemon::useItem(bool eat, bool forceEat) {
   }
   return false;
 }
+// Returns nullopt for failure
+std::optional<Item> Pokemon::takeItem(Pokemon &taker) {
+  if(item == Item::NO_ITEM || itemKnockedOff) {
+    return std::nullopt;
+  }
+  if(applyOnTakeItem(item, taker)) {
+    Item oldItem = item;
+    item = Item::NO_ITEM;
+    // TODO: clear target.itemState
+    // onEnd(): MirrorHerb N/A, UtilityUmbrella
+    if(oldItem == Item::UTILITY_UMBRELLA) {
+      // Do later: weatherchange
+    }
+    // N/A onAfterTakeItem()
+    return oldItem;
+  }
+  return std::nullopt;
+}
 // Actually apply the healing (capped by max HP)
+// PokemonShowdown Pokemon.heal()
 // Returns -1 for fail
 int Pokemon::applyHeal(int damage) {
   if (damage <= 0)
@@ -360,6 +375,19 @@ int Pokemon::applyHeal(int damage) {
     current_hp = stats.hp;
   }
   return damage;
+}
+// Handles the larger-scale idea of healing a Pokemon: called often
+// PokemonShowdown Battle.heal()
+// Returns actual damage healed, or -1 for failure
+int Pokemon::heal(int damage, EffectKind effectKind) {
+  damage = applyOnTryHeal(damage, effectKind);
+  if (!damage)
+    return damage;
+  if (!current_hp || !isActive)
+    return 0;
+  int healAmt = applyHeal(damage);
+  // applyOnHeal(healAmt, target, source, effect); // Does nothing it seems
+  return healAmt;
 }
 void Pokemon::addConfusion(bool axeKick) {
   // Confusion has no restart
@@ -381,5 +409,9 @@ int Pokemon::deductPP(MoveSlot &moveSlot) {
   moveSlot.pp--;
   return 1;
 }
-
+// Decrements durations of valid volatiles
+// - Confusion uses time not duration
+void Pokemon::decrVolDurations() {
+  if(flinch) flinch = false;
+}
 } // namespace pkmn

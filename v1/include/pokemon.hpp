@@ -145,24 +145,27 @@ struct Pokemon {
   int getStat(ModifierId statName, bool boosted, bool modified) const;
   NatureVal getNature();
   bool isSemiInvulnerable();
-  void capBoost(std::map<ModifierId, int> &boostTable);
-  bool boost(std::map<ModifierId, int> boostTable, EffectKind);
+  bool boost(ModifierTable &, EffectKind);
   bool useItem(bool eat, bool forceEat);
+  std::optional<Item> takeItem(Pokemon &taker);
+  int heal(int damage, EffectKind effectKind);
   int applyHeal(int damage);
   void addConfusion(bool axeKick);
   void tryTrap();
   int deductPP(MoveSlot &);
+  void decrVolDurations();
 
   /* CALLBACKS */
 
   bool applyOnTryImmunity(Pokemon &user, MoveId);
-  void applyOnChangeBoost(std::map<ModifierId, int> &boostTable, EffectKind);
-  void applyOnTryBoost(std::map<ModifierId, int> &boostTable, EffectKind);
+  void applyOnChangeBoost(ModifierTable &, EffectKind);
+  void applyOnTryBoost(ModifierTable &, EffectKind);
   void applyOnAfterEachBoost(int numBoost, EffectKind effectKind);
-  void applyOnAfterBoost(std::map<ModifierId, int> &boostTable, EffectKind);
-  void applyOnEat();
-  void applyOnEatItem();
+  void applyOnAfterBoost(ModifierTable &, EffectKind);
+  void applyOnEat(Item);
+  void applyOnEatItem(Item);
   void applyOnAfterUseItem();
+  bool applyOnTakeItem(Item, Pokemon &taker);
   int applyOnTryHeal(int damage, EffectKind);
   bool applyOnTryEatItem();
 };

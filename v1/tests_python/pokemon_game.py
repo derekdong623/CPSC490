@@ -78,7 +78,12 @@ class PokemonGame:
 
     def default_get_Choice(self, state: BattleState, side: int):
         """Returns a Choice"""
-        return random.choice(self.get_choice_list(state, side))
+        cl = self.get_choice_list(state, side)
+        if not cl:
+            print(state.get_active(0).hp)
+            print(state.get_active(1).hp)
+            print(self.simplify_state(state))
+        return random.choice(cl)
 
     def to_Choice(self, choice):
         # Turns a hashable choice into a Choice
@@ -92,6 +97,8 @@ class PokemonGame:
             self._ai_agent.get_choice(state, 1, self.get_choice_list(state, 1))
         )
         state = state.run_turn()
+        if self.game_over(state):
+            return state
         while state.is_instaswitch():
             if state.teams[0].instaswitch:
                 state.teams[0].choices = self.to_Choice(

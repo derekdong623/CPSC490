@@ -21,13 +21,14 @@ struct MoveInstance {
   bool infiltrates = false;   // Flag set in onModifyMove
   MoveInstance(Move &move) : id(move.id) { moveData = move; }
   // This constructor should ONLY be used for testing!
-  MoveInstance(MoveId &moveId) : id(moveId) { moveData = moveDict.dict[moveId]; }
+  MoveInstance(MoveId moveId) : id(moveId) { moveData = moveDict.dict[moveId]; }
   bool breaksProtect();
   bool isMultiHit();
   bool isNoParentalBond();
   ModifierTable getBoosts();
   std::pair<int, int> getHeal();
   Status getStatus();
+  VolatileId getVolatile();
   std::pair<int, int> getRecoil();
   bool isRecoil() { return getRecoil().first != 0; }
   std::vector<SecondaryEffect> getSecondaries();
@@ -38,7 +39,7 @@ struct MoveInstance {
   bool isCalling();
   bool isOHKO();
   bool isSleepUsable();
-  bool isIffHitSelfDestruct();
+  bool isIfHitSelfDestruct();
   bool isSelfSwitch();
   bool forcesSwitch();
   bool makesContact(Pokemon &user);

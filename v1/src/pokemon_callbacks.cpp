@@ -143,20 +143,23 @@ void Pokemon::applyOnAfterEachBoost(int numBoost, EffectKind effectKind) {
   if (ability == Ability::COMPETITIVE && effectKind != EffectKind::STICKY_WEB) {
     // TODO: Check that there's a non-self source
     if (numBoost < 0) {
-      boost({{ModifierId::SPATT, 2}}, EffectKind::NO_EFFECT);
+      ModifierTable boostTable = {{ModifierId::SPATT, 2}};
+      boost(boostTable, EffectKind::NO_EFFECT);
     }
   }
   if (ability == Ability::DEFIANT && effectKind != EffectKind::STICKY_WEB) {
     // TODO: Check that there's a non-self source
     if (numBoost < 0) {
-      boost({{ModifierId::ATTACK, 2}}, EffectKind::NO_EFFECT);
+      ModifierTable boostTable = {{ModifierId::ATTACK, 2}};
+      boost(boostTable, EffectKind::NO_EFFECT);
     }
   }
 }
 void Pokemon::applyOnAfterBoost(std::map<ModifierId, int> &boostTable, EffectKind effectKind) {
   if (ability == Ability::RATTLED) {
     if (effectKind == EffectKind::INTIMIDATE && boostTable.contains(ModifierId::ATTACK)) {
-      boost({{ModifierId::SPEED, 1}}, EffectKind::NO_EFFECT);
+      ModifierTable addBoost = {{ModifierId::SPEED, 1}};
+      boost(addBoost, EffectKind::NO_EFFECT);
     }
   }
   if (item == Item::ADRENALINE_ORB) {
@@ -173,7 +176,7 @@ void Pokemon::applyOnAfterBoost(std::map<ModifierId, int> &boostTable, EffectKin
   // TODO: EjectPack
 }
 // Apply effect(s) from having eaten the berry.
-void Pokemon::applyOnEat() {
+void Pokemon::applyOnEat(Item item) {
   static std::map<Item, ModifierId> badMinusNatures = {
       {Item::FIGY_BERRY, ModifierId::ATTACK}, {Item::IAPAPA_BERRY, ModifierId::DEFENSE},
       {Item::AGUAV_BERRY, ModifierId::SPEED}, {Item::MAGO_BERRY, ModifierId::SPEED},
@@ -298,12 +301,14 @@ void Pokemon::applyOnEat() {
     break;
   }
     // TODO: MicleBerry
-  default:
+  default: {
+    std::cerr << "Trying to eat invalid item " << (int)item << std::endl;
     break;
+  }
   }
 }
 // Just CheekPouch and Ripen; CudChew is Gen9
-void Pokemon::applyOnEatItem() {
+void Pokemon::applyOnEatItem(Item item) {
   switch (ability) {
   case Ability::CHEEK_POUCH: {
     applyHeal(stats.hp / 3);
@@ -321,8 +326,9 @@ void Pokemon::applyOnEatItem() {
         std::find(weakenBerries.begin(), weakenBerries.end(), item) != weakenBerries.end();
     break;
   }
-  default:
+  default: {
     break;
+  }
   }
 }
 // Just Unburden
@@ -331,6 +337,13 @@ void Pokemon::applyOnAfterUseItem() {
     // What does checking pokemon != effectState.target do?
     unburden = true;
     // addVolatile(VolatileId::UNBURDEN);
+  }
+}
+// Returns whether or not taking the item succeeds.
+// TODO: *lots* of cases, mostly transform-based
+bool Pokemon::applyOnTakeItem(Item item, Pokemon &taker) {
+  switch(item) {
+    default: return true;
   }
 }
 // False if blocked by !checkedBerserk or HealBlock.
@@ -362,9 +375,9 @@ bool Pokemon::applyOnTryEatItem() {
   }
   return true;
 }
-// Potential modifiers to heal amount
-// Called by oheal(...) and applyOnTryEatItem() (healing berries).
-// Essentially returns false if HealBlock applies.
+// Called by Battle.heal(...) and applyOnTryEatItem() (healing berries).
+// Returns the amount healed, with modifiers (e.g. Ripen).
+// Fails basically just if HealBlock applies.
 int Pokemon::applyOnTryHeal(int damage, EffectKind effectKind) {
   // BigRoot: -Drain, LeechSeed, Ingrain, AquaRing, StrengthSap
   if (has_item(Item::BIG_ROOT) && effectKind == EffectKind::MOVE) {

@@ -16,7 +16,7 @@ struct MoveActionPriority {
   int side = -1;
   int moveInd = -1;
   bool operator<(const MoveActionPriority &other) const {
-    return std::tie(priority, fractionalPriority, speed) <
+    return std::tie(priority, fractionalPriority, speed) >
            std::tie(other.priority, other.fractionalPriority, other.speed);
   }
 };
@@ -98,6 +98,9 @@ public:
   int echoedVoiceMultiplier = 1; // Max of 5, only one increment per turn
   // DEBUG: SET MANUALLY
   DMGCalcOptions defaultDmgOptions = {};
+  int secondaryDenom = 100;
+  bool guaranteeHit = false; // Skip accuracy check on main hit
+  // END DEBUG
   BattleState() {}
   BattleState(DMGCalcOptions ddo): defaultDmgOptions(ddo) {}
   bool set_team(int side, Team &team);
@@ -168,6 +171,7 @@ private:
   bool applyOnModifySecondaries(Pokemon &target, MoveInstance &, Secondary);
   bool applyOnDragOut(Pokemon &target);
   void applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user, MoveInstance &);
+  bool applyOnHitMain(Pokemon &target, Pokemon &user, MoveInstance &);
   void applyOnAfterHit(Pokemon &target, Pokemon &user, MoveInstance &);
   void applyOnUpdate(Pokemon &target);
   void applyOnResidual(Pokemon &target);
@@ -195,7 +199,6 @@ private:
   std::pair<int, int> getDrain(MoveId);
   int applyDamage(int damage, Pokemon &target);
   int directDamage(int damage, Pokemon &target, Pokemon &source, EffectKind);
-  int heal(int damage, Pokemon &target, EffectKind);
   DamageResultState spreadDamage(DamageResultState, Pokemon &target, Pokemon &source, EffectKind,
                                  MoveId effectMove);
   void runMoveEffects(bool keepTargeting, Pokemon &target, Pokemon &source, MoveInstance &);

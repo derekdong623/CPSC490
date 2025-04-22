@@ -181,7 +181,7 @@ if __name__ == "__main__":
         game,
         NUM_GAMES,
         TIME_LIMIT,
-        report_every=1
+        report_every=10
     )
     print(
         f"NET: {margin:.2f} +/- {2 * math.sqrt(margin_var / NUM_GAMES):.2f}; WINS: {wins:.2f} +/- {2 * math.sqrt(win_var / NUM_GAMES):.2f}"
