@@ -169,7 +169,7 @@ if __name__ == "__main__":
     print(f"Start time: {datetime.datetime.now()}")
     agent_team = Team()
     # Maybe implement Pluck?
-    agent_team.add_pokemon(0, get_piplup(12))
+    agent_team.add_pokemon(0, get_piplup(7))
     opp_team = Team()
     # Bite: flinch, QuickAttack: priority, SandAttack: accuracy drop
     opp_team.add_pokemon(0, get_poochyena(5))
