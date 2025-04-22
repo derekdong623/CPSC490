@@ -1,13 +1,24 @@
-Copyright Derek Dong 2025
+Custom Academic Read-Only License
 
-Permission is hereby granted to view the source code contained in this repository for academic, non-commercial, and non-distributive purposes only.
+Copyright © Derek Dong 2025
 
-Redistribution, reproduction, modification, sublicensing, public performance, or any other use of this code or its derivatives is strictly prohibited without the express written consent of the copyright holder.
+This software and associated documentation files (the “Software”) are made available solely for academic, non-commercial, read-only use. By accessing or viewing this repository, you agree to the following terms:
 
-All rights in the names, characters, abilities, and mechanics of Pokémon are acknowledged to be the exclusive intellectual property of Nintendo, Game Freak, and The Pokémon Company. This project is not affiliated with, endorsed by, or sponsored by any of these entities.
+1. Permitted Use  
+   - The Software may be viewed and studied for academic or educational purposes only.  
+   - No portion of the Software may be copied, modified, distributed, reproduced, published, or used in any derivative or commercial work without the express prior written consent of the copyright holder.
 
-The original design, system architecture, code structure, and algorithms developed within this repository—excluding the aforementioned Pokémon-related intellectual property—are the exclusive intellectual property of Derek Dong.
+2. Ownership and Intellectual Property  
+   - All names, characters, abilities, and mechanics associated with "Pokémon" are trademarks and copyrighted intellectual property of Nintendo, Game Freak, and The Pokémon Company. This project is an independent academic work and is not affiliated with, endorsed by, or sponsored by those entities.  
+   - All original source code, system architecture, algorithms, and design not covered by the preceding clause are the exclusive intellectual property of Derek Dong and are protected under the copyright laws of the United States (Title 17, U.S. Code).
 
-By accessing or viewing this repository, you agree to these terms.
+3. No License Granted  
+   This license does not grant any rights to copy, modify, distribute, sublicense, or otherwise use the Software beyond academic read-only inspection. All rights are reserved unless explicitly granted.
 
-For licensing inquiries or permission to use any portion of this work, please contact: derek.dong@yale.edu
+4. Disclaimer  
+   THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM OR IN CONNECTION WITH THE SOFTWARE.
+
+5. Governing Law  
+   This License shall be governed by and construed in accordance with the laws of the United States and applicable state law, without regard to conflict of law principles.
+
+For inquiries regarding licensing, redistribution, or permissioned use, please contact: derek.dong@yale.edu
