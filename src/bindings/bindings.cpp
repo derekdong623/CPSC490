@@ -2757,6 +2757,18 @@ PYBIND11_MODULE(fast_pkmn, m) {
         .export_values();
   }
 
+  { // Export Status enum
+    py::enum_<pkmn::Status>(m, "Status")
+        .value("NO_STATUS", pkmn::Status::NO_STATUS)
+        .value("PARALYSIS", pkmn::Status::PARALYSIS)
+        .value("BURN", pkmn::Status::BURN)
+        .value("POISON", pkmn::Status::POISON)
+        .value("TOXIC", pkmn::Status::TOXIC)
+        .value("FREEZE", pkmn::Status::FREEZE)
+        .value("SLEEP", pkmn::Status::SLEEP)
+        .export_values();
+  }
+
   { // Export MoveSlot class
     py::class_<pkmn::MoveSlot>(m, "MoveSlot")
         .def_readonly("id", &pkmn::MoveSlot::id)
@@ -2769,8 +2781,10 @@ PYBIND11_MODULE(fast_pkmn, m) {
         .def(py::init<pkmn::PokeName, int, pkmn::Gender, const pkmn::Nature, const pkmn::Stats,
                       const pkmn::Stats>())
         .def_readonly("name", &pkmn::Pokemon::name)
+        .def_readonly("pos", &pkmn::Pokemon::position)
         .def_readonly("hp", &pkmn::Pokemon::current_hp)
         .def_readonly("boosts", &pkmn::Pokemon::boosts)
+        .def_readonly("status", &pkmn::Pokemon::status)
         .def_readonly("item", &pkmn::Pokemon::item)
         .def_readonly("moves", &pkmn::Pokemon::moves)
         .def("add_move", &pkmn::Pokemon::add_move)
@@ -2794,6 +2808,7 @@ PYBIND11_MODULE(fast_pkmn, m) {
         .def_readonly("active", &pkmn::Team::activeInd)
         .def_readonly("instaswitch", &pkmn::Team::instaSwitch)
         .def_readonly("pkmn", &pkmn::Team::pkmn)
+        .def_readonly("pokemon_left", &pkmn::Team::pokemonLeft)
         .def("add_pokemon", &pkmn::Team::add_pokemon, py::arg("slot"), py::arg("pokemon"),
              py::arg("lvl") = 0);
   }
@@ -2802,12 +2817,14 @@ PYBIND11_MODULE(fast_pkmn, m) {
     py::class_<pkmn::BattleState>(m, "BattleState")
         .def(py::init<>())
         .def_readwrite("teams", &pkmn::BattleState::teams)
+        .def_readwrite("verbose", &pkmn::BattleState::verbose)
         .def("set_team", &pkmn::BattleState::set_team)
         .def("start_battle", &pkmn::BattleState::startBattle)
-        .def("check_win", &pkmn::BattleState::checkWin, py::arg("lastFaintSide") = -1)
+        .def("check_win", &pkmn::BattleState::checkWin)
         .def("run_turn", &pkmn::BattleState::runTurnPy)
         .def("is_instaswitch", &pkmn::BattleState::isInstaSwitch)
         .def("get_active", &pkmn::BattleState::getActivePokemon)
-        .def("set_choices", &pkmn::BattleState::set_choices);
+        .def("set_choices", &pkmn::BattleState::set_choices)
+        .def("fill_opp", &pkmn::BattleState::fillOpponentChoice);
   }
 }

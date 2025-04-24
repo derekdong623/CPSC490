@@ -43,7 +43,8 @@ void BattleState::set_move_options(int side) {
   Choice &choice = teams[side].choicesAvailable;
   for (int j = 0; j < 4; j++) {
     choice.move[j] = false;
-    if (activePkmn.moves[j].id != MoveId::NONE && activePkmn.moves[j].pp > 0) {
+    const MoveSlot move = activePkmn.moves[j];
+    if (move.id != MoveId::NONE && !move.disabled && move.pp > 0) {
       choice.move[j] = true;
     }
   }
@@ -52,6 +53,7 @@ void BattleState::set_move_options(int side) {
 // TODO: set_mega_options()
 void BattleState::set_choices() {
   for (int side = 0; side < 2; side++) {
+    teams[side].choicesAvailable = {};
     set_switch_options(side); // Removes other options
     // set_mega_options(); // Does not remove potential switch options
     set_move_options(side); // Does not remove potential switch options
@@ -396,7 +398,7 @@ SwitchAction BattleState::getSwitchActionFromChoice(int side) {
       ret.newPokeInd = i;
     }
   }
-  if (ret.newPokeInd >= 0) { // A move was selected
+  if (ret.newPokeInd >= 0) { // A swap was selected
     if (ret.newPokeInd == team.activeInd) {
       std::cerr
           << "[BattleState::getSwitchActionFromChoice] swap to current active Pokemon by team "
@@ -404,6 +406,7 @@ SwitchAction BattleState::getSwitchActionFromChoice(int side) {
     }
     ret.side = side;
     ret.speed = pokemon.effectiveSpeed;
+    pokemon.switchFlag = false;
   }
   return ret;
 }
@@ -429,7 +432,7 @@ void BattleState::endTurn() {
   turnNum++;
   // lastSuccessfulMoveThisTurn = MoveId::NONE;
   for (int side = 0; side < 2; side++) {
-    Pokemon &pkmn = teams[side].pkmn[teams[side].activeInd];
+    Pokemon &pkmn = getActivePokemon(side);
     pkmn.newlySwitched = false;
     pkmn.moveLastTurnFailed = pkmn.moveThisTurnFailed;
     pkmn.moveThisTurnFailed = false;
@@ -440,19 +443,11 @@ void BattleState::endTurn() {
     // // Do later: DISABLE MOVE CHOICES: DISABLE/LOCKING
     // pkmn.maybeDisabled = false;
     // pkmn.maybeLocked = false;
-    // for (int i = 0; i < 4; i++) {
-    //   MoveSlot &slot = pkmn.moves[i];
-    //   slot.disabled = false;
-    //   slot.disabledSource = null;
-    // }
-    // applyOnDisableMove(pkmn);
-    // for (int i = 0; i < 4; i++) {
-    //   const activeMove = this.dex.getActiveMove(moveSlot.id);
-    //   applyOnDisableMove(activeMove, pkmn);
-    //   if (activeMove.flags['cantusetwice'] && pokemon.lastMove?.id === moveSlot.id) {
-    //     pkmn.disableMove(pokemon.lastMove.id);
-    //   }
-    // }
+    for (int i = 0; i < 4; i++) {
+      pkmn.moves[i].disabled = false;
+    }
+    applyOnDisableMove(pkmn);
+    // Note: cantusetwice flag is only for Gen9 moves
     // Do later: update attackedBy
     // TRAPPING
     pkmn.trapped = false;
@@ -556,6 +551,9 @@ bool BattleState::runTurn() {
       SwitchAction switchAct = getSwitchActionFromChoice(side);
       if (switchAct.newPokeInd >= 0) {
         switchActions.push_back(switchAct);
+        if(teams[side].instaSwitch) {
+          switchActions.back().instaswitch = true;
+        }
       }
     }
     // NB: 'switch' sets up callbacks (e.g. beforeTurnMove) and calls 'runSwitch'
@@ -564,12 +562,15 @@ bool BattleState::runTurn() {
     for (size_t i = 0; i < switchActions.size(); i++) {
       int side = switchActions[i].side;
       // Reset choice
+      if(verbose) {
+        // std::cout << "Resetting choices for side " << side << std::endl;
+      }
       teams[side].choicesAvailable = Choice{};
       teams[side].instaSwitch = false;
       switchIn(side, switchActions[i].newPokeInd, false);
       auto res = applyAtEndOfAction(ActionKind::SWITCH);
       if (res != std::nullopt) {
-        // std::cout << "[BattleState::runTurn] return at switchAction\n";
+        std::cout << "[BattleState::runTurn] return at switchAction\n";
         return *res;
       }
     }
@@ -596,6 +597,9 @@ bool BattleState::runTurn() {
       // std::cout << "Current mover is from side: " << moveAction.side << std::endl;
       // std::cout << "Priority: " << moveAction.priority << std::endl;
       // Reset choice
+      if(verbose) {
+        // std::cout << "Resetting choices for side " << moveAction.side << std::endl;
+      }
       team.choicesAvailable = Choice{};
       // Cannot use move if switched out e.g. by Whirlwind or EjectButton
       if (pokemon.isActive) {
@@ -621,13 +625,16 @@ bool BattleState::runTurn() {
   }
   endTurn();
   midTurn = false;
+  if(verbose) {
+    // std::cout << "Resetting choices for both sides...\n";
+  }
   set_choices();
   currentAction = ActionKind::NONE;
   return true;
 }
 // Update winner if found
 // Returns winning side, or -1 if battle has not ended.
-int BattleState::checkWin(int lastFaintSide) {
+int BattleState::checkWin() {
   if (battle_ended)
     return winner;
   // If neither side has pokemon left, the last-fainted side wins
@@ -661,7 +668,7 @@ void BattleState::runMove(MoveSlot &moveSlot, Pokemon &user, Pokemon &target) {
   // Do later: potential Encore move replacement/retargeting (onOverrideAction) with Prankster boost
   // onBeforeMove():
   bool stompingTantrumFail = applyOnBeforeMoveST(user);
-  bool willTryMove = !stompingTantrumFail && applyOnBeforeMove(user);
+  bool willTryMove = !stompingTantrumFail && applyOnBeforeMove(user, moveInst);
   if (!willTryMove) {
     // TODO: onMoveAborted(user, target, move); // Remove volatiles that might've already been added
     // clearActiveMove(failed=true);
@@ -692,6 +699,7 @@ void BattleState::runMove(MoveSlot &moveSlot, Pokemon &user, Pokemon &target) {
   // user.moveThisTurn = ...
 
   bool moveDidSomething = useMove(target, user, moveInst);
+  // std::cout << "pokemon on side " << target.side << " now has HP: " << target.current_hp << std::endl;
   // Do later: update lastSuccessfulMoveThisTurn for FusionFlare/Bolt
   // lastSuccessfulMoveThisTurn = moveDidSomething ? moveInst.id : MoveId::NONE;
   // if (activeMoveInst) moveInst = activeMoveInst;
@@ -772,8 +780,10 @@ bool BattleState::runTypeImmunity(Pokemon &target, Type typ) {
 bool BattleState::runStatusImmunity(Pokemon &target, Status status) {
   if (target.fainted)
     return false;
-  if (status == Status::NO_STATUS)
-    return true;
+  // No status was actually given
+  if (status == Status::NO_STATUS) {
+    return false;
+  }
 
   // Natural type immunities
   if (target.has_type(Type::ELECTRIC) && status == Status::PARALYSIS) {
@@ -783,7 +793,7 @@ bool BattleState::runStatusImmunity(Pokemon &target, Status status) {
   } else if (target.has_type(Type::ICE) && status == Status::FREEZE) {
     return false;
   } else if ((target.has_type(Type::POISON) || target.has_type(Type::STEEL)) &&
-             (status == Status::PARALYSIS || status == Status::TOXIC)) {
+             (status == Status::POISON || status == Status::TOXIC)) {
     return false;
   }
 
@@ -849,17 +859,18 @@ bool BattleState::setStatus(Status newStatus, Pokemon &target, Pokemon &source,
   target.status = newStatus;
   // applyOnStart() -- Status version:
   if (target.status == Status::SLEEP) {
+    target.sleepTurns = math::random(2, 5);
     // Do later: cure nightmare
   } else if (target.status == Status::FREEZE) {
     // formeChange Shaymin-Sky back to Shaymin
   } else if (target.status == Status::TOXIC) {
     target.toxicStage = 0;
   }
-  // applyOnAfterSetStatus()
-  // TODO:
+  // applyOnAfterSetStatus():
   if (target.has_ability(Ability::SYNCHRONIZE)) {
-    // If source != target & effectKind != ToxicSpike && !slp && !frz:
-    // source.setStatus(status, source, *this, EffectKind::SYNCHRONIZE);
+    if(source != target && effectKind != EffectKind::TOXIC_SPIKES && newStatus != Status::SLEEP && newStatus != Status::FREEZE) {
+      setStatus(newStatus, source, target, EffectKind::SYNCHRONIZE, moveInst);
+    }
   }
   if (target.has_item(Item::LUM_BERRY)) {
     target.useItem(true, false);
@@ -897,6 +908,11 @@ bool BattleState::addVolatile(VolatileId vol, Pokemon &target, Pokemon &source, 
     switch (vol) {
     case VolatileId::FLINCH: {
       target.flinch = true;
+      break;
+    }
+    case VolatileId::LEECHSEED: {
+      target.leechSeed = true;
+      break;
     }
     default:
       break;
@@ -994,9 +1010,9 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
   // if(activeMove) priority tracking
 
   // Target selection
-  Pokemon &target = opp;
+  Pokemon *target = &opp;
   if (moveInst.moveData.target == Target::SELF) {
-    target = user;
+    target = &user;
   }
   // set sourceEffect (for what?)
   // setActiveMove (optional given implementation?)
@@ -1011,7 +1027,7 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
   // TODO: Check no-target failure
   // Do later: Pressure extra PP deduction calc (for single battles, maybe do in runMove?)
   // onTryMove():
-  if (!applyOnTryMove(target, user, moveInst)) {
+  if (!applyOnTryMove(*target, user, moveInst)) {
     // move.mindBlownRecoil = false;
     return false;
   }
@@ -1038,7 +1054,7 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
   case Target::SCRIPTED: {
     // TODO: have selfBoosts in trySpreadMoveHit() implementation for extra moveHit()
     // std::cout << "side " << user.side << " using move " << (int)moveInst.id << std::endl;
-    moveResult = trySpreadMoveHit(target, user, moveInst);
+    moveResult = trySpreadMoveHit(*target, user, moveInst);
     break;
   }
   case Target::ADJACENT_ALLY: {
@@ -1054,7 +1070,7 @@ bool BattleState::useMoveInner(Pokemon &opp, Pokemon &user, MoveInstance &moveIn
   }
   // Check move failure
   if (!moveResult) {
-    applyOnMoveFail(target, user, moveInst);
+    applyOnMoveFail(*target, user, moveInst);
     return false;
   }
   // // TODO: Secondary effects: onAfterMoveSecondarySelf, onEmergencyExit
@@ -1087,25 +1103,13 @@ int BattleState::calcRecoilDamage(int moveDmg, MoveInstance &moveInst, int userM
   auto [numer, denom] = moveInst.getRecoil();
   return std::max(1, moveDmg * numer / denom);
 }
-// "try" and "hit" are because the move might miss for pre-condition/immunity/accuracy reasons
-// "spreadMove" is because it includes the direct-damage dealing part of the move
-// Returns whether or not the move did anything.
-// TODO:
-// - onTryHit()
-// - entire hitStepBreakProtect
-// Do later:
-// - Figure out NOT_FAIL in applyOnTry and applyOnPrepareHit
-// - FutureSight
-// - PranksterBoost+Dark
-// - Check BlunderPolicy boost effect flag
-// - entire hitStepStealBoosts
-// - smartTarget
-// - gotAttacked
-// - Check ending StompingTantrum case/logic
-bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
+bool BattleState::checkHit(Pokemon &user, Pokemon &target, MoveInstance &moveInst, bool changeState) {
   Move &move = moveInst.moveData;
   // onTry() and onPrepareHit():
-  if (!applyOnTry(user, target, moveInst) || !applyOnPrepareHit(user, target, moveInst)) {
+  if(!applyOnTry(user, target, moveInst)) {
+    return false;
+  }
+  if(changeState && !applyOnPrepareHit(user, target, moveInst)) {
     // Q: What is NOT_FAIL? When moves return it, it actually seems to be a failure signal?
     // NOT_FAIL=="" has truthiness *false*
     // But by returning hitResult === NOT_FAIL; it implies it shouldn't be considered a failed
@@ -1122,8 +1126,8 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
   }
   // potential smartTarget adjustment
   // hitStepTryHitEvent():
-  if (hit) {
-    // TODO: onTryHit():
+  if (hit && changeState) {
+    applyOnTryHitStep(target, user, moveInst);
   }
   // hitStepTypeImmunity():
   if (hit) {
@@ -1158,11 +1162,11 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
     }
   }
   // hitStepAccuracy():
-  if (hit) {
+  if (hit && changeState) {
     auto accuracy = move.accuracy;
     bool is_ohko = moveInst.isOHKO();
     bool skip = false;
-    if (is_ohko) {
+    if (is_ohko) { // OHKO case
       if (!target.isSemiInvulnerable()) {
         accuracy = {30};
         if (move.id == MoveId::SHEERCOLD && !user.has_type(Type::ICE)) {
@@ -1194,12 +1198,12 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
       if (!hit && !is_ohko && user.has_item(Item::BLUNDER_POLICY) && user.useItem(false, false)) {
         // TODO: Check that this is the correct effect kind
         ModifierTable boostTable = {{ModifierId::SPEED, 2}};
-        user.boost(boostTable, EffectKind::NO_EFFECT);
+        user.boost(boostTable, EffectKind::NO_EFFECT, true);
       }
     }
   }
   // hitStepBreakProtect():
-  if (hit) {
+  if (hit && changeState) {
     if (moveInst.breaksProtect()) {
       bool broke = false;
       // TODO: Check single-target protects
@@ -1209,6 +1213,26 @@ bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance 
       }
     }
   }
+  return hit;
+}
+// "try" and "hit" are because the move might miss for pre-condition/immunity/accuracy reasons
+// "spreadMove" is because it includes the direct-damage dealing part of the move
+// Returns whether or not the move did anything.
+// TODO:
+// - onTryHit()
+// - entire hitStepBreakProtect
+// Do later:
+// - Figure out NOT_FAIL in applyOnTry and applyOnPrepareHit
+// - FutureSight
+// - PranksterBoost+Dark
+// - Check BlunderPolicy boost effect flag
+// - entire hitStepStealBoosts
+// - smartTarget
+// - gotAttacked
+// - Check ending StompingTantrum case/logic
+bool BattleState::trySpreadMoveHit(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
+  Move &move = moveInst.moveData;
+  bool hit = checkHit(user, target, moveInst, true);
   // Do later: hitStepStealBoosts(): only Marshadow's Spectral Thief
   // hitStepMoveHitLoop():
   int damageDealt = 0;
@@ -1302,7 +1326,7 @@ bool BattleState::applySecondaryEffect(Pokemon &target, Pokemon &source, Seconda
   case Secondary::BOOST: {
     if (!target.fainted) {
       // TODO: Check this is the right sourceEffect flag
-      if (target.boost(effect.boosts, EffectKind::MOVE)) {
+      if (target.boost(effect.boosts, EffectKind::MOVE, false)) {
         didSomething.set_succ();
       } else {
         didSomething.set_fail();
@@ -1313,7 +1337,7 @@ bool BattleState::applySecondaryEffect(Pokemon &target, Pokemon &source, Seconda
   case Secondary::SELFBOOST: {
     if (!target.fainted) {
       // TODO: Check this is the right sourceEffect flag
-      if (target.boost(effect.selfBoosts, EffectKind::MOVE)) {
+      if (target.boost(effect.selfBoosts, EffectKind::MOVE, true)) {
         didSomething.set_succ();
       } else {
         didSomething.set_fail();
@@ -1353,10 +1377,11 @@ DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInsta
   bool targeting = true;
   // Combines TryHitField, TryHitSide, and TryHit
   // Q: Why isn't this a MoveHitStep?
-  if (!applyOnTryHit(target, user, moveInst)) {
-    dmgResult.set_fail();
-    return dmgResult;
-  }
+  // TODO: figure out difference with hitStepTryHitEvent
+  // if (!applyOnTryHit(target, user, moveInst)) {
+  //   dmgResult.set_fail();
+  //   return dmgResult;
+  // }
 
   // // Do later: Step 0 - Substitute check
   // if (move.target != Target::ALL && move.target != Target::ALLY_TEAM &&
@@ -1378,6 +1403,7 @@ DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInsta
     if (dmgResult.initialized && dmgResult.fail) {
       targeting = false;
     }
+    // std::cout << "damage: " << dmgResult.damageDealt << std::endl;
   }
 
   // Step 2 - spreadDamage()
@@ -1402,7 +1428,7 @@ DamageResultState BattleState::moveHit(Pokemon &target, Pokemon &user, MoveInsta
       if (!target.fainted) {
         auto boosts = moveInst.getBoosts();
         if (!boosts.empty()) {
-          hit = target.boost(boosts, EffectKind::NO_EFFECT);
+          hit = target.boost(boosts, EffectKind::NO_EFFECT, false);
         }
       }
       // heal
@@ -1580,6 +1606,7 @@ void BattleState::faintMessages() {
     Pokemon &pokemon = *faintQueue.front();
     if (!pokemon.fainted) {
       teams[pokemon.side].pokemonLeft--;
+      lastFaintSide = pokemon.side;
       // std::cout << "[BattleState::faintMessages] side " << pokemon.side << " dropped to " << teams[pokemon.side].pokemonLeft << " Pokemon left." << std::endl;
       // applyOnFaint(pokemon);
       // DestinyBond, Grudge, Sky Drop

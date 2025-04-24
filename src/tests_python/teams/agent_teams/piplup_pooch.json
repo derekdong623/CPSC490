@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Piplup",
+    "lvl": 8,
+    "gender": "male",
+    "nature": "Bashful",
+    "ability": "Defiant",
+    "moves": [
+      "Pound", "Growl", "Bubble", "Pluck"
+    ]
+  },
+  {
+    "name": "Poochyena",
+    "lvl": 8,
+    "gender": "male",
+    "nature": "Bashful",
+    "ability": "Run_Away",
+    "moves": [
+      "Tackle", "SandAttack", "OdorSleuth"
+    ]
+  }
+]

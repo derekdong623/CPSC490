@@ -59,6 +59,7 @@ struct Move {
 struct MoveDict {
   std::unordered_map<MoveId, Move> dict;
   MoveDict();
+  void patch_move_dict();
 };
 extern MoveDict moveDict;
 } // namespace pkmn

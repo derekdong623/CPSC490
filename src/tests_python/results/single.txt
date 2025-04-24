@@ -1,0 +1,548 @@
+Start time: 2025-04-23 21:34:39.706841
+Starting turn 1...
+
+Agent active:
+	PokeName.PARAS
+	HP: 30
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CARVANHA
+	HP: 34
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP30:POS0 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP38:POS2 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP34:POS0 PokeName.CROAGUNK:HP37:POS1 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:2:MoveId.STUNSPORE]
+Opp choice:  [move:3:MoveId.POISONFANG]
+
+Agent active:
+	PokeName.PARAS
+	HP: 8
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CARVANHA
+	HP: 34
+	item: Item.ORAN_BERRY
+	Status.PARALYSIS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP8:POS0 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP38:POS2 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP34:POS0 PokeName.CROAGUNK:HP37:POS1 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 2...
+
+Agent active:
+	PokeName.PARAS
+	HP: 8
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CARVANHA
+	HP: 34
+	item: Item.ORAN_BERRY
+	Status.PARALYSIS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP8:POS0 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP38:POS2 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP34:POS0 PokeName.CROAGUNK:HP37:POS1 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:0:MoveId.BUGBITE]
+Opp choice:  [move:3:MoveId.POISONFANG]
+
+Agent active:
+	PokeName.PARAS
+	HP: 15
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CARVANHA
+	HP: 0
+	item: Item.NO_ITEM
+	Status.PARALYSIS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS0 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP38:POS2 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS0 PokeName.CROAGUNK:HP37:POS1 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Opp choice (instaswitch):  [swap:1:PokeName.CROAGUNK]
+
+Agent active:
+	PokeName.PARAS
+	HP: 15
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CROAGUNK
+	HP: 37
+	item: Item.SALAC_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS0 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP38:POS2 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP37:POS0 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 3...
+
+Agent active:
+	PokeName.PARAS
+	HP: 15
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CROAGUNK
+	HP: 37
+	item: Item.SALAC_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS0 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP38:POS2 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP37:POS0 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [swap:2:PokeName.PIPLUP]
+Opp choice:  [move:2:MoveId.POISONSTING]
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 31
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CROAGUNK
+	HP: 37
+	item: Item.SALAC_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP31:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP37:POS0 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 4...
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 31
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CROAGUNK
+	HP: 37
+	item: Item.SALAC_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP31:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP37:POS0 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:3:MoveId.GROWL]
+Opp choice:  [move:1:MoveId.ROCKSMASH]
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 21
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CROAGUNK
+	HP: 37
+	item: Item.SALAC_BERRY
+	Status.NO_STATUS
+	Boosts: 	;ModifierId.ATTACK,-1
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP21:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP37:POS0 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 5...
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 21
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CROAGUNK
+	HP: 37
+	item: Item.SALAC_BERRY
+	Status.NO_STATUS
+	Boosts: 	;ModifierId.ATTACK,-1
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP21:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP37:POS0 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:2:MoveId.POUND]
+Opp choice:  [move:1:MoveId.ROCKSMASH]
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 14
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CROAGUNK
+	HP: 27
+	item: Item.SALAC_BERRY
+	Status.NO_STATUS
+	Boosts: 	;ModifierId.ATTACK,-1
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP14:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP27:POS0 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 6...
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 14
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.CROAGUNK
+	HP: 27
+	item: Item.SALAC_BERRY
+	Status.NO_STATUS
+	Boosts: 	;ModifierId.ATTACK,-1
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP14:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP27:POS0 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:0:MoveId.PLUCK]
+Opp choice:  [move:1:MoveId.ROCKSMASH]
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 7
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	;ModifierId.SPEED,1
+Opp active:
+	PokeName.CROAGUNK
+	HP: 0
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP7:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS0 PokeName.EXEGGCUTE:HP37:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Opp choice (instaswitch):  [swap:2:PokeName.EXEGGCUTE]
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 7
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	;ModifierId.SPEED,1
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP7:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 7...
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 7
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	;ModifierId.SPEED,1
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP7:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:3:MoveId.GROWL]
+Opp choice:  [move:1:MoveId.BULLETSEED]
+
+Agent active:
+	PokeName.PIPLUP
+	HP: 0
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP0:POS0 PokeName.RALTS:HP31:POS3 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice (instaswitch):  [swap:3:PokeName.RALTS]
+
+Agent active:
+	PokeName.RALTS
+	HP: 31
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP31:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 8...
+
+Agent active:
+	PokeName.RALTS
+	HP: 31
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP35:POS1 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP31:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [swap:1:PokeName.BUNEARY]
+Opp choice:  [move:1:MoveId.BULLETSEED]
+
+Agent active:
+	PokeName.BUNEARY
+	HP: 16
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP16:POS0 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP31:POS1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 9...
+
+Agent active:
+	PokeName.BUNEARY
+	HP: 16
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP16:POS0 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP31:POS1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:3:MoveId.SPLASH]
+Opp choice:  [move:1:MoveId.BULLETSEED]
+
+Agent active:
+	PokeName.BUNEARY
+	HP: 0
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP0:POS0 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP31:POS1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice (instaswitch):  [swap:3:PokeName.RALTS]
+
+Agent active:
+	PokeName.RALTS
+	HP: 31
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP0:POS1 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP31:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 10...
+
+Agent active:
+	PokeName.RALTS
+	HP: 31
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 37
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP0:POS1 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP31:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP37:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:0:MoveId.CONFUSION]
+Opp choice:  [move:1:MoveId.BULLETSEED]
+
+Agent active:
+	PokeName.RALTS
+	HP: 17
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 34
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP0:POS1 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP17:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP34:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 11...
+
+Agent active:
+	PokeName.RALTS
+	HP: 17
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 34
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP0:POS1 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP17:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP34:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:1:MoveId.DISARMINGVOICE]
+Opp choice:  [move:1:MoveId.BULLETSEED]
+
+Agent active:
+	PokeName.RALTS
+	HP: 0
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 28
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS2 PokeName.BUNEARY:HP0:POS1 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP0:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP28:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice (instaswitch):  [swap:0:PokeName.PARAS]
+
+Agent active:
+	PokeName.PARAS
+	HP: 15
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 28
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS0 PokeName.BUNEARY:HP0:POS1 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP0:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP28:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Starting turn 12...
+
+Agent active:
+	PokeName.PARAS
+	HP: 15
+	item: Item.NO_ITEM
+	Status.NO_STATUS
+	Boosts: 	
+Opp active:
+	PokeName.EXEGGCUTE
+	HP: 28
+	item: Item.ORAN_BERRY
+	Status.NO_STATUS
+	Boosts: 	
+Agent team:
+	PokeName.PARAS:HP15:POS0 PokeName.BUNEARY:HP0:POS1 PokeName.PIPLUP:HP0:POS3 PokeName.RALTS:HP0:POS2 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+Opp team:
+	PokeName.CARVANHA:HP0:POS1 PokeName.CROAGUNK:HP0:POS2 PokeName.EXEGGCUTE:HP28:POS0 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1 PokeName.NONE:HP0:POS-1
+
+Agent choice:  [move:0:MoveId.BUGBITE]
+Opp choice:  [move:0:MoveId.CONFUSION]
+
+Payoff: 150

@@ -3,6 +3,24 @@
 
 #include <optional>
 namespace pkmn {
+bool has_flinching_move(Pokemon *pkmn) {
+  static const std::vector<MoveId> flinchingMoves = {
+      MoveId::AIRSLASH,  MoveId::ASTONISH,       MoveId::BITE,        MoveId::BONECLUB,
+      MoveId::DARKPULSE, MoveId::DOUBLEIRONBASH, MoveId::DRAGONRUSH,  MoveId::EXTRASENSORY,
+      MoveId::FAKEOUT,   MoveId::FIERYWRATH,     MoveId::HEADBUTT,    MoveId::HEARTSTAMP,
+      MoveId::HYPERFANG, MoveId::ICICLECRASH,    MoveId::IRONHEAD,    MoveId::MOUNTAINGALE,
+      MoveId::NEEDLEARM, MoveId::ROCKSLIDE,      MoveId::ROLLINGKICK, MoveId::SKYATTACK,
+      MoveId::SNORE,     MoveId::STEAMROLLER,    MoveId::STOMP,       MoveId::TWISTER,
+      MoveId::UPPERHAND, MoveId::WATERFALL,      MoveId::ZENHEADBUTT, MoveId::ZINGZAP,
+  };
+  for (int i = 0; i < 4; i++) {
+    if (std::find(flinchingMoves.begin(), flinchingMoves.end(), pkmn->moves[i].id) !=
+        flinchingMoves.end()) {
+      return true;
+    }
+  }
+  return false;
+}
 Pokemon::Pokemon(PokeName name_, int lvl_, Gender gender_, const Nature nature_, const Stats &IVs,
                  const Stats &EVs)
     : name(name_), species(pokedex.species_dict[name_]), nature(nature_), lvl(lvl_),
@@ -13,6 +31,7 @@ Pokemon::Pokemon(PokeName name_, int lvl_, Gender gender_, const Nature nature_,
   current_hp = init_stats.hp;
   auto tp = pokedex.type_dict[name_]; // shorthand
   types[0] = tp.first, types[1] = tp.second;
+  hasFlinchingMove = has_flinching_move(this);
   clearVolatile(true);
 }
 
@@ -63,7 +82,7 @@ void Pokemon::set_ability(Ability ability_) {
 }
 void Pokemon::set_item(Item item_) {
   if (lock) {
-    std::cerr << "[Pokemon::set_item] Tried changing item of locked Pokemon." << std::endl;
+    // std::cerr << "[Pokemon::set_item] Tried changing item of locked Pokemon." << std::endl;
     return;
   }
   item = item_;
@@ -73,6 +92,13 @@ void Pokemon::set_item(Item item_) {
 void Pokemon::set_type(std::vector<Type> toTypes) {
   types[0] = toTypes[0];
   types[1] = toTypes.size() > 1 ? toTypes[1] : Type::NO_TYPE;
+}
+bool Pokemon::has_move(MoveId move) {
+  for (int i = 0; i < 4; i++) {
+    if (moves[i].id == move)
+      return true;
+  }
+  return false;
 }
 // TODO: finish, or at least track progress
 bool Pokemon::has_volatile(VolatileId vol) {
@@ -97,6 +123,9 @@ bool Pokemon::has_volatile(VolatileId vol) {
   }
   case VolatileId::SPARKLINGARIA: {
     return sparklingAria;
+  }
+  case VolatileId::LEECHSEED: {
+    return leechSeed;
   }
   default:
     return false;
@@ -202,10 +231,15 @@ int Pokemon::getStat(ModifierId statName, bool boosted, bool modified) const {
   // TODO: Wonder Room special case
   if (boosted) {
     // TODO: onModifyBoost
-    // statVal = boostStatVal(statVal, boosts[statName]);
+    if(boosts.find(statName) != boosts.end())
+      statVal = boostStatVal(statVal, boosts.at(statName));
   }
   if (modified) {
     // TODO: onModifyStat for each stat
+    // NB: I think only ever used for spe?
+    if (statName == ModifierId::SPEED) {
+      statVal = applyOnModifySpeed(statVal);
+    }
   }
   // Can probably skip truncation
   return statVal;
@@ -245,7 +279,7 @@ bool Pokemon::isSemiInvulnerable() {
 // Returns false with failure; if no issue but no boosting, still returns true.
 // NB: With callbacks onChangeBoost(), onTryBoost(), onAfterEachBoost(), onAfterBoost(),
 // and of course bound to [-6, 6].
-bool Pokemon::boost(ModifierTable &boostTable, EffectKind effectKind) {
+bool Pokemon::boost(ModifierTable &boostTable, EffectKind effectKind, bool isSelf) {
   if (!current_hp)
     return false;
   if (!isActive)
@@ -253,11 +287,11 @@ bool Pokemon::boost(ModifierTable &boostTable, EffectKind effectKind) {
   // // Q: I don't think it's strictly necessary? Doesn't seem to change outcome.
   // if(!teams[1-side].pokemonLeft) return;
   applyOnChangeBoost(boostTable, effectKind);
-  applyOnTryBoost(boostTable, effectKind);
+  applyOnTryBoost(boostTable, effectKind, isSelf);
   for (auto &[mod, b] : boostTable) {
     int boostBy = boostStat(mod, b);
     if (boostBy)
-      applyOnAfterEachBoost(b, effectKind);
+      applyOnAfterEachBoost(b, effectKind, isSelf);
   }
   applyOnAfterBoost(boostTable, effectKind);
   for (auto &[mod, b] : boostTable) {
@@ -318,7 +352,7 @@ bool Pokemon::useItem(bool eat, bool forceEat) {
   // onUseItem seems to do nothing
   // item boosts
   ModifierTable boostTable = getItemBoosts(item);
-  boost(boostTable, EffectKind::NO_EFFECT);
+  boost(boostTable, EffectKind::NO_EFFECT, true);
   bool succEat = eat && (forceEat || applyOnTryEatItem());
   if (succEat) {
     applyOnEat(item);
@@ -342,15 +376,15 @@ bool Pokemon::useItem(bool eat, bool forceEat) {
 }
 // Returns nullopt for failure
 std::optional<Item> Pokemon::takeItem(Pokemon &taker) {
-  if(item == Item::NO_ITEM || itemKnockedOff) {
+  if (item == Item::NO_ITEM || itemKnockedOff) {
     return std::nullopt;
   }
-  if(applyOnTakeItem(item, taker)) {
+  if (applyOnTakeItem(item, taker)) {
     Item oldItem = item;
     item = Item::NO_ITEM;
     // TODO: clear target.itemState
     // onEnd(): MirrorHerb N/A, UtilityUmbrella
-    if(oldItem == Item::UTILITY_UMBRELLA) {
+    if (oldItem == Item::UTILITY_UMBRELLA) {
       // Do later: weatherchange
     }
     // N/A onAfterTakeItem()
@@ -366,7 +400,8 @@ int Pokemon::applyHeal(int damage) {
     return 0;
   if (current_hp <= 0)
     return -1;
-  if(!isActive) return -1;
+  if (!isActive)
+    return -1;
   if (current_hp >= stats.hp)
     return -1;
   current_hp += damage;
@@ -412,6 +447,7 @@ int Pokemon::deductPP(MoveSlot &moveSlot) {
 // Decrements durations of valid volatiles
 // - Confusion uses time not duration
 void Pokemon::decrVolDurations() {
-  if(flinch) flinch = false;
+  if (flinch)
+    flinch = false;
 }
 } // namespace pkmn

@@ -15,6 +15,7 @@ struct MoveActionPriority {
   int speed = -1;
   int side = -1;
   int moveInd = -1;
+  // Action order should be *decreasing* priority, fractionalPriority, and speed.
   bool operator<(const MoveActionPriority &other) const {
     return std::tie(priority, fractionalPriority, speed) >
            std::tie(other.priority, other.fractionalPriority, other.speed);
@@ -22,10 +23,13 @@ struct MoveActionPriority {
 };
 // Used to sort which switch happens first
 struct SwitchAction {
+  bool instaswitch = false;
   int speed = -1;
   int side = -1;
   int newPokeInd = -1;
-  bool operator<(const SwitchAction &other) const { return speed < other.speed; }
+  bool operator<(const SwitchAction &other) const {
+    return std::make_tuple(!instaswitch, speed) < std::make_tuple(!other.instaswitch, other.speed);
+  }
 };
 // Doubles as choices available to player and player's choice
 struct Choice {
@@ -35,10 +39,10 @@ struct Choice {
   Choice() {}
   // Mega, move, swap
   Choice(bool meg, int mo, int sw) : mega(meg) {
-    if(mo >= 0)
-    move[mo] = true;
-    if(sw >= 0)
-    swap[sw] = true;
+    if (mo >= 0)
+      move[mo] = true;
+    if (sw >= 0)
+      swap[sw] = true;
   }
 };
 enum class SwitchResult {
@@ -71,7 +75,7 @@ struct Team {
   bool faintedLastTurn = false; // For Retaliate
   bool faintedThisTurn = false; // For faintedLastTurn -> Retaliate
 
-  bool add_pokemon(int slot, Pokemon pokemon, int lvl=0);
+  bool add_pokemon(int slot, Pokemon pokemon, int lvl = 0);
   void lockTeam();
 };
 /*
@@ -83,9 +87,11 @@ What to call to initialize a BattleState:
 class BattleState {
 public:
   std::array<Team, 2> teams = {}; // Player is on side 0
+  bool verbose = false;
   int turnNum = 0;
   bool midTurn = false;
   ActionKind currentAction = ActionKind::NONE;
+  int lastFaintSide = -1;
   // Weather/terrain, etc.
   Weather weather = Weather::NO_WEATHER;
   int weatherTurns = 0;
@@ -102,20 +108,23 @@ public:
   bool guaranteeHit = false; // Skip accuracy check on main hit
   // END DEBUG
   BattleState() {}
-  BattleState(DMGCalcOptions ddo): defaultDmgOptions(ddo) {}
+  BattleState(DMGCalcOptions ddo) : defaultDmgOptions(ddo) {}
   bool set_team(int side, Team &team);
   void set_switch_options(int side);
   void set_move_options(int side);
   void set_choices();
   bool startBattle();
   BattleState runTurnPy();
+  void fillOpponentChoice(int side); // OPPONENT AI
   void runMove(MoveSlot &moveSlot, Pokemon &user, Pokemon &target);
   DamageResultState moveHit(Pokemon &target, Pokemon &user, MoveInstance &);
-  int checkWin(int lastFaintSide = -1);
+  int checkWin();
   DamageResultState getDamage(Pokemon &source, Pokemon &target, MoveInstance &moveInst,
                               DMGCalcOptions options); // Exported for test_init
-  Pokemon &getActivePokemon(int side) {return teams[side].pkmn[teams[side].activeInd];}
-  bool isInstaSwitch() {return teams[0].instaSwitch || teams[1].instaSwitch;}
+  Pokemon &getActivePokemon(int side) { return teams[side].pkmn[teams[side].activeInd]; }
+  int getActiveHP(int side) { return getActivePokemon(side).current_hp; }
+  bool isInstaSwitch() { return teams[0].instaSwitch || teams[1].instaSwitch; }
+
 private:
   // bool use_verbose_output = false;
   // std::vector<MoveInstance> verbose_outputs;
@@ -133,6 +142,7 @@ private:
 
   /* START Event callbacks */
 
+  void applyOnDisableMove(Pokemon &);
   void applyOnTrapPokemon(Pokemon &);
   void applyOnBeforeSwitchOut(Pokemon &);
   void applyOnSwitchOut(Pokemon &);
@@ -151,7 +161,7 @@ private:
   void applyOnStart(Pokemon &pokemon);
   void applyOnFlinch(Pokemon &pokemon);
   bool applyOnBeforeMoveST(Pokemon &pokemon);
-  bool applyOnBeforeMove(Pokemon &pokemon);
+  bool applyOnBeforeMove(Pokemon &pokemon, MoveInstance &);
   bool applyOnLockMove(Pokemon &user);
   void applyOnAfterMove(Pokemon &target, Pokemon &user, MoveInstance &);
   bool applyOnChargeMove(Pokemon &user);
@@ -167,7 +177,7 @@ private:
   void applyOnAfterMoveSecondary(Pokemon &target, Pokemon &user, MoveInstance &);
   void applyOnEmergencyExit(int prevHP, Pokemon &pokemon);
   void applyOnAfterUseItem(Pokemon &target);
-  bool applyOnTryHit(Pokemon &target, Pokemon &user, MoveInstance &);
+  bool applyOnTryHitStep(Pokemon &target, Pokemon &user, MoveInstance &);
   bool applyOnModifySecondaries(Pokemon &target, MoveInstance &, Secondary);
   bool applyOnDragOut(Pokemon &target);
   void applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user, MoveInstance &);
@@ -204,6 +214,7 @@ private:
   void runMoveEffects(bool keepTargeting, Pokemon &target, Pokemon &source, MoveInstance &);
   bool useMoveInner(Pokemon &opp, Pokemon &pokemon, MoveInstance &);
   bool useMove(Pokemon &opp, Pokemon &pokemon, MoveInstance &);
+  bool checkHit(Pokemon &user, Pokemon &target, MoveInstance &, bool changeState);
   bool trySpreadMoveHit(Pokemon &target, Pokemon &pokemon, MoveInstance &);
   bool applySecondaryEffect(Pokemon &target, Pokemon &source, SecondaryEffect, MoveInstance &);
   void faint(Pokemon &pkmn);

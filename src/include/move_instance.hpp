@@ -6,7 +6,7 @@ namespace pkmn {
 // Stores data on the running of a move
 struct MoveInstance {
   Move moveData;
-  MoveId id=MoveId::NONE;
+  MoveId id = MoveId::NONE;
   int priority = 0;
   int totalDamage = 0;
   int selfHealed = 0;
@@ -19,6 +19,7 @@ struct MoveInstance {
   bool hasBounced = false;
   bool hasSheerForce = false; // Flag set in onModifyMove
   bool infiltrates = false;   // Flag set in onModifyMove
+  bool ignoreEvasion = false; // Flag set in onModifyMove
   MoveInstance(Move &move) : id(move.id) { moveData = move; }
   // This constructor should ONLY be used for testing!
   MoveInstance(MoveId moveId) : id(moveId) { moveData = moveDict.dict[moveId]; }

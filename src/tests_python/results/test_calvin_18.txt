@@ -1,0 +1,4911 @@
+Start time: 2025-04-24 01:28:17.155401
+Max value: 40
+Max value: 42
+Max value: 51
+Max value: 48
+Max value: 51
+Max value: 33
+Max value: 28
+Max value: 55
+Max value: 53
+Max value: 90
+Avg_rollouts 56.6 Turns 10
+Pokemon left: 1
+Max value: 41
+Max value: 41
+Max value: 48
+Max value: 51
+Max value: 94
+Avg_rollouts 60.4 Turns 5
+Pokemon left: 1
+Max value: 40
+Max value: 43
+Max value: 47
+Max value: 46
+Max value: 44
+Max value: 53
+Max value: 36
+Max value: 68
+Max value: 76
+Avg_rollouts 57.666666666666664 Turns 9
+Pokemon left: 1
+Max value: 33
+Max value: 23
+Max value: 52
+Max value: 48
+Max value: 50
+Max value: 53
+Max value: 83
+Max value: 51
+Max value: 90
+Max value: 78
+Avg_rollouts 70.2 Turns 10
+Pokemon left: 1
+Max value: 37
+Max value: 39
+Max value: 49
+Max value: 37
+Max value: 57
+Max value: 62
+Max value: 108
+Avg_rollouts 61.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 45
+Max value: 41
+Max value: 42
+Max value: 40
+Max value: 53
+Max value: 47
+Max value: 54
+Max value: 94
+Max value: 83
+Max value: 81
+Max value: 134
+Avg_rollouts 68.83333333333333 Turns 12
+Pokemon left: 1
+Max value: 39
+Max value: 42
+Max value: 35
+Max value: 51
+Max value: 51
+Max value: 60
+Max value: 67
+Max value: 89
+Avg_rollouts 58.25 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 31
+Max value: 48
+Max value: 50
+Max value: 50
+Max value: 68
+Max value: 114
+Avg_rollouts 61.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 28
+Max value: 39
+Max value: 55
+Max value: 41
+Max value: 52
+Max value: 41
+Max value: 59
+Max value: 59
+Max value: 107
+Max value: 92
+Avg_rollouts 64.0909090909091 Turns 11
+Pokemon left: 1
+Starting game: 10, Current winrate: 1.000
+Max value: 38
+Max value: 39
+Max value: 26
+Max value: 52
+Max value: 94
+Avg_rollouts 58.2 Turns 5
+Pokemon left: 1
+Max value: 38
+Max value: 22
+Max value: 41
+Max value: 49
+Max value: 42
+Max value: 66
+Max value: 123
+Avg_rollouts 63.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 26
+Max value: 44
+Max value: 41
+Max value: 26
+Max value: 42
+Max value: 57
+Max value: 45
+Max value: 88
+Avg_rollouts 55.25 Turns 8
+Pokemon left: 1
+Max value: 35
+Max value: 39
+Max value: 43
+Max value: 52
+Max value: 43
+Max value: 47
+Max value: 50
+Max value: 75
+Avg_rollouts 57.5 Turns 8
+Pokemon left: 1
+Max value: 34
+Max value: 33
+Max value: 45
+Max value: 53
+Max value: 46
+Max value: 31
+Max value: 36
+Max value: 49
+Max value: 83
+Max value: 63
+Max value: 79
+Max value: 137
+Avg_rollouts 68.5 Turns 12
+Loss
+Max value: 41
+Max value: 26
+Max value: 32
+Max value: 56
+Max value: 50
+Max value: 63
+Max value: 77
+Avg_rollouts 56.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 35
+Max value: 36
+Max value: 47
+Max value: 43
+Max value: 46
+Max value: 51
+Max value: 86
+Avg_rollouts 53.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 35
+Max value: 39
+Max value: 38
+Max value: 46
+Max value: 53
+Max value: 37
+Max value: 41
+Max value: 67
+Avg_rollouts 52.666666666666664 Turns 9
+Pokemon left: 1
+Max value: 41
+Max value: 33
+Max value: 37
+Max value: 30
+Max value: 36
+Max value: 51
+Max value: 71
+Max value: 92
+Avg_rollouts 60.75 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 30
+Max value: 35
+Max value: 48
+Max value: 41
+Max value: 40
+Max value: 71
+Max value: 140
+Avg_rollouts 62.625 Turns 8
+Pokemon left: 1
+Starting game: 20, Current winrate: 0.947
+Max value: 46
+Max value: 37
+Max value: 48
+Max value: 39
+Max value: 62
+Max value: 93
+Avg_rollouts 58.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 37
+Max value: 43
+Max value: 25
+Max value: 50
+Max value: 42
+Max value: 69
+Max value: 125
+Avg_rollouts 63.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 36
+Max value: 28
+Max value: 55
+Max value: 49
+Max value: 88
+Avg_rollouts 58.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 44
+Max value: 34
+Max value: 45
+Max value: 49
+Max value: 44
+Max value: 64
+Max value: 69
+Max value: 140
+Avg_rollouts 62.75 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 48
+Max value: 50
+Max value: 50
+Max value: 71
+Max value: 106
+Max value: 51
+Max value: 102
+Max value: 82
+Max value: 59
+Max value: 91
+Avg_rollouts 74.9090909090909 Turns 11
+Pokemon left: 1
+Max value: 36
+Max value: 36
+Max value: 49
+Max value: 49
+Max value: 40
+Max value: 31
+Max value: 78
+Max value: 68
+Avg_rollouts 59.25 Turns 8
+Pokemon left: 1
+Max value: 43
+Max value: 39
+Max value: 52
+Max value: 34
+Max value: 52
+Max value: 44
+Max value: 65
+Max value: 140
+Avg_rollouts 65.125 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 33
+Max value: 43
+Max value: 51
+Max value: 33
+Max value: 35
+Max value: 46
+Max value: 52
+Max value: 62
+Max value: 133
+Avg_rollouts 59.8 Turns 10
+Loss
+Max value: 41
+Max value: 37
+Max value: 47
+Max value: 50
+Max value: 70
+Avg_rollouts 52.8 Turns 5
+Pokemon left: 1
+Max value: 43
+Max value: 33
+Max value: 47
+Max value: 39
+Max value: 48
+Max value: 68
+Max value: 91
+Avg_rollouts 59.42857142857143 Turns 7
+Pokemon left: 1
+Starting game: 30, Current winrate: 0.931
+Max value: 36
+Max value: 37
+Max value: 49
+Max value: 38
+Max value: 38
+Max value: 51
+Max value: 34
+Max value: 126
+Avg_rollouts 62.5 Turns 8
+Pokemon left: 1
+Max value: 31
+Max value: 42
+Max value: 38
+Max value: 51
+Max value: 49
+Max value: 56
+Max value: 67
+Max value: 85
+Avg_rollouts 59.625 Turns 8
+Pokemon left: 1
+Max value: 42
+Max value: 22
+Max value: 50
+Max value: 42
+Max value: 64
+Max value: 64
+Max value: 112
+Avg_rollouts 62.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 25
+Max value: 40
+Max value: 56
+Max value: 59
+Max value: 66
+Max value: 108
+Max value: 103
+Avg_rollouts 67.25 Turns 8
+Pokemon left: 1
+Max value: 42
+Max value: 24
+Max value: 26
+Max value: 51
+Max value: 41
+Max value: 51
+Max value: 47
+Max value: 47
+Max value: 113
+Avg_rollouts 59.333333333333336 Turns 9
+Pokemon left: 1
+Max value: 41
+Max value: 41
+Max value: 57
+Max value: 44
+Max value: 40
+Max value: 51
+Max value: 53
+Max value: 54
+Max value: 55
+Max value: 54
+Max value: 44
+Max value: 57
+Max value: 81
+Avg_rollouts 59.38461538461539 Turns 13
+Loss
+Max value: 22
+Max value: 41
+Max value: 52
+Max value: 41
+Max value: 30
+Max value: 48
+Max value: 49
+Max value: 74
+Avg_rollouts 59.0 Turns 8
+Pokemon left: 1
+Max value: 44
+Max value: 38
+Max value: 42
+Max value: 50
+Max value: 31
+Max value: 95
+Avg_rollouts 57.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 32
+Max value: 37
+Max value: 44
+Max value: 45
+Max value: 48
+Max value: 56
+Max value: 58
+Max value: 120
+Avg_rollouts 61.875 Turns 8
+Pokemon left: 1
+Max value: 41
+Max value: 35
+Max value: 32
+Max value: 52
+Max value: 49
+Max value: 68
+Max value: 106
+Avg_rollouts 63.857142857142854 Turns 7
+Pokemon left: 1
+Starting game: 40, Current winrate: 0.923
+Max value: 38
+Max value: 35
+Max value: 36
+Max value: 50
+Max value: 69
+Avg_rollouts 53.2 Turns 5
+Pokemon left: 1
+Max value: 41
+Max value: 24
+Max value: 48
+Max value: 46
+Max value: 30
+Max value: 94
+Max value: 109
+Avg_rollouts 65.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 33
+Max value: 45
+Max value: 52
+Max value: 44
+Max value: 69
+Max value: 92
+Avg_rollouts 59.0 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 43
+Max value: 41
+Max value: 38
+Max value: 37
+Max value: 44
+Max value: 51
+Max value: 87
+Avg_rollouts 54.125 Turns 8
+Pokemon left: 1
+Max value: 46
+Max value: 30
+Max value: 26
+Max value: 45
+Max value: 53
+Max value: 116
+Avg_rollouts 63.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 36
+Max value: 41
+Max value: 45
+Max value: 44
+Max value: 28
+Max value: 70
+Max value: 97
+Avg_rollouts 61.0 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 18
+Max value: 26
+Max value: 49
+Max value: 50
+Max value: 48
+Max value: 49
+Max value: 46
+Max value: 43
+Max value: 45
+Max value: 41
+Max value: 40
+Max value: 64
+Avg_rollouts 51.15384615384615 Turns 13
+Pokemon left: 1
+Max value: 31
+Max value: 41
+Max value: 33
+Max value: 27
+Max value: 49
+Max value: 49
+Max value: 100
+Avg_rollouts 60.0 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 36
+Max value: 48
+Max value: 45
+Max value: 33
+Max value: 44
+Max value: 30
+Max value: 46
+Max value: 59
+Avg_rollouts 54.44444444444444 Turns 9
+Pokemon left: 1
+Max value: 28
+Max value: 42
+Max value: 48
+Max value: 32
+Max value: 49
+Max value: 44
+Max value: 50
+Max value: 45
+Max value: 55
+Max value: 85
+Max value: 134
+Avg_rollouts 63.45454545454545 Turns 11
+Loss
+Starting game: 50, Current winrate: 0.918
+Max value: 38
+Max value: 30
+Max value: 56
+Max value: 49
+Max value: 40
+Max value: 87
+Avg_rollouts 60.0 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 39
+Max value: 52
+Max value: 50
+Max value: 46
+Max value: 67
+Max value: 108
+Avg_rollouts 60.0 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 47
+Max value: 48
+Max value: 37
+Max value: 40
+Max value: 54
+Max value: 104
+Max value: 117
+Max value: 107
+Avg_rollouts 69.66666666666667 Turns 9
+Pokemon left: 1
+Max value: 38
+Max value: 34
+Max value: 53
+Max value: 41
+Max value: 51
+Max value: 51
+Max value: 79
+Max value: 97
+Max value: 53
+Avg_rollouts 68.66666666666667 Turns 9
+Pokemon left: 1
+Max value: 41
+Max value: 39
+Max value: 28
+Max value: 47
+Max value: 38
+Max value: 69
+Max value: 111
+Avg_rollouts 61.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 28
+Max value: 23
+Max value: 38
+Max value: 48
+Max value: 49
+Max value: 68
+Max value: 96
+Avg_rollouts 57.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 29
+Max value: 50
+Max value: 42
+Max value: 49
+Max value: 44
+Max value: 83
+Max value: 55
+Max value: 83
+Avg_rollouts 62.55555555555556 Turns 9
+Pokemon left: 1
+Max value: 40
+Max value: 31
+Max value: 45
+Max value: 42
+Max value: 49
+Max value: 72
+Max value: 68
+Max value: 116
+Avg_rollouts 62.5 Turns 8
+Pokemon left: 1
+Max value: 43
+Max value: 37
+Max value: 42
+Max value: 49
+Max value: 52
+Max value: 101
+Avg_rollouts 58.5 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 38
+Max value: 46
+Max value: 51
+Max value: 30
+Max value: 58
+Max value: 76
+Max value: 138
+Avg_rollouts 67.0 Turns 8
+Pokemon left: 1
+Starting game: 60, Current winrate: 0.932
+Max value: 28
+Max value: 39
+Max value: 50
+Max value: 48
+Max value: 49
+Max value: 77
+Max value: 70
+Avg_rollouts 55.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 22
+Max value: 43
+Max value: 30
+Max value: 52
+Max value: 40
+Max value: 40
+Max value: 103
+Avg_rollouts 57.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 27
+Max value: 51
+Max value: 50
+Max value: 39
+Max value: 65
+Max value: 114
+Avg_rollouts 60.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 40
+Max value: 52
+Max value: 39
+Max value: 51
+Max value: 93
+Avg_rollouts 59.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 20
+Max value: 32
+Max value: 41
+Max value: 44
+Max value: 59
+Max value: 140
+Avg_rollouts 66.16666666666667 Turns 6
+Pokemon left: 1
+Max value: 37
+Max value: 31
+Max value: 25
+Max value: 40
+Max value: 63
+Max value: 83
+Max value: 103
+Avg_rollouts 67.14285714285714 Turns 7
+Pokemon left: 1
+Max value: 36
+Max value: 26
+Max value: 42
+Max value: 50
+Max value: 53
+Max value: 50
+Max value: 37
+Max value: 67
+Max value: 131
+Avg_rollouts 63.333333333333336 Turns 9
+Loss
+Max value: 37
+Max value: 39
+Max value: 50
+Max value: 43
+Max value: 50
+Max value: 40
+Max value: 58
+Max value: 112
+Avg_rollouts 59.875 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 36
+Max value: 48
+Max value: 45
+Max value: 45
+Max value: 64
+Max value: 136
+Avg_rollouts 65.85714285714286 Turns 7
+Pokemon left: 1
+Max value: 36
+Max value: 37
+Max value: 41
+Max value: 32
+Max value: 46
+Max value: 52
+Max value: 73
+Max value: 93
+Avg_rollouts 57.625 Turns 8
+Pokemon left: 1
+Starting game: 70, Current winrate: 0.928
+Max value: 30
+Max value: 25
+Max value: 26
+Max value: 48
+Max value: 51
+Max value: 97
+Max value: 92
+Avg_rollouts 60.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 41
+Max value: 54
+Max value: 49
+Max value: 48
+Max value: 42
+Max value: 66
+Max value: 54
+Max value: 99
+Max value: 117
+Avg_rollouts 66.8 Turns 10
+Pokemon left: 1
+Max value: 40
+Max value: 35
+Max value: 50
+Max value: 44
+Max value: 51
+Max value: 70
+Max value: 113
+Max value: 128
+Avg_rollouts 71.0 Turns 8
+Pokemon left: 1
+Max value: 31
+Max value: 41
+Max value: 42
+Max value: 43
+Max value: 50
+Max value: 47
+Max value: 94
+Avg_rollouts 58.0 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 37
+Max value: 41
+Max value: 27
+Max value: 47
+Max value: 89
+Avg_rollouts 56.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 30
+Max value: 30
+Max value: 37
+Max value: 20
+Max value: 44
+Max value: 53
+Max value: 84
+Max value: 109
+Max value: 115
+Avg_rollouts 67.11111111111111 Turns 9
+Loss
+Max value: 37
+Max value: 34
+Max value: 50
+Max value: 49
+Max value: 46
+Max value: 67
+Max value: 105
+Avg_rollouts 60.142857142857146 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 20
+Max value: 46
+Max value: 43
+Max value: 72
+Max value: 99
+Max value: 89
+Avg_rollouts 65.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 34
+Max value: 43
+Max value: 47
+Max value: 50
+Max value: 91
+Max value: 90
+Max value: 97
+Max value: 94
+Max value: 136
+Avg_rollouts 77.6 Turns 10
+Pokemon left: 1
+Max value: 37
+Max value: 36
+Max value: 27
+Max value: 41
+Max value: 39
+Max value: 66
+Max value: 94
+Avg_rollouts 55.714285714285715 Turns 7
+Pokemon left: 1
+Starting game: 80, Current winrate: 0.924
+Max value: 23
+Max value: 43
+Max value: 37
+Max value: 29
+Max value: 42
+Max value: 51
+Max value: 59
+Max value: 109
+Avg_rollouts 58.25 Turns 8
+Loss
+Max value: 31
+Max value: 33
+Max value: 46
+Max value: 30
+Max value: 38
+Max value: 48
+Max value: 51
+Max value: 57
+Max value: 93
+Avg_rollouts 56.44444444444444 Turns 9
+Pokemon left: 1
+Max value: 26
+Max value: 30
+Max value: 37
+Max value: 44
+Max value: 41
+Max value: 55
+Max value: 62
+Max value: 56
+Max value: 94
+Avg_rollouts 59.333333333333336 Turns 9
+Loss
+Max value: 40
+Max value: 40
+Max value: 45
+Max value: 27
+Max value: 45
+Max value: 44
+Max value: 76
+Avg_rollouts 53.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 27
+Max value: 24
+Max value: 16
+Max value: 48
+Max value: 34
+Max value: 51
+Max value: 41
+Max value: 27
+Max value: 51
+Max value: 81
+Max value: 60
+Avg_rollouts 53.18181818181818 Turns 11
+Pokemon left: 1
+Max value: 43
+Max value: 35
+Max value: 45
+Max value: 49
+Max value: 42
+Max value: 52
+Max value: 68
+Max value: 117
+Avg_rollouts 62.625 Turns 8
+Loss
+Max value: 42
+Max value: 30
+Max value: 34
+Max value: 32
+Max value: 34
+Max value: 69
+Max value: 63
+Max value: 101
+Avg_rollouts 62.75 Turns 8
+Pokemon left: 1
+Max value: 40
+Max value: 41
+Max value: 52
+Max value: 49
+Max value: 69
+Max value: 98
+Max value: 62
+Max value: 64
+Avg_rollouts 68.625 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 36
+Max value: 32
+Max value: 43
+Max value: 41
+Max value: 48
+Max value: 63
+Avg_rollouts 57.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 34
+Max value: 43
+Max value: 41
+Max value: 51
+Max value: 55
+Max value: 58
+Max value: 111
+Avg_rollouts 60.5 Turns 8
+Pokemon left: 1
+Starting game: 90, Current winrate: 0.899
+Max value: 38
+Max value: 37
+Max value: 31
+Max value: 53
+Max value: 84
+Avg_rollouts 57.4 Turns 5
+Pokemon left: 1
+Max value: 27
+Max value: 23
+Max value: 48
+Max value: 43
+Max value: 35
+Max value: 64
+Max value: 72
+Max value: 139
+Avg_rollouts 65.625 Turns 8
+Pokemon left: 1
+Max value: 36
+Max value: 34
+Max value: 32
+Max value: 46
+Max value: 23
+Max value: 65
+Avg_rollouts 54.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 37
+Max value: 38
+Max value: 35
+Max value: 47
+Max value: 31
+Max value: 46
+Max value: 51
+Max value: 69
+Max value: 107
+Max value: 117
+Avg_rollouts 66.5 Turns 10
+Pokemon left: 1
+Max value: 35
+Max value: 36
+Max value: 44
+Max value: 39
+Max value: 35
+Max value: 44
+Max value: 39
+Max value: 47
+Max value: 49
+Max value: 49
+Max value: 76
+Avg_rollouts 50.81818181818182 Turns 11
+Pokemon left: 1
+Max value: 38
+Max value: 38
+Max value: 33
+Max value: 37
+Max value: 43
+Max value: 37
+Max value: 45
+Max value: 82
+Max value: 88
+Avg_rollouts 57.44444444444444 Turns 9
+Pokemon left: 1
+Max value: 40
+Max value: 27
+Max value: 46
+Max value: 30
+Max value: 40
+Max value: 48
+Max value: 45
+Max value: 26
+Max value: 48
+Max value: 70
+Avg_rollouts 55.0 Turns 10
+Pokemon left: 1
+Max value: 36
+Max value: 28
+Max value: 50
+Max value: 46
+Max value: 41
+Max value: 49
+Max value: 71
+Max value: 102
+Avg_rollouts 56.875 Turns 8
+Pokemon left: 1
+Max value: 27
+Max value: 21
+Max value: 36
+Max value: 30
+Max value: 41
+Max value: 47
+Max value: 53
+Max value: 102
+Avg_rollouts 54.875 Turns 8
+Pokemon left: 1
+Max value: 41
+Max value: 26
+Max value: 37
+Max value: 53
+Max value: 42
+Max value: 52
+Max value: 84
+Avg_rollouts 54.42857142857143 Turns 7
+Pokemon left: 1
+Starting game: 100, Current winrate: 0.909
+Max value: 40
+Max value: 33
+Max value: 43
+Max value: 47
+Max value: 41
+Max value: 58
+Max value: 104
+Avg_rollouts 57.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 36
+Max value: 53
+Max value: 46
+Max value: 51
+Max value: 90
+Avg_rollouts 55.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 33
+Max value: 42
+Max value: 42
+Max value: 42
+Max value: 32
+Max value: 47
+Max value: 76
+Avg_rollouts 56.0 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 30
+Max value: 45
+Max value: 30
+Max value: 42
+Max value: 45
+Max value: 31
+Max value: 63
+Max value: 67
+Max value: 87
+Max value: 84
+Avg_rollouts 62.27272727272727 Turns 11
+Loss
+Max value: 43
+Max value: 38
+Max value: 48
+Max value: 31
+Max value: 71
+Max value: 102
+Avg_rollouts 62.5 Turns 6
+Pokemon left: 1
+Max value: 39
+Max value: 41
+Max value: 40
+Max value: 54
+Max value: 49
+Max value: 53
+Max value: 89
+Avg_rollouts 55.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 30
+Max value: 34
+Max value: 42
+Max value: 44
+Max value: 45
+Max value: 93
+Max value: 107
+Avg_rollouts 66.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 28
+Max value: 29
+Max value: 47
+Max value: 47
+Max value: 44
+Max value: 48
+Max value: 47
+Max value: 32
+Max value: 44
+Max value: 47
+Max value: 29
+Max value: 44
+Max value: 36
+Max value: 49
+Max value: 71
+Max value: 137
+Avg_rollouts 59.875 Turns 16
+Loss
+Max value: 35
+Max value: 34
+Max value: 52
+Max value: 43
+Max value: 66
+Max value: 101
+Avg_rollouts 59.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 34
+Max value: 37
+Max value: 27
+Max value: 51
+Max value: 69
+Max value: 66
+Max value: 101
+Max value: 108
+Max value: 83
+Avg_rollouts 70.9 Turns 10
+Loss
+Starting game: 110, Current winrate: 0.890
+Max value: 40
+Max value: 42
+Max value: 54
+Max value: 46
+Max value: 20
+Max value: 38
+Max value: 44
+Max value: 55
+Max value: 84
+Avg_rollouts 57.111111111111114 Turns 9
+Pokemon left: 1
+Max value: 31
+Max value: 46
+Max value: 43
+Max value: 47
+Max value: 46
+Max value: 32
+Max value: 70
+Max value: 94
+Max value: 132
+Avg_rollouts 67.66666666666667 Turns 9
+Pokemon left: 1
+Max value: 24
+Max value: 38
+Max value: 51
+Max value: 39
+Max value: 36
+Max value: 51
+Max value: 65
+Max value: 72
+Max value: 139
+Avg_rollouts 63.888888888888886 Turns 9
+Pokemon left: 1
+Max value: 28
+Max value: 36
+Max value: 45
+Max value: 41
+Max value: 39
+Max value: 45
+Max value: 82
+Max value: 87
+Avg_rollouts 61.125 Turns 8
+Pokemon left: 1
+Max value: 32
+Max value: 33
+Max value: 43
+Max value: 48
+Max value: 87
+Avg_rollouts 59.2 Turns 5
+Pokemon left: 1
+Max value: 25
+Max value: 29
+Max value: 50
+Max value: 44
+Max value: 52
+Max value: 93
+Max value: 95
+Max value: 76
+Max value: 75
+Max value: 66
+Avg_rollouts 69.1 Turns 10
+Loss
+Max value: 37
+Max value: 36
+Max value: 44
+Max value: 39
+Max value: 41
+Max value: 45
+Max value: 69
+Max value: 49
+Max value: 92
+Max value: 132
+Avg_rollouts 70.2 Turns 10
+Pokemon left: 1
+Max value: 43
+Max value: 29
+Max value: 50
+Max value: 34
+Max value: 65
+Max value: 70
+Max value: 122
+Avg_rollouts 63.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 35
+Max value: 42
+Max value: 40
+Max value: 51
+Max value: 46
+Max value: 51
+Max value: 76
+Avg_rollouts 56.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 31
+Max value: 39
+Max value: 44
+Max value: 31
+Max value: 67
+Max value: 113
+Max value: 71
+Max value: 100
+Avg_rollouts 75.0 Turns 8
+Loss
+Starting game: 120, Current winrate: 0.882
+Max value: 36
+Max value: 42
+Max value: 41
+Max value: 49
+Max value: 30
+Max value: 45
+Max value: 40
+Max value: 58
+Max value: 106
+Avg_rollouts 58.0 Turns 9
+Pokemon left: 1
+Max value: 39
+Max value: 31
+Max value: 52
+Max value: 32
+Max value: 65
+Max value: 105
+Avg_rollouts 61.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 27
+Max value: 28
+Max value: 43
+Max value: 43
+Max value: 52
+Max value: 69
+Max value: 95
+Avg_rollouts 59.0 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 35
+Max value: 40
+Max value: 38
+Max value: 56
+Max value: 80
+Max value: 75
+Max value: 93
+Avg_rollouts 67.5 Turns 8
+Pokemon left: 1
+Max value: 33
+Max value: 20
+Max value: 51
+Max value: 39
+Max value: 64
+Max value: 112
+Max value: 104
+Avg_rollouts 68.14285714285714 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 39
+Max value: 34
+Max value: 36
+Max value: 41
+Max value: 44
+Max value: 56
+Max value: 40
+Max value: 58
+Max value: 98
+Avg_rollouts 58.4 Turns 10
+Pokemon left: 1
+Max value: 36
+Max value: 23
+Max value: 51
+Max value: 38
+Max value: 47
+Max value: 42
+Max value: 65
+Max value: 84
+Max value: 98
+Avg_rollouts 63.111111111111114 Turns 9
+Pokemon left: 1
+Max value: 39
+Max value: 30
+Max value: 48
+Max value: 46
+Max value: 68
+Max value: 100
+Avg_rollouts 59.5 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 33
+Max value: 38
+Max value: 32
+Max value: 53
+Max value: 53
+Max value: 65
+Max value: 136
+Avg_rollouts 64.625 Turns 8
+Pokemon left: 1
+Max value: 42
+Max value: 43
+Max value: 44
+Max value: 50
+Max value: 88
+Avg_rollouts 60.4 Turns 5
+Pokemon left: 1
+Starting game: 130, Current winrate: 0.891
+Max value: 41
+Max value: 37
+Max value: 39
+Max value: 46
+Max value: 30
+Max value: 52
+Max value: 102
+Avg_rollouts 57.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 35
+Max value: 36
+Max value: 45
+Max value: 43
+Max value: 66
+Max value: 111
+Avg_rollouts 58.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 44
+Max value: 38
+Max value: 50
+Max value: 36
+Max value: 40
+Max value: 62
+Max value: 100
+Avg_rollouts 57.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 27
+Max value: 29
+Max value: 43
+Max value: 52
+Max value: 49
+Max value: 60
+Max value: 45
+Max value: 93
+Max value: 96
+Avg_rollouts 63.55555555555556 Turns 9
+Pokemon left: 1
+Max value: 39
+Max value: 37
+Max value: 27
+Max value: 46
+Max value: 44
+Max value: 41
+Max value: 67
+Max value: 106
+Avg_rollouts 57.625 Turns 8
+Pokemon left: 1
+Max value: 40
+Max value: 31
+Max value: 49
+Max value: 37
+Max value: 63
+Max value: 54
+Max value: 138
+Avg_rollouts 66.0 Turns 7
+Pokemon left: 1
+Max value: 34
+Max value: 38
+Max value: 53
+Max value: 49
+Max value: 69
+Max value: 63
+Max value: 107
+Avg_rollouts 61.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 33
+Max value: 36
+Max value: 43
+Max value: 39
+Max value: 36
+Max value: 54
+Max value: 50
+Max value: 71
+Avg_rollouts 56.375 Turns 8
+Pokemon left: 1
+Max value: 41
+Max value: 34
+Max value: 34
+Max value: 41
+Max value: 45
+Max value: 49
+Max value: 49
+Max value: 59
+Max value: 57
+Max value: 82
+Max value: 65
+Max value: 97
+Max value: 136
+Avg_rollouts 66.76923076923077 Turns 13
+Pokemon left: 1
+Max value: 41
+Max value: 29
+Max value: 45
+Max value: 35
+Max value: 52
+Max value: 59
+Max value: 111
+Avg_rollouts 59.142857142857146 Turns 7
+Pokemon left: 1
+Starting game: 140, Current winrate: 0.899
+Max value: 27
+Max value: 36
+Max value: 36
+Max value: 50
+Max value: 41
+Max value: 44
+Max value: 60
+Max value: 53
+Max value: 74
+Avg_rollouts 52.888888888888886 Turns 9
+Pokemon left: 1
+Max value: 43
+Max value: 36
+Max value: 27
+Max value: 47
+Max value: 32
+Max value: 52
+Max value: 36
+Max value: 35
+Max value: 52
+Max value: 91
+Avg_rollouts 61.0 Turns 10
+Pokemon left: 1
+Max value: 43
+Max value: 20
+Max value: 37
+Max value: 30
+Max value: 44
+Max value: 41
+Max value: 112
+Avg_rollouts 57.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 40
+Max value: 30
+Max value: 44
+Max value: 98
+Avg_rollouts 61.4 Turns 5
+Pokemon left: 1
+Max value: 38
+Max value: 39
+Max value: 26
+Max value: 38
+Max value: 38
+Max value: 59
+Max value: 122
+Avg_rollouts 63.142857142857146 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 33
+Max value: 45
+Max value: 49
+Max value: 31
+Max value: 48
+Max value: 47
+Max value: 96
+Max value: 66
+Max value: 57
+Max value: 84
+Avg_rollouts 67.63636363636364 Turns 11
+Pokemon left: 1
+Max value: 37
+Max value: 32
+Max value: 36
+Max value: 49
+Max value: 50
+Max value: 49
+Max value: 53
+Max value: 64
+Max value: 65
+Avg_rollouts 56.22222222222222 Turns 9
+Pokemon left: 1
+Max value: 35
+Max value: 30
+Max value: 44
+Max value: 44
+Max value: 41
+Max value: 63
+Max value: 106
+Avg_rollouts 56.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 31
+Max value: 39
+Max value: 46
+Max value: 46
+Max value: 55
+Max value: 64
+Max value: 81
+Max value: 86
+Max value: 59
+Max value: 81
+Max value: 54
+Avg_rollouts 67.72727272727273 Turns 11
+Pokemon left: 1
+Max value: 34
+Max value: 35
+Max value: 52
+Max value: 35
+Max value: 88
+Avg_rollouts 59.8 Turns 5
+Pokemon left: 1
+Starting game: 150, Current winrate: 0.906
+Max value: 41
+Max value: 24
+Max value: 41
+Max value: 55
+Max value: 49
+Max value: 48
+Max value: 42
+Max value: 37
+Max value: 49
+Max value: 71
+Avg_rollouts 58.3 Turns 10
+Pokemon left: 1
+Max value: 38
+Max value: 30
+Max value: 54
+Max value: 42
+Max value: 67
+Max value: 100
+Max value: 110
+Avg_rollouts 66.85714285714286 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 24
+Max value: 23
+Max value: 48
+Max value: 45
+Max value: 63
+Max value: 85
+Max value: 136
+Avg_rollouts 66.625 Turns 8
+Pokemon left: 1
+Max value: 27
+Max value: 40
+Max value: 48
+Max value: 41
+Max value: 40
+Max value: 98
+Avg_rollouts 61.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 40
+Max value: 49
+Max value: 48
+Max value: 70
+Max value: 91
+Max value: 107
+Avg_rollouts 67.28571428571429 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 36
+Max value: 48
+Max value: 43
+Max value: 48
+Max value: 32
+Max value: 68
+Max value: 124
+Avg_rollouts 60.75 Turns 8
+Pokemon left: 1
+Max value: 38
+Max value: 50
+Max value: 42
+Max value: 51
+Max value: 29
+Max value: 57
+Max value: 63
+Max value: 97
+Avg_rollouts 62.0 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 42
+Max value: 25
+Max value: 18
+Max value: 42
+Max value: 43
+Max value: 78
+Max value: 72
+Avg_rollouts 57.125 Turns 8
+Pokemon left: 1
+Max value: 41
+Max value: 37
+Max value: 45
+Max value: 44
+Max value: 69
+Max value: 106
+Max value: 114
+Avg_rollouts 69.28571428571429 Turns 7
+Loss
+Max value: 37
+Max value: 35
+Max value: 21
+Max value: 47
+Max value: 45
+Max value: 53
+Max value: 99
+Max value: 60
+Max value: 113
+Avg_rollouts 68.44444444444444 Turns 9
+Pokemon left: 1
+Starting game: 160, Current winrate: 0.906
+Max value: 43
+Max value: 39
+Max value: 48
+Max value: 49
+Max value: 43
+Max value: 47
+Max value: 70
+Max value: 77
+Avg_rollouts 59.125 Turns 8
+Loss
+Max value: 38
+Max value: 34
+Max value: 45
+Max value: 40
+Max value: 88
+Max value: 91
+Avg_rollouts 62.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 27
+Max value: 34
+Max value: 39
+Max value: 39
+Max value: 51
+Max value: 71
+Max value: 98
+Avg_rollouts 58.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 36
+Max value: 31
+Max value: 39
+Max value: 41
+Max value: 44
+Max value: 33
+Max value: 54
+Max value: 77
+Avg_rollouts 54.625 Turns 8
+Pokemon left: 1
+Max value: 37
+Max value: 33
+Max value: 30
+Max value: 53
+Max value: 39
+Max value: 54
+Max value: 95
+Avg_rollouts 62.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 32
+Max value: 45
+Max value: 35
+Max value: 42
+Max value: 51
+Max value: 61
+Max value: 113
+Max value: 94
+Avg_rollouts 65.44444444444444 Turns 9
+Pokemon left: 1
+Max value: 39
+Max value: 38
+Max value: 50
+Max value: 47
+Max value: 60
+Max value: 89
+Avg_rollouts 58.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 43
+Max value: 41
+Max value: 49
+Max value: 37
+Max value: 58
+Max value: 106
+Avg_rollouts 59.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 33
+Max value: 35
+Max value: 49
+Max value: 44
+Max value: 69
+Max value: 111
+Avg_rollouts 63.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 35
+Max value: 33
+Max value: 54
+Max value: 52
+Max value: 90
+Max value: 70
+Max value: 88
+Max value: 130
+Avg_rollouts 72.77777777777777 Turns 9
+Loss
+Starting game: 170, Current winrate: 0.899
+Max value: 41
+Max value: 33
+Max value: 42
+Max value: 37
+Max value: 55
+Max value: 47
+Max value: 71
+Avg_rollouts 57.0 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 39
+Max value: 46
+Max value: 46
+Max value: 50
+Max value: 56
+Max value: 89
+Avg_rollouts 58.142857142857146 Turns 7
+Pokemon left: 1
+Max value: 29
+Max value: 37
+Max value: 46
+Max value: 41
+Max value: 54
+Max value: 45
+Max value: 83
+Max value: 94
+Avg_rollouts 60.375 Turns 8
+Pokemon left: 1
+Max value: 36
+Max value: 26
+Max value: 43
+Max value: 34
+Max value: 51
+Max value: 52
+Max value: 40
+Max value: 47
+Max value: 34
+Max value: 44
+Max value: 78
+Max value: 85
+Avg_rollouts 60.583333333333336 Turns 12
+Loss
+Max value: 39
+Max value: 32
+Max value: 52
+Max value: 29
+Max value: 18
+Max value: 51
+Max value: 38
+Max value: 53
+Max value: 64
+Max value: 132
+Avg_rollouts 61.0 Turns 10
+Loss
+Max value: 38
+Max value: 33
+Max value: 48
+Max value: 50
+Max value: 53
+Max value: 94
+Max value: 91
+Avg_rollouts 64.71428571428571 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 38
+Max value: 50
+Max value: 48
+Max value: 66
+Max value: 82
+Avg_rollouts 59.0 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 44
+Max value: 35
+Max value: 45
+Max value: 43
+Max value: 63
+Max value: 94
+Avg_rollouts 57.0 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 36
+Max value: 47
+Max value: 41
+Max value: 53
+Max value: 44
+Max value: 82
+Max value: 82
+Max value: 82
+Avg_rollouts 62.0 Turns 9
+Loss
+Max value: 41
+Max value: 32
+Max value: 37
+Max value: 33
+Max value: 69
+Avg_rollouts 54.6 Turns 5
+Pokemon left: 1
+Starting game: 180, Current winrate: 0.888
+Max value: 41
+Max value: 34
+Max value: 40
+Max value: 43
+Max value: 33
+Max value: 46
+Max value: 93
+Avg_rollouts 54.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 36
+Max value: 36
+Max value: 46
+Max value: 45
+Max value: 22
+Max value: 48
+Max value: 63
+Max value: 133
+Avg_rollouts 62.75 Turns 8
+Pokemon left: 1
+Max value: 42
+Max value: 29
+Max value: 50
+Max value: 45
+Max value: 55
+Max value: 103
+Avg_rollouts 61.5 Turns 6
+Pokemon left: 1
+Max value: 34
+Max value: 36
+Max value: 46
+Max value: 35
+Max value: 31
+Max value: 63
+Max value: 115
+Avg_rollouts 61.142857142857146 Turns 7
+Loss
+Max value: 34
+Max value: 21
+Max value: 41
+Max value: 51
+Max value: 81
+Avg_rollouts 57.6 Turns 5
+Pokemon left: 1
+Max value: 38
+Max value: 50
+Max value: 48
+Max value: 40
+Max value: 66
+Max value: 69
+Max value: 139
+Avg_rollouts 65.28571428571429 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 34
+Max value: 42
+Max value: 47
+Max value: 46
+Max value: 60
+Max value: 79
+Avg_rollouts 61.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 35
+Max value: 34
+Max value: 36
+Max value: 37
+Max value: 42
+Max value: 26
+Max value: 62
+Max value: 97
+Avg_rollouts 59.125 Turns 8
+Pokemon left: 1
+Max value: 38
+Max value: 45
+Max value: 43
+Max value: 60
+Max value: 103
+Avg_rollouts 61.2 Turns 5
+Pokemon left: 1
+Max value: 41
+Max value: 36
+Max value: 43
+Max value: 43
+Max value: 38
+Max value: 65
+Max value: 132
+Avg_rollouts 62.57142857142857 Turns 7
+Pokemon left: 1
+Starting game: 190, Current winrate: 0.889
+Max value: 29
+Max value: 31
+Max value: 33
+Max value: 41
+Max value: 49
+Max value: 69
+Max value: 110
+Avg_rollouts 61.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 25
+Max value: 33
+Max value: 46
+Max value: 43
+Max value: 47
+Max value: 81
+Avg_rollouts 53.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 39
+Max value: 23
+Max value: 52
+Max value: 41
+Max value: 43
+Max value: 43
+Max value: 113
+Avg_rollouts 58.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 38
+Max value: 36
+Max value: 51
+Max value: 43
+Max value: 97
+Avg_rollouts 58.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 39
+Max value: 36
+Max value: 53
+Max value: 45
+Max value: 54
+Max value: 57
+Max value: 96
+Avg_rollouts 65.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 33
+Max value: 38
+Max value: 54
+Max value: 51
+Max value: 93
+Avg_rollouts 55.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 36
+Max value: 38
+Max value: 47
+Max value: 50
+Max value: 57
+Max value: 105
+Max value: 89
+Avg_rollouts 67.0 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 25
+Max value: 38
+Max value: 52
+Max value: 48
+Max value: 70
+Max value: 107
+Avg_rollouts 61.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 31
+Max value: 30
+Max value: 32
+Max value: 33
+Max value: 79
+Avg_rollouts 57.2 Turns 5
+Pokemon left: 1
+Max value: 35
+Max value: 33
+Max value: 38
+Max value: 44
+Max value: 46
+Max value: 67
+Max value: 112
+Max value: 130
+Avg_rollouts 73.0 Turns 8
+Pokemon left: 1
+Starting game: 200, Current winrate: 0.894
+Max value: 30
+Max value: 29
+Max value: 30
+Max value: 45
+Max value: 47
+Max value: 38
+Max value: 54
+Max value: 73
+Max value: 83
+Max value: 75
+Max value: 94
+Max value: 137
+Avg_rollouts 71.83333333333333 Turns 12
+Pokemon left: 1
+Max value: 34
+Max value: 37
+Max value: 49
+Max value: 45
+Max value: 74
+Max value: 100
+Avg_rollouts 65.16666666666667 Turns 6
+Pokemon left: 1
+Max value: 42
+Max value: 27
+Max value: 47
+Max value: 37
+Max value: 24
+Max value: 45
+Max value: 48
+Max value: 26
+Max value: 70
+Max value: 106
+Avg_rollouts 58.2 Turns 10
+Pokemon left: 1
+Max value: 38
+Max value: 35
+Max value: 45
+Max value: 45
+Max value: 33
+Max value: 53
+Max value: 36
+Max value: 74
+Max value: 77
+Max value: 43
+Avg_rollouts 61.9 Turns 10
+Pokemon left: 1
+Max value: 40
+Max value: 40
+Max value: 38
+Max value: 33
+Max value: 43
+Max value: 55
+Max value: 130
+Avg_rollouts 63.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 36
+Max value: 42
+Max value: 30
+Max value: 49
+Max value: 42
+Max value: 63
+Max value: 67
+Max value: 119
+Max value: 139
+Avg_rollouts 68.88888888888889 Turns 9
+Pokemon left: 1
+Max value: 34
+Max value: 28
+Max value: 28
+Max value: 50
+Max value: 45
+Max value: 37
+Max value: 118
+Avg_rollouts 63.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 35
+Max value: 25
+Max value: 41
+Max value: 46
+Max value: 69
+Max value: 43
+Max value: 67
+Max value: 97
+Avg_rollouts 71.125 Turns 8
+Pokemon left: 1
+Max value: 40
+Max value: 37
+Max value: 48
+Max value: 51
+Max value: 52
+Max value: 50
+Max value: 41
+Max value: 80
+Avg_rollouts 55.125 Turns 8
+Pokemon left: 1
+Max value: 34
+Max value: 36
+Max value: 45
+Max value: 49
+Max value: 62
+Max value: 69
+Max value: 131
+Avg_rollouts 67.85714285714286 Turns 7
+Loss
+Starting game: 210, Current winrate: 0.895
+Max value: 38
+Max value: 33
+Max value: 31
+Max value: 40
+Max value: 39
+Max value: 63
+Max value: 102
+Avg_rollouts 57.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 37
+Max value: 52
+Max value: 50
+Max value: 33
+Max value: 50
+Max value: 90
+Avg_rollouts 56.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 32
+Max value: 42
+Max value: 42
+Max value: 33
+Max value: 49
+Max value: 96
+Avg_rollouts 59.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 39
+Max value: 32
+Max value: 43
+Max value: 38
+Max value: 76
+Avg_rollouts 58.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 41
+Max value: 50
+Max value: 39
+Max value: 67
+Avg_rollouts 56.2 Turns 5
+Pokemon left: 1
+Max value: 44
+Max value: 27
+Max value: 46
+Max value: 51
+Max value: 92
+Avg_rollouts 61.8 Turns 5
+Pokemon left: 1
+Max value: 39
+Max value: 37
+Max value: 40
+Max value: 47
+Max value: 26
+Max value: 75
+Avg_rollouts 54.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 24
+Max value: 36
+Max value: 30
+Max value: 46
+Max value: 51
+Max value: 77
+Avg_rollouts 59.0 Turns 6
+Pokemon left: 1
+Max value: 37
+Max value: 36
+Max value: 53
+Max value: 45
+Max value: 34
+Max value: 51
+Max value: 37
+Max value: 87
+Avg_rollouts 59.0 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 41
+Max value: 49
+Max value: 26
+Max value: 89
+Avg_rollouts 59.8 Turns 5
+Pokemon left: 1
+Starting game: 220, Current winrate: 0.900
+Max value: 37
+Max value: 42
+Max value: 35
+Max value: 49
+Max value: 46
+Max value: 72
+Max value: 86
+Avg_rollouts 58.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 38
+Max value: 34
+Max value: 34
+Max value: 43
+Max value: 51
+Max value: 139
+Avg_rollouts 62.142857142857146 Turns 7
+Pokemon left: 1
+Max value: 38
+Max value: 34
+Max value: 51
+Max value: 36
+Max value: 39
+Max value: 64
+Max value: 70
+Max value: 140
+Avg_rollouts 64.375 Turns 8
+Pokemon left: 1
+Max value: 32
+Max value: 31
+Max value: 53
+Max value: 47
+Max value: 44
+Max value: 54
+Max value: 114
+Avg_rollouts 60.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 33
+Max value: 42
+Max value: 44
+Max value: 42
+Max value: 34
+Max value: 79
+Avg_rollouts 59.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 43
+Max value: 42
+Max value: 50
+Max value: 16
+Max value: 20
+Max value: 34
+Avg_rollouts 68.14285714285714 Turns 7
+Loss
+Max value: 46
+Max value: 38
+Max value: 49
+Max value: 42
+Max value: 93
+Avg_rollouts 58.8 Turns 5
+Pokemon left: 1
+Max value: 40
+Max value: 39
+Max value: 38
+Max value: 42
+Max value: 51
+Max value: 26
+Max value: 39
+Max value: 90
+Max value: 89
+Avg_rollouts 61.44444444444444 Turns 9
+Loss
+Max value: 42
+Max value: 42
+Max value: 45
+Max value: 37
+Max value: 64
+Max value: 109
+Avg_rollouts 62.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 25
+Max value: 43
+Max value: 27
+Max value: 41
+Max value: 46
+Max value: 44
+Max value: 41
+Max value: 75
+Max value: 116
+Avg_rollouts 61.111111111111114 Turns 9
+Pokemon left: 1
+Starting game: 230, Current winrate: 0.895
+Max value: 36
+Max value: 42
+Max value: 33
+Max value: 37
+Max value: 29
+Max value: 48
+Max value: 45
+Max value: 63
+Max value: 75
+Max value: 139
+Avg_rollouts 61.4 Turns 10
+Pokemon left: 1
+Max value: 41
+Max value: 37
+Max value: 44
+Max value: 28
+Max value: 80
+Avg_rollouts 60.2 Turns 5
+Pokemon left: 1
+Max value: 27
+Max value: 42
+Max value: 53
+Max value: 51
+Max value: 67
+Max value: 84
+Max value: 62
+Max value: 73
+Max value: 136
+Avg_rollouts 71.22222222222223 Turns 9
+Loss
+Max value: 34
+Max value: 31
+Max value: 34
+Max value: 39
+Max value: 43
+Max value: 89
+Avg_rollouts 56.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 39
+Max value: 27
+Max value: 29
+Max value: 51
+Max value: 40
+Max value: 92
+Max value: 70
+Avg_rollouts 64.0 Turns 7
+Pokemon left: 1
+Max value: 28
+Max value: 39
+Max value: 31
+Max value: 46
+Max value: 19
+Max value: 68
+Max value: 88
+Max value: 88
+Max value: 73
+Avg_rollouts 65.22222222222223 Turns 9
+Pokemon left: 1
+Max value: 40
+Max value: 37
+Max value: 45
+Max value: 47
+Max value: 42
+Max value: 65
+Max value: 101
+Max value: 110
+Max value: 88
+Avg_rollouts 68.0 Turns 9
+Pokemon left: 1
+Max value: 38
+Max value: 33
+Max value: 51
+Max value: 36
+Max value: 72
+Max value: 84
+Avg_rollouts 60.0 Turns 6
+Pokemon left: 1
+Max value: 36
+Max value: 36
+Max value: 52
+Max value: 35
+Max value: 41
+Max value: 51
+Max value: 118
+Avg_rollouts 59.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 30
+Max value: 20
+Max value: 48
+Max value: 46
+Max value: 31
+Max value: 65
+Max value: 106
+Avg_rollouts 59.0 Turns 7
+Pokemon left: 1
+Starting game: 240, Current winrate: 0.895
+Max value: 36
+Max value: 36
+Max value: 41
+Max value: 42
+Max value: 60
+Max value: 59
+Max value: 106
+Avg_rollouts 60.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 36
+Max value: 50
+Max value: 54
+Max value: 46
+Max value: 90
+Max value: 89
+Avg_rollouts 62.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 25
+Max value: 37
+Max value: 49
+Max value: 87
+Avg_rollouts 57.6 Turns 5
+Pokemon left: 1
+Max value: 40
+Max value: 39
+Max value: 45
+Max value: 39
+Max value: 38
+Max value: 29
+Max value: 73
+Avg_rollouts 57.0 Turns 7
+Pokemon left: 1
+Max value: 38
+Max value: 42
+Max value: 28
+Max value: 47
+Max value: 42
+Max value: 70
+Max value: 55
+Max value: 133
+Avg_rollouts 62.5 Turns 8
+Pokemon left: 1
+Max value: 28
+Max value: 38
+Max value: 45
+Max value: 53
+Max value: 52
+Max value: 50
+Max value: 67
+Max value: 57
+Max value: 136
+Avg_rollouts 65.22222222222223 Turns 9
+Loss
+Max value: 34
+Max value: 35
+Max value: 48
+Max value: 50
+Max value: 94
+Max value: 89
+Avg_rollouts 65.33333333333333 Turns 6
+Pokemon left: 1
+Max value: 42
+Max value: 39
+Max value: 47
+Max value: 46
+Max value: 31
+Max value: 62
+Avg_rollouts 50.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 22
+Max value: 34
+Max value: 43
+Max value: 50
+Max value: 48
+Max value: 52
+Max value: 74
+Max value: 98
+Avg_rollouts 63.125 Turns 8
+Pokemon left: 1
+Max value: 37
+Max value: 38
+Max value: 37
+Max value: 26
+Max value: 40
+Max value: 22
+Max value: 39
+Max value: 50
+Max value: 85
+Avg_rollouts 54.0 Turns 9
+Pokemon left: 1
+Starting game: 250, Current winrate: 0.896
+Max value: 33
+Max value: 33
+Max value: 26
+Max value: 44
+Max value: 39
+Max value: 39
+Max value: 139
+Avg_rollouts 66.14285714285714 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 24
+Max value: 48
+Max value: 54
+Max value: 48
+Max value: 84
+Avg_rollouts 56.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 31
+Max value: 36
+Max value: 35
+Max value: 38
+Max value: 45
+Max value: 61
+Max value: 111
+Avg_rollouts 61.0 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 38
+Max value: 41
+Max value: 38
+Max value: 51
+Max value: 57
+Max value: 59
+Max value: 98
+Max value: 75
+Avg_rollouts 63.888888888888886 Turns 9
+Pokemon left: 1
+Max value: 36
+Max value: 21
+Max value: 49
+Max value: 39
+Max value: 42
+Max value: 39
+Max value: 71
+Max value: 37
+Avg_rollouts 57.75 Turns 8
+Loss
+Max value: 34
+Max value: 37
+Max value: 49
+Max value: 45
+Max value: 59
+Max value: 68
+Max value: 115
+Avg_rollouts 63.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 40
+Max value: 51
+Max value: 50
+Max value: 44
+Max value: 63
+Max value: 123
+Avg_rollouts 63.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 32
+Max value: 46
+Max value: 46
+Max value: 24
+Max value: 44
+Max value: 49
+Max value: 61
+Max value: 34
+Avg_rollouts 60.55555555555556 Turns 9
+Loss
+Max value: 39
+Max value: 33
+Max value: 35
+Max value: 49
+Max value: 36
+Max value: 67
+Max value: 139
+Avg_rollouts 63.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 32
+Max value: 50
+Max value: 46
+Max value: 44
+Max value: 52
+Max value: 137
+Avg_rollouts 66.57142857142857 Turns 7
+Pokemon left: 1
+Starting game: 260, Current winrate: 0.892
+Max value: 35
+Max value: 34
+Max value: 37
+Max value: 48
+Max value: 69
+Max value: 93
+Max value: 131
+Avg_rollouts 72.14285714285714 Turns 7
+Loss
+Max value: 40
+Max value: 38
+Max value: 36
+Max value: 43
+Max value: 45
+Max value: 63
+Max value: 99
+Avg_rollouts 59.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 34
+Max value: 46
+Max value: 45
+Max value: 42
+Max value: 66
+Max value: 65
+Max value: 110
+Avg_rollouts 62.75 Turns 8
+Pokemon left: 1
+Max value: 38
+Max value: 40
+Max value: 38
+Max value: 25
+Max value: 44
+Max value: 52
+Max value: 66
+Max value: 108
+Avg_rollouts 59.25 Turns 8
+Pokemon left: 1
+Max value: 41
+Max value: 30
+Max value: 36
+Max value: 40
+Max value: 33
+Max value: 27
+Max value: 51
+Max value: 55
+Max value: 47
+Max value: 85
+Max value: 108
+Avg_rollouts 60.0 Turns 11
+Pokemon left: 1
+Max value: 41
+Max value: 21
+Max value: 42
+Max value: 38
+Max value: 36
+Max value: 50
+Max value: 40
+Max value: 32
+Max value: 17
+Max value: 34
+Avg_rollouts 61.0 Turns 10
+Loss
+Max value: 28
+Max value: 40
+Max value: 44
+Max value: 32
+Max value: 49
+Max value: 38
+Max value: 65
+Max value: 109
+Avg_rollouts 56.75 Turns 8
+Pokemon left: 1
+Max value: 35
+Max value: 39
+Max value: 41
+Max value: 46
+Max value: 36
+Max value: 62
+Max value: 82
+Max value: 78
+Avg_rollouts 60.375 Turns 8
+Pokemon left: 1
+Max value: 42
+Max value: 33
+Max value: 46
+Max value: 49
+Max value: 50
+Max value: 52
+Max value: 104
+Avg_rollouts 59.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 24
+Max value: 36
+Max value: 35
+Max value: 28
+Max value: 48
+Max value: 54
+Max value: 93
+Avg_rollouts 57.57142857142857 Turns 7
+Pokemon left: 1
+Starting game: 270, Current winrate: 0.888
+Max value: 36
+Max value: 25
+Max value: 45
+Max value: 33
+Max value: 38
+Max value: 58
+Max value: 91
+Avg_rollouts 59.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 36
+Max value: 36
+Max value: 52
+Max value: 50
+Max value: 44
+Max value: 56
+Max value: 49
+Max value: 103
+Max value: 131
+Avg_rollouts 69.11111111111111 Turns 9
+Loss
+Max value: 14
+Max value: 41
+Max value: 40
+Max value: 40
+Max value: 43
+Max value: 31
+Max value: 54
+Max value: 50
+Max value: 44
+Max value: 62
+Max value: 135
+Avg_rollouts 60.0 Turns 11
+Pokemon left: 1
+Max value: 38
+Max value: 50
+Max value: 40
+Max value: 46
+Max value: 50
+Max value: 42
+Max value: 35
+Max value: 54
+Max value: 74
+Avg_rollouts 54.666666666666664 Turns 9
+Pokemon left: 1
+Max value: 43
+Max value: 28
+Max value: 49
+Max value: 34
+Max value: 72
+Max value: 86
+Avg_rollouts 60.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 43
+Max value: 34
+Max value: 49
+Max value: 40
+Max value: 64
+Max value: 103
+Avg_rollouts 60.0 Turns 6
+Pokemon left: 1
+Max value: 40
+Max value: 24
+Max value: 48
+Max value: 39
+Max value: 49
+Max value: 64
+Max value: 68
+Max value: 66
+Avg_rollouts 63.0 Turns 8
+Pokemon left: 1
+Max value: 23
+Max value: 31
+Max value: 38
+Max value: 49
+Max value: 64
+Max value: 95
+Avg_rollouts 61.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 39
+Max value: 41
+Max value: 33
+Max value: 57
+Max value: 47
+Max value: 49
+Max value: 52
+Max value: 42
+Max value: 54
+Max value: 61
+Max value: 72
+Avg_rollouts 56.27272727272727 Turns 11
+Pokemon left: 1
+Max value: 41
+Max value: 16
+Max value: 21
+Max value: 30
+Max value: 48
+Max value: 54
+Max value: 28
+Max value: 47
+Max value: 51
+Max value: 49
+Max value: 57
+Max value: 99
+Avg_rollouts 55.666666666666664 Turns 12
+Pokemon left: 1
+Starting game: 280, Current winrate: 0.889
+Max value: 31
+Max value: 33
+Max value: 49
+Max value: 47
+Max value: 47
+Max value: 52
+Max value: 90
+Avg_rollouts 58.142857142857146 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 21
+Max value: 50
+Max value: 34
+Max value: 67
+Max value: 70
+Max value: 58
+Max value: 64
+Max value: 129
+Avg_rollouts 68.88888888888889 Turns 9
+Pokemon left: 1
+Max value: 34
+Max value: 35
+Max value: 41
+Max value: 33
+Max value: 55
+Max value: 67
+Max value: 101
+Avg_rollouts 62.0 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 41
+Max value: 41
+Max value: 46
+Max value: 42
+Max value: 73
+Max value: 112
+Max value: 78
+Avg_rollouts 69.125 Turns 8
+Pokemon left: 1
+Max value: 44
+Max value: 36
+Max value: 44
+Max value: 45
+Max value: 52
+Max value: 89
+Avg_rollouts 56.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 31
+Max value: 51
+Max value: 41
+Max value: 48
+Max value: 49
+Max value: 27
+Max value: 67
+Max value: 69
+Max value: 105
+Avg_rollouts 60.666666666666664 Turns 9
+Pokemon left: 1
+Max value: 35
+Max value: 44
+Max value: 39
+Max value: 43
+Max value: 30
+Max value: 59
+Max value: 71
+Max value: 139
+Avg_rollouts 64.75 Turns 8
+Pokemon left: 1
+Max value: 44
+Max value: 34
+Max value: 48
+Max value: 42
+Max value: 63
+Max value: 103
+Avg_rollouts 61.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 40
+Max value: 42
+Max value: 51
+Max value: 57
+Max value: 68
+Max value: 102
+Avg_rollouts 61.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 31
+Max value: 34
+Max value: 43
+Max value: 52
+Max value: 43
+Max value: 43
+Max value: 52
+Max value: 49
+Max value: 48
+Max value: 83
+Max value: 76
+Max value: 78
+Max value: 81
+Avg_rollouts 61.84615384615385 Turns 13
+Pokemon left: 1
+Starting game: 290, Current winrate: 0.893
+Max value: 36
+Max value: 41
+Max value: 42
+Max value: 52
+Max value: 57
+Max value: 65
+Avg_rollouts 59.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 31
+Max value: 37
+Max value: 35
+Max value: 49
+Max value: 44
+Max value: 45
+Max value: 61
+Max value: 48
+Avg_rollouts 60.25 Turns 8
+Loss
+Max value: 43
+Max value: 39
+Max value: 51
+Max value: 48
+Max value: 46
+Max value: 88
+Avg_rollouts 55.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 39
+Max value: 32
+Max value: 29
+Max value: 29
+Max value: 55
+Max value: 99
+Avg_rollouts 60.0 Turns 6
+Pokemon left: 1
+Max value: 41
+Max value: 30
+Max value: 33
+Max value: 41
+Max value: 64
+Max value: 72
+Max value: 141
+Avg_rollouts 68.85714285714286 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 39
+Max value: 43
+Max value: 43
+Max value: 30
+Max value: 42
+Max value: 36
+Max value: 98
+Avg_rollouts 58.5 Turns 8
+Pokemon left: 1
+Max value: 37
+Max value: 40
+Max value: 49
+Max value: 41
+Max value: 65
+Max value: 72
+Max value: 136
+Avg_rollouts 68.85714285714286 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 30
+Max value: 45
+Max value: 47
+Max value: 48
+Max value: 50
+Max value: 70
+Max value: 131
+Avg_rollouts 63.875 Turns 8
+Pokemon left: 1
+Max value: 36
+Max value: 32
+Max value: 43
+Max value: 25
+Max value: 44
+Max value: 52
+Max value: 63
+Max value: 72
+Avg_rollouts 56.5 Turns 8
+Pokemon left: 1
+Max value: 40
+Max value: 38
+Max value: 44
+Max value: 47
+Max value: 54
+Max value: 74
+Max value: 85
+Avg_rollouts 58.57142857142857 Turns 7
+Pokemon left: 1
+Starting game: 300, Current winrate: 0.893
+Max value: 33
+Max value: 38
+Max value: 51
+Max value: 50
+Max value: 66
+Max value: 95
+Avg_rollouts 61.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 44
+Max value: 35
+Max value: 43
+Max value: 46
+Max value: 45
+Max value: 66
+Max value: 112
+Max value: 105
+Avg_rollouts 67.0 Turns 8
+Pokemon left: 1
+Max value: 27
+Max value: 37
+Max value: 41
+Max value: 52
+Max value: 63
+Max value: 71
+Max value: 113
+Avg_rollouts 65.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 35
+Max value: 32
+Max value: 50
+Max value: 42
+Max value: 66
+Max value: 95
+Max value: 100
+Avg_rollouts 67.14285714285714 Turns 7
+Pokemon left: 1
+Max value: 30
+Max value: 43
+Max value: 33
+Max value: 39
+Max value: 50
+Max value: 47
+Max value: 44
+Max value: 56
+Max value: 39
+Max value: 43
+Max value: 138
+Avg_rollouts 63.09090909090909 Turns 11
+Pokemon left: 1
+Max value: 38
+Max value: 35
+Max value: 49
+Max value: 42
+Max value: 67
+Max value: 76
+Max value: 141
+Avg_rollouts 69.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 29
+Max value: 42
+Max value: 25
+Max value: 53
+Max value: 53
+Max value: 51
+Max value: 58
+Max value: 76
+Avg_rollouts 58.666666666666664 Turns 9
+Pokemon left: 1
+Max value: 40
+Max value: 38
+Max value: 45
+Max value: 50
+Max value: 65
+Max value: 95
+Avg_rollouts 64.33333333333333 Turns 6
+Pokemon left: 1
+Max value: 41
+Max value: 36
+Max value: 37
+Max value: 39
+Max value: 52
+Max value: 44
+Max value: 67
+Avg_rollouts 55.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 35
+Max value: 35
+Max value: 27
+Max value: 41
+Max value: 57
+Max value: 55
+Max value: 66
+Max value: 87
+Avg_rollouts 62.0 Turns 9
+Pokemon left: 1
+Starting game: 310, Current winrate: 0.896
+Max value: 38
+Max value: 27
+Max value: 53
+Max value: 56
+Max value: 48
+Max value: 49
+Max value: 46
+Max value: 55
+Max value: 63
+Max value: 105
+Max value: 99
+Avg_rollouts 64.18181818181819 Turns 11
+Pokemon left: 1
+Max value: 43
+Max value: 38
+Max value: 53
+Max value: 55
+Max value: 41
+Max value: 50
+Max value: 81
+Max value: 86
+Avg_rollouts 64.5 Turns 8
+Pokemon left: 1
+Max value: 28
+Max value: 41
+Max value: 44
+Max value: 51
+Max value: 90
+Avg_rollouts 63.6 Turns 5
+Pokemon left: 1
+Max value: 42
+Max value: 40
+Max value: 47
+Max value: 26
+Max value: 85
+Max value: 94
+Max value: 118
+Max value: 93
+Avg_rollouts 76.25 Turns 8
+Loss
+Max value: 38
+Max value: 41
+Max value: 50
+Max value: 53
+Max value: 52
+Max value: 59
+Max value: 76
+Max value: 70
+Avg_rollouts 63.375 Turns 8
+Loss
+Max value: 33
+Max value: 33
+Max value: 41
+Max value: 43
+Max value: 47
+Max value: 45
+Max value: 63
+Max value: 69
+Max value: 71
+Avg_rollouts 61.22222222222222 Turns 9
+Pokemon left: 1
+Max value: 43
+Max value: 38
+Max value: 48
+Max value: 46
+Max value: 47
+Max value: 68
+Max value: 101
+Avg_rollouts 59.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 43
+Max value: 42
+Max value: 47
+Max value: 50
+Max value: 69
+Max value: 103
+Avg_rollouts 60.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 38
+Max value: 34
+Max value: 43
+Max value: 51
+Max value: 73
+Max value: 100
+Avg_rollouts 60.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 33
+Max value: 39
+Max value: 47
+Max value: 43
+Max value: 52
+Max value: 54
+Max value: 51
+Max value: 87
+Avg_rollouts 58.25 Turns 8
+Pokemon left: 1
+Starting game: 320, Current winrate: 0.893
+Max value: 29
+Max value: 37
+Max value: 39
+Max value: 46
+Max value: 81
+Max value: 85
+Avg_rollouts 67.66666666666667 Turns 6
+Pokemon left: 1
+Max value: 42
+Max value: 22
+Max value: 52
+Max value: 46
+Max value: 46
+Max value: 46
+Max value: 53
+Max value: 62
+Max value: 115
+Avg_rollouts 60.111111111111114 Turns 9
+Pokemon left: 1
+Max value: 31
+Max value: 51
+Max value: 38
+Max value: 33
+Max value: 62
+Max value: 108
+Max value: 35
+Max value: 98
+Max value: 108
+Avg_rollouts 73.22222222222223 Turns 9
+Pokemon left: 1
+Max value: 43
+Max value: 35
+Max value: 43
+Max value: 18
+Max value: 48
+Max value: 49
+Max value: 47
+Max value: 52
+Max value: 39
+Max value: 110
+Avg_rollouts 58.4 Turns 10
+Pokemon left: 1
+Max value: 35
+Max value: 42
+Max value: 31
+Max value: 51
+Max value: 47
+Max value: 49
+Max value: 63
+Max value: 110
+Avg_rollouts 59.875 Turns 8
+Pokemon left: 1
+Max value: 42
+Max value: 37
+Max value: 30
+Max value: 40
+Max value: 43
+Max value: 42
+Max value: 55
+Max value: 37
+Max value: 59
+Max value: 95
+Avg_rollouts 54.0 Turns 10
+Pokemon left: 1
+Max value: 38
+Max value: 23
+Max value: 35
+Max value: 41
+Max value: 44
+Max value: 52
+Max value: 45
+Max value: 66
+Max value: 82
+Avg_rollouts 54.666666666666664 Turns 9
+Pokemon left: 1
+Max value: 33
+Max value: 37
+Max value: 40
+Max value: 29
+Max value: 43
+Max value: 47
+Max value: 42
+Max value: 53
+Max value: 48
+Max value: 52
+Max value: 88
+Avg_rollouts 55.90909090909091 Turns 11
+Pokemon left: 1
+Max value: 39
+Max value: 34
+Max value: 43
+Max value: 50
+Max value: 50
+Max value: 44
+Max value: 65
+Max value: 125
+Avg_rollouts 62.0 Turns 8
+Loss
+Max value: 36
+Max value: 39
+Max value: 47
+Max value: 47
+Max value: 37
+Max value: 59
+Max value: 118
+Avg_rollouts 59.857142857142854 Turns 7
+Pokemon left: 1
+Starting game: 330, Current winrate: 0.894
+Max value: 36
+Max value: 37
+Max value: 36
+Max value: 50
+Max value: 48
+Max value: 68
+Max value: 115
+Avg_rollouts 61.142857142857146 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 26
+Max value: 42
+Max value: 46
+Max value: 70
+Max value: 89
+Avg_rollouts 60.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 34
+Max value: 24
+Max value: 51
+Max value: 23
+Max value: 37
+Max value: 64
+Max value: 139
+Avg_rollouts 64.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 29
+Max value: 40
+Max value: 43
+Max value: 53
+Max value: 70
+Max value: 98
+Avg_rollouts 63.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 39
+Max value: 38
+Max value: 49
+Max value: 49
+Max value: 76
+Max value: 97
+Avg_rollouts 67.16666666666667 Turns 6
+Pokemon left: 1
+Max value: 46
+Max value: 27
+Max value: 49
+Max value: 38
+Max value: 35
+Max value: 86
+Max value: 101
+Avg_rollouts 66.71428571428571 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 39
+Max value: 53
+Max value: 46
+Max value: 31
+Max value: 70
+Max value: 93
+Max value: 118
+Max value: 79
+Max value: 79
+Avg_rollouts 69.0 Turns 10
+Pokemon left: 1
+Max value: 41
+Max value: 44
+Max value: 40
+Max value: 40
+Max value: 43
+Max value: 50
+Max value: 89
+Max value: 55
+Max value: 80
+Max value: 81
+Avg_rollouts 62.8 Turns 10
+Pokemon left: 1
+Max value: 27
+Max value: 38
+Max value: 42
+Max value: 53
+Max value: 85
+Avg_rollouts 61.8 Turns 5
+Pokemon left: 1
+Max value: 38
+Max value: 32
+Max value: 28
+Max value: 47
+Max value: 43
+Max value: 47
+Max value: 64
+Max value: 77
+Max value: 141
+Avg_rollouts 64.0 Turns 9
+Pokemon left: 1
+Starting game: 340, Current winrate: 0.897
+Max value: 38
+Max value: 39
+Max value: 43
+Max value: 52
+Max value: 55
+Max value: 50
+Max value: 50
+Max value: 53
+Max value: 52
+Max value: 54
+Max value: 80
+Max value: 72
+Max value: 73
+Max value: 68
+Max value: 138
+Avg_rollouts 66.93333333333334 Turns 15
+Loss
+Max value: 40
+Max value: 30
+Max value: 27
+Max value: 51
+Max value: 50
+Max value: 61
+Max value: 110
+Max value: 106
+Max value: 133
+Avg_rollouts 76.66666666666667 Turns 9
+Loss
+Max value: 22
+Max value: 40
+Max value: 49
+Max value: 36
+Max value: 41
+Max value: 52
+Max value: 63
+Max value: 106
+Avg_rollouts 65.0 Turns 8
+Pokemon left: 1
+Max value: 36
+Max value: 50
+Max value: 44
+Max value: 51
+Max value: 42
+Max value: 68
+Max value: 98
+Max value: 117
+Avg_rollouts 65.875 Turns 8
+Pokemon left: 1
+Max value: 29
+Max value: 40
+Max value: 47
+Max value: 41
+Max value: 100
+Avg_rollouts 62.0 Turns 5
+Pokemon left: 1
+Max value: 37
+Max value: 38
+Max value: 44
+Max value: 41
+Max value: 51
+Max value: 53
+Max value: 80
+Max value: 96
+Avg_rollouts 59.375 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 37
+Max value: 50
+Max value: 44
+Max value: 23
+Max value: 49
+Max value: 93
+Max value: 103
+Avg_rollouts 63.75 Turns 8
+Pokemon left: 1
+Max value: 34
+Max value: 36
+Max value: 47
+Max value: 46
+Max value: 88
+Avg_rollouts 59.0 Turns 5
+Pokemon left: 1
+Max value: 39
+Max value: 37
+Max value: 48
+Max value: 34
+Max value: 46
+Max value: 96
+Max value: 91
+Avg_rollouts 65.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 26
+Max value: 37
+Max value: 38
+Max value: 47
+Max value: 82
+Max value: 86
+Avg_rollouts 64.16666666666667 Turns 6
+Pokemon left: 1
+Starting game: 350, Current winrate: 0.894
+Max value: 41
+Max value: 40
+Max value: 48
+Max value: 50
+Max value: 27
+Max value: 64
+Max value: 100
+Avg_rollouts 61.142857142857146 Turns 7
+Pokemon left: 1
+Max value: 33
+Max value: 39
+Max value: 51
+Max value: 51
+Max value: 58
+Max value: 94
+Avg_rollouts 61.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 44
+Max value: 43
+Max value: 46
+Max value: 53
+Max value: 48
+Max value: 66
+Max value: 44
+Avg_rollouts 53.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 34
+Max value: 49
+Max value: 49
+Max value: 54
+Max value: 43
+Max value: 103
+Avg_rollouts 63.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 42
+Max value: 37
+Max value: 36
+Max value: 48
+Max value: 43
+Max value: 53
+Max value: 61
+Max value: 69
+Max value: 112
+Avg_rollouts 63.55555555555556 Turns 9
+Pokemon left: 1
+Max value: 26
+Max value: 42
+Max value: 49
+Max value: 47
+Max value: 59
+Max value: 70
+Max value: 141
+Avg_rollouts 69.71428571428571 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 39
+Max value: 48
+Max value: 43
+Max value: 45
+Max value: 67
+Avg_rollouts 55.0 Turns 6
+Pokemon left: 1
+Max value: 43
+Max value: 32
+Max value: 50
+Max value: 44
+Max value: 62
+Max value: 107
+Avg_rollouts 60.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 39
+Max value: 37
+Max value: 46
+Max value: 42
+Max value: 66
+Max value: 109
+Max value: 116
+Avg_rollouts 71.71428571428571 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 41
+Max value: 39
+Max value: 50
+Max value: 31
+Max value: 40
+Max value: 69
+Max value: 140
+Avg_rollouts 65.0 Turns 8
+Pokemon left: 1
+Starting game: 360, Current winrate: 0.897
+Max value: 39
+Max value: 36
+Max value: 51
+Max value: 45
+Max value: 61
+Max value: 72
+Max value: 142
+Avg_rollouts 65.85714285714286 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 31
+Max value: 50
+Max value: 47
+Max value: 45
+Max value: 71
+Max value: 66
+Max value: 101
+Avg_rollouts 60.375 Turns 8
+Pokemon left: 1
+Max value: 36
+Max value: 38
+Max value: 45
+Max value: 47
+Max value: 42
+Max value: 41
+Max value: 53
+Max value: 115
+Avg_rollouts 63.25 Turns 8
+Pokemon left: 1
+Max value: 44
+Max value: 54
+Max value: 47
+Max value: 50
+Max value: 56
+Max value: 63
+Max value: 87
+Avg_rollouts 60.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 45
+Max value: 23
+Max value: 49
+Max value: 38
+Max value: 49
+Max value: 96
+Avg_rollouts 59.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 36
+Max value: 36
+Max value: 51
+Max value: 29
+Max value: 52
+Max value: 66
+Max value: 69
+Max value: 113
+Avg_rollouts 65.375 Turns 8
+Pokemon left: 1
+Max value: 41
+Max value: 39
+Max value: 41
+Max value: 56
+Max value: 29
+Max value: 60
+Max value: 41
+Max value: 52
+Max value: 61
+Max value: 77
+Max value: 136
+Avg_rollouts 66.0909090909091 Turns 11
+Loss
+Max value: 36
+Max value: 38
+Max value: 44
+Max value: 44
+Max value: 70
+Max value: 89
+Max value: 111
+Avg_rollouts 68.71428571428571 Turns 7
+Pokemon left: 1
+Max value: 34
+Max value: 38
+Max value: 52
+Max value: 46
+Max value: 44
+Max value: 71
+Max value: 105
+Avg_rollouts 61.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 38
+Max value: 41
+Max value: 33
+Max value: 25
+Max value: 32
+Max value: 67
+Max value: 74
+Max value: 142
+Avg_rollouts 69.875 Turns 8
+Pokemon left: 1
+Starting game: 370, Current winrate: 0.897
+Max value: 35
+Max value: 35
+Max value: 40
+Max value: 34
+Max value: 54
+Max value: 41
+Max value: 66
+Max value: 85
+Avg_rollouts 59.5 Turns 8
+Pokemon left: 1
+Max value: 38
+Max value: 33
+Max value: 50
+Max value: 50
+Max value: 46
+Max value: 63
+Max value: 86
+Avg_rollouts 57.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 47
+Max value: 36
+Max value: 36
+Max value: 41
+Max value: 30
+Max value: 56
+Max value: 71
+Avg_rollouts 60.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 35
+Max value: 43
+Max value: 28
+Max value: 50
+Max value: 48
+Max value: 63
+Avg_rollouts 60.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 36
+Max value: 28
+Max value: 50
+Max value: 39
+Max value: 30
+Max value: 88
+Avg_rollouts 59.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 24
+Max value: 40
+Max value: 43
+Max value: 53
+Max value: 69
+Max value: 108
+Max value: 119
+Avg_rollouts 68.75 Turns 8
+Pokemon left: 1
+Max value: 36
+Max value: 37
+Max value: 30
+Max value: 49
+Max value: 51
+Max value: 61
+Max value: 48
+Max value: 55
+Max value: 92
+Avg_rollouts 62.0 Turns 9
+Pokemon left: 1
+Max value: 36
+Max value: 33
+Max value: 51
+Max value: 26
+Max value: 64
+Max value: 72
+Max value: 142
+Avg_rollouts 65.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 37
+Max value: 37
+Max value: 39
+Max value: 55
+Max value: 40
+Max value: 54
+Max value: 92
+Max value: 53
+Max value: 95
+Avg_rollouts 64.3 Turns 10
+Pokemon left: 1
+Max value: 28
+Max value: 38
+Max value: 39
+Max value: 39
+Max value: 51
+Max value: 62
+Max value: 116
+Avg_rollouts 63.42857142857143 Turns 7
+Pokemon left: 1
+Starting game: 380, Current winrate: 0.900
+Max value: 39
+Max value: 24
+Max value: 46
+Max value: 46
+Max value: 45
+Max value: 63
+Max value: 73
+Max value: 115
+Avg_rollouts 63.125 Turns 8
+Loss
+Max value: 45
+Max value: 39
+Max value: 51
+Max value: 48
+Max value: 64
+Avg_rollouts 56.8 Turns 5
+Pokemon left: 1
+Max value: 41
+Max value: 35
+Max value: 21
+Max value: 34
+Max value: 67
+Max value: 107
+Avg_rollouts 61.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 41
+Max value: 35
+Max value: 48
+Max value: 41
+Max value: 48
+Max value: 95
+Avg_rollouts 57.0 Turns 6
+Pokemon left: 1
+Max value: 40
+Max value: 25
+Max value: 41
+Max value: 34
+Max value: 20
+Max value: 33
+Max value: 55
+Max value: 57
+Max value: 56
+Max value: 96
+Max value: 136
+Avg_rollouts 63.81818181818182 Turns 11
+Pokemon left: 1
+Max value: 45
+Max value: 39
+Max value: 42
+Max value: 30
+Max value: 64
+Max value: 58
+Max value: 68
+Max value: 141
+Avg_rollouts 70.125 Turns 8
+Pokemon left: 1
+Max value: 27
+Max value: 24
+Max value: 39
+Max value: 32
+Max value: 48
+Max value: 20
+Max value: 64
+Max value: 134
+Avg_rollouts 63.625 Turns 8
+Pokemon left: 1
+Max value: 38
+Max value: 23
+Max value: 34
+Max value: 26
+Max value: 36
+Max value: 38
+Max value: 44
+Max value: 64
+Max value: 53
+Max value: 88
+Avg_rollouts 57.2 Turns 10
+Pokemon left: 1
+Max value: 34
+Max value: 43
+Max value: 54
+Max value: 50
+Max value: 70
+Max value: 110
+Max value: 113
+Avg_rollouts 71.85714285714286 Turns 7
+Pokemon left: 1
+Max value: 35
+Max value: 26
+Max value: 52
+Max value: 53
+Max value: 37
+Max value: 37
+Max value: 105
+Avg_rollouts 65.14285714285714 Turns 7
+Pokemon left: 1
+Starting game: 390, Current winrate: 0.900
+Max value: 22
+Max value: 40
+Max value: 43
+Max value: 49
+Max value: 55
+Max value: 92
+Avg_rollouts 57.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 43
+Max value: 38
+Max value: 25
+Max value: 37
+Max value: 31
+Max value: 38
+Max value: 73
+Avg_rollouts 64.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 30
+Max value: 39
+Max value: 54
+Max value: 51
+Max value: 91
+Avg_rollouts 56.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 46
+Max value: 24
+Max value: 48
+Max value: 48
+Max value: 40
+Max value: 52
+Max value: 73
+Max value: 94
+Avg_rollouts 61.875 Turns 8
+Pokemon left: 1
+Max value: 40
+Max value: 28
+Max value: 31
+Max value: 51
+Max value: 45
+Max value: 72
+Max value: 142
+Avg_rollouts 67.14285714285714 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 35
+Max value: 43
+Max value: 42
+Max value: 34
+Max value: 44
+Max value: 33
+Max value: 68
+Max value: 91
+Avg_rollouts 56.666666666666664 Turns 9
+Pokemon left: 1
+Max value: 43
+Max value: 35
+Max value: 45
+Max value: 39
+Max value: 53
+Max value: 57
+Max value: 71
+Max value: 115
+Avg_rollouts 62.875 Turns 8
+Pokemon left: 1
+Max value: 34
+Max value: 26
+Max value: 49
+Max value: 44
+Max value: 66
+Max value: 79
+Max value: 143
+Avg_rollouts 66.0 Turns 7
+Pokemon left: 1
+Max value: 38
+Max value: 37
+Max value: 42
+Max value: 27
+Max value: 44
+Max value: 58
+Max value: 54
+Max value: 60
+Max value: 136
+Avg_rollouts 64.33333333333333 Turns 9
+Pokemon left: 1
+Max value: 26
+Max value: 25
+Max value: 43
+Max value: 27
+Max value: 97
+Avg_rollouts 58.8 Turns 5
+Pokemon left: 1
+Starting game: 400, Current winrate: 0.902
+Max value: 38
+Max value: 40
+Max value: 39
+Max value: 47
+Max value: 40
+Max value: 46
+Max value: 45
+Max value: 58
+Max value: 50
+Max value: 100
+Avg_rollouts 56.4 Turns 10
+Pokemon left: 1
+Max value: 38
+Max value: 41
+Max value: 33
+Max value: 44
+Max value: 53
+Max value: 60
+Max value: 91
+Avg_rollouts 58.142857142857146 Turns 7
+Pokemon left: 1
+Max value: 35
+Max value: 39
+Max value: 50
+Max value: 45
+Max value: 50
+Max value: 52
+Max value: 45
+Max value: 45
+Max value: 40
+Max value: 45
+Max value: 47
+Max value: 47
+Max value: 58
+Max value: 75
+Max value: 88
+Max value: 84
+Avg_rollouts 58.5 Turns 16
+Pokemon left: 1
+Max value: 41
+Max value: 33
+Max value: 34
+Max value: 46
+Max value: 41
+Max value: 45
+Max value: 51
+Max value: 86
+Max value: 61
+Max value: 69
+Avg_rollouts 57.8 Turns 10
+Pokemon left: 1
+Max value: 43
+Max value: 42
+Max value: 53
+Max value: 40
+Max value: 51
+Max value: 41
+Max value: 94
+Max value: 86
+Avg_rollouts 62.375 Turns 8
+Pokemon left: 1
+Max value: 41
+Max value: 37
+Max value: 56
+Max value: 31
+Max value: 45
+Max value: 52
+Max value: 81
+Avg_rollouts 59.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 35
+Max value: 50
+Max value: 20
+Max value: 56
+Max value: 51
+Max value: 102
+Avg_rollouts 59.714285714285715 Turns 7
+Pokemon left: 1
+Max value: 38
+Max value: 37
+Max value: 42
+Max value: 51
+Max value: 55
+Max value: 53
+Max value: 45
+Max value: 54
+Max value: 51
+Max value: 94
+Max value: 135
+Avg_rollouts 65.9090909090909 Turns 11
+Pokemon left: 1
+Max value: 30
+Max value: 34
+Max value: 41
+Max value: 52
+Max value: 49
+Max value: 41
+Max value: 50
+Max value: 53
+Max value: 66
+Max value: 88
+Avg_rollouts 60.1 Turns 10
+Pokemon left: 1
+Max value: 43
+Max value: 38
+Max value: 46
+Max value: 44
+Max value: 47
+Max value: 49
+Max value: 65
+Max value: 117
+Avg_rollouts 62.125 Turns 8
+Pokemon left: 1
+Starting game: 410, Current winrate: 0.905
+Max value: 28
+Max value: 36
+Max value: 50
+Max value: 43
+Max value: 44
+Max value: 61
+Max value: 82
+Avg_rollouts 57.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 25
+Max value: 55
+Max value: 50
+Max value: 84
+Avg_rollouts 59.0 Turns 5
+Pokemon left: 1
+Max value: 42
+Max value: 37
+Max value: 30
+Max value: 52
+Max value: 35
+Max value: 44
+Max value: 57
+Max value: 96
+Avg_rollouts 58.75 Turns 8
+Pokemon left: 1
+Max value: 23
+Max value: 24
+Max value: 51
+Max value: 40
+Max value: 54
+Max value: 50
+Max value: 94
+Max value: 70
+Avg_rollouts 66.125 Turns 8
+Pokemon left: 1
+Max value: 41
+Max value: 41
+Max value: 50
+Max value: 56
+Max value: 85
+Avg_rollouts 58.2 Turns 5
+Pokemon left: 1
+Max value: 45
+Max value: 37
+Max value: 41
+Max value: 46
+Max value: 47
+Max value: 88
+Avg_rollouts 57.833333333333336 Turns 6
+Pokemon left: 1
+Max value: 41
+Max value: 37
+Max value: 51
+Max value: 45
+Max value: 70
+Max value: 46
+Max value: 115
+Avg_rollouts 68.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 37
+Max value: 44
+Max value: 51
+Max value: 68
+Max value: 90
+Avg_rollouts 59.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 39
+Max value: 24
+Max value: 48
+Max value: 59
+Max value: 53
+Max value: 90
+Avg_rollouts 59.666666666666664 Turns 6
+Pokemon left: 1
+Max value: 30
+Max value: 40
+Max value: 42
+Max value: 55
+Max value: 54
+Max value: 96
+Avg_rollouts 59.333333333333336 Turns 6
+Pokemon left: 1
+Starting game: 420, Current winrate: 0.907
+Max value: 39
+Max value: 40
+Max value: 51
+Max value: 44
+Max value: 46
+Max value: 116
+Max value: 115
+Max value: 115
+Avg_rollouts 79.25 Turns 8
+Loss
+Max value: 42
+Max value: 37
+Max value: 39
+Max value: 36
+Max value: 58
+Max value: 69
+Max value: 74
+Avg_rollouts 63.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 38
+Max value: 52
+Max value: 39
+Max value: 53
+Max value: 70
+Max value: 138
+Avg_rollouts 66.71428571428571 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 29
+Max value: 53
+Max value: 55
+Max value: 93
+Avg_rollouts 60.2 Turns 5
+Pokemon left: 1
+Max value: 43
+Max value: 36
+Max value: 40
+Max value: 38
+Max value: 35
+Max value: 63
+Max value: 108
+Avg_rollouts 59.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 28
+Max value: 29
+Max value: 52
+Max value: 50
+Max value: 49
+Max value: 28
+Max value: 72
+Max value: 78
+Max value: 88
+Avg_rollouts 63.5 Turns 10
+Pokemon left: 1
+Max value: 36
+Max value: 23
+Max value: 52
+Max value: 30
+Max value: 32
+Max value: 62
+Max value: 104
+Avg_rollouts 62.0 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 26
+Max value: 30
+Max value: 53
+Max value: 39
+Max value: 49
+Max value: 56
+Max value: 87
+Avg_rollouts 59.5 Turns 8
+Pokemon left: 1
+Max value: 45
+Max value: 35
+Max value: 43
+Max value: 50
+Max value: 44
+Max value: 66
+Max value: 135
+Avg_rollouts 64.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 38
+Max value: 51
+Max value: 28
+Max value: 33
+Max value: 32
+Max value: 48
+Max value: 122
+Max value: 103
+Avg_rollouts 68.125 Turns 8
+Pokemon left: 1
+Starting game: 430, Current winrate: 0.907
+Max value: 41
+Max value: 33
+Max value: 32
+Max value: 50
+Max value: 41
+Max value: 41
+Max value: 69
+Max value: 65
+Max value: 116
+Max value: 98
+Avg_rollouts 65.1 Turns 10
+Pokemon left: 1
+Max value: 37
+Max value: 39
+Max value: 52
+Max value: 45
+Max value: 58
+Max value: 102
+Max value: 120
+Max value: 101
+Max value: 129
+Avg_rollouts 82.77777777777777 Turns 9
+Pokemon left: 1
+Max value: 43
+Max value: 34
+Max value: 50
+Max value: 44
+Max value: 90
+Avg_rollouts 59.6 Turns 5
+Pokemon left: 1
+Max value: 41
+Max value: 37
+Max value: 37
+Max value: 54
+Max value: 49
+Max value: 58
+Max value: 97
+Avg_rollouts 60.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 35
+Max value: 32
+Max value: 38
+Max value: 56
+Max value: 73
+Max value: 143
+Avg_rollouts 66.0 Turns 7
+Pokemon left: 1
+Max value: 30
+Max value: 49
+Max value: 46
+Max value: 67
+Avg_rollouts 60.5 Turns 4
+Pokemon left: 1
+Max value: 39
+Max value: 38
+Max value: 49
+Max value: 47
+Max value: 30
+Max value: 43
+Max value: 64
+Max value: 84
+Max value: 66
+Max value: 63
+Max value: 111
+Avg_rollouts 69.27272727272727 Turns 11
+Pokemon left: 1
+Max value: 43
+Max value: 37
+Max value: 50
+Max value: 57
+Max value: 71
+Max value: 95
+Max value: 95
+Max value: 75
+Avg_rollouts 68.5 Turns 8
+Pokemon left: 1
+Max value: 37
+Max value: 36
+Max value: 44
+Max value: 35
+Max value: 49
+Max value: 52
+Max value: 46
+Max value: 51
+Max value: 86
+Avg_rollouts 55.55555555555556 Turns 9
+Pokemon left: 1
+Max value: 36
+Max value: 33
+Max value: 51
+Max value: 36
+Max value: 23
+Max value: 96
+Max value: 85
+Avg_rollouts 60.714285714285715 Turns 7
+Pokemon left: 1
+Starting game: 440, Current winrate: 0.909
+Max value: 35
+Max value: 38
+Max value: 43
+Max value: 43
+Max value: 65
+Max value: 57
+Max value: 141
+Avg_rollouts 66.14285714285714 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 34
+Max value: 52
+Max value: 46
+Max value: 52
+Max value: 81
+Max value: 53
+Max value: 76
+Avg_rollouts 60.625 Turns 8
+Pokemon left: 1
+Max value: 37
+Max value: 31
+Max value: 34
+Max value: 31
+Max value: 71
+Max value: 110
+Avg_rollouts 65.66666666666667 Turns 6
+Pokemon left: 1
+Max value: 45
+Max value: 34
+Max value: 51
+Max value: 46
+Max value: 30
+Max value: 60
+Max value: 102
+Max value: 100
+Avg_rollouts 69.375 Turns 8
+Loss
+Max value: 40
+Max value: 38
+Max value: 51
+Max value: 42
+Max value: 63
+Max value: 107
+Max value: 95
+Avg_rollouts 64.71428571428571 Turns 7
+Pokemon left: 1
+Max value: 29
+Max value: 29
+Max value: 43
+Max value: 47
+Max value: 55
+Max value: 63
+Max value: 98
+Max value: 60
+Avg_rollouts 70.5 Turns 8
+Loss
+Max value: 44
+Max value: 34
+Max value: 54
+Max value: 37
+Max value: 64
+Max value: 124
+Avg_rollouts 66.33333333333333 Turns 6
+Pokemon left: 1
+Max value: 38
+Max value: 43
+Max value: 50
+Max value: 44
+Max value: 35
+Max value: 33
+Max value: 36
+Max value: 51
+Max value: 40
+Max value: 92
+Avg_rollouts 56.4 Turns 10
+Pokemon left: 1
+Max value: 41
+Max value: 36
+Max value: 39
+Max value: 48
+Max value: 64
+Max value: 76
+Max value: 117
+Avg_rollouts 65.85714285714286 Turns 7
+Pokemon left: 1
+Max value: 26
+Max value: 48
+Max value: 47
+Max value: 59
+Max value: 71
+Max value: 111
+Avg_rollouts 66.0 Turns 6
+Pokemon left: 1
+Starting game: 450, Current winrate: 0.906
+Max value: 45
+Max value: 40
+Max value: 50
+Max value: 25
+Max value: 44
+Max value: 38
+Max value: 135
+Avg_rollouts 65.0 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 27
+Max value: 53
+Max value: 54
+Max value: 46
+Max value: 64
+Max value: 135
+Avg_rollouts 66.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 24
+Max value: 28
+Max value: 29
+Max value: 50
+Max value: 49
+Max value: 48
+Max value: 39
+Max value: 52
+Max value: 54
+Max value: 86
+Max value: 91
+Avg_rollouts 61.0 Turns 11
+Pokemon left: 1
+Max value: 41
+Max value: 31
+Max value: 47
+Max value: 51
+Max value: 48
+Max value: 63
+Max value: 121
+Avg_rollouts 62.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 37
+Max value: 35
+Max value: 49
+Max value: 49
+Max value: 52
+Max value: 77
+Avg_rollouts 59.5 Turns 6
+Pokemon left: 1
+Max value: 46
+Max value: 36
+Max value: 34
+Max value: 33
+Max value: 42
+Max value: 70
+Max value: 117
+Avg_rollouts 64.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 38
+Max value: 46
+Max value: 37
+Max value: 42
+Max value: 48
+Max value: 47
+Max value: 85
+Max value: 87
+Avg_rollouts 61.5 Turns 8
+Pokemon left: 1
+Max value: 42
+Max value: 38
+Max value: 43
+Max value: 46
+Max value: 44
+Max value: 66
+Max value: 89
+Max value: 82
+Avg_rollouts 73.5 Turns 8
+Pokemon left: 1
+Max value: 37
+Max value: 38
+Max value: 44
+Max value: 48
+Max value: 53
+Max value: 45
+Max value: 62
+Max value: 100
+Max value: 132
+Avg_rollouts 70.0 Turns 9
+Pokemon left: 1
+Max value: 32
+Max value: 26
+Max value: 42
+Max value: 51
+Max value: 68
+Max value: 115
+Max value: 76
+Max value: 96
+Avg_rollouts 72.0 Turns 8
+Loss
+Starting game: 460, Current winrate: 0.906
+Max value: 37
+Max value: 32
+Max value: 22
+Max value: 44
+Max value: 40
+Max value: 72
+Max value: 115
+Avg_rollouts 63.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 34
+Max value: 58
+Max value: 50
+Max value: 83
+Avg_rollouts 61.2 Turns 5
+Pokemon left: 1
+Max value: 32
+Max value: 35
+Max value: 46
+Max value: 48
+Max value: 31
+Max value: 101
+Max value: 108
+Avg_rollouts 63.857142857142854 Turns 7
+Pokemon left: 1
+Max value: 34
+Max value: 37
+Max value: 55
+Max value: 52
+Max value: 47
+Max value: 70
+Max value: 115
+Avg_rollouts 63.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 38
+Max value: 35
+Max value: 28
+Max value: 35
+Max value: 65
+Max value: 50
+Max value: 111
+Avg_rollouts 67.0 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 41
+Max value: 45
+Max value: 52
+Max value: 39
+Max value: 32
+Max value: 89
+Max value: 77
+Max value: 72
+Avg_rollouts 63.44444444444444 Turns 9
+Pokemon left: 1
+Max value: 28
+Max value: 38
+Max value: 29
+Max value: 34
+Max value: 52
+Max value: 48
+Max value: 43
+Max value: 86
+Avg_rollouts 56.0 Turns 8
+Pokemon left: 1
+Max value: 42
+Max value: 40
+Max value: 50
+Max value: 48
+Max value: 72
+Max value: 108
+Max value: 112
+Avg_rollouts 71.57142857142857 Turns 7
+Pokemon left: 1
+Max value: 41
+Max value: 38
+Max value: 43
+Max value: 54
+Max value: 45
+Max value: 61
+Avg_rollouts 58.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 25
+Max value: 40
+Max value: 37
+Max value: 41
+Max value: 49
+Max value: 54
+Max value: 41
+Max value: 68
+Max value: 122
+Avg_rollouts 63.77777777777778 Turns 9
+Pokemon left: 1
+Starting game: 470, Current winrate: 0.908
+Max value: 39
+Max value: 35
+Max value: 50
+Max value: 41
+Max value: 30
+Max value: 37
+Max value: 35
+Max value: 57
+Avg_rollouts 51.25 Turns 8
+Loss
+Max value: 37
+Max value: 42
+Max value: 44
+Max value: 38
+Max value: 41
+Max value: 105
+Max value: 98
+Avg_rollouts 70.85714285714286 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 35
+Max value: 44
+Max value: 43
+Max value: 55
+Max value: 49
+Max value: 94
+Max value: 140
+Avg_rollouts 71.0 Turns 8
+Pokemon left: 1
+Max value: 38
+Max value: 33
+Max value: 30
+Max value: 46
+Max value: 39
+Max value: 44
+Max value: 48
+Max value: 59
+Max value: 68
+Max value: 58
+Max value: 68
+Max value: 69
+Max value: 45
+Max value: 69
+Max value: 73
+Max value: 78
+Max value: 107
+Avg_rollouts 65.94117647058823 Turns 17
+Pokemon left: 1
+Max value: 28
+Max value: 40
+Max value: 28
+Max value: 40
+Max value: 40
+Max value: 72
+Max value: 115
+Avg_rollouts 64.28571428571429 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 33
+Max value: 53
+Max value: 48
+Max value: 47
+Max value: 37
+Max value: 96
+Max value: 119
+Avg_rollouts 67.25 Turns 8
+Pokemon left: 1
+Max value: 44
+Max value: 33
+Max value: 56
+Max value: 32
+Max value: 46
+Max value: 71
+Avg_rollouts 56.166666666666664 Turns 6
+Pokemon left: 1
+Max value: 40
+Max value: 29
+Max value: 26
+Max value: 48
+Max value: 38
+Max value: 65
+Max value: 139
+Avg_rollouts 65.28571428571429 Turns 7
+Pokemon left: 1
+Max value: 39
+Max value: 31
+Max value: 47
+Max value: 48
+Max value: 50
+Max value: 47
+Max value: 73
+Max value: 99
+Max value: 106
+Avg_rollouts 65.33333333333333 Turns 9
+Pokemon left: 1
+Max value: 41
+Max value: 36
+Max value: 52
+Max value: 46
+Max value: 35
+Max value: 70
+Max value: 118
+Avg_rollouts 61.857142857142854 Turns 7
+Pokemon left: 1
+Starting game: 480, Current winrate: 0.908
+Max value: 34
+Max value: 36
+Max value: 40
+Max value: 52
+Max value: 35
+Max value: 56
+Max value: 103
+Max value: 133
+Avg_rollouts 71.625 Turns 8
+Pokemon left: 1
+Max value: 40
+Max value: 34
+Max value: 40
+Max value: 52
+Max value: 46
+Max value: 88
+Avg_rollouts 57.333333333333336 Turns 6
+Pokemon left: 1
+Max value: 36
+Max value: 17
+Max value: 50
+Max value: 26
+Max value: 40
+Max value: 48
+Max value: 97
+Max value: 83
+Max value: 62
+Max value: 72
+Max value: 89
+Max value: 81
+Max value: 77
+Max value: 137
+Avg_rollouts 75.78571428571429 Turns 14
+Loss
+Max value: 42
+Max value: 39
+Max value: 42
+Max value: 55
+Max value: 48
+Max value: 49
+Max value: 100
+Max value: 115
+Avg_rollouts 65.875 Turns 8
+Loss
+Max value: 36
+Max value: 30
+Max value: 37
+Max value: 41
+Max value: 29
+Max value: 59
+Max value: 47
+Max value: 102
+Max value: 109
+Avg_rollouts 68.0 Turns 9
+Pokemon left: 1
+Max value: 47
+Max value: 32
+Max value: 46
+Max value: 33
+Max value: 46
+Max value: 120
+Max value: 143
+Avg_rollouts 77.0 Turns 7
+Pokemon left: 1
+Max value: 44
+Max value: 36
+Max value: 50
+Max value: 27
+Max value: 36
+Max value: 47
+Max value: 58
+Max value: 70
+Max value: 118
+Avg_rollouts 62.0 Turns 9
+Pokemon left: 1
+Max value: 42
+Max value: 31
+Max value: 38
+Max value: 54
+Max value: 49
+Max value: 52
+Max value: 94
+Max value: 71
+Avg_rollouts 63.0 Turns 8
+Pokemon left: 1
+Max value: 39
+Max value: 42
+Max value: 31
+Max value: 54
+Max value: 45
+Max value: 69
+Max value: 126
+Avg_rollouts 63.57142857142857 Turns 7
+Loss
+Max value: 41
+Max value: 15
+Max value: 55
+Max value: 42
+Max value: 41
+Max value: 57
+Avg_rollouts 59.833333333333336 Turns 6
+Pokemon left: 1
+Starting game: 490, Current winrate: 0.904
+Max value: 44
+Max value: 41
+Max value: 52
+Max value: 51
+Max value: 43
+Max value: 44
+Max value: 81
+Avg_rollouts 59.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 26
+Max value: 38
+Max value: 51
+Max value: 36
+Max value: 51
+Max value: 40
+Max value: 51
+Max value: 109
+Max value: 129
+Avg_rollouts 73.0 Turns 9
+Pokemon left: 1
+Max value: 24
+Max value: 29
+Max value: 46
+Max value: 48
+Max value: 39
+Max value: 49
+Max value: 72
+Max value: 80
+Max value: 90
+Max value: 78
+Max value: 80
+Avg_rollouts 65.9090909090909 Turns 11
+Pokemon left: 1
+Max value: 44
+Max value: 43
+Max value: 51
+Max value: 30
+Max value: 54
+Max value: 59
+Max value: 122
+Avg_rollouts 65.42857142857143 Turns 7
+Pokemon left: 1
+Max value: 40
+Max value: 51
+Max value: 45
+Max value: 49
+Max value: 51
+Max value: 68
+Max value: 107
+Max value: 63
+Max value: 88
+Avg_rollouts 65.66666666666667 Turns 9
+Pokemon left: 1
+Max value: 45
+Max value: 37
+Max value: 42
+Max value: 53
+Max value: 56
+Max value: 52
+Max value: 49
+Max value: 57
+Max value: 99
+Max value: 137
+Avg_rollouts 66.5 Turns 10
+Pokemon left: 1
+Max value: 44
+Max value: 42
+Max value: 48
+Max value: 52
+Max value: 53
+Max value: 36
+Max value: 45
+Max value: 114
+Max value: 99
+Avg_rollouts 69.66666666666667 Turns 9
+Pokemon left: 1
+Max value: 41
+Max value: 42
+Max value: 49
+Max value: 48
+Max value: 46
+Max value: 45
+Max value: 43
+Max value: 52
+Max value: 56
+Max value: 56
+Max value: 67
+Max value: 85
+Avg_rollouts 58.75 Turns 12
+Pokemon left: 1
+Max value: 42
+Max value: 41
+Max value: 45
+Max value: 52
+Max value: 53
+Max value: 40
+Max value: 97
+Avg_rollouts 59.285714285714285 Turns 7
+Pokemon left: 1
+Max value: 43
+Max value: 33
+Max value: 42
+Max value: 48
+Max value: 63
+Max value: 111
+Avg_rollouts 61.333333333333336 Turns 6
+Pokemon left: 1
+Starting game: 500, Current winrate: 0.906
+Max value: 40
+Max value: 34
+Max value: 51
+Max value: 49
+Max value: 51
+Max value: 74
+Max value: 114
+Avg_rollouts 63.0 Turns 7
+Pokemon left: 1
+WARNING: max time for agent = 0.11823916435241699
+NET: 889.00 +/- 169.83; WINS: 0.906 +/- 0.026

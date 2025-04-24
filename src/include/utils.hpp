@@ -85,9 +85,8 @@ Stats get_nature_contrib(const Nature nature);
 // boostIndex: in [-6, 6]
 int boostStatVal(int statVal, int boostIndex);
 int applyModifier(const int val, const int numerator, const int denominator);
-// Return whether or not the item is a berry
+int baseNumHits(MoveId move);
 bool isBerry(Item item);
-// Return whether or not the item is a gem
 bool isGem(Item item);
 bool noTrace(Ability);
 } // namespace pkmn

@@ -4,29 +4,6 @@
 #include <cmath>
 #include <iostream>
 
-#define TIME_EXPR(label, code)                                                                     \
-  do {                                                                                             \
-    auto start = std::chrono::high_resolution_clock::now();                                        \
-    code auto end = std::chrono::high_resolution_clock::now();                                     \
-    std::chrono::duration<double, std::milli> elapsed = end - start;                               \
-    std::cout << label << ": " << elapsed.count() << " ms\n";                                      \
-  } while (0)
-#define TIME_EXPR_RET(label, expr)                                                                 \
-  [&]() {                                                                                          \
-    auto start = std::chrono::high_resolution_clock::now();                                        \
-    auto result = (expr);                                                                          \
-    auto end = std::chrono::high_resolution_clock::now();                                          \
-    std::chrono::duration<double, std::milli> elapsed = end - start;                               \
-    std::cout << label << ": " << elapsed.count() << " ms\n";                                      \
-    return result;                                                                                 \
-  }()
-#define TIME_EXPR_TIMING(code)                                                                     \
-  [&]() {                                                                                          \
-    auto start = std::chrono::high_resolution_clock::now();                                        \
-    code auto end = std::chrono::high_resolution_clock::now();                                     \
-    std::chrono::duration<double, std::milli> elapsed = end - start;                               \
-    return elapsed.count();                                                                        \
-  }()
 namespace pkmn {
 Pokemon getCharmander(int lvl) {
   Pokemon charmander = Pokemon(PokeName::CHARMANDER, lvl, Gender::MALE, Nature::HARDY,
@@ -98,6 +75,27 @@ Pokemon getRookidee(int lvl, Item item) {
   rookidee.add_move(MoveId::SANDATTACK, 1);
   rookidee.add_move(MoveId::SWAGGER, 2);
   return rookidee;
+}
+Pokemon getCroagunk(int lvl, Item item) {
+  Pokemon croagunk = Pokemon(PokeName::CROAGUNK, lvl, Gender::MALE, Nature::HARDY,
+                             Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  croagunk.set_ability(Ability::ANTICIPATION);
+  croagunk.set_item(item);
+  croagunk.add_move(MoveId::POISONJAB, 0);
+  croagunk.add_move(MoveId::BELCH, 1);
+  croagunk.add_move(MoveId::CALMMIND, 2);
+  return croagunk;
+}
+Pokemon getExeggcute(int lvl, Item item) {
+  Pokemon exeggcute = Pokemon(PokeName::EXEGGCUTE, lvl, Gender::MALE, Nature::HARDY,
+                              Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  exeggcute.set_ability(Ability::HARVEST);
+  exeggcute.set_item(item);
+  exeggcute.add_move(MoveId::CONFUSION, 0);
+  exeggcute.add_move(MoveId::BULLETSEED, 1);
+  exeggcute.add_move(MoveId::LEECHSEED, 2);
+  exeggcute.add_move(MoveId::STUNSPORE, 3);
+  return exeggcute;
 }
 // Test starting a battle
 bool test_initialize_battle() {
@@ -596,11 +594,10 @@ bool test_stat_boost() {
     state.teams[0].choicesAvailable = Choice(false, 0, -1); // Pound
     state.teams[1].choicesAvailable = Choice(false, 0, -1); // Bite
     state = state.runTurnPy();
-    if (state.getActivePokemon(1).current_hp != 22)
+    if (state.getActivePokemon(1).current_hp != 22) {
       return false;
+    }
     // Test stat unboosted damage
-    if (state.getActivePokemon(1).current_hp != 22)
-      return false;
     state.getActivePokemon(0).boosts[ModifierId::ATTACK] = -1;
     state.teams[0].choicesAvailable = Choice(false, 0, -1); // Pound
     state.teams[1].choicesAvailable = Choice(false, 0, -1); // Bite
@@ -651,31 +648,139 @@ bool test_berry() {
   Team team0, team1;
   team0.add_pokemon(0, getPiplup(10, Item::ORAN_BERRY));
   team1.add_pokemon(0, getRookidee(10, Item::ORAN_BERRY)); // Rook is faster
-  state = {{0,0}};
+  state = {{0, 0}};
   state.set_team(0, team0);
   state.set_team(1, team1);
   state.startBattle();
   BattleState startState = state;
-  { // Oran Berry
-    Pokemon &piplup =  state.getActivePokemon(0); // MAX HP: 33
+  {                                              // Oran Berry
+    Pokemon &piplup = state.getActivePokemon(0); // MAX HP: 33
     piplup.current_hp = 20;
     state.teams[0].choicesAvailable = Choice(false, 1, -1); // Growl
     state.teams[1].choicesAvailable = Choice(false, 0, -1); // WingAttack
     state = state.runTurnPy();
     // WingAttack does 9, OranBerry heals 10
-    if(state.getActivePokemon(0).current_hp != 21) return false;
+    if (state.getActivePokemon(0).current_hp != 21)
+      return false;
   }
   { // Pluck
     state = startState;
-    Pokemon &piplup =  state.getActivePokemon(0); // MAX HP: 33
+    Pokemon &piplup = state.getActivePokemon(0); // MAX HP: 33
     piplup.current_hp = 20;
     state.teams[0].choicesAvailable = Choice(false, 3, -1); // Pluck
     state.teams[1].choicesAvailable = Choice(false, 0, -1); // WingAttack
     state = state.runTurnPy();
     // Rookidee WingAttack does 9, OranBerry heals 10
     // Piplup Pluck does dmg and heals it with OranBerry for 10
-    if(state.getActivePokemon(0).current_hp != 31) return false;
+    if (state.getActivePokemon(0).current_hp != 31)
+      return false;
   }
+  return true;
+}
+bool test_disable() {
+  BattleState state{{0, 0}};
+  Team team0, team1;
+  team0.add_pokemon(0, getPiplup(10, Item::NO_ITEM));
+  team1.add_pokemon(0, getCroagunk(10, Item::ORAN_BERRY)); // starts with 32 HP
+  state.set_team(0, team0);
+  state.set_team(1, team1);
+  state.startBattle();
+  {
+    for (int i = 0; i < 4; i++) {
+      if (state.teams[1].choicesAvailable.move[1]) {
+        // Belch should be disabled
+        return false;
+      }
+      state.teams[0].choicesAvailable = Choice(false, 0, -1); // Pound
+      state.teams[1].choicesAvailable = Choice(false, 2, -1); // CalmMind
+      // Pound does 5 damage
+      state = state.runTurnPy();
+    }
+    if (state.getActivePokemon(1).current_hp != 22) {
+      return false;
+    }
+    if (!state.getActivePokemon(1).ateBerry) {
+      return false;
+    }
+    if (!state.teams[1].choicesAvailable.move[1]) {
+      // Belch should be enabled after eating a berry
+      return false;
+    }
+  }
+  return true;
+}
+bool test_multihit() {
+  BattleState state{{0, 0}};
+  Team team0, team1;
+  int NUM_TRIALS = 100;
+  int num_hit = 0;
+  team0.add_pokemon(0, getLillipup(10, Item::NO_ITEM)); // starts with 32 HP
+  team1.add_pokemon(0, getExeggcute(10, Item::NO_ITEM));
+  state.set_team(0, team0);
+  state.set_team(1, team1);
+  state.startBattle();
+  BattleState startState = state;
+  for (int i = 0; i < NUM_TRIALS; i++, state = startState) {
+    state.teams[0].choicesAvailable = Choice(false, 0, -1); // Tackle
+    state.teams[1].choicesAvailable = Choice(false, 1, -1); // BulletSeed
+    state = state.runTurnPy();
+    // 2-5 BulletSeed hits, each does 4 dmg
+    int lillipupHP = state.getActivePokemon(0).current_hp;
+    if ((32 - lillipupHP) % 4) {
+      return false;
+    }
+    num_hit += (32 - lillipupHP) / 4;
+  }
+  std::cout << "Hit: " << num_hit << " in trials: " << NUM_TRIALS << std::endl;
+  return true;
+}
+
+Pokemon getCarvanha() {
+  Pokemon carvanha = Pokemon(PokeName::CARVANHA, 11, Gender::MALE, Nature::NAIVE,
+                             Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  carvanha.set_ability(Ability::HARVEST);
+  carvanha.set_item(Item::ORAN_BERRY);
+  carvanha.add_move(MoveId::BITE, 0);
+  carvanha.add_move(MoveId::WATERPULSE, 1);
+  carvanha.add_move(MoveId::AQUAJET, 2);
+  carvanha.add_move(MoveId::POISONFANG, 3);
+  return carvanha;
+}
+Pokemon getAquaCroagunk() {
+  Pokemon croagunk = Pokemon(PokeName::CROAGUNK, 12, Gender::MALE, Nature::HASTY,
+                             Stats{31, 31, 31, 31, 31, 31}, Stats{});
+  croagunk.set_ability(Ability::POISON_TOUCH);
+  croagunk.set_item(Item::SALAC_BERRY);
+  croagunk.add_move(MoveId::BELCH, 0);
+  croagunk.add_move(MoveId::ROCKSMASH, 1);
+  croagunk.add_move(MoveId::POISONSTING, 2);
+  croagunk.add_move(MoveId::FAKEOUT, 3);
+  return croagunk;
+}
+
+Pokemon getParas() {
+  Pokemon paras =
+      Pokemon(PokeName::PARAS, 12, Gender::FEMALE, Nature::MILD, Stats{0, 5, 2, 16, 1, 1}, Stats{});
+  paras.set_ability(Ability::EFFECT_SPORE);
+  // paras.set_item(Item::ORAN_BERRY);
+  paras.add_move(MoveId::BUGBITE, 0);
+  paras.add_move(MoveId::ABSORB, 1);
+  paras.add_move(MoveId::STUNSPORE, 2);
+  paras.add_move(MoveId::POISONPOWDER, 3);
+  return paras;
+}
+
+bool test_aqua() {
+  BattleState state{{0,0}};
+  Team team0, team1;
+  team0.add_pokemon(0, getParas()); // Start at 30 HP
+  team1.add_pokemon(0, getAquaCroagunk()); // Start at 37 HP
+  state.set_team(0, team0);
+  state.set_team(1, team1);
+  state.startBattle();
+  state.teams[0].choicesAvailable = Choice(false, 0, -1); // BugBite
+  state.fillOpponentChoice(1);
+  state = state.runTurnPy();
   return true;
 }
 } // namespace pkmn
@@ -694,4 +799,7 @@ std::vector<testing::TestCase> battle_tests = {
     {"Stat changes", pkmn::test_stat_boost},
     {"Confusion", pkmn::test_confusion},
     {"Berry mechanics", pkmn::test_berry},
+    {"Disabling move", pkmn::test_disable},
+    {"Multihit moves", pkmn::test_multihit},
+    // {"Temp Aqua Grunt tests", pkmn::test_aqua},
 };

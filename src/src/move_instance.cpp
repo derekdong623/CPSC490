@@ -43,13 +43,20 @@ bool MoveInstance::onModifyMove(Pokemon const &pokemon) {
   // PropellerTail and Stalwart: do at getTarget level
   // StanceChange: formeChange
   // PRIORITY 0
+  switch (pokemon.ability) {
+  case Ability::INFILTRATOR: {
+    infiltrates = true;
+    break;
+  }
+  case Ability::KEEN_EYE: {
+    ignoreEvasion = true;
+    break;
+  }
+  default:
+    break;
+  }
   // TODO: GorillaTactics and Choice items...why GorillaTactics implemented a bit different?
   // Illuminate: N/A, only Gen 9
-  if (pokemon.has_ability(Ability::INFILTRATOR)) {
-    infiltrates = true;
-  }
-  // move.infiltrates = true; // Infiltrator
-  // move.ignoreEvasion = true; // KeenEye
   // move.contact = false; // LongReach, PunchingGlove+punch
   // move.ignoreAbility = true; // MoldBreaker, MyceliumMight+Status, Teravolt, Turboblaze,
   // move.protect = false; // UnseenFist
@@ -457,14 +464,11 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
     ret.push_back({.kind = Secondary::STATUS, .chance = 30, .status = Status::POISON});
     break;
   }
-  case MoveId::SMOG: {
-    ret.push_back({.kind = Secondary::STATUS, .chance = 40, .status = Status::POISON});
-    break;
-  }
   case MoveId::BARBBARRAGE: {
     ret.push_back({.kind = Secondary::STATUS, .chance = 50, .status = Status::POISON});
     break;
   }
+  case MoveId::SMOG: // RUN & BUN 40 -> 100
   case MoveId::MORTALSPIN: {
     ret.push_back({.kind = Secondary::STATUS, .chance = 100, .status = Status::POISON});
     break;
@@ -497,19 +501,16 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
     break;
   }
   // Accuracy
-  case MoveId::MIRRORSHOT:
-  case MoveId::MUDBOMB:
+  case MoveId::MIRRORSHOT: // RUN & BUN: 30 -> 20
+  case MoveId::MUDBOMB: { // RUN & BUN: 30 -> 20
+    ret.push_back({.kind = Secondary::BOOST, .chance = 20, .boosts = {{ModifierId::ACCURACY, -1}}});
+    break;
+  }
+  case MoveId::LEAFTORNADO: // RUN & BUN: 50 -> 30
+  case MoveId::NIGHTDAZE: // RUN & BUN: 40 -> 30
+  case MoveId::OCTAZOOKA: // RUN & BUN: 50 -> 30
   case MoveId::MUDDYWATER: {
     ret.push_back({.kind = Secondary::BOOST, .chance = 30, .boosts = {{ModifierId::ACCURACY, -1}}});
-    break;
-  }
-  case MoveId::NIGHTDAZE: {
-    ret.push_back({.kind = Secondary::BOOST, .chance = 40, .boosts = {{ModifierId::ACCURACY, -1}}});
-    break;
-  }
-  case MoveId::LEAFTORNADO:
-  case MoveId::OCTAZOOKA: {
-    ret.push_back({.kind = Secondary::BOOST, .chance = 50, .boosts = {{ModifierId::ACCURACY, -1}}});
     break;
   }
   case MoveId::MUDSLAP: {
@@ -547,13 +548,13 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
     break;
   }
   case MoveId::CRUSHCLAW:
-  case MoveId::RAZORSHELL:
-  case MoveId::ROCKSMASH: {
+  case MoveId::RAZORSHELL:{
     ret.push_back({.kind = Secondary::BOOST, .chance = 50, .boosts = {{ModifierId::DEFENSE, -1}}});
     break;
   }
   case MoveId::FIRELASH:
   case MoveId::GRAVAPPLE:
+  case MoveId::ROCKSMASH: // RUN & BUN 50 -> 100
   case MoveId::THUNDEROUSKICK: {
     ret.push_back({.kind = Secondary::BOOST, .chance = 100, .boosts = {{ModifierId::DEFENSE, -1}}});
     break;
@@ -631,6 +632,7 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
   case MoveId::OMINOUSWIND:
   case MoveId::SILVERWIND: {
     ret.push_back({.kind = Secondary::SELFBOOST,
+                   .chance = 10,
                    .boosts = {{ModifierId::ATTACK, 1},
                               {ModifierId::DEFENSE, 1},
                               {ModifierId::SPATT, 1},
@@ -638,40 +640,54 @@ std::vector<SecondaryEffect> MoveInstance::getSecondaries() {
                               {ModifierId::SPEED, 1}}});
     break;
   }
-  // Attack
-  case MoveId::METALCLAW:
-  case MoveId::METEORMASH:
-  case MoveId::POWERUPPUNCH: {
-    ret.push_back({.kind = Secondary::SELFBOOST, .boosts = {{ModifierId::ATTACK, 1}}});
-    break;
-  }
-  // Defense
-  case MoveId::PSYSHIELDBASH:
-  case MoveId::STEELWING: {
-    ret.push_back({.kind = Secondary::SELFBOOST, .boosts = {{ModifierId::DEFENSE, 1}}});
-    break;
-  }
-  case MoveId::DIAMONDSTORM: {
+  // ATTACK
+  case MoveId::METALCLAW: {
     ret.push_back(
-        {.kind = Secondary::SELFBOOST, .chance = 50, .boosts = {{ModifierId::DEFENSE, 1}}});
+        {.kind = Secondary::SELFBOOST, .chance = 10, .boosts = {{ModifierId::ATTACK, 1}}});
     break;
   }
-  // Special Attack
-  case MoveId::CHARGEBEAM:
-  case MoveId::FIERYDANCE:
+  case MoveId::METEORMASH: {
+    ret.push_back(
+        {.kind = Secondary::SELFBOOST, .chance = 20, .boosts = {{ModifierId::ATTACK, 1}}});
+    break;
+  }
+  case MoveId::POWERUPPUNCH: {
+    ret.push_back(
+        {.kind = Secondary::SELFBOOST, .chance = 100, .boosts = {{ModifierId::ATTACK, 1}}});
+    break;
+  }
+  // DEFENSE
+  case MoveId::STEELWING: {
+    ret.push_back(
+        {.kind = Secondary::SELFBOOST, .chance = 10, .boosts = {{ModifierId::DEFENSE, 1}}});
+    break;
+  }
+  case MoveId::PSYSHIELDBASH: {
+    ret.push_back(
+        {.kind = Secondary::SELFBOOST, .chance = 100, .boosts = {{ModifierId::DEFENSE, 1}}});
+    break;
+  }
+  // SPATT
+  case MoveId::FIERYDANCE: {
+    ret.push_back({.kind = Secondary::SELFBOOST, .chance = 50, .boosts = {{ModifierId::SPATT, 1}}});
+    break;
+  }
+  case MoveId::CHARGEBEAM: // RUN & BUN 70 -> 100
   case MoveId::MYSTICALPOWER:
   case MoveId::TORCHSONG: {
-    ret.push_back({.kind = Secondary::SELFBOOST, .boosts = {{ModifierId::SPATT, 1}}});
+    ret.push_back(
+        {.kind = Secondary::SELFBOOST, .chance = 100, .boosts = {{ModifierId::SPATT, 1}}});
     break;
   }
-  // Speed
+  // SPEED
   case MoveId::AQUASTEP:
   case MoveId::AURAWHEEL:
   case MoveId::ESPERWING:
   case MoveId::FLAMECHARGE:
   case MoveId::RAPIDSPIN:
   case MoveId::TRAILBLAZE: {
-    ret.push_back({.kind = Secondary::SELFBOOST, .boosts = {{ModifierId::SPEED, 1}}});
+    ret.push_back(
+        {.kind = Secondary::SELFBOOST, .chance = 100, .boosts = {{ModifierId::SPEED, 1}}});
     break;
   }
   default:
@@ -1148,45 +1164,29 @@ bool MoveInstance::makesContact(Pokemon &user) {
 // Without PopulationBomb or BeatUp, every 2-5 has the same randomization.
 // Accuracy check type defined by move.multiaccuracy.
 int MoveInstance::getNumHits(Pokemon const &pokemon) {
-  // Moves that hit 2-5 times.
-  static const std::vector<MoveId> hit_2_5{
-      MoveId::ARMTHRUST,   MoveId::BARRAGE,    MoveId::BONERUSH,     MoveId::BULLETSEED,
-      MoveId::COMETPUNCH,  MoveId::DOUBLESLAP, MoveId::FURYATTACK,   MoveId::FURYSWIPES,
-      MoveId::ICICLESPEAR, MoveId::PINMISSILE, MoveId::ROCKBLAST,    MoveId::SCALESHOT,
-      MoveId::SPIKECANNON, MoveId::TAILSLAP,   MoveId::WATERSHURIKEN};
-  // Moves that hit twice.
-  static const std::vector<MoveId> hit_2{
-      MoveId::BONEMERANG,    MoveId::DOUBLEHIT, MoveId::DOUBLEIRONBASH, MoveId::DOUBLEKICK,
-      MoveId::DRAGONDARTS,   MoveId::DUALCHOP,  MoveId::DUALWINGBEAT,   MoveId::GEARGRIND,
-      MoveId::TACHYONCUTTER, MoveId::TWINBEAM,  MoveId::TWINEEDLE};
-  // Moves that hit three times.
-  static const std::vector<MoveId> hit_3{MoveId::SURGINGSTRIKES, MoveId::TRIPLEAXEL,
-                                         MoveId::TRIPLEDIVE, MoveId::TRIPLEKICK};
   // Population bomb is a special case.
-  if (std::find(hit_2.begin(), hit_2.end(), id) != hit_2.end()) {
-    return 2;
-  }
-  if (std::find(hit_3.begin(), hit_3.end(), id) != hit_3.end()) {
-    return 3;
-  }
-  if (std::find(hit_2_5.begin(), hit_2_5.end(), id) != hit_2_5.end()) {
+  int base_hits = baseNumHits(id);
+  if (base_hits == 5) {
     // 35-35-15-15 out of 100 for 2-3-4-5 hits
-    double r = math::random();
+    int roll = math::random(20);
     int numHits = 2;
-    if (r > 0.35) {
+    if (roll >= 7) {
       numHits++;
     }
-    if (r > 0.7) {
+    if (roll >= 14) {
       numHits++;
     }
-    if (r > 0.85) {
+    if (roll >= 17) {
       numHits++;
     }
     if (numHits < 4 && pokemon.has_item(Item::LOADED_DICE)) {
       return 5 - math::random(2);
+    } else {
+      return numHits;
     }
+  } else {
+    return base_hits;
   }
-  return 1;
 }
 // "multiaccuracy" moves: Population Bomb, Triple Axel, and Triple Kick.
 // These moves run accuracy checks on *every* hit.
@@ -1208,8 +1208,14 @@ int MoveInstance::getBasicAcc(int acc, bool multiacc, Pokemon &target, Pokemon &
   // Accuracy boosts
   int accBoost = std::min(6, std::max(-6, pokemon.boosts[ModifierId::ACCURACY]));
   int evaBoost = 0;
-  if (!(target.foresight || target.miracleeye) || target.boosts[ModifierId::EVASION] <= 0) {
-    evaBoost = std::min(6, std::max(-6, target.boosts[ModifierId::EVASION]));
+  if (!ignoreEvasion) {
+    // onModifyBoost():
+    // Foresight and MiracleEye ignore *positive* evasion boosts
+    if (!target.foresight && !target.miracleeye) {
+      evaBoost = std::min(6, std::max(-6, target.boosts[ModifierId::EVASION]));
+    } else if (target.boosts[ModifierId::EVASION] <= 0) {
+      evaBoost = std::min(6, std::max(-6, target.boosts[ModifierId::EVASION]));
+    }
   }
   if (multiacc) {
     if (accBoost > 0) {

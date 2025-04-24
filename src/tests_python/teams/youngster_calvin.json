@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Poochyena",
+    "lvl": 5,
+    "gender": "male",
+    "nature": "Bashful",
+    "ability": "Rattled",
+    "moves": [
+      "Bite", "QuickAttack", "SandAttack"
+    ]
+  },
+  {
+    "name": "Lillipup",
+    "lvl": 6,
+    "gender": "male",
+    "nature": "Bashful",
+    "ability": "Vital_Spirit",
+    "moves": [
+      "Tackle", "Bite", "SandAttack"
+    ]
+  },
+  {
+    "name": "Rookidee",
+    "lvl": 6,
+    "gender": "male",
+    "nature": "Bashful",
+    "ability": "Keen_Eye",
+    "moves": [
+      "WingAttack", "SandAttack", "Swagger"
+    ]
+  }
+]

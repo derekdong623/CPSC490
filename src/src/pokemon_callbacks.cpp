@@ -3,6 +3,16 @@
 
 #include <optional>
 namespace pkmn {
+  // TODO: finish implementing
+int Pokemon::applyOnModifySpeed(int speed) const {
+  // PRIORITY -101
+  if(status == Status::PARALYSIS) {
+    if(ability != Ability::QUICK_FEET) {
+      speed /= 2;
+    }
+  }
+  return speed;
+}
 // false for immune, true for not-immune
 bool Pokemon::applyOnTryImmunity(Pokemon &user, MoveId move) {
   switch (move) {
@@ -75,30 +85,31 @@ void Pokemon::applyOnChangeBoost(std::map<ModifierId, int> &boostTable, EffectKi
     break;
   }
 }
-void Pokemon::applyOnTryBoost(std::map<ModifierId, int> &boostTable, EffectKind effectKind) {
-  auto stopFoeLowering = [&boostTable]() {
-    // TODO: If source is self, don't change boost
-    for (auto it = boostTable.begin(); it != boostTable.end();) {
-      if (it->second < 0) {
-        it = boostTable.erase(it); // erase returns the next iterator
-      } else {
-        ++it;
+void Pokemon::applyOnTryBoost(std::map<ModifierId, int> &boostTable, EffectKind effectKind,
+                              bool isSelf) {
+  auto stopFoeLowering = [&boostTable, isSelf]() {
+    if (!isSelf) {
+      for (auto it = boostTable.begin(); it != boostTable.end();) {
+        if (it->second < 0) {
+          it = boostTable.erase(it); // erase returns the next iterator
+        } else {
+          ++it;
+        }
       }
     }
   };
   switch (ability) {
   // Prevents others from lowering its defense
   case Ability::BIG_PECKS: {
-    // TODO: If source is self, don't change boost
-    if (boostTable.contains(ModifierId::DEFENSE) && boostTable[ModifierId::DEFENSE] < 0) {
+    if (!isSelf && boostTable.contains(ModifierId::DEFENSE) &&
+        boostTable[ModifierId::DEFENSE] < 0) {
       boostTable.erase(ModifierId::DEFENSE);
     }
     break;
   }
   // Prevents others from lowering its attack
   case Ability::HYPER_CUTTER: {
-    // TODO: If source is self, don't change boost
-    if (boostTable.contains(ModifierId::ATTACK) && boostTable[ModifierId::ATTACK] < 0) {
+    if (!isSelf && boostTable.contains(ModifierId::ATTACK) && boostTable[ModifierId::ATTACK] < 0) {
       boostTable.erase(ModifierId::ATTACK);
     }
     break;
@@ -107,8 +118,8 @@ void Pokemon::applyOnTryBoost(std::map<ModifierId, int> &boostTable, EffectKind 
   case Ability::ILLUMINATE:
   case Ability::KEEN_EYE:
   case Ability::MINDS_EYE: {
-    // TODO: If source is self, don't change boost
-    if (boostTable.contains(ModifierId::ACCURACY) && boostTable[ModifierId::ACCURACY] < 0) {
+    if (!isSelf && boostTable.contains(ModifierId::ACCURACY) &&
+        boostTable[ModifierId::ACCURACY] < 0) {
       boostTable.erase(ModifierId::ACCURACY);
     }
     break;
@@ -139,19 +150,17 @@ void Pokemon::applyOnTryBoost(std::map<ModifierId, int> &boostTable, EffectKind 
   }
   // TODO: Dang...I need the field (Mist)
 }
-void Pokemon::applyOnAfterEachBoost(int numBoost, EffectKind effectKind) {
-  if (ability == Ability::COMPETITIVE && effectKind != EffectKind::STICKY_WEB) {
-    // TODO: Check that there's a non-self source
+void Pokemon::applyOnAfterEachBoost(int numBoost, EffectKind effectKind, bool isSelf) {
+  if (ability == Ability::COMPETITIVE && effectKind != EffectKind::STICKY_WEB && !isSelf) {
     if (numBoost < 0) {
       ModifierTable boostTable = {{ModifierId::SPATT, 2}};
-      boost(boostTable, EffectKind::NO_EFFECT);
+      boost(boostTable, EffectKind::NO_EFFECT, true);
     }
   }
-  if (ability == Ability::DEFIANT && effectKind != EffectKind::STICKY_WEB) {
-    // TODO: Check that there's a non-self source
+  if (ability == Ability::DEFIANT && effectKind != EffectKind::STICKY_WEB && !isSelf) {
     if (numBoost < 0) {
       ModifierTable boostTable = {{ModifierId::ATTACK, 2}};
-      boost(boostTable, EffectKind::NO_EFFECT);
+      boost(boostTable, EffectKind::NO_EFFECT, true);
     }
   }
 }
@@ -159,7 +168,7 @@ void Pokemon::applyOnAfterBoost(std::map<ModifierId, int> &boostTable, EffectKin
   if (ability == Ability::RATTLED) {
     if (effectKind == EffectKind::INTIMIDATE && boostTable.contains(ModifierId::ATTACK)) {
       ModifierTable addBoost = {{ModifierId::SPEED, 1}};
-      boost(addBoost, EffectKind::NO_EFFECT);
+      boost(addBoost, EffectKind::NO_EFFECT, true);
     }
   }
   if (item == Item::ADRENALINE_ORB) {
@@ -342,8 +351,9 @@ void Pokemon::applyOnAfterUseItem() {
 // Returns whether or not taking the item succeeds.
 // TODO: *lots* of cases, mostly transform-based
 bool Pokemon::applyOnTakeItem(Item item, Pokemon &taker) {
-  switch(item) {
-    default: return true;
+  switch (item) {
+  default:
+    return true;
   }
 }
 // False if blocked by !checkedBerserk or HealBlock.

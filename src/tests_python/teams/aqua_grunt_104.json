@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Carvanha",
+    "lvl": 11,
+    "gender": "male",
+    "nature": "Naive",
+    "ability": "Rough_Skin",
+    "item": "Oran_Berry",
+    "moves": [
+      "Bite", "WaterPulse", "AquaJet", "PoisonFang"
+    ]
+  },
+  {
+    "name": "Croagunk",
+    "lvl": 12,
+    "gender": "male",
+    "nature": "Hasty",
+    "ability": "Poison_Touch",
+    "item": "Salac_Berry",
+    "moves": [
+      "Belch", "RockSmash", "PoisonSting", "FakeOut"
+    ]
+  },
+  {
+    "name": "Exeggcute",
+    "lvl": 11,
+    "gender": "male",
+    "nature": "Relaxed",
+    "ability": "Harvest",
+    "item": "Oran_Berry",
+    "moves": [
+      "Confusion", "BulletSeed", "LeechSeed", "StunSpore"
+    ]
+  }
+]

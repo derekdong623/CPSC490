@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Piplup",
+    "lvl": 10,
+    "gender": "male",
+    "nature": "Bashful",
+    "ability": "Defiant",
+    "moves": [
+      "Pound", "Growl", "Bubble", "Pluck"
+    ]
+  }
+]

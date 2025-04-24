@@ -10,6 +10,7 @@ struct MoveSlot {
   MoveId id = MoveId::NONE;
   int pp = 0;
   int maxpp = 0;
+  bool disabled = false;
   bool used = false; // For LastResort, updated in deductPP
 };
 // For comparisons, ACCURACY acts as None
@@ -42,6 +43,7 @@ struct Pokemon {
   std::array<Type, 2> types;
   Ability baseAbility, ability;
   int effectiveSpeed = 0; // Dependent on e.g. boosts/TrickRoom
+  bool hasFlinchingMove = false;
   // Related to Battle
   bool fainted = false;
   bool faintQueued = false;
@@ -54,6 +56,8 @@ struct Pokemon {
   // Adjusted in state changes
   ModifierTable boosts;
   Status status = Status::NO_STATUS;
+  // Status metadata
+  int sleepTurns = 0;
   // Trapping status
   bool trapped = false;
   /* Volatiles */
@@ -81,6 +85,7 @@ struct Pokemon {
   // Condition volatiles
   int confusion = 0;
   int toxicStage = 0;
+  bool leechSeed = false;
   int lockedMove = 0;
   int stallTurns = 0;   // Set to 2 when starting a stall move
   int stallCounter = 1; // Probability of success is 1/n
@@ -131,6 +136,7 @@ struct Pokemon {
   inline bool has_type(Type t) const { return types[0] == t || types[1] == t; }
   inline bool isOnlyType(Type t) const { return types[0] == t && types[1] == Type::NO_TYPE; }
   void set_type(std::vector<Type> toTypes);
+  bool has_move(MoveId);
   bool has_volatile(VolatileId);
   void clearVolatile(bool clearSwitchFlags);
   // Apply a change of boostVal to a boostable stat.
@@ -145,7 +151,7 @@ struct Pokemon {
   int getStat(ModifierId statName, bool boosted, bool modified) const;
   NatureVal getNature();
   bool isSemiInvulnerable();
-  bool boost(ModifierTable &, EffectKind);
+  bool boost(ModifierTable &, EffectKind, bool selfBoost);
   bool useItem(bool eat, bool forceEat);
   std::optional<Item> takeItem(Pokemon &taker);
   int heal(int damage, EffectKind effectKind);
@@ -157,10 +163,11 @@ struct Pokemon {
 
   /* CALLBACKS */
 
+  int applyOnModifySpeed(int speed) const;
   bool applyOnTryImmunity(Pokemon &user, MoveId);
   void applyOnChangeBoost(ModifierTable &, EffectKind);
-  void applyOnTryBoost(ModifierTable &, EffectKind);
-  void applyOnAfterEachBoost(int numBoost, EffectKind effectKind);
+  void applyOnTryBoost(ModifierTable &, EffectKind, bool isSelf);
+  void applyOnAfterEachBoost(int numBoost, EffectKind, bool isSelf);
   void applyOnAfterBoost(ModifierTable &, EffectKind);
   void applyOnEat(Item);
   void applyOnEatItem(Item);

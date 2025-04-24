@@ -1,0 +1,127 @@
+[
+  {
+    "name": "Paras",
+    "lvl": 12,
+    "gender": "female",
+    "nature": "Mild",
+    "ability": "Effect_Spore",
+    "ivs": [
+      0,
+      5,
+      2,
+      16,
+      1,
+      1
+    ],
+    "moves": [
+      "BugBite",
+      "Absorb",
+      "StunSpore",
+      "PoisonPowder"
+    ]
+  },
+  {
+    "name": "Buneary",
+    "lvl": 12,
+    "gender": "female",
+    "nature": "Calm",
+    "ability": "Limber",
+    "ivs": [
+      2,
+      6,
+      7,
+      7,
+      31,
+      28
+    ],
+    "moves": [
+      "Pound",
+      "BabyDollEyes",
+      "Foresight",
+      "Splash"
+    ]
+  },
+  {
+    "name": "Ponyta",
+    "lvl": 12,
+    "gender": "female",
+    "nature": "Naive",
+    "ability": "Flame_Body",
+    "ivs": [
+      11,
+      12,
+      21,
+      0,
+      17,
+      17
+    ],
+    "moves": [
+      "Stomp",
+      "Ember",
+      "TailWhip",
+      "Growl"
+    ]
+  },
+  {
+    "name": "Piplup",
+    "lvl": 12,
+    "gender": "male",
+    "nature": "Rash",
+    "ability": "Clear_Body",
+    "ivs": [
+      31,
+      31,
+      1,
+      26,
+      31,
+      1
+    ],
+    "moves": [
+      "Pluck",
+      "Bubble",
+      "Pound",
+      "Growl"
+    ]
+  },
+  {
+    "name": "Ralts",
+    "lvl": 12,
+    "gender": "male",
+    "nature": "Careful",
+    "ability": "Synchronize",
+    "ivs": [
+      20,
+      27,
+      8,
+      1,
+      29,
+      6
+    ],
+    "moves": [
+      "Confusion",
+      "DisarmingVoice",
+      "Growl"
+    ]
+  },
+  {
+    "name": "Chinchou",
+    "lvl": 12,
+    "gender": "female",
+    "nature": "Gentle",
+    "ability": "Volt_Absorb",
+    "ivs": [
+      2,
+      16,
+      17,
+      2,
+      9,
+      21
+    ],
+    "moves": [
+      "ElectroBall",
+      "BubbleBeam",
+      "Supersonic",
+      "Flash"
+    ]
+  }
+]

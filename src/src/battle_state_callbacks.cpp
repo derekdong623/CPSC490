@@ -3,6 +3,21 @@
 
 #include <optional>
 namespace pkmn {
+// TODO: finish
+void BattleState::applyOnDisableMove(Pokemon &pokemon) {
+  for (int i = 0; i < 4; i++) {
+    MoveSlot &move = pokemon.moves[i];
+    switch (move.id) {
+    case MoveId::BELCH: {
+      if (!pokemon.ateBerry)
+        move.disabled = true;
+      break;
+    }
+    default:
+      break;
+    }
+  }
+}
 void BattleState::applyOnTrapPokemon(Pokemon &pokemon) {
   // PRIORITY 0
   if (pokemon.trappedCondition) {
@@ -543,10 +558,23 @@ bool BattleState::applyOnBeforeMoveST(Pokemon &pokemon) {
 }
 // Callback potentially causing non-StompingTantrum move failures.
 // In PS terms: For checking onBeforeMove returning null.
-bool BattleState::applyOnBeforeMove(Pokemon &pokemon) {
+bool BattleState::applyOnBeforeMove(Pokemon &pokemon, MoveInstance &moveInst) {
   // TODO: remaining conditions and stuff
   // (pre-move stops like par, slp, choice locks, etc.)
   // Bide and Focus Punch special case stops PP deduction
+  // PRIORITY 10
+  if(pokemon.status == Status::SLEEP) {
+    if(pokemon.has_ability(Ability::EARLY_BIRD)) {
+      pokemon.sleepTurns--;
+    }
+    if(pokemon.sleepTurns) pokemon.sleepTurns--;
+    if(!pokemon.sleepTurns) {
+      pokemon.status = Status::NO_STATUS;
+    } else if(!moveInst.isSleepUsable()){
+      // std::cout << "stopped by sleep\n";
+      return false;
+    }
+  }
   // PRIORITY 3
   if (pokemon.confusion) {
     pokemon.confusion--;
@@ -565,6 +593,13 @@ bool BattleState::applyOnBeforeMove(Pokemon &pokemon) {
       dmg = std::max(1, dmg);
       // std::cout << "confusion damage: " << dmg << std::endl;
       spreadDamage({dmg}, pokemon, pokemon, EffectKind::CONFUSION, MoveId::NONE);
+      return false;
+    }
+  }
+  // PRIORITY 1
+  if(pokemon.status == Status::PARALYSIS) {
+    if(math::randomChance(1, 4)) {
+      // std::cout << "stopped by paralysis\n";
       return false;
     }
   }
@@ -764,6 +799,7 @@ void BattleState::applyOnMoveFail(Pokemon &target, Pokemon &pokemon, MoveInstanc
   // TODO: SkyDrop
 }
 // Check pre-conditions of using the particular move.
+// Does not affect state.
 bool BattleState::applyOnTry(Pokemon &user, Pokemon &target, MoveInstance &moveInst) {
   switch (moveInst.id) {
   case MoveId::AURAWHEEL: {
@@ -1072,8 +1108,18 @@ void BattleState::applyOnAfterUseItem(Pokemon &target) {
   }
 }
 // TODO: finish implementing
-bool BattleState::applyOnTryHit(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
+bool BattleState::applyOnTryHitStep(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
   // std::cout << "side " << user.side << " using move " << (int)moveInst.id << std::endl;
+  Move &move = moveInst.moveData;
+  switch(target.ability) {
+    case Ability::VOLT_ABSORB: {
+			if (target != user && move.type == Type::ELECTRIC) {
+        target.heal(target.stats.hp / 4, EffectKind::VOLT_ABSORB);
+        return false;
+			}
+    }
+    default: break;
+  }
   return true;
 }
 // Returns false if the secondary effect is blocked (by ShieldDust/CovertCloak)
@@ -1092,9 +1138,22 @@ bool BattleState::applyOnDragOut(Pokemon &target) {
     return false;
   return true;
 }
-//
+// TODO:
+// - Counter/MirrorCoat
+// - WeaknessPolicy, AirBalloon
+// - most Abilities
 void BattleState::applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user,
                                      MoveInstance &moveInst) {
+  // onSourceDamagingHit():
+  if (user.has_ability(Ability::POISON_TOUCH)) {
+    // Despite not being a secondary, Shield Dust / Covert Cloak block Poison Touch's effect
+    if (!target.has_ability(Ability::SHIELD_DUST) && !target.has_item(Item::COVERT_CLOAK)) {
+      if (moveInst.makesContact(user) && math::randomChance(3, 10)) {
+        setStatus(Status::POISON, target, user, EffectKind::NO_EFFECT, moveInst);
+      }
+    }
+  }
+  // onDamagingHit():
   Move const &move = moveInst.moveData;
   // Thawing
   if (target.status == Status::FREEZE && move.type == Type::FIRE &&
@@ -1165,6 +1224,45 @@ void BattleState::applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user,
   // ------ ABILITIES ------
   // TODO
   switch (target.ability) {
+  case Ability::EFFECT_SPORE: {
+    if (moveInst.makesContact(user) && runSpecialImmunity(user, EffectKind::POWDER, false)) {
+      int r = math::random(100);
+      if (r < 11) {
+        setStatus(Status::SLEEP, user, target, EffectKind::EFFECT_SPORE, moveInst);
+      } else if (r < 21) {
+        setStatus(Status::PARALYSIS, user, target, EffectKind::EFFECT_SPORE, moveInst);
+      } else if (r < 30) {
+        setStatus(Status::POISON, user, target, EffectKind::EFFECT_SPORE, moveInst);
+      }
+    }
+    break;
+  }
+  case Ability::FLAME_BODY: {
+    if(moveInst.makesContact(user)) {
+      if(math::randomChance(3, 10)) {
+        setStatus(Status::BURN, user, target, EffectKind::FLAME_BODY, moveInst);
+      }
+    }
+    break;
+  }
+  case Ability::RATTLED: {
+    switch (moveInst.moveData.type) {
+    case Type::DARK:
+    case Type::BUG:
+    case Type::GHOST: {
+      ModifierTable boostTable{{ModifierId::SPEED, 1}};
+      target.boost(boostTable, EffectKind::NO_EFFECT, true);
+    }
+    default:
+      break;
+    }
+  }
+  case Ability::ROUGH_SKIN: {
+    if (moveInst.makesContact(user)) {
+      spreadDamage(user.stats.hp / 8, user, target, EffectKind::ROUGH_SKIN, MoveId::NONE);
+    }
+    break;
+  }
   default:
     break;
   }
@@ -1172,7 +1270,8 @@ void BattleState::applyOnDamagingHit(int damage, Pokemon &target, Pokemon &user,
 // TODO: Most of the callbacks!
 bool BattleState::applyOnHitMain(Pokemon &target, Pokemon &user, MoveInstance &moveInst) {
   switch (moveInst.id) {
-  case MoveId::PLUCK: {
+  case MoveId::PLUCK: 
+  case MoveId::BUGBITE: {
     Item item = target.item;
     if (user.current_hp && isBerry(item) && target.takeItem(user) != std::nullopt) {
       user.applyOnEat(item);
@@ -1389,6 +1488,33 @@ void BattleState::applyOnUpdate(Pokemon &target) {
 // VERY IMPORTANT TODO
 void BattleState::applyOnResidual(Pokemon &target) {
   // TODO
+  // ORDER 8
+  if (target.leechSeed) {
+    // std::cout << "has leech seed...\n";
+    Pokemon &beneficiary = getActivePokemon(1 - target.side);
+    if (!target.fainted && target.current_hp) {
+      int dmg = spreadDamage(target.stats.hp / 8, target, beneficiary, EffectKind::LEECH_SEED,
+                             MoveId::NONE)
+                    .damageDealt;
+      if (dmg > 0) {
+        beneficiary.heal(dmg, EffectKind::LEECH_SEED);
+      }
+    }
+  }
+  // ORDER 9
+  if(target.status == Status::POISON) {
+    spreadDamage(target.stats.hp / 8, target, target, EffectKind::POISON, MoveId::NONE);
+  }
+  // ORDER 28
+  // SUBORDER 2
+  if (target.has_ability(Ability::HARVEST)) {
+    if (target.current_hp && target.item == Item::NO_ITEM && isBerry(target.lastItem)) {
+      if (isSunny() || math::randomChance(1, 2)) {
+        target.set_item(target.lastItem);
+        target.lastItem = Item::NO_ITEM;
+      }
+    }
+  }
 }
 // Run onUpdate() or onResidual() on each active Pokemon in speed order.
 void BattleState::applyOnEach(EachEventKind event) {

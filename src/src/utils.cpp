@@ -195,6 +195,33 @@ int boostStatVal(int statVal, int boostIndex) {
   }
   return statVal;
 }
+// Returns the number of hits (usually 1) by a move.
+// Returns 5 for moves that hit 2-5 times.
+int baseNumHits(MoveId move) {
+  // Moves that hit 2-5 times.
+  static const std::vector<MoveId> hit_5{
+      MoveId::ARMTHRUST,   MoveId::BARRAGE,    MoveId::BONERUSH,     MoveId::BULLETSEED,
+      MoveId::COMETPUNCH,  MoveId::DOUBLESLAP, MoveId::FURYATTACK,   MoveId::FURYSWIPES,
+      MoveId::ICICLESPEAR, MoveId::PINMISSILE, MoveId::ROCKBLAST,    MoveId::SCALESHOT,
+      MoveId::SPIKECANNON, MoveId::TAILSLAP,   MoveId::WATERSHURIKEN};
+  // Moves that hit twice.
+  static const std::vector<MoveId> hit_2{
+      MoveId::BONEMERANG,    MoveId::DOUBLEHIT, MoveId::DOUBLEIRONBASH, MoveId::DOUBLEKICK,
+      MoveId::DRAGONDARTS,   MoveId::DUALCHOP,  MoveId::DUALWINGBEAT,   MoveId::GEARGRIND,
+      MoveId::TACHYONCUTTER, MoveId::TWINBEAM,  MoveId::TWINEEDLE};
+  // Moves that hit three times.
+  static const std::vector<MoveId> hit_3{MoveId::SURGINGSTRIKES, MoveId::TRIPLEAXEL,
+                                         MoveId::TRIPLEDIVE, MoveId::TRIPLEKICK};
+  if (std::find(hit_5.begin(), hit_5.end(), move) != hit_5.end()) {
+    return 5;
+  } else if (std::find(hit_2.begin(), hit_2.end(), move) != hit_2.end()) {
+    return 2;
+  } else if (std::find(hit_3.begin(), hit_3.end(), move) != hit_3.end()) {
+    return 3;
+  }
+  return 1;
+}
+// Return whether or not the item is a berry
 bool isBerry(Item item) {
   static const std::vector<Item> berries = {
       Item::AGUAV_BERRY,  Item::APICOT_BERRY, Item::ASPEAR_BERRY,  Item::BABIRI_BERRY,
@@ -217,6 +244,7 @@ bool isBerry(Item item) {
   };
   return std::find(berries.begin(), berries.end(), item) != berries.end();
 }
+// Return whether or not the item is a gem
 bool isGem(Item item) {
   static const std::vector<Item> gems = {
       Item::BUG_GEM,     Item::ICE_GEM,      Item::DARK_GEM,     Item::FIRE_GEM,   Item::ROCK_GEM,

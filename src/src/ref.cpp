@@ -185,5 +185,341 @@ MoveDict::MoveDict() {
     std::cerr << line << std::endl;
   }
   file.close();
+  patch_move_dict();
+}
+// Apply Run and Bun mechanic changes
+void MoveDict::patch_move_dict() {
+  // Absorb BP 20 -> 40
+  moveDict.dict[MoveId::ABSORB].basePower = 40;
+  // Aeroblast acc 95 -> 100
+  moveDict.dict[MoveId::AEROBLAST].accuracy = {100};
+  // AirCutter acc 95 -> 100
+  moveDict.dict[MoveId::AIRCUTTER].accuracy = {100};
+  // AirSlash acc 95 -> 100
+  moveDict.dict[MoveId::AIRSLASH].accuracy = {100};
+  // AquaTail acc 90 -> 95
+  moveDict.dict[MoveId::AQUATAIL].accuracy = {95};
+  // Astonish BP 30 -> 40
+  moveDict.dict[MoveId::ASTONISH].basePower = 40;
+  // BabyDollEyes PP 30 -> 10
+  moveDict.dict[MoveId::BABYDOLLEYES].pp = 10;
+  // Barrage acc 85 -> 100
+  moveDict.dict[MoveId::BARRAGE].accuracy = {100};
+  // Belch acc 90 -> 100
+  moveDict.dict[MoveId::BELCH].accuracy = {100};
+  // Bind acc 85 -> 100
+  moveDict.dict[MoveId::BIND].accuracy = {100};
+  // BlazeKick acc 90 -> 100
+  moveDict.dict[MoveId::BLAZEKICK].accuracy = {100};
+  // Blizzard acc 70 -> 80
+  moveDict.dict[MoveId::BLIZZARD].accuracy = {80};
+  // BlueFlare acc 85 -> 90
+  moveDict.dict[MoveId::BLUEFLARE].accuracy = {90};
+  // BoltStrike acc 85 -> 90
+  moveDict.dict[MoveId::BOLTSTRIKE].accuracy = {90};
+  // BoneClub acc 85 -> 100
+  moveDict.dict[MoveId::BONECLUB].accuracy = {100};
+  // Bonemerang acc 90 -> 100
+  moveDict.dict[MoveId::BONEMERANG].accuracy = {100};
+  // Bounce acc 85 -> 95
+  moveDict.dict[MoveId::BOUNCE].accuracy = {95};
+  // Captivate PP 20 -> 5
+  moveDict.dict[MoveId::CAPTIVATE].pp = 5;
+  // ChargeBeam BP 50 -> 40
+  moveDict.dict[MoveId::CHARGEBEAM].basePower = 40;
+  // ChargeBeam acc 90 -> 100
+  moveDict.dict[MoveId::CHARGEBEAM].accuracy = {100};
+  // Charm PP 20 -> 5
+  moveDict.dict[MoveId::CHARM].pp = 5;
+  // CircleThrow acc 90 -> 95
+  moveDict.dict[MoveId::CIRCLETHROW].accuracy = {95};
+  // Clamp acc 85 -> 100
+  moveDict.dict[MoveId::CLAMP].accuracy = {100};
+  // CometPunch acc 85 -> 90
+  moveDict.dict[MoveId::COMETPUNCH].accuracy = {100};
+  // Confide PP 20 -> 10
+  moveDict.dict[MoveId::CONFIDE].pp = 10;
+  // Covet Type Normal -> Fairy
+  moveDict.dict[MoveId::COVET].type = Type::FAIRY;
+  // Crabhammer acc 90 -> 100
+  moveDict.dict[MoveId::CRABHAMMER].accuracy = {100};
+  // Cut acc 95 -> 100
+  moveDict.dict[MoveId::CUT].accuracy = {100};
+  // DarkVoid acc 50 -> 80
+  moveDict.dict[MoveId::DARKVOID].accuracy = {80};
+  // DiamondStorm acc 90 -> 100
+  moveDict.dict[MoveId::DIAMONDSTORM].accuracy = {100};
+  // DoubleHit acc 90 -> 100
+  moveDict.dict[MoveId::DOUBLEHIT].accuracy = {100};
+  // DoubleSlap acc 85 -> 100
+  moveDict.dict[MoveId::DOUBLESLAP].accuracy = {100};
+  // DracoMeteor acc 90 -> 100
+  moveDict.dict[MoveId::DRACOMETEOR].accuracy = {100};
+  // DragonRush acc 75 -> 85
+  moveDict.dict[MoveId::DRAGONRUSH].accuracy = {85};
+  // DragonTail acc 90 -> 95
+  moveDict.dict[MoveId::DRAGONTAIL].accuracy = {95};
+  // DrillRun acc 95 -> 100
+  moveDict.dict[MoveId::DRILLRUN].accuracy = {100};
+  // DualChop acc 90 -> 100
+  moveDict.dict[MoveId::DUALCHOP].accuracy = {100};
+  // DualWingbeat acc 90 -> 100
+  moveDict.dict[MoveId::DUALWINGBEAT].accuracy = {100};
+  // EerieImpulse PP 15 -> 5
+  moveDict.dict[MoveId::EERIEIMPULSE].pp = 5;
+  // Electroweb acc 95 -> 100
+  moveDict.dict[MoveId::ELECTROWEB].accuracy = {100};
+  // FakeOut PP 10 -> 5
+  moveDict.dict[MoveId::FAKEOUT].pp = 5;
+  // FakeTears PP 20 -> 5
+  moveDict.dict[MoveId::FAKETEARS].pp = 5;
+  // FeatherDance PP 15 -> 5
+  moveDict.dict[MoveId::FEATHERDANCE].pp = 5;
+  // FireFang acc 95 -> 100
+  moveDict.dict[MoveId::FIREFANG].accuracy = {100};
+  // FireSpin acc 85 -> 100
+  moveDict.dict[MoveId::FIRESPIN].accuracy = {100};
+  // Flash acc 100 -> 70
+  moveDict.dict[MoveId::FLASH].accuracy = {70};
+  // FleurCannon acc 90 -> 100
+  moveDict.dict[MoveId::FLEURCANNON].accuracy = {100};
+  // Fly acc 95 -> 100
+  moveDict.dict[MoveId::FLY].accuracy = {100};
+  // FlyingPress acc 95 -> 100
+  moveDict.dict[MoveId::FLYINGPRESS].accuracy = {100};
+  // FocusBlast acc 70 -> 80
+  moveDict.dict[MoveId::FOCUSBLAST].accuracy = {80};
+  // FreezeShock acc 90 -> 100
+  moveDict.dict[MoveId::FREEZESHOCK].accuracy = {100};
+  // FrenzyPlant acc 90 -> 100
+  moveDict.dict[MoveId::FRENZYPLANT].accuracy = {100};
+  // FrostBreath acc 90 -> 100
+  moveDict.dict[MoveId::FROSTBREATH].accuracy = {100};
+  // Frustraion BP ?? -> 102
+  moveDict.dict[MoveId::FRUSTRATION].basePower = 102;
+  // FuryAttack acc 85 -> 100
+  moveDict.dict[MoveId::FURYATTACK].accuracy = {100};
+  // FurySwipes acc 80 -> 90
+  moveDict.dict[MoveId::FURYSWIPES].accuracy = {90};
+  // GearGrind acc 85 -> 100
+  moveDict.dict[MoveId::GEARGRIND].accuracy = {100};
+  // GigaImpact acc 90 -> 100
+  moveDict.dict[MoveId::GIGAIMPACT].accuracy = {100};
+  // Glaciate acc 95 -> 100
+  moveDict.dict[MoveId::GLACIATE].accuracy = {100};
+  // GrassWhistle acc 55 -> 70
+  moveDict.dict[MoveId::GRASSWHISTLE].accuracy = {70};
+  // Growl PP 40 -> 10
+  moveDict.dict[MoveId::GROWL].pp = 10;
+  // GunkShot acc 80 -> 85
+  moveDict.dict[MoveId::GUNKSHOT].accuracy = {85};
+  // HammerArm acc 90 -> 100
+  moveDict.dict[MoveId::HAMMERARM].accuracy = {100};
+  // Harden PP 40 -> 5
+  moveDict.dict[MoveId::HARDEN].pp = 5;
+  // HeadSmash acc 80 -> 85
+  moveDict.dict[MoveId::HEADSMASH].accuracy = {85};
+  // HeatWave acc 90 -> 100
+  moveDict.dict[MoveId::HEATWAVE].accuracy = {100};
+  // HighHorsepower acc 95 -> 100
+  moveDict.dict[MoveId::HIGHHORSEPOWER].accuracy = {100};
+  // Hurricane acc 70 -> 80
+  moveDict.dict[MoveId::HURRICANE].accuracy = {80};
+  // HydroCannon acc 90 -> 100
+  moveDict.dict[MoveId::HYDROCANNON].accuracy = {100};
+  // HydroPump acc 80 -> 85
+  moveDict.dict[MoveId::HYDROPUMP].accuracy = {85};
+  // HyperBeam acc 90 -> 100
+  moveDict.dict[MoveId::HYPERBEAM].accuracy = {100};
+  // HyperFang acc 90 -> 100
+  moveDict.dict[MoveId::HYPERFANG].accuracy = {100};
+  // Hypnosis acc 60 -> 70
+  moveDict.dict[MoveId::HYPNOSIS].accuracy = {70};
+  // IceBurn acc 90 -> 100
+  moveDict.dict[MoveId::ICEBURN].accuracy = {100};
+  // IceFang acc 95 -> 100
+  moveDict.dict[MoveId::ICEFANG].accuracy = {100};
+  // IceHammer acc 90 -> 100
+  moveDict.dict[MoveId::ICEHAMMER].accuracy = {100};
+  // IcicleCrash acc 95 -> 100
+  moveDict.dict[MoveId::ICICLECRASH].accuracy = {100};
+  // IcyWind acc 95 -> 100
+  moveDict.dict[MoveId::ICYWIND].accuracy = {100};
+  // IronTail acc 75 -> 85
+  moveDict.dict[MoveId::IRONTAIL].accuracy = {85};
+  // Kinesis acc 80 -> 100
+  moveDict.dict[MoveId::KINESIS].accuracy = {100};
+  // LeafStorm acc 90 -> 100
+  moveDict.dict[MoveId::LEAFSTORM].accuracy = {100};
+  // LeafTornado acc 90 -> 100
+  moveDict.dict[MoveId::LEAFTORNADO].accuracy = {100};
+  // LeechSeed acc 90 -> 100
+  moveDict.dict[MoveId::LEECHSEED].accuracy = {100};
+  // Leer PP 30 -> 10
+  moveDict.dict[MoveId::LEER].pp = 10;
+  // Lick BP 30 -> 40
+  moveDict.dict[MoveId::LICK].basePower = 40;
+  // LightOfRuin acc 90 -> 100
+  moveDict.dict[MoveId::LIGHTOFRUIN].accuracy = {100};
+  // LovelyKiss acc 75 -> 80
+  moveDict.dict[MoveId::LOVELYKISS].accuracy = {80};
+  // MagmaStorm acc 75 -> 90
+  moveDict.dict[MoveId::MAGMASTORM].accuracy = {90};
+  // MegaDrain BP 40 -> 60
+  moveDict.dict[MoveId::MEGADRAIN].basePower = 60;
+  // MegaKick acc 75 -> 85
+  moveDict.dict[MoveId::MEGAKICK].accuracy = {85};
+  // MegaPunch acc 85 -> 100
+  moveDict.dict[MoveId::MEGAPUNCH].accuracy = {100};
+  // MegaHorn acc 85 -> 90
+  moveDict.dict[MoveId::MEGAHORN].accuracy = {90};
+  // MetalClaw acc 95 -> 100
+  moveDict.dict[MoveId::METALCLAW].accuracy = {100};
+  // MetalSound acc 85 -> 100
+  moveDict.dict[MoveId::METALSOUND].accuracy = {100};
+  // MetalSound PP 40 -> 5
+  moveDict.dict[MoveId::METALSOUND].pp = 5;
+  // MeteorBeam acc 90 -> 100
+  moveDict.dict[MoveId::METEORBEAM].accuracy = {100};
+  // MeteorMash acc 90 -> 100
+  moveDict.dict[MoveId::METEORMASH].accuracy = {100};
+  // MirrorShot acc 85 -> 100
+  moveDict.dict[MoveId::MIRRORSHOT].accuracy = {100};
+  // MistyExplosion BP 100 -> 200
+  moveDict.dict[MoveId::MISTYEXPLOSION].basePower = 200;
+  // MudBomb acc 85 -> 100
+  moveDict.dict[MoveId::MUDBOMB].accuracy = {100};
+  // MuddyWater acc 85 -> 95
+  moveDict.dict[MoveId::MUDDYWATER].accuracy = {95};
+  // NaturesMadness acc 90 -> 100
+  moveDict.dict[MoveId::NATURESMADNESS].accuracy = {100};
+  // NightDaze acc 95 -> 100
+  moveDict.dict[MoveId::NIGHTDAZE].accuracy = {100};
+  // NobleRoar PP 30 -> 10
+  moveDict.dict[MoveId::NOBLEROAR].pp = {10};
+  // Octazooka BP 65 -> 80
+  moveDict.dict[MoveId::OCTAZOOKA].basePower = 80;
+  // Octazooka acc 85 -> 100
+  moveDict.dict[MoveId::OCTAZOOKA].accuracy = {100};
+  // OriginPulse acc 85 -> 100
+  moveDict.dict[MoveId::ORIGINPULSE].accuracy = {100};
+  // Overheat acc 90 -> 100
+  moveDict.dict[MoveId::OVERHEAT].accuracy = {100};
+  // PinMissile acc 95 -> 100
+  moveDict.dict[MoveId::PINMISSILE].accuracy = {100};
+  // PlayNice PP 20 -> 10
+  moveDict.dict[MoveId::PLAYNICE].pp = 10;
+  // PlayRough acc 90 -> 100
+  moveDict.dict[MoveId::PLAYROUGH].accuracy = {100};
+  // PoisonPowder acc 75 -> 90
+  moveDict.dict[MoveId::POISONPOWDER].accuracy = {90};
+  // PowerWhip acc 85 -> 90
+  moveDict.dict[MoveId::POWERWHIP].accuracy = {90};
+  // PrecipiceBlades acc 85 -> 100
+  moveDict.dict[MoveId::PRECIPICEBLADES].accuracy = {100};
+  // PsychoBoost acc 90 -> 100
+  moveDict.dict[MoveId::PSYCHOBOOST].accuracy = {100};
+  // RazorLeaf acc 95 -> 100
+  moveDict.dict[MoveId::RAZORLEAF].accuracy = {100};
+  // RazorShell acc 95 -> 100
+  moveDict.dict[MoveId::RAZORSHELL].accuracy = {100};
+  // Return BP ?? -> 102
+  moveDict.dict[MoveId::RETURN].basePower = 102;
+  // RoarOfTime acc 90 -> 100
+  moveDict.dict[MoveId::ROAROFTIME].accuracy = {100};
+  // RockBlast acc 90 -> 100
+  moveDict.dict[MoveId::ROCKBLAST].accuracy = {100};
+  // RockClimb acc 85 -> 95
+  moveDict.dict[MoveId::ROCKCLIMB].accuracy = {95};
+  // RockSlide acc 90 -> 100
+  moveDict.dict[MoveId::ROCKSLIDE].accuracy = {100};
+  // RockThrow acc 90 -> 100
+  moveDict.dict[MoveId::ROCKTHROW].accuracy = {100};
+  // RockWrecker acc 90 -> 100
+  moveDict.dict[MoveId::ROCKWRECKER].accuracy = {100};
+  // RollingKick acc 85 -> 100
+  moveDict.dict[MoveId::ROLLINGKICK].accuracy = {100};
+  // Roost PP 10 -> 5
+  moveDict.dict[MoveId::ROOST].pp = 5;
+  // SacredFire acc 95 -> 100
+  moveDict.dict[MoveId::SACREDFIRE].accuracy = {100};
+  // SandTomb acc 85 -> 100
+  moveDict.dict[MoveId::SANDTOMB].accuracy = {100};
+  // SandAttack PP 15 -> 5
+  moveDict.dict[MoveId::SANDATTACK].pp = 5;
+  // ScaleShot acc 90 -> 100
+  moveDict.dict[MoveId::SCALESHOT].accuracy = {100};
+  // Screech acc 85 -> 100
+  moveDict.dict[MoveId::SCREECH].accuracy = {100};
+  // Screech PP 15 -> 5
+  moveDict.dict[MoveId::SCREECH].pp = 5;
+  // SeedFlare acc 85 -> 90
+  moveDict.dict[MoveId::SEEDFLARE].accuracy = {90};
+  // Sing acc 55 -> 70
+  moveDict.dict[MoveId::SING_].accuracy = {70};
+  // SkitterSmack acc 90 -> 100
+  moveDict.dict[MoveId::SKITTERSMACK].accuracy = {100};
+  // SkyAttack acc 90 -> 100
+  moveDict.dict[MoveId::SKYATTACK].accuracy = {100};
+  // SkyUppercut acc 90 -> 100
+  moveDict.dict[MoveId::SKYUPPERCUT].accuracy = {100};
+  // Slam acc 75 -> 90
+  moveDict.dict[MoveId::SLAM].accuracy = {90};
+  // SleepPowder acc 75 -> 80
+  moveDict.dict[MoveId::SLEEPPOWDER].accuracy = {80};
+  // Smog acc 70 -> 90
+  moveDict.dict[MoveId::SMOG].accuracy = {90};
+  // Snarl acc 95 -> 100
+  moveDict.dict[MoveId::SNARL].accuracy = {100};
+  // Snarl PP 15 -> 10
+  moveDict.dict[MoveId::SNARL].pp = 10;
+  // SonicBoomb acc 90 -> 100
+  moveDict.dict[MoveId::SONICBOOM].accuracy = {100};
+  // SpacialRend acc 95 -> 100
+  moveDict.dict[MoveId::SPACIALREND].accuracy = {100};
+  // SteamEruption acc 95 -> 100
+  moveDict.dict[MoveId::STEAMERUPTION].accuracy = {100};
+  // SteelBeam acc 95 -> 100
+  moveDict.dict[MoveId::STEELBEAM].accuracy = {100};
+  // StoneEdge acc 80 -> 85
+  moveDict.dict[MoveId::STONEEDGE].accuracy = {85};
+  // StrangeSteam acc 95 -> 100
+  moveDict.dict[MoveId::STRANGESTEAM].accuracy = {100};
+  // StruggleBug PP 20 -> 10
+  moveDict.dict[MoveId::STRUGGLEBUG].pp = 10;
+  // StunSpore acc 75 -> 90
+  moveDict.dict[MoveId::STUNSPORE].accuracy = {90};
+  // Submission acc 80 -> 100
+  moveDict.dict[MoveId::SUBMISSION].accuracy = {100};
+  // SuperFang acc 90 -> 100
+  moveDict.dict[MoveId::SUPERFANG].accuracy = {100};
+  // SuperFang Type Normal -> Dark
+  moveDict.dict[MoveId::SUPERFANG].type = Type::DARK;
+  // Supersonic acc 55 -> 70
+  moveDict.dict[MoveId::SUPERSONIC].accuracy = {70};
+  // Swagger acc 85 -> 90
+  moveDict.dict[MoveId::SWAGGER].accuracy = {90};
+  // SweetKiss acc 75 -> 80
+  moveDict.dict[MoveId::SWEETKISS].accuracy = {80};
+  // TailSlap acc 85 -> 100
+  moveDict.dict[MoveId::TAILSLAP].accuracy = {100};
+  // Takedown acc 85 -> 100
+  moveDict.dict[MoveId::TAKEDOWN].accuracy = {100};
+  // TeafulLook PP 20 -> 10
+  moveDict.dict[MoveId::TEARFULLOOK].pp = 10;
+  // Thunder acc 70 -> 80
+  moveDict.dict[MoveId::THUNDER].accuracy = {80};
+  // ThunderCage acc 90 -> 100
+  moveDict.dict[MoveId::THUNDERCAGE].accuracy = {100};
+  // ThunderFang acc 95 -> 100
+  moveDict.dict[MoveId::THUNDERFANG].accuracy = {100};
+  // Tickle PP 20 -> 10
+  moveDict.dict[MoveId::TICKLE].pp = 10;
+  // Whirlpool acc 85 -> 100
+  moveDict.dict[MoveId::WHIRLPOOL].accuracy = {100};
+  // Wrap acc 90 -> 100
+  moveDict.dict[MoveId::WRAP].accuracy = {100};
+  // ZenHeadbutt acc 90 -> 100
+  moveDict.dict[MoveId::ZENHEADBUTT].accuracy = {100};
 }
 } // namespace pkmn

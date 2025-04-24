@@ -1,0 +1,55 @@
+Lvl 8 Piplup and Lvl 8 Poochyena vs. opponent AI Youngster Calvin
+Start time: 2025-04-22 20:49:41.153928
+Start time: 2025-04-22 20:49:55.240090
+Start time: 2025-04-22 20:50:08.526072
+Starting game: 10, Current winrate: 0.444
+Starting game: 20, Current winrate: 0.316
+Starting game: 30, Current winrate: 0.310
+Starting game: 40, Current winrate: 0.333
+Starting game: 50, Current winrate: 0.347
+Starting game: 60, Current winrate: 0.407
+Starting game: 70, Current winrate: 0.362
+Starting game: 80, Current winrate: 0.392
+Starting game: 90, Current winrate: 0.371
+Starting game: 100, Current winrate: 0.354
+Starting game: 110, Current winrate: 0.330
+Starting game: 120, Current winrate: 0.328
+Starting game: 130, Current winrate: 0.326
+Starting game: 140, Current winrate: 0.324
+Starting game: 150, Current winrate: 0.336
+Starting game: 160, Current winrate: 0.340
+Starting game: 170, Current winrate: 0.343
+Starting game: 180, Current winrate: 0.330
+Starting game: 190, Current winrate: 0.312
+Starting game: 200, Current winrate: 0.307
+Starting game: 210, Current winrate: 0.297
+Starting game: 220, Current winrate: 0.288
+Starting game: 230, Current winrate: 0.284
+Starting game: 240, Current winrate: 0.289
+Starting game: 250, Current winrate: 0.285
+Starting game: 260, Current winrate: 0.286
+Starting game: 270, Current winrate: 0.294
+Starting game: 280, Current winrate: 0.297
+Starting game: 290, Current winrate: 0.298
+Starting game: 300, Current winrate: 0.298
+Starting game: 310, Current winrate: 0.301
+Starting game: 320, Current winrate: 0.307
+Starting game: 330, Current winrate: 0.310
+Starting game: 340, Current winrate: 0.310
+Starting game: 350, Current winrate: 0.309
+Starting game: 360, Current winrate: 0.315
+Starting game: 370, Current winrate: 0.309
+Starting game: 380, Current winrate: 0.311
+Starting game: 390, Current winrate: 0.314
+Starting game: 400, Current winrate: 0.313
+Starting game: 410, Current winrate: 0.308
+Starting game: 420, Current winrate: 0.310
+Starting game: 430, Current winrate: 0.308
+Starting game: 440, Current winrate: 0.303
+Starting game: 450, Current winrate: 0.303
+Starting game: 460, Current winrate: 0.305
+Starting game: 470, Current winrate: 0.305
+Starting game: 480, Current winrate: 0.307
+Starting game: 490, Current winrate: 0.307
+Starting game: 500, Current winrate: 0.305
+NET: -39.20 +/- 8.24; WINS: 0.30 +/- 0.04

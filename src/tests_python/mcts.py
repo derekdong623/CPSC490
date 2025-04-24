@@ -74,8 +74,7 @@ class MCTS:
                 q = parent.Q[action]
                 n = parent.N_a[action]
                 parent.Q[action] += (reward - q) / n  # Incremental average
-        # print("Num rollouts:", rolloutNum)
-        return self.best_action(root_node)
+        return self.best_action(root_node), rolloutNum
 
     def select_action(self, node, state):
         c = 1.4
@@ -86,6 +85,7 @@ class MCTS:
             q = node.Q[a]
             n = node.N_a[a] + 1e-6
             ucb = q + c * (total_N / n) ** 0.5
+            ucb = q + c * (math.log(total_N+1) / (n+1)) ** 0.5
             if ucb > best_score:
                 best_score = ucb
                 best_action = a
@@ -94,10 +94,17 @@ class MCTS:
     def rollout(self, node, state):
         # Random rollout
         while not self._game.game_over(state):
-            action = random.choice(self._game.get_choice_list(state, 0))
+            choices = self._game.get_choice_list(state, 0)
+            # print(len(choices))
+            action = random.choice(choices)
+            # print(self._game.simplify_state(state))
+            # print(action)
             state = self._game.get_successor(state, action)
+            # print('bye')
         return self._game.payoff(state)
 
     def best_action(self, root_node):
         # Could choose highest-Q, but let's try visit count for now.
-        return max(root_node.N_a.items(), key=lambda x: x[1])[0]
+        res = max(root_node.N_a.items(), key=lambda x: x[1])
+        print("Max value:", res[1])
+        return res[0]

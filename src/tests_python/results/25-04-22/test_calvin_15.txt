@@ -1,0 +1,1054 @@
+Lvl 8 Piplup and Lvl 8 Poochyena vs. opponent AI Youngster Calvin
+Start time: 2025-04-22 22:17:47.716062
+Avg_rollouts 67.44444444444444 Turns 9
+Loss
+Avg_rollouts 62.53846153846154 Turns 13
+Pokemon left: 1
+Avg_rollouts 63.27272727272727 Turns 11
+Loss
+Avg_rollouts 62.61538461538461 Turns 13
+Loss
+Avg_rollouts 65.33333333333333 Turns 12
+Loss
+Avg_rollouts 68.44444444444444 Turns 9
+Loss
+Avg_rollouts 77.0 Turns 9
+Pokemon left: 1
+Avg_rollouts 64.0 Turns 11
+Loss
+Avg_rollouts 62.916666666666664 Turns 12
+Pokemon left: 1
+Starting game: 10, Current winrate: 0.333
+Avg_rollouts 65.7 Turns 10
+Loss
+Avg_rollouts 65.72727272727273 Turns 11
+Loss
+Avg_rollouts 66.22222222222223 Turns 9
+Loss
+Avg_rollouts 67.4 Turns 10
+Loss
+Avg_rollouts 60.86666666666667 Turns 15
+Loss
+Avg_rollouts 66.5 Turns 10
+Loss
+Avg_rollouts 66.66666666666667 Turns 9
+Loss
+Avg_rollouts 63.642857142857146 Turns 14
+Loss
+Avg_rollouts 64.4 Turns 10
+Pokemon left: 1
+Avg_rollouts 66.8 Turns 10
+Loss
+Starting game: 20, Current winrate: 0.211
+Avg_rollouts 67.16666666666667 Turns 12
+Loss
+Avg_rollouts 61.30769230769231 Turns 13
+Loss
+Avg_rollouts 63.45454545454545 Turns 11
+Loss
+Avg_rollouts 64.1 Turns 10
+Loss
+Avg_rollouts 67.11111111111111 Turns 9
+Pokemon left: 1
+Avg_rollouts 64.6923076923077 Turns 13
+Loss
+Avg_rollouts 64.0 Turns 10
+Pokemon left: 1
+Avg_rollouts 59.23076923076923 Turns 13
+Pokemon left: 1
+Avg_rollouts 66.0 Turns 10
+Loss
+Avg_rollouts 68.25 Turns 8
+Pokemon left: 1
+Starting game: 30, Current winrate: 0.276
+Avg_rollouts 65.8 Turns 10
+Loss
+Avg_rollouts 58.94117647058823 Turns 17
+Loss
+Avg_rollouts 61.0 Turns 12
+Pokemon left: 1
+Avg_rollouts 64.25 Turns 12
+Loss
+Avg_rollouts 61.142857142857146 Turns 14
+Loss
+Avg_rollouts 58.125 Turns 16
+Loss
+Avg_rollouts 66.6 Turns 10
+Pokemon left: 1
+Avg_rollouts 64.0 Turns 12
+Pokemon left: 1
+Avg_rollouts 62.09090909090909 Turns 11
+Loss
+Avg_rollouts 62.36363636363637 Turns 11
+Loss
+Starting game: 40, Current winrate: 0.282
+Avg_rollouts 59.07692307692308 Turns 13
+Pokemon left: 1
+Avg_rollouts 64.5 Turns 10
+Loss
+Avg_rollouts 66.4 Turns 10
+Loss
+Avg_rollouts 66.78571428571429 Turns 14
+Loss
+Avg_rollouts 55.8125 Turns 16
+Pokemon left: 1
+Avg_rollouts 64.2 Turns 10
+Loss
+Avg_rollouts 60.583333333333336 Turns 12
+Pokemon left: 1
+Avg_rollouts 66.0 Turns 12
+Loss
+Avg_rollouts 65.63636363636364 Turns 11
+Loss
+Avg_rollouts 65.8 Turns 10
+Loss
+Starting game: 50, Current winrate: 0.286
+Avg_rollouts 65.88888888888889 Turns 9
+Loss
+Avg_rollouts 57.77777777777778 Turns 9
+Loss
+Avg_rollouts 65.77777777777777 Turns 9
+Loss
+Avg_rollouts 62.642857142857146 Turns 14
+Loss
+Avg_rollouts 68.875 Turns 8
+Pokemon left: 1
+Avg_rollouts 65.3 Turns 10
+Pokemon left: 1
+Avg_rollouts 62.875 Turns 8
+Loss
+Avg_rollouts 64.9 Turns 10
+Pokemon left: 1
+Avg_rollouts 66.8 Turns 10
+Pokemon left: 1
+Avg_rollouts 58.46153846153846 Turns 13
+Loss
+Starting game: 60, Current winrate: 0.305
+Avg_rollouts 63.27272727272727 Turns 11
+Pokemon left: 1
+Avg_rollouts 61.857142857142854 Turns 14
+Pokemon left: 1
+Avg_rollouts 62.416666666666664 Turns 12
+Pokemon left: 1
+Avg_rollouts 68.875 Turns 8
+Pokemon left: 2
+Avg_rollouts 60.15384615384615 Turns 13
+Loss
+Avg_rollouts 63.36363636363637 Turns 11
+Loss
+Avg_rollouts 62.07692307692308 Turns 13
+Loss
+Avg_rollouts 66.55555555555556 Turns 9
+Loss
+Avg_rollouts 56.416666666666664 Turns 12
+Loss
+Avg_rollouts 62.53846153846154 Turns 13
+Pokemon left: 1
+Starting game: 70, Current winrate: 0.333
+Avg_rollouts 57.75 Turns 8
+Pokemon left: 2
+Avg_rollouts 63.9 Turns 10
+Pokemon left: 1
+Avg_rollouts 59.111111111111114 Turns 9
+Pokemon left: 1
+Avg_rollouts 56.888888888888886 Turns 9
+Pokemon left: 2
+Avg_rollouts 55.875 Turns 8
+Pokemon left: 1
+Avg_rollouts 57.8125 Turns 16
+Loss
+Avg_rollouts 63.0 Turns 12
+Loss
+Avg_rollouts 56.333333333333336 Turns 12
+Loss
+Avg_rollouts 66.11111111111111 Turns 9
+Loss
+Avg_rollouts 65.77777777777777 Turns 9
+Loss
+Starting game: 80, Current winrate: 0.354
+Avg_rollouts 65.3 Turns 10
+Loss
+Avg_rollouts 63.55555555555556 Turns 9
+Loss
+Avg_rollouts 61.6 Turns 10
+Loss
+Avg_rollouts 57.84615384615385 Turns 13
+Loss
+Avg_rollouts 59.642857142857146 Turns 14
+Loss
+Avg_rollouts 62.90909090909091 Turns 11
+Loss
+Avg_rollouts 64.1 Turns 10
+Loss
+Avg_rollouts 67.11111111111111 Turns 9
+Loss
+Avg_rollouts 63.45454545454545 Turns 11
+Pokemon left: 1
+Avg_rollouts 61.46666666666667 Turns 15
+Loss
+Starting game: 90, Current winrate: 0.326
+Avg_rollouts 59.875 Turns 8
+Loss
+Avg_rollouts 61.0 Turns 8
+Pokemon left: 1
+Avg_rollouts 53.93333333333333 Turns 15
+Loss
+Avg_rollouts 63.9 Turns 10
+Loss
+Avg_rollouts 53.61538461538461 Turns 13
+Loss
+Avg_rollouts 64.63636363636364 Turns 11
+Loss
+Avg_rollouts 61.15384615384615 Turns 13
+Loss
+Avg_rollouts 63.833333333333336 Turns 12
+Loss
+Avg_rollouts 60.53846153846154 Turns 13
+Loss
+Avg_rollouts 60.357142857142854 Turns 14
+Loss
+Starting game: 100, Current winrate: 0.303
+Avg_rollouts 58.625 Turns 16
+Pokemon left: 1
+Avg_rollouts 62.8 Turns 10
+Loss
+Avg_rollouts 56.07142857142857 Turns 14
+Loss
+Avg_rollouts 61.333333333333336 Turns 12
+Loss
+Avg_rollouts 57.333333333333336 Turns 12
+Pokemon left: 1
+Avg_rollouts 57.1875 Turns 16
+Loss
+Avg_rollouts 63.8 Turns 10
+Loss
+Avg_rollouts 53.75 Turns 16
+Pokemon left: 1
+Avg_rollouts 62.083333333333336 Turns 12
+Loss
+Avg_rollouts 62.583333333333336 Turns 12
+Pokemon left: 1
+Starting game: 110, Current winrate: 0.312
+Avg_rollouts 61.1 Turns 10
+Pokemon left: 1
+Avg_rollouts 60.142857142857146 Turns 14
+Loss
+Avg_rollouts 64.18181818181819 Turns 11
+Loss
+Avg_rollouts 56.111111111111114 Turns 18
+Pokemon left: 1
+Avg_rollouts 60.583333333333336 Turns 12
+Loss
+Avg_rollouts 57.5625 Turns 16
+Pokemon left: 1
+Avg_rollouts 56.63636363636363 Turns 11
+Pokemon left: 1
+Avg_rollouts 62.875 Turns 8
+Pokemon left: 1
+Avg_rollouts 59.916666666666664 Turns 12
+Pokemon left: 1
+Avg_rollouts 62.15384615384615 Turns 13
+Loss
+Starting game: 120, Current winrate: 0.336
+Avg_rollouts 64.0 Turns 10
+Loss
+Avg_rollouts 65.5 Turns 10
+Loss
+Avg_rollouts 58.0 Turns 7
+Pokemon left: 2
+Avg_rollouts 70.92307692307692 Turns 13
+Pokemon left: 1
+Avg_rollouts 62.416666666666664 Turns 12
+Loss
+Avg_rollouts 56.333333333333336 Turns 9
+Pokemon left: 1
+Avg_rollouts 60.22222222222222 Turns 9
+Pokemon left: 1
+Avg_rollouts 60.36363636363637 Turns 11
+Loss
+Avg_rollouts 59.8 Turns 10
+Loss
+Avg_rollouts 65.66666666666667 Turns 12
+Loss
+Starting game: 130, Current winrate: 0.341
+Avg_rollouts 60.23076923076923 Turns 13
+Loss
+Avg_rollouts 63.1 Turns 10
+Loss
+Avg_rollouts 58.09090909090909 Turns 11
+Loss
+Avg_rollouts 58.25 Turns 16
+Loss
+Avg_rollouts 55.357142857142854 Turns 14
+Pokemon left: 1
+Avg_rollouts 58.916666666666664 Turns 12
+Loss
+Avg_rollouts 62.45454545454545 Turns 11
+Loss
+Avg_rollouts 61.63636363636363 Turns 11
+Loss
+Avg_rollouts 53.1 Turns 10
+Pokemon left: 1
+Avg_rollouts 58.07142857142857 Turns 14
+Loss
+Starting game: 140, Current winrate: 0.331
+Avg_rollouts 62.25 Turns 12
+Pokemon left: 1
+Avg_rollouts 54.214285714285715 Turns 14
+Pokemon left: 1
+Avg_rollouts 55.92857142857143 Turns 14
+Loss
+Avg_rollouts 52.2 Turns 5
+Pokemon left: 2
+Avg_rollouts 53.09090909090909 Turns 11
+Loss
+Avg_rollouts 65.0 Turns 8
+Loss
+Avg_rollouts 61.916666666666664 Turns 12
+Pokemon left: 1
+Avg_rollouts 61.8 Turns 10
+Loss
+Avg_rollouts 62.18181818181818 Turns 11
+Loss
+Avg_rollouts 62.75 Turns 12
+Pokemon left: 1
+Starting game: 150, Current winrate: 0.342
+Avg_rollouts 60.666666666666664 Turns 12
+Loss
+Avg_rollouts 65.4 Turns 10
+Loss
+Avg_rollouts 55.375 Turns 16
+Loss
+Avg_rollouts 60.166666666666664 Turns 12
+Loss
+Avg_rollouts 58.25 Turns 12
+Loss
+Avg_rollouts 58.333333333333336 Turns 9
+Loss
+Avg_rollouts 59.7 Turns 10
+Loss
+Avg_rollouts 63.55555555555556 Turns 9
+Loss
+Avg_rollouts 64.66666666666667 Turns 9
+Pokemon left: 1
+Avg_rollouts 58.166666666666664 Turns 6
+Pokemon left: 2
+Starting game: 160, Current winrate: 0.333
+Avg_rollouts 62.888888888888886 Turns 9
+Loss
+Avg_rollouts 57.25 Turns 12
+Loss
+Avg_rollouts 58.81818181818182 Turns 11
+Loss
+Avg_rollouts 64.83333333333333 Turns 12
+Loss
+Avg_rollouts 53.875 Turns 8
+Loss
+Avg_rollouts 57.15384615384615 Turns 13
+Pokemon left: 1
+Avg_rollouts 63.416666666666664 Turns 12
+Loss
+Avg_rollouts 59.22222222222222 Turns 9
+Loss
+Avg_rollouts 60.15384615384615 Turns 13
+Loss
+Avg_rollouts 65.0 Turns 11
+Pokemon left: 1
+Starting game: 170, Current winrate: 0.325
+Avg_rollouts 58.333333333333336 Turns 18
+Loss
+Avg_rollouts 70.5 Turns 10
+Loss
+Avg_rollouts 63.4 Turns 10
+Pokemon left: 1
+Avg_rollouts 64.11111111111111 Turns 9
+Loss
+Avg_rollouts 62.8 Turns 10
+Loss
+Avg_rollouts 59.23076923076923 Turns 13
+Pokemon left: 1
+Avg_rollouts 62.8 Turns 10
+Pokemon left: 1
+Avg_rollouts 66.875 Turns 8
+Pokemon left: 1
+Avg_rollouts 57.857142857142854 Turns 14
+Loss
+Avg_rollouts 56.9 Turns 10
+Pokemon left: 1
+Starting game: 180, Current winrate: 0.335
+Avg_rollouts 58.0 Turns 13
+Pokemon left: 1
+Avg_rollouts 54.111111111111114 Turns 18
+Pokemon left: 1
+Avg_rollouts 59.166666666666664 Turns 12
+Loss
+Avg_rollouts 62.9 Turns 10
+Loss
+Avg_rollouts 65.9 Turns 10
+Loss
+Avg_rollouts 62.27272727272727 Turns 11
+Loss
+Avg_rollouts 52.785714285714285 Turns 14
+Loss
+Avg_rollouts 62.5 Turns 8
+Pokemon left: 1
+Avg_rollouts 64.44444444444444 Turns 9
+Loss
+Avg_rollouts 62.45454545454545 Turns 11
+Loss
+Starting game: 190, Current winrate: 0.333
+Avg_rollouts 57.142857142857146 Turns 14
+Pokemon left: 1
+Avg_rollouts 62.416666666666664 Turns 12
+Pokemon left: 1
+Avg_rollouts 58.733333333333334 Turns 15
+Loss
+Avg_rollouts 57.63636363636363 Turns 11
+Loss
+Avg_rollouts 57.857142857142854 Turns 14
+Loss
+Avg_rollouts 59.06666666666667 Turns 15
+Loss
+Avg_rollouts 65.92307692307692 Turns 13
+Loss
+Avg_rollouts 55.30769230769231 Turns 13
+Pokemon left: 1
+Avg_rollouts 61.2 Turns 10
+Pokemon left: 1
+Avg_rollouts 57.416666666666664 Turns 12
+Pokemon left: 1
+Starting game: 200, Current winrate: 0.342
+Avg_rollouts 60.07692307692308 Turns 13
+Pokemon left: 1
+Avg_rollouts 60.81818181818182 Turns 11
+Loss
+Avg_rollouts 62.63636363636363 Turns 11
+Loss
+Avg_rollouts 63.09090909090909 Turns 11
+Loss
+Avg_rollouts 55.44444444444444 Turns 9
+Loss
+Avg_rollouts 55.625 Turns 8
+Pokemon left: 2
+Avg_rollouts 56.57142857142857 Turns 7
+Pokemon left: 2
+Avg_rollouts 54.94444444444444 Turns 18
+Loss
+Avg_rollouts 63.5 Turns 10
+Loss
+Avg_rollouts 65.55555555555556 Turns 9
+Loss
+Starting game: 210, Current winrate: 0.340
+Avg_rollouts 63.3 Turns 10
+Loss
+Avg_rollouts 65.0 Turns 10
+Loss
+Avg_rollouts 64.9 Turns 10
+Loss
+Avg_rollouts 55.0 Turns 6
+Pokemon left: 2
+Avg_rollouts 54.875 Turns 16
+Loss
+Avg_rollouts 60.63636363636363 Turns 11
+Pokemon left: 1
+Avg_rollouts 63.0 Turns 10
+Loss
+Avg_rollouts 58.81818181818182 Turns 11
+Loss
+Avg_rollouts 60.92307692307692 Turns 13
+Pokemon left: 1
+Avg_rollouts 58.0 Turns 13
+Loss
+Starting game: 220, Current winrate: 0.338
+Avg_rollouts 60.5 Turns 14
+Loss
+Avg_rollouts 62.77777777777778 Turns 9
+Loss
+Avg_rollouts 56.5 Turns 10
+Pokemon left: 1
+Avg_rollouts 58.81818181818182 Turns 11
+Loss
+Avg_rollouts 63.22222222222222 Turns 9
+Pokemon left: 1
+Avg_rollouts 64.5 Turns 10
+Loss
+Avg_rollouts 59.0 Turns 15
+Pokemon left: 1
+Avg_rollouts 58.76923076923077 Turns 13
+Pokemon left: 1
+Avg_rollouts 65.0 Turns 11
+Loss
+Avg_rollouts 64.4 Turns 10
+Loss
+Starting game: 230, Current winrate: 0.341
+Avg_rollouts 62.81818181818182 Turns 11
+Loss
+Avg_rollouts 56.61538461538461 Turns 13
+Pokemon left: 1
+Avg_rollouts 69.33333333333333 Turns 9
+Pokemon left: 1
+Avg_rollouts 64.5 Turns 10
+Loss
+Avg_rollouts 61.0 Turns 13
+Loss
+Avg_rollouts 56.166666666666664 Turns 18
+Loss
+Avg_rollouts 62.666666666666664 Turns 12
+Loss
+Avg_rollouts 66.27272727272727 Turns 11
+Loss
+Avg_rollouts 64.81818181818181 Turns 11
+Loss
+Avg_rollouts 62.9 Turns 10
+Loss
+Starting game: 240, Current winrate: 0.335
+Avg_rollouts 60.92857142857143 Turns 14
+Pokemon left: 1
+Avg_rollouts 59.583333333333336 Turns 12
+Loss
+Avg_rollouts 57.92857142857143 Turns 14
+Pokemon left: 1
+Avg_rollouts 63.5 Turns 10
+Loss
+Avg_rollouts 57.07692307692308 Turns 13
+Loss
+Avg_rollouts 55.38461538461539 Turns 13
+Pokemon left: 1
+Avg_rollouts 58.30769230769231 Turns 13
+Pokemon left: 1
+Avg_rollouts 67.07142857142857 Turns 14
+Loss
+Avg_rollouts 64.11111111111111 Turns 9
+Loss
+Avg_rollouts 54.61538461538461 Turns 13
+Loss
+Starting game: 250, Current winrate: 0.337
+Avg_rollouts 62.166666666666664 Turns 12
+Loss
+Avg_rollouts 62.0 Turns 8
+Pokemon left: 1
+Avg_rollouts 58.75 Turns 12
+Loss
+Avg_rollouts 65.6 Turns 10
+Pokemon left: 1
+Avg_rollouts 64.71428571428571 Turns 7
+Pokemon left: 2
+Avg_rollouts 62.9 Turns 10
+Loss
+Avg_rollouts 62.166666666666664 Turns 12
+Loss
+Avg_rollouts 62.333333333333336 Turns 9
+Loss
+Avg_rollouts 60.57142857142857 Turns 14
+Loss
+Avg_rollouts 62.4 Turns 10
+Loss
+Starting game: 260, Current winrate: 0.336
+Avg_rollouts 56.5 Turns 10
+Pokemon left: 1
+Avg_rollouts 60.63636363636363 Turns 11
+Pokemon left: 1
+Avg_rollouts 56.46153846153846 Turns 13
+Loss
+Avg_rollouts 55.30769230769231 Turns 13
+Loss
+Avg_rollouts 59.72727272727273 Turns 11
+Loss
+Avg_rollouts 61.166666666666664 Turns 6
+Pokemon left: 2
+Avg_rollouts 61.8 Turns 10
+Loss
+Avg_rollouts 61.166666666666664 Turns 12
+Pokemon left: 1
+Avg_rollouts 63.09090909090909 Turns 11
+Loss
+Avg_rollouts 56.8125 Turns 16
+Pokemon left: 1
+Starting game: 270, Current winrate: 0.342
+Avg_rollouts 58.57142857142857 Turns 7
+Pokemon left: 2
+Avg_rollouts 63.27272727272727 Turns 11
+Loss
+Avg_rollouts 56.785714285714285 Turns 14
+Loss
+Avg_rollouts 60.13333333333333 Turns 15
+Loss
+Avg_rollouts 59.5 Turns 12
+Pokemon left: 1
+Avg_rollouts 54.833333333333336 Turns 18
+Loss
+Avg_rollouts 60.357142857142854 Turns 14
+Loss
+Avg_rollouts 63.18181818181818 Turns 11
+Loss
+Avg_rollouts 62.2 Turns 15
+Loss
+Avg_rollouts 64.88888888888889 Turns 9
+Loss
+Starting game: 280, Current winrate: 0.337
+Avg_rollouts 56.72222222222222 Turns 18
+Loss
+Avg_rollouts 54.63636363636363 Turns 11
+Loss
+Avg_rollouts 63.625 Turns 8
+Pokemon left: 1
+Avg_rollouts 62.77777777777778 Turns 9
+Loss
+Avg_rollouts 56.38461538461539 Turns 13
+Pokemon left: 1
+Avg_rollouts 63.25 Turns 8
+Loss
+Avg_rollouts 59.92307692307692 Turns 13
+Pokemon left: 1
+Avg_rollouts 52.0 Turns 15
+Pokemon left: 2
+Avg_rollouts 59.44444444444444 Turns 18
+Loss
+Avg_rollouts 59.42857142857143 Turns 14
+Loss
+Starting game: 290, Current winrate: 0.339
+Avg_rollouts 60.53846153846154 Turns 13
+Loss
+Avg_rollouts 58.45454545454545 Turns 11
+Pokemon left: 1
+Avg_rollouts 62.0 Turns 10
+Loss
+Avg_rollouts 58.38461538461539 Turns 13
+Pokemon left: 1
+Avg_rollouts 63.45454545454545 Turns 11
+Loss
+Avg_rollouts 62.6 Turns 10
+Loss
+Avg_rollouts 57.916666666666664 Turns 12
+Loss
+Avg_rollouts 63.0 Turns 9
+Loss
+Avg_rollouts 57.15384615384615 Turns 13
+Loss
+Avg_rollouts 58.54545454545455 Turns 11
+Pokemon left: 1
+Starting game: 300, Current winrate: 0.338
+Avg_rollouts 56.04545454545455 Turns 22
+Loss
+Avg_rollouts 49.30769230769231 Turns 13
+Pokemon left: 2
+Avg_rollouts 56.86666666666667 Turns 15
+Pokemon left: 1
+Avg_rollouts 58.42857142857143 Turns 14
+Pokemon left: 1
+Avg_rollouts 56.5 Turns 12
+Loss
+Avg_rollouts 60.92307692307692 Turns 13
+Loss
+Avg_rollouts 61.8 Turns 10
+Loss
+Avg_rollouts 63.36363636363637 Turns 11
+Pokemon left: 1
+Avg_rollouts 58.0 Turns 13
+Loss
+Avg_rollouts 52.0 Turns 13
+Pokemon left: 1
+Starting game: 310, Current winrate: 0.343
+Avg_rollouts 59.0 Turns 11
+Pokemon left: 1
+Avg_rollouts 60.09090909090909 Turns 11
+Pokemon left: 1
+Avg_rollouts 64.7 Turns 10
+Loss
+Avg_rollouts 64.0 Turns 10
+Loss
+Avg_rollouts 56.09090909090909 Turns 11
+Pokemon left: 1
+Avg_rollouts 57.857142857142854 Turns 7
+Pokemon left: 2
+Avg_rollouts 64.7 Turns 10
+Loss
+Avg_rollouts 65.1 Turns 10
+Loss
+Avg_rollouts 58.285714285714285 Turns 14
+Loss
+Avg_rollouts 62.083333333333336 Turns 12
+Loss
+Starting game: 320, Current winrate: 0.345
+Avg_rollouts 64.55555555555556 Turns 9
+Loss
+Avg_rollouts 58.84615384615385 Turns 13
+Loss
+Avg_rollouts 55.42857142857143 Turns 14
+Pokemon left: 1
+Avg_rollouts 60.42857142857143 Turns 14
+Loss
+Avg_rollouts 63.8 Turns 10
+Loss
+Avg_rollouts 51.0 Turns 12
+Loss
+Avg_rollouts 55.733333333333334 Turns 15
+Loss
+Avg_rollouts 65.66666666666667 Turns 9
+Loss
+Avg_rollouts 58.0 Turns 11
+Loss
+Avg_rollouts 59.57142857142857 Turns 14
+Loss
+Starting game: 330, Current winrate: 0.337
+Avg_rollouts 62.09090909090909 Turns 11
+Loss
+Avg_rollouts 59.0 Turns 14
+Loss
+Avg_rollouts 61.15384615384615 Turns 13
+Loss
+Avg_rollouts 62.888888888888886 Turns 9
+Pokemon left: 2
+Avg_rollouts 61.54545454545455 Turns 11
+Loss
+Avg_rollouts 59.30769230769231 Turns 13
+Loss
+Avg_rollouts 63.0 Turns 10
+Loss
+Avg_rollouts 62.1 Turns 10
+Loss
+Avg_rollouts 61.81818181818182 Turns 11
+Loss
+Avg_rollouts 65.44444444444444 Turns 9
+Pokemon left: 1
+Starting game: 340, Current winrate: 0.333
+Avg_rollouts 64.77777777777777 Turns 9
+Loss
+Avg_rollouts 59.42857142857143 Turns 14
+Loss
+Avg_rollouts 65.55555555555556 Turns 9
+Loss
+Avg_rollouts 57.142857142857146 Turns 14
+Loss
+Avg_rollouts 60.5 Turns 8
+Pokemon left: 1
+Avg_rollouts 64.16666666666667 Turns 12
+Loss
+Avg_rollouts 62.75 Turns 12
+Loss
+Avg_rollouts 59.166666666666664 Turns 12
+Pokemon left: 1
+Avg_rollouts 67.375 Turns 8
+Pokemon left: 1
+Avg_rollouts 62.75 Turns 12
+Pokemon left: 1
+Starting game: 350, Current winrate: 0.335
+Avg_rollouts 66.44444444444444 Turns 9
+Pokemon left: 1
+Avg_rollouts 64.5 Turns 10
+Loss
+Avg_rollouts 65.2 Turns 10
+Pokemon left: 1
+Avg_rollouts 62.45454545454545 Turns 11
+Loss
+Avg_rollouts 65.0909090909091 Turns 11
+Loss
+Avg_rollouts 66.5 Turns 8
+Pokemon left: 2
+Avg_rollouts 62.625 Turns 8
+Loss
+Avg_rollouts 57.76923076923077 Turns 13
+Loss
+Avg_rollouts 58.6 Turns 15
+Loss
+Avg_rollouts 59.42857142857143 Turns 14
+Loss
+Starting game: 360, Current winrate: 0.334
+Avg_rollouts 64.5 Turns 10
+Loss
+Avg_rollouts 59.38461538461539 Turns 13
+Loss
+Avg_rollouts 61.92307692307692 Turns 13
+Loss
+Avg_rollouts 65.11111111111111 Turns 9
+Pokemon left: 1
+Avg_rollouts 54.5 Turns 12
+Loss
+Avg_rollouts 58.8125 Turns 16
+Loss
+Avg_rollouts 59.0 Turns 15
+Loss
+Avg_rollouts 66.3 Turns 10
+Loss
+Avg_rollouts 66.0 Turns 9
+Loss
+Avg_rollouts 58.0 Turns 12
+Pokemon left: 1
+Starting game: 370, Current winrate: 0.331
+Avg_rollouts 64.9 Turns 10
+Loss
+Avg_rollouts 61.81818181818182 Turns 11
+Loss
+Avg_rollouts 56.22222222222222 Turns 9
+Loss
+Avg_rollouts 64.71428571428571 Turns 7
+Pokemon left: 2
+Avg_rollouts 63.7 Turns 10
+Loss
+Avg_rollouts 59.0 Turns 11
+Loss
+Avg_rollouts 59.45454545454545 Turns 11
+Loss
+Avg_rollouts 64.0 Turns 9
+Loss
+Avg_rollouts 60.583333333333336 Turns 12
+Pokemon left: 1
+Avg_rollouts 63.36363636363637 Turns 11
+Loss
+Starting game: 380, Current winrate: 0.327
+Avg_rollouts 60.07142857142857 Turns 14
+Loss
+Avg_rollouts 60.07692307692308 Turns 13
+Loss
+Avg_rollouts 61.81818181818182 Turns 11
+Pokemon left: 1
+Avg_rollouts 65.5 Turns 10
+Loss
+Avg_rollouts 64.66666666666667 Turns 12
+Loss
+Avg_rollouts 58.57142857142857 Turns 14
+Loss
+Avg_rollouts 55.166666666666664 Turns 6
+Pokemon left: 2
+Avg_rollouts 68.85714285714286 Turns 7
+Pokemon left: 2
+Avg_rollouts 65.44444444444444 Turns 9
+Loss
+Avg_rollouts 61.09090909090909 Turns 11
+Loss
+Starting game: 390, Current winrate: 0.326
+Avg_rollouts 62.875 Turns 8
+Pokemon left: 1
+Avg_rollouts 63.5 Turns 10
+Loss
+Avg_rollouts 60.23076923076923 Turns 13
+Loss
+Avg_rollouts 58.46153846153846 Turns 13
+Pokemon left: 1
+Avg_rollouts 65.91666666666667 Turns 12
+Loss
+Avg_rollouts 64.45454545454545 Turns 11
+Loss
+Avg_rollouts 60.46153846153846 Turns 13
+Loss
+Avg_rollouts 58.61538461538461 Turns 13
+Pokemon left: 1
+Avg_rollouts 60.3125 Turns 16
+Loss
+Avg_rollouts 55.785714285714285 Turns 14
+Pokemon left: 1
+Starting game: 400, Current winrate: 0.328
+Avg_rollouts 63.166666666666664 Turns 12
+Loss
+Avg_rollouts 62.07142857142857 Turns 14
+Loss
+Avg_rollouts 57.285714285714285 Turns 7
+Pokemon left: 2
+Avg_rollouts 61.46153846153846 Turns 13
+Pokemon left: 1
+Avg_rollouts 61.833333333333336 Turns 12
+Pokemon left: 1
+Avg_rollouts 66.11111111111111 Turns 9
+Loss
+Avg_rollouts 63.0 Turns 13
+Loss
+Avg_rollouts 61.72727272727273 Turns 11
+Pokemon left: 1
+Avg_rollouts 54.55555555555556 Turns 9
+Loss
+Avg_rollouts 65.0 Turns 12
+Loss
+Starting game: 410, Current winrate: 0.330
+Avg_rollouts 65.2 Turns 10
+Loss
+Avg_rollouts 63.45454545454545 Turns 11
+Loss
+Avg_rollouts 62.61538461538461 Turns 13
+Loss
+Avg_rollouts 60.375 Turns 16
+Loss
+Avg_rollouts 65.2 Turns 10
+Loss
+Avg_rollouts 64.125 Turns 8
+Pokemon left: 1
+Avg_rollouts 60.416666666666664 Turns 12
+Pokemon left: 1
+Avg_rollouts 55.8 Turns 10
+Loss
+Avg_rollouts 63.36363636363637 Turns 11
+Loss
+Avg_rollouts 65.1 Turns 10
+Loss
+Starting game: 420, Current winrate: 0.327
+Avg_rollouts 65.4 Turns 10
+Pokemon left: 1
+Avg_rollouts 64.41666666666667 Turns 12
+Pokemon left: 1
+Avg_rollouts 59.416666666666664 Turns 12
+Loss
+Avg_rollouts 66.44444444444444 Turns 9
+Loss
+Avg_rollouts 59.84615384615385 Turns 13
+Pokemon left: 1
+Avg_rollouts 56.22222222222222 Turns 9
+Pokemon left: 2
+Avg_rollouts 66.0 Turns 9
+Loss
+Avg_rollouts 55.125 Turns 16
+Loss
+Avg_rollouts 63.083333333333336 Turns 12
+Loss
+Avg_rollouts 65.36363636363636 Turns 11
+Loss
+Starting game: 430, Current winrate: 0.329
+Avg_rollouts 62.375 Turns 8
+Loss
+Avg_rollouts 63.5 Turns 10
+Pokemon left: 1
+Avg_rollouts 56.875 Turns 16
+Pokemon left: 1
+Avg_rollouts 64.2 Turns 10
+Loss
+Avg_rollouts 60.92307692307692 Turns 13
+Loss
+Avg_rollouts 65.8 Turns 10
+Loss
+Avg_rollouts 60.07692307692308 Turns 13
+Loss
+Avg_rollouts 64.54545454545455 Turns 11
+Loss
+Avg_rollouts 63.3 Turns 10
+Pokemon left: 1
+Avg_rollouts 59.65 Turns 20
+Loss
+Starting game: 440, Current winrate: 0.328
+Avg_rollouts 64.33333333333333 Turns 9
+Loss
+Avg_rollouts 55.416666666666664 Turns 12
+Pokemon left: 2
+Avg_rollouts 58.375 Turns 16
+Loss
+Avg_rollouts 55.76923076923077 Turns 13
+Loss
+Avg_rollouts 54.142857142857146 Turns 7
+Pokemon left: 2
+Avg_rollouts 62.8 Turns 10
+Loss
+Avg_rollouts 59.9375 Turns 16
+Pokemon left: 1
+Avg_rollouts 66.54545454545455 Turns 11
+Pokemon left: 1
+Avg_rollouts 60.083333333333336 Turns 12
+Pokemon left: 1
+Avg_rollouts 57.25 Turns 16
+Loss
+Starting game: 450, Current winrate: 0.332
+Avg_rollouts 63.6 Turns 10
+Pokemon left: 1
+Avg_rollouts 62.76923076923077 Turns 13
+Loss
+Avg_rollouts 60.63636363636363 Turns 11
+Loss
+Avg_rollouts 63.083333333333336 Turns 12
+Pokemon left: 1
+Avg_rollouts 60.166666666666664 Turns 12
+Loss
+Avg_rollouts 58.0625 Turns 16
+Pokemon left: 1
+Avg_rollouts 64.63636363636364 Turns 11
+Loss
+Avg_rollouts 55.625 Turns 8
+Pokemon left: 2
+Avg_rollouts 65.33333333333333 Turns 9
+Pokemon left: 1
+Avg_rollouts 51.5 Turns 14
+Pokemon left: 2
+Starting game: 460, Current winrate: 0.338
+Avg_rollouts 60.0 Turns 14
+Loss
+Avg_rollouts 65.5 Turns 10
+Loss
+Avg_rollouts 64.0909090909091 Turns 11
+Loss
+Avg_rollouts 60.38461538461539 Turns 13
+Loss
+Avg_rollouts 58.75 Turns 12
+Loss
+Avg_rollouts 59.69230769230769 Turns 13
+Pokemon left: 1
+Avg_rollouts 58.06666666666667 Turns 15
+Pokemon left: 1
+Avg_rollouts 64.5 Turns 10
+Loss
+Avg_rollouts 63.083333333333336 Turns 12
+Pokemon left: 1
+Avg_rollouts 59.72727272727273 Turns 11
+Pokemon left: 1
+Starting game: 470, Current winrate: 0.339
+Avg_rollouts 65.6 Turns 10
+Loss
+Avg_rollouts 64.0 Turns 10
+Loss
+Avg_rollouts 66.66666666666667 Turns 9
+Loss
+Avg_rollouts 58.86666666666667 Turns 15
+Pokemon left: 1
+Avg_rollouts 66.4 Turns 10
+Pokemon left: 1
+Avg_rollouts 60.23076923076923 Turns 13
+Pokemon left: 1
+Avg_rollouts 64.3 Turns 10
+Pokemon left: 1
+Avg_rollouts 62.45454545454545 Turns 11
+Loss
+Avg_rollouts 64.83333333333333 Turns 12
+Loss
+Avg_rollouts 64.0 Turns 11
+Loss
+Starting game: 480, Current winrate: 0.340
+Avg_rollouts 67.0 Turns 9
+Loss
+Avg_rollouts 57.8 Turns 10
+Loss
+Avg_rollouts 66.2 Turns 10
+Loss
+Avg_rollouts 58.06666666666667 Turns 15
+Loss
+Avg_rollouts 61.38461538461539 Turns 13
+Loss
+Avg_rollouts 59.5 Turns 12
+Loss
+Avg_rollouts 58.4375 Turns 16
+Loss
+Avg_rollouts 50.92857142857143 Turns 14
+Loss
+Avg_rollouts 56.285714285714285 Turns 7
+Pokemon left: 2
+Avg_rollouts 65.54545454545455 Turns 11
+Loss
+Starting game: 490, Current winrate: 0.335
+Avg_rollouts 61.9 Turns 10
+Loss
+Avg_rollouts 54.77777777777778 Turns 9
+Loss
+Avg_rollouts 65.7 Turns 10
+Loss
+Avg_rollouts 59.857142857142854 Turns 14
+Loss
+Avg_rollouts 63.81818181818182 Turns 11
+Loss
+Avg_rollouts 64.72727272727273 Turns 11
+Loss
+Avg_rollouts 66.0 Turns 11
+Loss
+Avg_rollouts 66.46153846153847 Turns 13
+Loss
+Avg_rollouts 67.22222222222223 Turns 9
+Loss
+Avg_rollouts 63.083333333333336 Turns 12
+Pokemon left: 1
+Starting game: 500, Current winrate: 0.331
+Avg_rollouts 61.916666666666664 Turns 12
+Pokemon left: 1
+WARNING: max time for agent = 0.11168575286865234
+NET: -33.60 +/- 8.43; WINS: 0.33 +/- 0.04
