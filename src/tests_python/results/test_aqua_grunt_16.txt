@@ -1,0 +1,1293 @@
+Start time: 2025-04-28 16:13:13.020412
+Max value: 76
+Max value: 70
+Max value: 104
+Max value: 91
+Max value: 183
+Max value: 318
+Max value: 430
+Max value: 493
+Max value: 515
+Max value: 747
+Max value: 1506
+Avg_rollouts 599.7272727272727 Turns 11
+Pokemon left: 1
+Max value: 253
+Max value: 233
+Max value: 323
+Max value: 310
+Max value: 278
+Max value: 374
+Max value: 451
+Max value: 417
+Max value: 87
+Max value: 141
+Max value: 154
+Max value: 178
+Avg_rollouts 464.5833333333333 Turns 12
+Loss
+Max value: 212
+Max value: 279
+Max value: 357
+Max value: 389
+Max value: 407
+Max value: 319
+Max value: 311
+Max value: 274
+Max value: 322
+Max value: 368
+Max value: 499
+Max value: 489
+Max value: 560
+Max value: 516
+Max value: 676
+Max value: 743
+Max value: 1586
+Avg_rollouts 514.0588235294117 Turns 17
+Pokemon left: 1
+Max value: 68
+Max value: 186
+Max value: 179
+Max value: 358
+Max value: 367
+Max value: 423
+Max value: 453
+Max value: 589
+Max value: 1387
+Avg_rollouts 539.7777777777778 Turns 9
+Pokemon left: 3
+Max value: 410
+Max value: 87
+Max value: 87
+Max value: 93
+Max value: 86
+Max value: 98
+Max value: 99
+Max value: 148
+Max value: 226
+Max value: 354
+Avg_rollouts 643.1 Turns 10
+Loss
+Max value: 67
+Max value: 85
+Max value: 94
+Max value: 142
+Max value: 146
+Max value: 171
+Max value: 204
+Max value: 389
+Avg_rollouts 717.0 Turns 8
+Loss
+Max value: 304
+Max value: 116
+Max value: 76
+Max value: 299
+Max value: 332
+Max value: 287
+Max value: 334
+Max value: 321
+Max value: 226
+Max value: 349
+Max value: 381
+Max value: 523
+Max value: 777
+Max value: 1522
+Max value: 396
+Avg_rollouts 591.2 Turns 15
+Loss
+Max value: 97
+Max value: 257
+Max value: 210
+Max value: 383
+Max value: 418
+Max value: 279
+Max value: 332
+Max value: 318
+Max value: 320
+Max value: 417
+Max value: 446
+Max value: 506
+Max value: 809
+Max value: 1553
+Avg_rollouts 539.9285714285714 Turns 14
+Pokemon left: 1
+Max value: 68
+Max value: 239
+Max value: 249
+Max value: 375
+Max value: 369
+Max value: 327
+Max value: 374
+Max value: 429
+Max value: 429
+Max value: 460
+Max value: 460
+Max value: 727
+Max value: 1449
+Avg_rollouts 514.2307692307693 Turns 13
+Pokemon left: 2
+Max value: 272
+Max value: 283
+Max value: 297
+Max value: 280
+Max value: 406
+Max value: 388
+Max value: 647
+Max value: 1301
+Avg_rollouts 529.25 Turns 8
+Pokemon left: 3
+Max value: 352
+Max value: 88
+Max value: 92
+Max value: 134
+Max value: 151
+Max value: 173
+Max value: 204
+Max value: 373
+Avg_rollouts 705.375 Turns 8
+Loss
+Max value: 67
+Max value: 322
+Max value: 286
+Max value: 261
+Max value: 302
+Max value: 395
+Max value: 425
+Max value: 440
+Max value: 520
+Max value: 808
+Avg_rollouts 452.3 Turns 10
+Pokemon left: 1
+Max value: 147
+Max value: 298
+Max value: 334
+Max value: 309
+Max value: 321
+Max value: 442
+Max value: 437
+Max value: 456
+Max value: 732
+Max value: 1427
+Avg_rollouts 538.4 Turns 10
+Pokemon left: 2
+Max value: 65
+Max value: 88
+Max value: 92
+Max value: 140
+Max value: 141
+Max value: 166
+Max value: 210
+Max value: 381
+Avg_rollouts 708.375 Turns 8
+Loss
+Max value: 271
+Max value: 326
+Max value: 293
+Max value: 333
+Max value: 308
+Max value: 256
+Max value: 304
+Max value: 323
+Max value: 348
+Max value: 385
+Max value: 338
+Max value: 408
+Max value: 488
+Max value: 785
+Avg_rollouts 388.42857142857144 Turns 14
+Loss
+Max value: 332
+Max value: 69
+Max value: 65
+Max value: 276
+Max value: 278
+Max value: 353
+Max value: 377
+Max value: 311
+Max value: 343
+Max value: 400
+Max value: 431
+Max value: 614
+Max value: 385
+Max value: 489
+Avg_rollouts 547.9285714285714 Turns 14
+Loss
+Max value: 64
+Max value: 292
+Max value: 385
+Max value: 400
+Max value: 377
+Max value: 267
+Max value: 285
+Max value: 338
+Max value: 498
+Max value: 1298
+Avg_rollouts 474.1 Turns 10
+Pokemon left: 2
+Max value: 226
+Max value: 265
+Max value: 365
+Max value: 362
+Max value: 352
+Max value: 409
+Max value: 447
+Max value: 709
+Max value: 1402
+Avg_rollouts 535.0 Turns 9
+Pokemon left: 2
+Max value: 168
+Max value: 291
+Max value: 371
+Max value: 389
+Max value: 475
+Max value: 678
+Max value: 405
+Max value: 617
+Max value: 1225
+Avg_rollouts 548.5555555555555 Turns 9
+Pokemon left: 3
+Max value: 109
+Max value: 282
+Max value: 323
+Max value: 352
+Max value: 395
+Max value: 406
+Max value: 511
+Max value: 516
+Max value: 483
+Max value: 636
+Max value: 1320
+Max value: 165
+Max value: 174
+Max value: 179
+Max value: 381
+Avg_rollouts 623.2 Turns 15
+Loss
+Max value: 76
+Max value: 87
+Max value: 83
+Max value: 82
+Max value: 114
+Max value: 101
+Max value: 160
+Avg_rollouts 526.0 Turns 7
+Loss
+Max value: 164
+Max value: 279
+Max value: 325
+Max value: 402
+Max value: 351
+Max value: 399
+Max value: 99
+Max value: 173
+Max value: 271
+Max value: 379
+Avg_rollouts 603.5 Turns 10
+Loss
+Max value: 65
+Max value: 218
+Max value: 303
+Max value: 342
+Max value: 351
+Max value: 343
+Max value: 397
+Max value: 550
+Max value: 1476
+Avg_rollouts 524.2222222222222 Turns 9
+Pokemon left: 2
+Max value: 67
+Max value: 262
+Max value: 359
+Max value: 327
+Max value: 280
+Max value: 277
+Max value: 307
+Max value: 319
+Max value: 389
+Max value: 365
+Max value: 417
+Max value: 645
+Max value: 1019
+Max value: 1434
+Avg_rollouts 516.4285714285714 Turns 14
+Pokemon left: 1
+Max value: 232
+Max value: 227
+Max value: 325
+Max value: 261
+Max value: 355
+Max value: 313
+Max value: 352
+Max value: 74
+Max value: 77
+Max value: 114
+Max value: 146
+Max value: 234
+Avg_rollouts 456.3333333333333 Turns 12
+Loss
+Max value: 303
+Max value: 84
+Max value: 86
+Max value: 119
+Max value: 106
+Max value: 88
+Max value: 174
+Max value: 469
+Avg_rollouts 605.0 Turns 8
+Loss
+Max value: 398
+Max value: 73
+Max value: 70
+Max value: 85
+Max value: 284
+Max value: 365
+Max value: 386
+Max value: 99
+Max value: 173
+Max value: 274
+Max value: 377
+Avg_rollouts 625.2727272727273 Turns 11
+Loss
+Max value: 66
+Max value: 144
+Max value: 348
+Max value: 343
+Max value: 304
+Max value: 366
+Max value: 470
+Max value: 458
+Max value: 450
+Max value: 670
+Max value: 1436
+Avg_rollouts 523.1818181818181 Turns 11
+Pokemon left: 1
+Max value: 65
+Max value: 287
+Max value: 389
+Max value: 377
+Max value: 377
+Max value: 391
+Max value: 675
+Max value: 1396
+Avg_rollouts 554.25 Turns 8
+Pokemon left: 3
+Max value: 229
+Max value: 88
+Max value: 88
+Max value: 120
+Max value: 122
+Max value: 309
+Max value: 491
+Avg_rollouts 716.8571428571429 Turns 7
+Loss
+Max value: 266
+Max value: 297
+Max value: 364
+Max value: 370
+Max value: 364
+Max value: 393
+Max value: 468
+Max value: 686
+Max value: 1316
+Avg_rollouts 522.7777777777778 Turns 9
+Pokemon left: 2
+Max value: 66
+Max value: 306
+Max value: 335
+Max value: 341
+Max value: 307
+Max value: 356
+Max value: 303
+Max value: 312
+Max value: 309
+Max value: 295
+Max value: 329
+Max value: 371
+Max value: 503
+Max value: 763
+Max value: 1542
+Avg_rollouts 479.46666666666664 Turns 15
+Loss
+Max value: 66
+Max value: 120
+Max value: 316
+Max value: 296
+Max value: 322
+Max value: 299
+Max value: 372
+Max value: 341
+Max value: 370
+Max value: 430
+Max value: 600
+Max value: 798
+Max value: 1529
+Avg_rollouts 513.1538461538462 Turns 13
+Pokemon left: 1
+Max value: 66
+Max value: 239
+Max value: 309
+Max value: 250
+Max value: 328
+Max value: 278
+Max value: 261
+Max value: 269
+Max value: 279
+Max value: 398
+Max value: 392
+Max value: 368
+Max value: 377
+Max value: 483
+Max value: 748
+Max value: 1424
+Avg_rollouts 459.75 Turns 16
+Pokemon left: 1
+Max value: 191
+Max value: 315
+Max value: 334
+Max value: 335
+Max value: 387
+Max value: 407
+Max value: 421
+Max value: 486
+Max value: 802
+Avg_rollouts 445.55555555555554 Turns 9
+Loss
+Max value: 67
+Max value: 171
+Max value: 350
+Max value: 335
+Max value: 367
+Max value: 433
+Max value: 1061
+Max value: 105
+Max value: 160
+Max value: 167
+Max value: 376
+Avg_rollouts 620.5454545454545 Turns 11
+Loss
+Max value: 163
+Max value: 317
+Max value: 340
+Max value: 344
+Max value: 385
+Max value: 381
+Max value: 282
+Max value: 397
+Max value: 519
+Max value: 793
+Max value: 1540
+Avg_rollouts 542.7272727272727 Turns 11
+Pokemon left: 1
+Max value: 280
+Max value: 65
+Max value: 79
+Max value: 84
+Max value: 106
+Max value: 94
+Max value: 92
+Max value: 174
+Max value: 468
+Avg_rollouts 579.7777777777778 Turns 9
+Loss
+Max value: 217
+Max value: 287
+Max value: 303
+Max value: 271
+Max value: 322
+Max value: 336
+Max value: 295
+Max value: 332
+Max value: 323
+Max value: 329
+Max value: 314
+Max value: 103
+Max value: 121
+Max value: 176
+Max value: 360
+Avg_rollouts 452.73333333333335 Turns 15
+Loss
+Max value: 120
+Max value: 229
+Max value: 360
+Max value: 364
+Max value: 414
+Max value: 549
+Max value: 712
+Avg_rollouts 465.2857142857143 Turns 7
+Pokemon left: 4
+Max value: 345
+Max value: 68
+Max value: 208
+Max value: 58
+Max value: 65
+Max value: 81
+Max value: 283
+Max value: 88
+Max value: 96
+Max value: 266
+Max value: 117
+Max value: 237
+Max value: 389
+Avg_rollouts 564.4615384615385 Turns 13
+Loss
+Max value: 217
+Max value: 248
+Max value: 332
+Max value: 367
+Max value: 344
+Max value: 304
+Max value: 349
+Max value: 366
+Max value: 337
+Max value: 278
+Max value: 428
+Max value: 568
+Max value: 795
+Max value: 1529
+Avg_rollouts 493.14285714285717 Turns 14
+Pokemon left: 1
+Max value: 65
+Max value: 240
+Max value: 241
+Max value: 219
+Max value: 351
+Max value: 272
+Max value: 321
+Max value: 328
+Max value: 340
+Max value: 311
+Max value: 296
+Max value: 390
+Max value: 368
+Max value: 349
+Max value: 428
+Max value: 682
+Max value: 1496
+Avg_rollouts 446.8235294117647 Turns 17
+Pokemon left: 1
+Max value: 64
+Max value: 341
+Max value: 61
+Max value: 77
+Max value: 75
+Max value: 90
+Max value: 118
+Max value: 115
+Max value: 114
+Max value: 496
+Avg_rollouts 514.2 Turns 10
+Loss
+Max value: 66
+Max value: 155
+Max value: 342
+Max value: 381
+Max value: 361
+Max value: 383
+Max value: 97
+Max value: 180
+Max value: 396
+Avg_rollouts 572.1111111111111 Turns 9
+Loss
+Max value: 310
+Max value: 299
+Max value: 329
+Max value: 335
+Max value: 255
+Max value: 347
+Max value: 351
+Max value: 177
+Max value: 412
+Max value: 408
+Max value: 485
+Max value: 513
+Max value: 712
+Max value: 1498
+Avg_rollouts 501.2857142857143 Turns 14
+Loss
+Max value: 284
+Max value: 73
+Max value: 78
+Max value: 84
+Max value: 89
+Max value: 130
+Max value: 132
+Max value: 161
+Max value: 360
+Avg_rollouts 622.5555555555555 Turns 9
+Loss
+Max value: 154
+Max value: 202
+Max value: 58
+Max value: 61
+Max value: 80
+Max value: 89
+Max value: 276
+Max value: 114
+Max value: 432
+Max value: 454
+Max value: 316
+Max value: 485
+Max value: 365
+Max value: 361
+Max value: 422
+Max value: 512
+Max value: 691
+Max value: 1469
+Avg_rollouts 524.5 Turns 18
+Pokemon left: 1
+Max value: 66
+Max value: 282
+Max value: 332
+Max value: 396
+Max value: 373
+Max value: 360
+Max value: 402
+Max value: 512
+Max value: 777
+Max value: 1533
+Avg_rollouts 553.1 Turns 10
+Pokemon left: 1
+Max value: 67
+Max value: 323
+Max value: 327
+Max value: 294
+Max value: 278
+Max value: 319
+Max value: 387
+Max value: 385
+Max value: 418
+Max value: 522
+Max value: 520
+Max value: 1454
+Avg_rollouts 491.9166666666667 Turns 12
+Pokemon left: 2
+Max value: 66
+Max value: 322
+Max value: 351
+Max value: 313
+Max value: 330
+Max value: 326
+Max value: 341
+Max value: 101
+Max value: 172
+Max value: 396
+Avg_rollouts 543.2 Turns 10
+Loss
+Max value: 66
+Max value: 329
+Max value: 359
+Max value: 394
+Max value: 423
+Max value: 415
+Max value: 431
+Max value: 105
+Max value: 153
+Max value: 173
+Avg_rollouts 476.3 Turns 10
+Loss
+Max value: 412
+Max value: 70
+Max value: 102
+Max value: 103
+Max value: 94
+Max value: 100
+Max value: 144
+Max value: 159
+Max value: 317
+Avg_rollouts 596.0 Turns 9
+Loss
+Max value: 63
+Max value: 165
+Max value: 299
+Max value: 375
+Max value: 376
+Max value: 502
+Max value: 516
+Max value: 743
+Max value: 1527
+Avg_rollouts 588.5555555555555 Turns 9
+Pokemon left: 1
+Max value: 235
+Max value: 268
+Max value: 303
+Max value: 276
+Max value: 299
+Max value: 326
+Max value: 375
+Max value: 334
+Max value: 299
+Max value: 343
+Max value: 400
+Max value: 534
+Max value: 1237
+Avg_rollouts 427.6923076923077 Turns 13
+Pokemon left: 2
+Max value: 66
+Max value: 296
+Max value: 339
+Max value: 393
+Max value: 418
+Max value: 524
+Max value: 579
+Max value: 737
+Max value: 1533
+Avg_rollouts 592.3333333333334 Turns 9
+Pokemon left: 1
+Max value: 64
+Max value: 280
+Max value: 318
+Max value: 395
+Max value: 263
+Max value: 334
+Max value: 101
+Max value: 180
+Max value: 387
+Avg_rollouts 570.8888888888889 Turns 9
+Loss
+Max value: 214
+Max value: 71
+Max value: 73
+Max value: 84
+Max value: 165
+Max value: 265
+Max value: 367
+Max value: 366
+Max value: 87
+Max value: 93
+Max value: 239
+Max value: 518
+Avg_rollouts 560.0833333333334 Turns 12
+Loss
+Max value: 176
+Max value: 323
+Max value: 369
+Max value: 382
+Max value: 473
+Max value: 471
+Max value: 466
+Max value: 479
+Max value: 649
+Max value: 1390
+Max value: 1634
+Avg_rollouts 648.0 Turns 11
+Pokemon left: 1
+Max value: 66
+Max value: 87
+Max value: 90
+Max value: 116
+Max value: 123
+Max value: 129
+Max value: 305
+Max value: 469
+Avg_rollouts 708.75 Turns 8
+Loss
+Max value: 66
+Max value: 271
+Max value: 366
+Max value: 334
+Max value: 196
+Max value: 290
+Max value: 348
+Max value: 267
+Max value: 361
+Max value: 362
+Max value: 447
+Max value: 515
+Max value: 598
+Max value: 499
+Max value: 712
+Max value: 1448
+Avg_rollouts 504.125 Turns 16
+Pokemon left: 1
+Max value: 348
+Max value: 69
+Max value: 103
+Max value: 108
+Max value: 94
+Max value: 93
+Max value: 96
+Max value: 141
+Max value: 201
+Avg_rollouts 522.2222222222222 Turns 9
+Loss
+Max value: 273
+Max value: 323
+Max value: 320
+Max value: 349
+Max value: 367
+Max value: 359
+Max value: 397
+Max value: 524
+Max value: 799
+Avg_rollouts 434.1111111111111 Turns 9
+Pokemon left: 1
+Max value: 126
+Max value: 312
+Max value: 299
+Max value: 263
+Max value: 337
+Max value: 327
+Max value: 313
+Max value: 368
+Max value: 365
+Max value: 410
+Max value: 542
+Max value: 720
+Max value: 1457
+Avg_rollouts 490.53846153846155 Turns 13
+Pokemon left: 1
+Max value: 215
+Max value: 222
+Max value: 359
+Max value: 316
+Max value: 323
+Max value: 301
+Max value: 289
+Max value: 396
+Max value: 496
+Max value: 519
+Max value: 825
+Max value: 1526
+Avg_rollouts 530.3333333333334 Turns 12
+Loss
+Max value: 214
+Max value: 138
+Max value: 367
+Max value: 341
+Max value: 334
+Max value: 294
+Max value: 348
+Max value: 435
+Max value: 452
+Max value: 453
+Max value: 461
+Max value: 833
+Max value: 1534
+Avg_rollouts 527.2307692307693 Turns 13
+Loss
+Max value: 264
+Max value: 106
+Max value: 109
+Max value: 107
+Max value: 103
+Max value: 165
+Max value: 202
+Max value: 369
+Avg_rollouts 675.25 Turns 8
+Loss
+Max value: 339
+Max value: 287
+Max value: 150
+Max value: 341
+Max value: 340
+Max value: 398
+Max value: 349
+Max value: 334
+Max value: 404
+Max value: 496
+Max value: 790
+Max value: 1541
+Avg_rollouts 513.4166666666666 Turns 12
+Pokemon left: 1
+Max value: 195
+Max value: 338
+Max value: 291
+Max value: 367
+Max value: 319
+Max value: 75
+Max value: 77
+Max value: 77
+Max value: 107
+Max value: 111
+Max value: 369
+Avg_rollouts 530.8181818181819 Turns 11
+Loss
+Max value: 345
+Max value: 69
+Max value: 86
+Max value: 88
+Max value: 74
+Max value: 107
+Max value: 264
+Max value: 115
+Max value: 747
+Avg_rollouts 529.2222222222222 Turns 9
+Loss
+Max value: 66
+Max value: 228
+Max value: 325
+Max value: 379
+Max value: 342
+Max value: 133
+Max value: 100
+Max value: 173
+Max value: 389
+Avg_rollouts 577.5555555555555 Turns 9
+Loss
+Max value: 275
+Max value: 258
+Max value: 286
+Max value: 298
+Max value: 292
+Max value: 318
+Max value: 288
+Max value: 306
+Max value: 326
+Max value: 308
+Max value: 389
+Max value: 324
+Max value: 405
+Max value: 544
+Max value: 1326
+Avg_rollouts 426.3333333333333 Turns 15
+Pokemon left: 2
+Max value: 178
+Max value: 92
+Max value: 95
+Max value: 86
+Max value: 138
+Max value: 163
+Max value: 287
+Max value: 283
+Avg_rollouts 687.5 Turns 8
+Loss
+Max value: 66
+Max value: 225
+Max value: 271
+Max value: 346
+Max value: 166
+Max value: 384
+Max value: 420
+Max value: 605
+Max value: 828
+Max value: 1533
+Avg_rollouts 575.2 Turns 10
+Pokemon left: 1
+Max value: 204
+Max value: 271
+Max value: 376
+Max value: 335
+Max value: 322
+Max value: 297
+Max value: 335
+Max value: 345
+Max value: 407
+Max value: 642
+Max value: 1195
+Avg_rollouts 461.45454545454544 Turns 11
+Pokemon left: 2
+Max value: 66
+Max value: 282
+Max value: 314
+Max value: 381
+Max value: 361
+Max value: 370
+Max value: 455
+Max value: 537
+Max value: 510
+Max value: 1521
+Avg_rollouts 536.9 Turns 10
+Pokemon left: 1
+Max value: 307
+Max value: 89
+Max value: 90
+Max value: 89
+Max value: 121
+Max value: 134
+Max value: 149
+Max value: 189
+Avg_rollouts 534.875 Turns 8
+Loss
+Max value: 250
+Max value: 69
+Max value: 79
+Max value: 278
+Max value: 360
+Max value: 324
+Max value: 406
+Max value: 518
+Max value: 793
+Max value: 1536
+Avg_rollouts 579.5 Turns 10
+Pokemon left: 1
+Max value: 65
+Max value: 279
+Max value: 256
+Max value: 400
+Max value: 435
+Max value: 1142
+Avg_rollouts 531.0 Turns 6
+Pokemon left: 3
+Max value: 66
+Max value: 243
+Max value: 295
+Max value: 295
+Max value: 259
+Max value: 282
+Max value: 377
+Max value: 373
+Max value: 289
+Max value: 74
+Max value: 79
+Max value: 85
+Max value: 97
+Max value: 104
+Max value: 391
+Avg_rollouts 464.26666666666665 Turns 15
+Loss
+Max value: 65
+Max value: 299
+Max value: 370
+Max value: 332
+Max value: 332
+Max value: 367
+Max value: 375
+Max value: 331
+Max value: 325
+Max value: 326
+Max value: 422
+Max value: 494
+Max value: 794
+Max value: 1533
+Avg_rollouts 492.14285714285717 Turns 14
+Pokemon left: 1
+Max value: 175
+Max value: 98
+Max value: 67
+Max value: 250
+Max value: 131
+Max value: 295
+Max value: 315
+Max value: 377
+Max value: 410
+Max value: 559
+Max value: 582
+Max value: 1393
+Avg_rollouts 506.4166666666667 Turns 12
+Pokemon left: 1
+Max value: 218
+Max value: 316
+Max value: 348
+Max value: 353
+Max value: 353
+Max value: 252
+Max value: 318
+Max value: 382
+Max value: 395
+Max value: 344
+Avg_rollouts 465.6 Turns 10
+Loss
+Max value: 67
+Max value: 165
+Max value: 239
+Max value: 339
+Max value: 268
+Max value: 314
+Max value: 361
+Max value: 347
+Max value: 356
+Max value: 407
+Max value: 548
+Max value: 1531
+Avg_rollouts 476.5 Turns 12
+Pokemon left: 1
+Max value: 243
+Max value: 258
+Max value: 315
+Max value: 272
+Max value: 361
+Max value: 392
+Max value: 432
+Max value: 474
+Max value: 633
+Max value: 1516
+Avg_rollouts 523.6 Turns 10
+Pokemon left: 1
+Max value: 107
+Max value: 69
+Max value: 101
+Max value: 110
+Max value: 89
+Max value: 135
+Max value: 150
+Max value: 304
+Avg_rollouts 595.375 Turns 8
+Loss
+Max value: 63
+Max value: 131
+Max value: 354
+Max value: 359
+Max value: 329
+Max value: 365
+Max value: 456
+Max value: 696
+Max value: 1300
+Max value: 1482
+Avg_rollouts 622.6 Turns 10
+Pokemon left: 1
+Max value: 90
+Max value: 253
+Max value: 322
+Max value: 329
+Max value: 334
+Max value: 299
+Max value: 277
+Max value: 298
+Max value: 323
+Max value: 304
+Max value: 251
+Max value: 293
+Max value: 323
+Max value: 355
+Max value: 89
+Max value: 92
+Max value: 170
+Max value: 509
+Avg_rollouts 428.3333333333333 Turns 18
+Loss
+Max value: 145
+Max value: 83
+Max value: 90
+Max value: 118
+Max value: 107
+Max value: 166
+Max value: 312
+Avg_rollouts 573.2857142857143 Turns 7
+Loss
+Max value: 189
+Max value: 306
+Max value: 365
+Max value: 404
+Max value: 438
+Max value: 691
+Max value: 810
+Max value: 1612
+Avg_rollouts 633.125 Turns 8
+Pokemon left: 2
+Max value: 218
+Max value: 237
+Max value: 348
+Max value: 310
+Max value: 312
+Max value: 253
+Max value: 334
+Max value: 298
+Max value: 300
+Max value: 291
+Max value: 386
+Max value: 471
+Max value: 645
+Max value: 1524
+Avg_rollouts 459.85714285714283 Turns 14
+Pokemon left: 1
+Max value: 63
+Max value: 271
+Max value: 346
+Max value: 389
+Max value: 425
+Max value: 423
+Max value: 492
+Max value: 556
+Max value: 714
+Max value: 1439
+Avg_rollouts 567.0 Turns 10
+Pokemon left: 1
+Max value: 224
+Max value: 299
+Max value: 352
+Max value: 381
+Max value: 363
+Max value: 306
+Max value: 356
+Max value: 492
+Max value: 752
+Max value: 1463
+Avg_rollouts 528.3 Turns 10
+Pokemon left: 2
+Max value: 368
+Max value: 69
+Max value: 64
+Max value: 359
+Max value: 391
+Max value: 83
+Max value: 129
+Max value: 162
+Max value: 362
+Avg_rollouts 602.6666666666666 Turns 9
+Loss
+Max value: 336
+Max value: 68
+Max value: 221
+Max value: 75
+Max value: 75
+Max value: 77
+Max value: 129
+Max value: 100
+Max value: 97
+Max value: 176
+Max value: 345
+Avg_rollouts 583.9090909090909 Turns 11
+Loss
+Max value: 218
+Max value: 180
+Max value: 271
+Max value: 278
+Max value: 345
+Max value: 315
+Max value: 216
+Max value: 375
+Max value: 412
+Max value: 382
+Max value: 557
+Max value: 861
+Max value: 1618
+Avg_rollouts 522.7692307692307 Turns 13
+Pokemon left: 1
+Max value: 66
+Max value: 280
+Max value: 314
+Max value: 372
+Max value: 283
+Max value: 298
+Max value: 431
+Max value: 390
+Max value: 693
+Max value: 1398
+Avg_rollouts 526.2 Turns 10
+Pokemon left: 2
+Max value: 65
+Max value: 223
+Max value: 306
+Max value: 308
+Max value: 350
+Max value: 403
+Max value: 658
+Avg_rollouts 412.7142857142857 Turns 7
+Pokemon left: 3
+Max value: 249
+Max value: 238
+Max value: 352
+Max value: 381
+Max value: 375
+Max value: 322
+Max value: 308
+Max value: 321
+Max value: 441
+Max value: 567
+Max value: 1259
+Avg_rollouts 466.6363636363636 Turns 11
+Pokemon left: 3
+Max value: 358
+Max value: 67
+Max value: 89
+Max value: 93
+Max value: 92
+Max value: 120
+Max value: 135
+Max value: 149
+Max value: 194
+Max value: 354
+Avg_rollouts 633.8 Turns 10
+Loss
+WARNING: max time for agent = 1.021824836730957
+NET: -1470.00 +/- 305.96; WINS: 0.520 +/- 0.045

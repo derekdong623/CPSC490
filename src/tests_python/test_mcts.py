@@ -44,6 +44,7 @@ def simulate_one(game: PokemonGame, time_limit: float, verbose: bool = False):
         choice, nr = p1_mcts.mcts_search(state)
         p1_time = max(p1_time, time.time() - start)
         total_rollouts += nr
+        # print("Number of rollouts:", nr)
         if verbose:
             log_state(state, turn_num)
         # print(state.get_active(0).hp, state.get_active(1).hp, choice)
